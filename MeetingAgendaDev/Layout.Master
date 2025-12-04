@@ -1,0 +1,279 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="ClientMeetingAgenda.Layout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <script src="Scripts/popper.min.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/Custom/Custom.js"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+   <link href="Content/DataTable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />
+
+
+
+    <script src="Scripts/Custom/jquery.min.js"></script>
+    <script src="Scripts/Custom/bootstrap.min.js"></script>
+    <link href="Scripts/Custom/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+    <script src="Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+    
+
+    <script src="Scripts/moment.js"></script>
+
+    <link href="Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap-datepicker.js"></script>
+
+    <style>
+        .border-10 {
+            border-style: solid;
+            border-width: 6px;
+            border-color: #00968F;
+        }
+
+        .border-5 {
+            border-style: solid;
+            border-width: 2px;
+            border-color: #00968F;
+        }
+
+        .mycheckbox input[type="checkbox"] {
+            /*margin-top:15px;*/
+            margin-right: 30px;
+            margin-left: 30px;
+            transform: scale(4.5,2);
+        }
+    </style>
+
+    <style>
+        .custom-checkbox input {
+            display: none;
+        }
+
+        .custom-checkbox label span {
+            border: 3px solid #7e8a94;
+            float: right;
+            height: 30px;
+            width: 60px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .custom-checkbox:hover span,
+        .custom-checkbox input:checked + label span {
+            border: 3px solid #7e8a94;
+        }
+
+            .custom-checkbox input:checked + label span:before {
+                content: "✔";
+                position: absolute;
+                font-size: 1.6em;
+                line-height: 0.8;
+                transition: all .2s;
+            }
+    </style>
+
+
+    <style>
+        .custom-checkbox-disable input {
+            display: none;
+        }
+
+        .custom-checkbox-disable label span {
+            border: 3px solid #7e8a94;
+            float: right;
+            height: 30px;
+            width: 60px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            margin-left: 10px;
+            background-color: lightgray;
+        }
+
+        .custom-checkbox-disable:hover span,
+        .custom-checkbox-disable input:checked + label span {
+            border: 3px solid #7e8a94;
+        }
+
+            .custom-checkbox-disable input:checked + label span:before {
+                position: absolute;
+                font-size: 1.6em;
+                line-height: 0.8;
+                transition: all .2s;
+            }
+
+        #contentPage_div {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+    </style>
+
+    <style>
+        body {
+            font-family: Calibri;
+            font-size: 16px;
+        }
+    </style>
+    <style>
+        .custom {
+            width: 120px !important;
+            height: 40px !important;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+    <style>
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        <%--function LinkActivation(linkName) {
+
+            document.getElementById("<%=liNewCIP.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liClientApproval.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liClients.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liCIPFiles.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liChangePassword.ClientID %>").classList.remove('active');
+
+            linkName.classList.add('active');
+            alert(document.getElementById("<%=liClientApproval.ClientID %>").id);
+            alert(linkName.id);
+            return true;
+        }--%>
+
+
+    </script>
+
+    <script type="text/javascript">
+        function ShowOverlay() {
+            $('body').addClass('overflow-hidden');
+            $("#overlay").show();
+
+        }
+
+        function HideOverlay() {
+            $('body').removeClass('overflow-hidden');
+            $("#overlay").hide();
+        }
+    </script>
+</head>
+<body>
+    <div id="overlay" class="overlay"></div>
+    <form id="form1" class="form-group" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img class="navbar-brand" src="Images/Logo.jpg" style="height: 80px;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="navbar" class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <%--<li class="nav-item active" id="liDashboard" runat="server"><a class="nav-link" href="frmDashboard.aspx">Dashboard</a></li>--%>
+                    <li class="nav-item" id="liNewMA" runat="server">
+                        <%--<a class="nav-link" href="frmMAPage1.aspx">New Meeting Agenda</a>--%>
+                        <asp:LinkButton ID="lnkNewMA" runat="server" CssClass="nav-link" OnClick="lnkNewMA_Click">New Meeting Agenda</asp:LinkButton>
+                    </li>
+                    <li class="nav-item" id="liUsers" runat="server"><a class="nav-link" href="frmUsers.aspx">Users</a></li>
+                    <%--<li class="nav-item" id="liClients" runat="server"><a class="nav-link" href="frmClientMaster.aspx">Clients</a></li>--%>
+                    <li class="nav-item" id="liMAFileApproval" runat="server"><a class="nav-link" href="frmMeetingAgendaMaster.aspx">Meeting Agenda Files</a></li>
+                    <li class="nav-item" id="liReport" runat="server"><a class="nav-link" href="frmReportMaster.aspx">Report</a></li>
+                    <li class="nav-item" id="liChangePassword" runat="server"><a class="nav-link" href="frmChangePassword.aspx">Change Password</a></li>
+                    <li class="nav-item" id="liLogout" runat="server"><a class="nav-link" href="frmLogin.aspx">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div>
+            <div class="w-100 p-3">
+                <div class="col-lg-12 border-10 ">
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                    <asp:ContentPlaceHolder ID="cphMainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                    <asp:ContentPlaceHolder ID="cphFooter" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <%--<script type="text/javascript">
+        $(document).ready(function () {
+            var pageName = window.location.pathname;
+            var newPageName = pageName;
+
+            if (pageName.indexOf('/') == 0) {
+                newPageName = pageName.substring(1, pageName.length);
+
+                if (newPageName.indexOf('/') >= 0) {
+                    newPageName = newPageName.substring(newPageName.indexOf('/') + 1, newPageName.length);
+                }
+                if (newPageName == "frmReport.aspx") {
+                    newPageName = "frmReportMaster.aspx";
+                }
+
+                $.each($('#navbar').find('li'), function () {
+
+                    var hrefVal = $(this).find('a').attr('href');
+
+                    if (hrefVal.indexOf(newPageName) >= 0) {
+                        $(this).addClass('active').siblings().removeClass('active');
+                        $(this).attr("style", "background-color: #00968F !important;").siblings.removeAttr("style");
+                    }
+                });
+            }
+        });
+    </script>--%>
+</body>
+</html>

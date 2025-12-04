@@ -1,0 +1,165 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|e:\\medicountapplication\\clientreviewmeetingaganda_bitbucket\\meetingagendadev\\frmdisplaypdf.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|solutionrelative:frmdisplaypdf.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|e:\\medicountapplication\\clientreviewmeetingaganda_bitbucket\\meetingagendadev\\frminnermapage1.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|solutionrelative:frminnermapage1.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|e:\\medicountapplication\\clientreviewmeetingaganda_bitbucket\\meetingagendadev\\app_code\\clsmeetingagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|solutionrelative:app_code\\clsmeetingagenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|e:\\medicountapplication\\clientreviewmeetingaganda_bitbucket\\meetingagendadev\\frmmapage1.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|solutionrelative:frmmapage1.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|e:\\medicountapplication\\clientreviewmeetingaganda_bitbucket\\meetingagendadev\\frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{9C659C8B-45E7-4BEC-B960-0B6B0E78CFA5}|ClientMeetingAgenda.csproj|solutionrelative:frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 18,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmInnerMAPage1.aspx.cs",
+              "DocumentMoniker": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmInnerMAPage1.aspx.cs",
+              "RelativeDocumentMoniker": "frmInnerMAPage1.aspx.cs",
+              "ToolTip": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmInnerMAPage1.aspx.cs",
+              "RelativeToolTip": "frmInnerMAPage1.aspx.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAtwCoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T15:50:17.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmMAPage1.aspx.cs",
+              "DocumentMoniker": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmMAPage1.aspx.cs",
+              "RelativeDocumentMoniker": "frmMAPage1.aspx.cs",
+              "ToolTip": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmMAPage1.aspx.cs",
+              "RelativeToolTip": "frmMAPage1.aspx.cs",
+              "ViewState": "AgIAAEsCAAAAAAAAAAAMwF4CAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T15:50:17.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "clsMeetingAgenda.cs",
+              "DocumentMoniker": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\App_Code\\clsMeetingAgenda.cs",
+              "RelativeDocumentMoniker": "App_Code\\clsMeetingAgenda.cs",
+              "ToolTip": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\App_Code\\clsMeetingAgenda.cs",
+              "RelativeToolTip": "App_Code\\clsMeetingAgenda.cs",
+              "ViewState": "AgIAAOoBAAAAAAAAAAAMwP0BAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T15:50:17.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmDisplayPDF.aspx.cs",
+              "DocumentMoniker": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmDisplayPDF.aspx.cs",
+              "RelativeDocumentMoniker": "frmDisplayPDF.aspx.cs",
+              "ToolTip": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmDisplayPDF.aspx.cs",
+              "RelativeToolTip": "frmDisplayPDF.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T15:50:17.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmLogin.aspx",
+              "DocumentMoniker": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmLogin.aspx",
+              "RelativeDocumentMoniker": "frmLogin.aspx",
+              "ToolTip": "E:\\MedicountApplication\\ClientReviewMeetingAganda_Bitbucket\\MeetingAgendaDev\\frmLogin.aspx",
+              "RelativeToolTip": "frmLogin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-04T15:55:02.786Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

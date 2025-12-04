@@ -1,0 +1,244 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="ClientMeetingAgenda.Layout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <script src="Scripts/popper.min.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/Custom/Custom.js"></script>
+    
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    
+
+    <script src="Scripts/Custom/jquery.min.js"></script>
+    <script src="Scripts/Custom/bootstrap.min.js"></script>
+    <link href="Scripts/Custom/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/moment.js"></script>
+    
+
+    <link href="Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap-datepicker.js"></script>
+
+    <style>
+        .border-10 {
+            border-style: solid;
+            border-width: 6px;
+            border-color:#00968F;
+        }
+
+        .border-5 {
+            border-style: solid;
+            border-width: 4px;
+        }
+
+        .mycheckbox input[type="checkbox"] {
+            /*margin-top:15px;*/
+            margin-right: 30px;
+            margin-left: 30px;
+            transform: scale(4.5,2);
+        }
+    </style>
+
+    <style>
+        .custom-checkbox input {
+            display: none;
+        }
+
+        .custom-checkbox label span {
+            border: 3px solid #7e8a94;
+            float: right;
+            height: 30px;
+            width: 60px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .custom-checkbox:hover span,
+        .custom-checkbox input:checked + label span {
+            border: 3px solid #7e8a94;
+        }
+
+            .custom-checkbox input:checked + label span:before {
+                content: "✔";
+                /*position: absolute;*/
+                font-size: 1.6em;
+                line-height: 0.8;
+                transition: all .2s;
+            }
+    </style>
+
+
+    <style>
+        .custom-checkbox-disable input {
+            display: none;
+        }
+
+        .custom-checkbox-disable label span {
+            border: 3px solid #7e8a94;
+            float: right;
+            height: 30px;
+            width: 60px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            margin-left: 10px;
+            background-color: lightgray;
+        }
+
+        .custom-checkbox-disable:hover span,
+        .custom-checkbox-disable input:checked + label span {
+            border: 3px solid #7e8a94;
+        }
+
+            .custom-checkbox-disable input:checked + label span:before {
+                position: absolute;
+                font-size: 1.6em;
+                line-height: 0.8;
+                transition: all .2s;
+            }
+
+        #contentPage_div {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+    </style>
+
+    <style>
+        body {
+            font-family: Calibri;
+            font-size: 16px;
+        }
+    </style>
+    <style>
+        .custom {
+            width: 100px !important;
+            height: 40px !important;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+    <script type="text/javascript">
+        <%--function LinkActivation(linkName) {
+
+            document.getElementById("<%=liNewCIP.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liClientApproval.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liClients.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liCIPFiles.ClientID %>").classList.remove('active');
+            document.getElementById("<%=liChangePassword.ClientID %>").classList.remove('active');
+
+            linkName.classList.add('active');
+            alert(document.getElementById("<%=liClientApproval.ClientID %>").id);
+            alert(linkName.id);
+            return true;
+        }--%>
+
+        $(document).ready(function () {
+            var pageName = window.location.pathname;
+            var newPageName = pageName;
+
+            if (pageName.indexOf('/') == 0) {
+                newPageName = pageName.substring(1, pageName.length);
+
+                if (newPageName == "frmPage2.aspx" || newPageName == "frmPage3.aspx" || newPageName == "frmPage4.aspx"
+                    || newPageName == "frmPage5.aspx" || newPageName == "frmPage6.aspx" || newPageName == "frmPage7.aspx"
+                    || newPageName == "frmPage8.aspx" || newPageName == "frmPage9.aspx" || newPageName == "frmPage10.aspx"
+                    || newPageName == "frmPage11.aspx" || newPageName == "frmPage12.aspx" || newPageName == "frmPage13.aspx"
+                    || newPageName == "frmPage14.aspx" || newPageName == "frmPage15.aspx" || newPageName == "frmPage16.aspx") {
+                    newPageName = "frmPage1.aspx";
+                }
+
+
+                $.each($('#navbar').find('li'), function () {
+
+                    var hrefVal = $(this).find('a').attr('href');
+
+                    if (hrefVal.indexOf(newPageName) >= 0) {
+                        $(this).addClass('active').siblings().removeClass('active');
+                    }
+                });
+
+            }
+        });
+    </script>
+</head>
+<body>
+    <form id="form1" class="form-group" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img class="navbar-brand" src="Images/Logo.jpg" style="height: 80px;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="navbar" class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active" id="liNewMA" runat="server"><a class="nav-link" href="frmMAPage1.aspx">New Meeting Agenda</a></li>
+                   <%-- <li class="nav-item" id="liClientApproval" runat="server"><a class="nav-link" href="frmClientApproval.aspx">Client Approval</a></li>
+                    <li class="nav-item" id="liClients" runat="server"><a class="nav-link" href="frmClientDetails.aspx">Clients</a></li>
+                    <li class="nav-item" id="liCIPFileApproval" runat="server"><a class="nav-link" href="frmPDFApproval.aspx">CIP Files Approval</a></li>
+                    <li class="nav-item" id="liCIPFiles" runat="server"><a class="nav-link" href="frmFileHistory.aspx">CIP Files</a></li>
+                    <li class="nav-item" id="liAccExec" runat="server"><a class="nav-link" href="frmAccountExecutive.aspx">Account Executive</a></li>
+                    <li class="nav-item" id="liChangePassword" runat="server"><a class="nav-link" href="frmChangePassword.aspx">Change password</a></li>--%>
+                    <li class="nav-item" id="liLogout" runat="server"><a class="nav-link" href="frmLogin.aspx">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div>
+            <div class="w-100 p-3">
+                <div class="col-lg-12 border-10 ">
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                    <asp:ContentPlaceHolder ID="cphMainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                    <asp:ContentPlaceHolder ID="cphFooter" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <div class="col-lg-12">
+                        <div class="col-md-2 d-inline-block">
+                            <br />
+                        </div>
+                        <div class="col-md-7 d-inline-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zoho.Api</name>
+    </assembly>
+    <members>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Products">
+            <summary>
+            Provides contract(s) API methods for zoho subscription product.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Plans">
+            <summary>
+            Provides contract(s) API methods for zoho subscription plan.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Addons">
+            <summary>
+            Provides contract(s) API methods for zoho subscription add-on.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Coupons">
+            <summary>
+            Provides contract(s) API methods for zoho subscription coupon.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Customers">
+            <summary>
+            Provides contract(s) API methods for zoho subscription customer.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Cards">
+            <summary>
+            Provides contract(s) API methods for zoho subscription card.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.ContactPersons">
+            <summary>
+            Provides contract(s) API methods for zoho subscription contact person.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Subscriptions">
+            <summary>
+            Provides contract(s) API methods for zoho subscription - subscription API fragment.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.HostedPage">
+            <summary>
+            Provides contract(s) API methods for zoho subscription - hosted page API fragment.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Invoices">
+            <summary>
+            Provides contract(s) API methods for zoho subscription - invoice API fragment.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ISubscriptionApi.Settings">
+            <summary>
+            Provides contract(s) API methods for zoho subscription - settings API fragment.
+            </summary>
+        </member>
+        <member name="T:Teference.Zoho.Api.Internals.ApiResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteAddon">
+            <summary>
+              Looks up a localized string similar to addons/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteCard">
+            <summary>
+              Looks up a localized string similar to customers/{0}/cards/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteContactPerson">
+            <summary>
+              Looks up a localized string similar to customers/{0}/contactpersons/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteCoupon">
+            <summary>
+              Looks up a localized string similar to coupons/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteCustomer">
+            <summary>
+              Looks up a localized string similar to customers/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeletePlan">
+            <summary>
+              Looks up a localized string similar to plans/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteProduct">
+            <summary>
+              Looks up a localized string similar to products/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteSubscription">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteSubscriptionDeleteNote">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/notes/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsDeleteSubscriptionRemoveCoupon">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/coupons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetAddon">
+            <summary>
+              Looks up a localized string similar to addons/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetAddonsAll">
+            <summary>
+              Looks up a localized string similar to addons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetCard">
+            <summary>
+              Looks up a localized string similar to customers/{0}/cards/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetContactPerson">
+            <summary>
+              Looks up a localized string similar to customers/{0}/contactpersons/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetContactPersonsAll">
+            <summary>
+              Looks up a localized string similar to customers/{0}/contactpersons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetCoupon">
+            <summary>
+              Looks up a localized string similar to coupons/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetCouponsAll">
+            <summary>
+              Looks up a localized string similar to coupons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetCustomer">
+            <summary>
+              Looks up a localized string similar to customers/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetCustomersAll">
+            <summary>
+              Looks up a localized string similar to customers.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetHostedPageAll">
+            <summary>
+              Looks up a localized string similar to hostedpages.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetHostedPlan">
+            <summary>
+              Looks up a localized string similar to hostedpages/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetInvoice">
+            <summary>
+              Looks up a localized string similar to invoices/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetInvoiceAsPdf">
+            <summary>
+              Looks up a localized string similar to invoices/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetInvoicesAll">
+            <summary>
+              Looks up a localized string similar to invoices.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetPlan">
+            <summary>
+              Looks up a localized string similar to plans/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetPlansAll">
+            <summary>
+              Looks up a localized string similar to plans.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetProduct">
+            <summary>
+              Looks up a localized string similar to products/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetProductsAll">
+            <summary>
+              Looks up a localized string similar to products.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetSubscription">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetSubscriptionsAll">
+            <summary>
+              Looks up a localized string similar to subscriptions.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsGetTaxes">
+            <summary>
+              Looks up a localized string similar to settings/taxes.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostAddon">
+            <summary>
+              Looks up a localized string similar to addons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostAddonMarkActive">
+            <summary>
+              Looks up a localized string similar to addons/{0}/markasactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostAddonMarkInActive">
+            <summary>
+              Looks up a localized string similar to addons/{0}/markasinactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostCard">
+            <summary>
+              Looks up a localized string similar to customers/{0}/cards.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostContactPerson">
+            <summary>
+              Looks up a localized string similar to customers/{0}/contactpersons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostCoupon">
+            <summary>
+              Looks up a localized string similar to coupons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostCouponMarkActive">
+            <summary>
+              Looks up a localized string similar to coupons/{0}/markasactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostCouponMarkInActive">
+            <summary>
+              Looks up a localized string similar to coupons/{0}/markasinactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostCustomer">
+            <summary>
+              Looks up a localized string similar to customers.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostHostedPageBuyAddon">
+            <summary>
+              Looks up a localized string similar to hostedpages/buyonetimeaddon.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostHostedPageCreateSubscription">
+            <summary>
+              Looks up a localized string similar to hostedpages/newsubscription.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostHostedPageUpdateCard">
+            <summary>
+              Looks up a localized string similar to hostedpages/updatecard.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostHostedPageUpdateSubscription">
+            <summary>
+              Looks up a localized string similar to hostedpages/updatesubscription.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostInvoiceCancelWriteOff">
+            <summary>
+              Looks up a localized string similar to invoices/{0}/cancelwriteoff.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostInvoiceCollectCharges">
+            <summary>
+              Looks up a localized string similar to invoices/{0}/collect.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostInvoiceConvertToOpen">
+            <summary>
+              Looks up a localized string similar to invoices/{0}/convertoopen.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostInvoiceConvertToVoid">
+            <summary>
+              Looks up a localized string similar to invoices/{0}/void.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostInvoiceEmail">
+            <summary>
+              Looks up a localized string similar to invoices/{0}/email.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostInvoiceWriteOff">
+            <summary>
+              Looks up a localized string similar to invoices/{0}/writeoff.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostPlan">
+            <summary>
+              Looks up a localized string similar to plans.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostPlanMarkActive">
+            <summary>
+              Looks up a localized string similar to plans/{0}/markasactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostPlanMarkInActive">
+            <summary>
+              Looks up a localized string similar to plans/{0}/markasinactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostProduct">
+            <summary>
+              Looks up a localized string similar to products.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostProductMarkActive">
+            <summary>
+              Looks up a localized string similar to products/{0}/markasactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostProductMarkInActive">
+            <summary>
+              Looks up a localized string similar to products/{0}/markasinactive.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscription">
+            <summary>
+              Looks up a localized string similar to subscriptions.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionAddCharge">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/charge.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionAddContactPerson">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/contactpersons.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionAddNote">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/notes.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionAssociateCoupon">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/coupons/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionAutoCollect">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/autocollect.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionBuyOnetimeAddon">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/buyonetimeaddon.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionCancel">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/cancel?cancel_at_end={1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionPostponeRenewal">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/postpone.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPostSubscriptionReactivate">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}/reactivate.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutAddon">
+            <summary>
+              Looks up a localized string similar to addons/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutCard">
+            <summary>
+              Looks up a localized string similar to customers/{0}/cards/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutContactPerson">
+            <summary>
+              Looks up a localized string similar to customers/{0}/contactpersons/{1}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutCoupon">
+            <summary>
+              Looks up a localized string similar to coupons/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutCustomer">
+            <summary>
+              Looks up a localized string similar to customers/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutPlan">
+            <summary>
+              Looks up a localized string similar to plans/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutProduct">
+            <summary>
+              Looks up a localized string similar to products/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.Internals.ApiResources.ZsPutSubscription">
+            <summary>
+              Looks up a localized string similar to subscriptions/{0}.
+            </summary>
+        </member>
+        <member name="P:Teference.Zoho.Api.ZohoConfig.ApiBaseUrl">
+            <summary>
+            Set Zoho API base URL (ending with '/') - if not set default "https://subscriptions.zoho.com/api/v1/" will be used.
+            </summary>
+        </member>
+    </members>
+</doc>
