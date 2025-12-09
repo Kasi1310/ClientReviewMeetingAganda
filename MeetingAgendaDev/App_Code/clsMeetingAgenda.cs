@@ -121,6 +121,7 @@ namespace ClientMeetingAgenda.App_Code
         public string AttendeesName { get; set; }
         public string AttendeesTitle { get; set; }
         public string AttendeesEmail { get; set; }
+        public string AttendeesPhone { get; set; }
         public bool IsSurveyMailSend { get; set; }
         public string AttendedMeeting { get; set; }
 
@@ -276,6 +277,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@Name", AttendeesName);
             objSqlCommand.Parameters.AddWithValue("@Title", AttendeesTitle);
             objSqlCommand.Parameters.AddWithValue("@Email", AttendeesEmail);
+            objSqlCommand.Parameters.AddWithValue("@Phone", AttendeesPhone);
             objSqlCommand.Parameters.AddWithValue("@IsSurveyMailSend", IsSurveyMailSend);
             objSqlCommand.Parameters.AddWithValue("@AttendedMeeting", AttendedMeeting);
 

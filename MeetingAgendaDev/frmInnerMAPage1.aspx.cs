@@ -92,6 +92,7 @@ namespace ClientMeetingAgenda
                         objclsMeetingAgenda.AttendeesName = dtAttendeesInvited.Rows[i]["Name"].ToString().Trim();
                         objclsMeetingAgenda.AttendeesTitle = dtAttendeesInvited.Rows[i]["Title"].ToString().Trim();
                         objclsMeetingAgenda.AttendeesEmail = dtAttendeesInvited.Rows[i]["Email"].ToString().Trim();
+                        objclsMeetingAgenda.AttendeesPhone = dtAttendeesInvited.Rows[i]["Phone"].ToString().Trim();
                         objclsMeetingAgenda.IsSurveyMailSend = IsSurveyMailSend;
                         objclsMeetingAgenda.AttendedMeeting = dtAttendeesInvited.Rows[i]["AttendedMeeting"].ToString().Trim();
                         intAttendeesID = objclsMeetingAgenda.InsertAttendes();

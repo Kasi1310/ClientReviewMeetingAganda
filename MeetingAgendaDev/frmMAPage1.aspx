@@ -55,68 +55,80 @@
             <asp:HiddenField ID="hdnAttendeesConfirm" runat="server" Value="" />
             <asp:HiddenField ID="hdnIsPDFGenerated" runat="server" Value="false" />
             <asp:HiddenField ID="hdnIsPrint" runat="server" Value="false" />
+            <asp:HiddenField ID="hdnEditId" runat="server" Value="0" />
             <asp:HiddenField ID="hdnIsButtonClick" runat="server" Value="false" />
             <div class="col-lg-12 form-group text-lg-center text-info">
                 <h3><b>CLIENT REVIEW MEETING AGENDA</b></h3>
             </div>
             <div class="col-lg-12 form-group">
-                <div class="col-lg-4 form-group">
-                    <span class="text-danger">*</span>
-                    Client#:               
-                     <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
-                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                     </asp:DropDownList>
-
-                </div>
-                <div class="col-lg-4 form-group">
-                    <span class="text-danger">*</span>
-                    Client Name:
-                    <asp:DropDownList ID="ddlClientName" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
-                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                    </asp:DropDownList>
-
-                </div>
-                <div class="col-lg-4 form-group">
-                    <span class="text-danger">*</span>
-                    Meeting Date:               
-                     <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                </div>
+                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                     <thead>
+                         <tr style="background-color:#00968F !important; color:#fff;">
+                            <th colspan="4">CLIENT# <span class="text-danger">*</span></th>
+                             <th colspan="4">CLIENT NAME <span class="text-danger">*</span></th>
+                             <th colspan="4">MEETING DATE <span class="text-danger">*</span></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <td colspan="4">
+                                  <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
+                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                 </asp:DropDownList>
+                             </td>
+                             <td colspan="4">
+                                 <asp:DropDownList ID="ddlClientName" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
+                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                </asp:DropDownList>
+                             </td>
+                             <td colspan="4">
+                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                             </td>
+                         </tr>
+                     </tbody>
+                 </table>
             </div>
+            
             <div class="col-lg-12 form-group">
-                <div class="col-lg-3 form-group">
-                    <span class="text-danger">*</span>
-                    Account Executive: 
-                    <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAccountExecutive_SelectedIndexChanged">
-                        <asp:ListItem Value="">--Select--</asp:ListItem>
-                    </asp:DropDownList>
-
-                </div>
-                <div class="col-lg-3 form-group">
-                    <span class="text-danger">*</span>
-                    Email:
-                    <asp:DropDownList ID="ddlEmail" CssClass="form-control" runat="server">
-                        <asp:ListItem Value="">--Select--</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="col-lg-3 form-group">
-                    <span class="text-danger">*</span>
-                    Phone:      
-                   <asp:DropDownList ID="ddlPhone" CssClass="form-control" runat="server">
-                       <asp:ListItem Value="">--Select--</asp:ListItem>
-                   </asp:DropDownList>
-                </div>
-                <div class="col-lg-3 form-group">
-                    <%--<span class="text-danger">*</span>--%>
-                    Meeting Type:               
-                     <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
-                         <asp:ListItem Value="">--Select--</asp:ListItem>
-                         <asp:ListItem Value="Online">Online</asp:ListItem>
-                         <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
-                     </asp:DropDownList>
-                    <%--<asp:TextBox ID="txtMeetingType" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>--%>
-                </div>
+                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                     <thead>
+                         <tr style="background-color:#00968F !important; color:#fff;">
+                            <th colspan="3">ACCOUNT EXECUTIVE <span class="text-danger">*</span></th>
+                             <th colspan="3">EMAIL <span class="text-danger">*</span></th>
+                             <th colspan="3">PHONE # <span class="text-danger">*</span></th>
+                             <th colspan="3">MEETING TYPE</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <td colspan="3">
+                                    <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAccountExecutive_SelectedIndexChanged">
+                                      <asp:ListItem Value="">--Select--</asp:ListItem>
+                                  </asp:DropDownList>
+                             </td>
+                             <td colspan="3">
+                                 <asp:DropDownList ID="ddlEmail" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="">--Select--</asp:ListItem>
+                                </asp:DropDownList>
+                             </td>
+                             <td colspan="3">
+                                 <asp:DropDownList ID="ddlPhone" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="">--Select--</asp:ListItem>
+                                </asp:DropDownList>
+                             </td>
+                             <td colspan="3">
+                                <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="">--Select--</asp:ListItem>
+                                    <asp:ListItem Value="Online">Online</asp:ListItem>
+                                    <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
+                                </asp:DropDownList>
+                             </td>
+                         </tr>
+                     </tbody>
+                 </table>
+              
             </div>
-            <div class="col-lg-12 form-group">
+            <div hidden class="col-lg-12 form-group">
                 <div class="col-lg-4 form-group">
                     Call In Number:               
                      <asp:TextBox ID="txtCallInNumber" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
@@ -137,43 +149,44 @@
 
             </div>
             <div class="col-lg-12">
-                <div class="col-lg-12 form-group text-lg-left bg-info text-white">
-                    <h4><b>ATTENDEES INVITED</b></h4>
-                </div>
+                <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                    <thead>
+                        <tr style="background-color:#00979D; color:#fff;">
+                            <th colspan="12">ATTENDEES INVITED</th>
+                        </tr>
+                         <tr style="background-color:#3A3F46; color:#fff;">
+                         <th colspan="2">Name <span class="text-danger">*</span></th>
+                         <th colspan="2">Title <span class="text-danger">*</span></th>
+                         <th colspan="2">Phone <span class="text-danger">*</span></th>
+                         <th colspan="2">Email <span class="text-danger">*</span></th>
+                         <th colspan="2">Action</th>
+                         <th colspan="2"></th>                         
+                     </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                              <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                             <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtTitle" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                             <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPhone" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                             <td colspan="2" style="padding: inherit !important;"><asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                             <td colspan="2" style="padding: inherit !important;"><div class="form-group text-center">
+                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" CssClass="btn btn-info" OnClientClick="return AddValidation();" />
+                            </div></td>
+                             <td colspan="2"  style="padding: inherit !important;"><div class="form-group text-center" >
+                            <span class="text-danger" style="font-size: 12px;">Click Add to save the Attendees entered</span>
+                        </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
             </div>
-            <div class="col-lg-12 form-group">
-                <div class="col-lg-3 form-group">
-                    <span class="text-danger">*</span>
-                    Name:               
-                     <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-
-                </div>
-                <div class="col-lg-3 form-group">
-                    <span class="text-danger">*</span>
-                    Title:               
-                     <asp:TextBox ID="txtTitle" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-
-                </div>
-                <div class="col-lg-4 form-group">
-                    <span class="text-danger">*</span>
-                    Email:               
-                     <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                </div>
-                <div class="col-lg-2 form-group text-center" style="padding-top: 20px;">
-                    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" CssClass="btn btn-info custom" OnClientClick="return AddValidation();" />
-                </div>
-                <div class="col-lg-10 form-group">
-                </div>
-                <div class="col-lg-2 form-group text-center">
-                    <span class="text-danger" style="font-size: 12px;">Click Add to save the Attendees entered</span>
-                </div>
-            </div>
+          
 
             <div class="col-lg-12 form-group">
                 <asp:GridView ID="gvAttendees" runat="server" AutoGenerateColumns="false"
                     CssClass="table table-striped table-bordered table-hover"
-                    OnRowCommand="gvAttendees_RowCommand" OnRowDataBound="gvAttendees_RowDataBound"
-                    AllowPaging="false" ShowHeaderWhenEmpty="true">
+                     OnRowCommand="gvAttendees_RowCommand" OnRowDataBound="gvAttendees_RowDataBound"
+                    AllowPaging="false" ShowHeaderWhenEmpty="true">                  
                     <Columns>
                         <asp:TemplateField HeaderText="S.No">
                             <ItemTemplate>
@@ -189,6 +202,11 @@
                         <asp:TemplateField HeaderText="Title">
                             <ItemTemplate>
                                 <asp:Label ID="gvlblTitle" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Phone">
+                            <ItemTemplate>
+                                <asp:Label ID="gvlblPhone" runat="server" Text='<%# Eval("Phone") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="EmailID">
@@ -207,6 +225,10 @@
                                     CssClass="fa fa-user-plus" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
                                 <asp:LinkButton ID="gvlnkUnConfirmAttendess" runat="server" CommandName="cmdUnConfirmAttendess" ToolTip="Not Attended Meeting"
                                     CssClass="fa fa-user-times" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
+                                
+                                <asp:LinkButton ID="gvlnkEdit" runat="server" CommandName="cmdEdit" ToolTip="Edit" CssClass="fa fa-pencil"
+                                CommandArgument='<%# Eval("ID") %>' OnClientClick="gvAttendees_RowCommand"></asp:LinkButton>   
+                                
                                 <asp:LinkButton ID="gvlnkDelete" runat="server" CommandName="cmdDelete" ToolTip="Delete" CssClass="fa fa-trash"
                                     CommandArgument='<%# Eval("ID") %>' OnClientClick="return confirm('Are you sure to Delete Permanently?')"></asp:LinkButton>
 
@@ -218,12 +240,12 @@
                     </EmptyDataTemplate>
                 </asp:GridView>
             </div>
-            <div class="col-lg-12 form-group">
+            <div hidden class="col-lg-12 form-group">
                 <div class="col-lg-12 form-group text-lg-left bg-info text-white">
                     <h4><b>CLIENT REVENUE NUMBERS</b></h4>
                 </div>
             </div>
-            <div class="col-lg-12 form-group">
+            <div hidden class="col-lg-12 form-group">
                 <div class="col-lg-4 form-group">
                     <%--<span class="text-danger">*</span>--%>
                     YTD Revenue:               
@@ -242,7 +264,7 @@
                          onblur="isMoneyKey(this,'Revenue Per Transport');"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-lg-12 form-group">
+            <div  class="col-lg-12 form-group">
                 <table class="col-lg-12" border="1">
                     <tr style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">
                         <td>REVIEW
@@ -308,14 +330,100 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-lg-12">
+            <div hidden class="col-lg-12">
                 <div class="col-lg-12 form-group text-lg-left bg-info text-white">
                     <h4><b>POSITIVE / NEGATIVE COMMENTS</b></h4>
                 </div>
             </div>
-            <div class="col-lg-12">
+            <div hidden class="col-lg-12">
                 <asp:TextBox ID="txtPNComments" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="5" Style="resize: none;"></asp:TextBox>
             </div>
+           
+            <div class="col-lg-12 form-group">
+                   <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                         <thead>
+                            <tr style="background-color:#00979D; color:#fff;">
+                                <th colspan="10">CLIENT REVENUE NUMBERS</th>
+                            </tr>
+
+                            <tr style="background-color:#005B63; color:#fff;">
+                                <th colspan="2">Previous Start Date</th>
+                                <th colspan="2">Previous End Date</th>
+                                <th colspan="3">Previous Report Type</th>
+                                <th colspan="3"></th>
+                            </tr>
+
+                            <tr style="background-color:#3A3F46; color:#fff;">
+                                <th colspan="2">Transports</th>
+                                <th>Charges</th>
+                                <th>Revenue</th>
+                                <th>Adjustments</th>
+                                <th>Write-Off</th>
+                                <th>Refund</th>
+                                <th>RPT</th>
+                                <th>Coll Rate%</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td colspan="2"><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevRevenue" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevAdjust" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevWriteOff" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevRefund" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevRPT" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control"></asp:TextBox></td>
+                            </tr>
+
+                            <tr style="background-color:#005B63; color:#fff;">
+                                <th colspan="2">Current Start Date</th>
+                                <th colspan="2">Current End Date</th>
+                                <th colspan="3">Current Report Type</th>
+                                <th colspan="3"></th>
+                            </tr>
+
+                            <tr style="background-color:#3A3F46; color:#fff;">
+                                <th colspan="2">Transports</th>
+                                <th>Charges</th>
+                                <th>Revenue</th>
+                                <th>Adjustments</th>
+                                <th>Write-Off</th>
+                                <th>Refund</th>
+                                <th>RPT</th>
+                                <th>Coll Rate%</th>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><asp:TextBox ID="txtCurrTransports" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrCharges" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrRevenue" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrAdjust" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrWriteOff" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrRefund" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control"></asp:TextBox></td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr style="background-color:#3A3F46; color:#fff;">
+                                <th colspan="10">COMMENTS</th>
+                            </tr>
+                            <tr>
+                                <td colspan="10">
+                                    <asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine"
+                                        Rows="4" CssClass="form-control"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            
+            
+            
+            
             <div class="col-lg-12 form-group" style="padding-top: 20px;">
                 <table class="col-lg-12" border="1">
                     <tr style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">
@@ -1442,6 +1550,8 @@
             var txtName = document.getElementById("<%=txtName.ClientID %>");
             var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
             var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
+            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");
+            
 
             <%--var ddlMeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>");
 
@@ -1681,8 +1791,9 @@
             var txtName = document.getElementById("<%=txtName.ClientID %>");
             var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
             var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
+            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");
 
-            if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtEmail.value.trim() == "") {
+            if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtPhone.value.trim() == "" && txtEmail.value.trim() == "") {
                 return false;
             }
             if (!ValidateEmail(txtEmail, 'Invalid Email')) {

@@ -56,7 +56,7 @@ namespace ClientMeetingAgenda
                     lblMessage.Text = "Please complete the previous meeting agenda.";
                     ClientScript.RegisterStartupScript(GetType(), "myscript", "OpenMessagePopup();", true);
                 }
-            }
+            }            
         }
 
         private void AssignTextBox()
@@ -269,6 +269,7 @@ namespace ClientMeetingAgenda
                 dtAttendeesInvited.Columns.Add("MeetingAgendaID", typeof(System.Int32));
                 dtAttendeesInvited.Columns.Add("Name", typeof(System.String));
                 dtAttendeesInvited.Columns.Add("Title", typeof(System.String));
+                dtAttendeesInvited.Columns.Add("Phone", typeof(System.String));
                 dtAttendeesInvited.Columns.Add("Email", typeof(System.String));
                 dtAttendeesInvited.Columns.Add("IsSurveyMailSend", typeof(System.Boolean));
                 dtAttendeesInvited.Columns.Add("AttendedMeeting", typeof(System.String));
@@ -281,78 +282,147 @@ namespace ClientMeetingAgenda
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (Session["dtAttendeesInvited"] == null)
+            if (btnAdd.Text == "Add")
             {
-                AssignTextBox();
+                if (Session["dtAttendeesInvited"] == null)
+                {
+                    AssignTextBox();
+                }
+                dtAttendeesInvited = new DataTable();
+                dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
+
+                int ID = dtAttendeesInvited.Rows.Count == 0 ? 0 : int.Parse(dtAttendeesInvited.Rows[dtAttendeesInvited.Rows.Count - 1]["ID"].ToString().Trim());
+
+                dtAttendeesInvited.Rows.Add(ID + 1, Session["ssnMAID"] != null ? int.Parse(Session["ssnMAID"].ToString().Trim()) : 0
+                        , txtName.Text.Trim(), txtTitle.Text.Trim(), txtPhone.Text.Trim(), txtEmail.Text.Trim(), false, "NO");
+
             }
-            dtAttendeesInvited = new DataTable();
-            dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
+            else
+            {
+                string id = hdnEditId.Value;
 
-            int ID = dtAttendeesInvited.Rows.Count == 0 ? 0 : int.Parse(dtAttendeesInvited.Rows[dtAttendeesInvited.Rows.Count - 1]["ID"].ToString().Trim());
+                foreach (DataRow row in dtAttendeesInvited.Rows)
+                {
+                    if (row["ID"].ToString() == id)
+                    {
+                        row["Name"] = txtName.Text;
+                        row["Title"] = txtTitle.Text;
+                        row["Phone"] = txtPhone.Text;
+                        row["Email"] = txtEmail.Text;
 
-            dtAttendeesInvited.Rows.Add(ID + 1, Session["ssnMAID"] != null ? int.Parse(Session["ssnMAID"].ToString().Trim()) : 0
-                    , txtName.Text.Trim(), txtTitle.Text.Trim(), txtEmail.Text.Trim(), false, "NO");
-
+                        break;
+                    }
+                }
+            }
             gvAttendees.DataSource = dtAttendeesInvited;
             gvAttendees.DataBind();
 
             txtName.Text = "";
             txtTitle.Text = "";
             txtEmail.Text = "";
+            txtPhone.Text = "";
             txtName.Focus();
-        }
 
+        }
+       
         protected void gvAttendees_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (Session["dtAttendeesInvited"] == null)
+            if (e.CommandName == "cmdEdit")
             {
-                AssignTextBox();
-            }
-            dtAttendeesInvited = new DataTable();
-            dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
-
-            if (e.CommandName == "cmdDelete")
-            {
-                foreach (DataRow row in dtAttendeesInvited.Rows)
+                if (Session["dtAttendeesInvited"] == null)
                 {
-                    if (row["ID"].ToString() == e.CommandArgument.ToString())
-                    {
-                        dtAttendeesInvited.Rows.Remove(row);
-                        break;
-                    }
+                    AssignTextBox(); // If empty
                 }
 
-            }
-            else if (e.CommandName == "cmdConfirmAttendess")
-            {
-                foreach (DataRow row in dtAttendeesInvited.Rows)
-                {
-                    if (row["ID"].ToString() == e.CommandArgument.ToString())
-                    {
-                        row["AttendedMeeting"] = "YES";
-                        break;
-                    }
-                }
+                dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
 
-            }
-            else if (e.CommandName == "cmdUnConfirmAttendess")
-            {
-                foreach (DataRow row in dtAttendeesInvited.Rows)
-                {
-                    if (row["ID"].ToString() == e.CommandArgument.ToString())
-                    {
-                        row["AttendedMeeting"] = "NO";
-                        break;
-                    }
-                }
+                string id = e.CommandArgument.ToString();
+                DataRow[] rows = dtAttendeesInvited.Select("ID = '" + id + "'");
 
+                if (rows.Length > 0)
+                {
+                    // Set values into Textboxes
+                    txtName.Text = rows[0]["Name"].ToString();
+                    txtTitle.Text = rows[0]["Title"].ToString();
+                    txtPhone.Text = rows[0]["Phone"].ToString();
+                    txtEmail.Text = rows[0]["Email"].ToString();
+
+                    // Store selected ID for update
+                    hdnID.Value = id;
+                    btnAdd.Text = "Update";
+
+                    // Optional: Highlight selected row after click
+                    gvAttendees.SelectedIndex = Convert.ToInt32(e.CommandArgument);
+                }
             }
-            Session["dtAttendeesInvited"] = dtAttendeesInvited;
-            AttendeesConfirmation();
-            gvAttendees.DataSource = dtAttendeesInvited;
-            gvAttendees.DataBind();
+            //if (Session["dtAttendeesInvited"] == null)
+            //{
+            //    AssignTextBox();
+            //}
+            //dtAttendeesInvited = new DataTable();
+            //dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
+
+            //if (e.CommandName == "cmdDelete")
+            //{
+            //    foreach (DataRow row in dtAttendeesInvited.Rows)
+            //    {
+            //        if (row["ID"].ToString() == e.CommandArgument.ToString())
+            //        {
+            //            dtAttendeesInvited.Rows.Remove(row);
+            //            break;
+            //        }
+            //    }
+
+            //}
+            //else if (e.CommandName == "cmdConfirmAttendess")
+            //{
+            //    foreach (DataRow row in dtAttendeesInvited.Rows)
+            //    {
+            //        if (row["ID"].ToString() == e.CommandArgument.ToString())
+            //        {
+            //            row["AttendedMeeting"] = "YES";
+            //            break;
+            //        }
+            //    }
+
+            //}
+            //else if (e.CommandName == "cmdUnConfirmAttendess")
+            //{
+            //    foreach (DataRow row in dtAttendeesInvited.Rows)
+            //    {
+            //        if (row["ID"].ToString() == e.CommandArgument.ToString())
+            //        {
+            //            row["AttendedMeeting"] = "NO";
+            //            break;
+            //        }
+            //    }
+
+            //}
+            //else if (e.CommandName == "cmdEdit")
+            //{
+
+            //        string id = e.CommandArgument.ToString();
+
+            //        DataRow[] dr = dtAttendeesInvited.Select("ID = '" + id + "'");
+
+            //        if (dr.Length > 0)
+            //        {
+            //            txtName.Text = dr[0]["Name"].ToString();
+            //            txtTitle.Text = dr[0]["Title"].ToString();
+            //            txtPhone.Text = dr[0]["Phone"].ToString();
+            //            txtEmail.Text = dr[0]["Email"].ToString();
+
+            //            hdnID.Value = dr[0]["ID"].ToString();
+            //            btnAdd.Text = "Update";  // Change button text to update mode
+            //        }
+
+            //}
+            //Session["dtAttendeesInvited"] = dtAttendeesInvited;
+            ////AttendeesConfirmation();
+            //gvAttendees.DataSource = dtAttendeesInvited;
+            //gvAttendees.DataBind();
         }
-
+        
         private void AttendeesConfirmation()
         {
             
@@ -625,11 +695,33 @@ namespace ClientMeetingAgenda
 
         protected void gvAttendees_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                GridViewRow headerRow = new GridViewRow(0, 0,
+                    DataControlRowType.Header, DataControlRowState.Normal);
+
+                TableCell headerCell = new TableCell();
+                headerCell.Text = "ATTENDEES INVITED";  // 🔹 Your header title here
+                headerCell.ColumnSpan = gvAttendees.Columns.Count; // Merge all columns
+                headerCell.HorizontalAlign = HorizontalAlign.Center;
+                headerCell.CssClass = "table-primary"; // optional bootstrap styling
+                headerCell.Font.Bold = true;
+
+                headerCell.Attributes.CssStyle.Add("background-color", "#00968F");
+                headerCell.Attributes.CssStyle.Add("color", "white");  // text color
+
+                headerRow.Cells.Add(headerCell);
+                
+
+                // Insert this merged header row at the top of the GridView
+                gvAttendees.Controls[0].Controls.AddAt(0, headerRow);
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 Label gvlblAttendedMeeting = (e.Row.FindControl("gvlblAttendedMeeting") as Label);
                 LinkButton gvlnkConfirmAttendess = (e.Row.FindControl("gvlnkConfirmAttendess") as LinkButton);
                 LinkButton gvlnkUnConfirmAttendess = (e.Row.FindControl("gvlnkUnConfirmAttendess") as LinkButton);
+                LinkButton gvlnkEdit = (e.Row.FindControl("gvlnkEdit") as LinkButton);
 
                 if (gvlblAttendedMeeting.Text.ToUpper() == "NO")
                 {
@@ -644,6 +736,8 @@ namespace ClientMeetingAgenda
             }
 
         }
+
+     
 
         //private void ClearTextBox()
         //{
