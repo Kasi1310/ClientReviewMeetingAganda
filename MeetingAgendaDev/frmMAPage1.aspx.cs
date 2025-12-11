@@ -1,18 +1,26 @@
 ﻿using ClientMeetingAgenda.App_Code;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using DocumentFormat.OpenXml.Wordprocessing;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
-using System.IO;
-using Image = iTextSharp.text.Image;
+using Microsoft.SqlServer.Server;
+using MySql.Data.MySqlClient.Memcached;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Image = iTextSharp.text.Image;
+using TableCell = System.Web.UI.WebControls.TableCell;
 
 namespace ClientMeetingAgenda
 {
@@ -27,6 +35,136 @@ namespace ClientMeetingAgenda
         DataTable dtMeetingAgenda;
         DataTable dtAttendeesInvited;
         DataTable dtSignature;
+
+
+        public static List<string> ZohoChiefList = new List<string>
+                                                    {
+                                                        "Chief",
+                                                        "Chief/Fiscal Officer",
+                                                        "Fire/EMS Chief",
+                                                        "Fire Chief",
+                                                        "Ems Chief",
+                                                        "EMS District Chief",
+                                                        "EMS Division Chief",
+                                                        "Public Safety Director/Chief",
+                                                        "Chief/Township Administrator",
+                                                        "Chief of Operations",
+                                                        "Acting Chief",
+                                                        "Director/Chief",
+                                                        "Director",
+                                                        "Director (also Fire Chief)",
+                                                        "Acting Fire Chief",
+                                                        "Asst Fire Chief",
+                                                        "Battalion Chief",
+                                                        "District Chief",
+                                                        "Division Chief",
+                                                        "EMA Director",
+                                                        "EMS Captain",
+                                                        "EMS Cpt",
+                                                        "ems director",
+                                                        "EMS Director/Captain",
+                                                        "EMS Director/Squad Chief",
+                                                        "EMS Field Chief",
+                                                        "Chief/Manager",
+                                                        "Captain",
+                                                        "Captain of EMS",
+                                                        "Captain/EMS Coordinator",
+                                                        "Captain-EMS Operations",
+                                                        "Mayor",
+                                                        "President",
+                                                        "Interim Chief",
+                                                        "Interim Chief/Inspector",
+                                                        "Board President",
+                                                        "Finance/Owner",
+                                                        "Company President",
+                                                        "Cpt",
+                                                        "Board Liaison/Director",
+                                                    };
+
+        public static List<string> ZohoFiscalOfficerList = new List<string>
+                                                    {
+                                                        "CFO",
+                                                        "Chief Financial Officer",
+                                                        "Chief Fiscal Officer",
+                                                        "Fiscal Officer",
+                                                        "Finance Director",
+                                                        "Twp Fiscal Officer",
+                                                        "Fiscal Clerk",
+                                                        "Fiscal Director",
+                                                        "Fiscal Offcr",
+                                                        "Fiscal Office",
+                                                        "Director of Finance",
+                                                        "Interim Finance Director",
+                                                        "Clerk/Fiscal Officer",
+                                                        "Fiscal Office Clerk",
+                                                        "Fiscal Officer (Aprl 2016)",
+                                                        "Fiscal Officer (Elect)",
+                                                        "Fiscal Officer / Clerk",
+                                                        "Fiscal Officer 2015",
+                                                        "Fiscal/Admin Assistant",
+                                                        "Fiscal Officer/Medi Delegated Official",
+                                                        "Fiscal Officer-Treasury",
+                                                        "Fiscal Offier",
+                                                        "Financial Manager",
+                                                        "Financial Services Manager",
+                                                        "Fiscal",
+                                                        "Finance",
+                                                        "Finance Administrator",
+                                                        "Finance Assistant",
+                                                        "Finance Associate",
+                                                        "Finance Clerk",
+                                                        "Finance Department",
+                                                        "Finance Dept",
+                                                        "Finance Manager",
+                                                        "Finance Officer",
+                                                        "Finance Specialist",
+                                                        "Finance/Admin Asst",
+                                                        "Finance/Owner",
+                                                        "Finance/Trustee",
+                                                        "Treasurer",
+                                                        "Board Treasurer",
+                                                        "City Clerk/Treasurer",
+                                                        "City Treasurer",
+                                                        "Clerk Treasurer",
+                                                        "Clerk/Treasuer",
+                                                        "Clerk/Treasurer",
+                                                        "Clerk-Treasurer",
+                                                        "Treasure",
+                                                        "Treasurer/Administrative Services Director",
+                                                        "Treasurer/EMS Coordinator",
+                                                        "Treasurer's Office",
+                                                        "Treasury Manager",
+                                                        "Company President",
+                                                        "Deputy Director of Finance",
+                                                        "Deputy Finance Director",
+                                                        "Financial Asst",
+                                                        "Fiscal Assistant",
+                                                        "Assistant Fiscal Director",
+                                                        "Asst Director of Finance",
+                                                        "Accountant/CPA",
+                                                        "Accounting Assistant",
+                                                        "Accounting Clerk",
+                                                        "Accounting Manager",
+                                                        "Accounting Specialist",
+                                                        "Accounts Payable Admin",
+                                                        "Accounts Payable Manager",
+                                                        "Administrator/Fiscal Officer",
+                                                        "Administrator-Clerk Treasurer",
+                                                        "Assistant Chief (Interim Chief)",
+                                                        "Assistant Chief/Fiscal Offcr",
+                                                        "Assistant Finance Director",
+                                                        "Assistant Fiscal",
+                                                        "Assistant Fiscal Officer",
+                                                        "Assistant Treasurer",
+                                                        "Asst Finance Director",
+                                                        "Ass't Finance Director",
+                                                        "Asst Fiscal",
+                                                        "Asst Fiscal Officer",
+                                                        "Clerk"
+                                                    };
+
+        public static string RunEnvironment = ConfigurationManager.AppSettings["RunEnvironment"].ToString().ToUpper();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserName"] == null || Session["Role"] == null || Session["InCompletedCount"] == null)
@@ -663,6 +801,285 @@ namespace ClientMeetingAgenda
         protected void ddlClientNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlClientName.SelectedValue = ddlClientNo.SelectedValue;
+
+            string companyId = ddlClientName.SelectedValue;
+
+            // Customer Portal (ESO) Accounts Data
+            List<List<string>> EsoAccountsData = GetClientInfoList(companyId);
+            if (EsoAccountsData.Count > 0)
+            {
+                foreach (var kvp in EsoAccountsData)
+                {
+
+                    // Matching row from EsoAccountsData
+                    var match = EsoAccountsData.FirstOrDefault(row => row.Count > 0 && row[0] == companyId);
+
+                    if (match != null)
+                    {
+                        string companyName = match[1];
+                        string aeName = match[2];
+                        string aeEmail = match[3];
+                        string aePhone = match[4];
+                        string renewalDate = match[5];
+                        string expiryDate = match[6];
+                        string feeRate = $"{match[7]} %";
+                        break;
+                    }
+                }
+            }
+
+            // Customer Portal (ESO)  Rates data
+            List<List<string>> chargeRates = GetMedicountChargeRates(companyId);
+
+            if (chargeRates.Count > 0)
+            {
+                foreach (var chargeRow in chargeRates)
+                {
+                    if ((chargeRow.Count < 17) || (chargeRow[0] != companyId))
+                        continue; // Not enough data, skip
+
+
+                    //[Company_Id,BLSE, BLSNE, ALSE, ALSNE, ALS2, Ground_Mileage, LastRateChange, NonTransport]
+                    // Medicount_InsPayTo_Address: [Street, City, State, Zip], //spCRF_GetDetailsForClientReviewForm
+                    // Medicount_Billing_Address: [Street, City, State, Zip], //spCRF_GetDetailsForClientReviewForm
+
+                    // Rates
+                    string blse = chargeRow[1];           // BLSE
+                    string blsne = chargeRow[2];          // BLSNE
+                    string alse = chargeRow[3];           // ALSE
+                    string alsne = chargeRow[4];          // ALSNE
+                    string als2 = chargeRow[5];           // ALS2
+                    string groundMileage = chargeRow[6];  // Ground Mileage
+                    string lastRateChange = chargeRow[7]; // Last Rate Change
+                    string nonTransport = chargeRow[8];   // Non Transport
+
+                    // Insurance Pay To Address
+                    string insPayToStreet = chargeRow[9]; // InsPayToStreet
+                    string insPayToCity = chargeRow[10];  // InsPayToCity
+                    string insPayToState = chargeRow[11]; // InsPayToState
+                    string insPayToZip = chargeRow[12];   // InsPayToZip
+
+                    // Physical and Billing Address are Same
+                    string billingStreet = chargeRow[13]; // PhysicalStreet
+                    string billingCity = chargeRow[14];   // PhysicalCity
+                    string billingState = chargeRow[15];  // PhysicalState
+                    string billingZip = chargeRow[16];    // PhysicalZip
+
+                    break;
+                }
+            }
+
+
+            // Customer Portal (ESO)  Rates data
+            string startDate = string.Empty; // MM-DD-YYYY
+            string endDate = string.Empty; // MM-DD-YYYY
+            Dictionary<string, string> preClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+            Dictionary<string, string> curClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+
+
+
+            // --- Zoho API integration ---
+            var result = new Dictionary<string, string>();
+            string accessToken = GetAccessTokenFromRefreshToken();
+
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                string url = $"https://www.zohoapis.com/crm/v8/Accounts/search?criteria=((Account_Type:equals:customer) and (Account_Number:equals:{companyId}))";
+                string zohoData = MakeZohoApiRequest("GET", url, accessToken);
+
+                var jsonObj = JObject.Parse(zohoData);
+                var dataArray = jsonObj["data"]?.ToObject<List<JObject>>();
+                if (dataArray != null && dataArray.Count > 0)
+                {
+                    var contact = dataArray[0];
+
+                    string ContactUrl = $"https://www.zohoapis.com/crm/v8/Contacts/search?criteria=(Account_Name:equals:{contact["id"]})";
+                    string zohoContactData = MakeZohoApiRequest("GET", ContactUrl, accessToken);
+                    var jsonContactObj = JObject.Parse(zohoContactData);
+                    var ContactDataArray = jsonContactObj["data"]?.ToObject<List<JObject>>();
+                    if (ContactDataArray != null && ContactDataArray.Count > 0)
+                    {
+                        int i = 1;
+                        int authOfficialCount = 0;
+                        bool chiefSet = false;
+                        bool fiscalOfficerSet = false;
+                        var authorizedOfficialDict = new Dictionary<string, List<string>>();
+
+                        // Chief selection by priority
+                        foreach (var chiefTitle in ZohoChiefList)
+                        {
+                            // Find the FIRST contact whose title matches this chiefTitle
+                            var match = ContactDataArray.FirstOrDefault(c =>
+                                chiefTitle.Equals(
+                                    (c["Title"]?.ToString() ?? "").Trim(),
+                                    StringComparison.OrdinalIgnoreCase));
+
+                            if (match != null && !chiefSet)
+                            {
+                                string title = match["Title"]?.ToString().ToUpper() ?? "";
+                                string firstName = match["First_Name"]?.ToString().ToUpper() ?? "";
+                                string lastName = match["Last_Name"]?.ToString().ToUpper() ?? "";
+                                string fullName = (firstName + " " + lastName).Trim().ToUpper();
+                                string email = match["Email"]?.ToString() ?? "";
+                                string phone = match["Phone"]?.ToString() ?? "";
+                                string contactId = match["id"]?.ToString() ?? "";
+                                bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
+
+                                result["currentChiefName"] = fullName;
+                                result["currentChiefZohoId"] = contactId;
+                                result["currentChiefTitle"] = title;
+                                result["currentChiefName"] = fullName;
+                                result["currentChiefEmail"] = email;
+                                result["currentChiefPhone"] = phone;
+                                chiefSet = true;
+
+                                if (isAuthorized)
+                                {
+                                    authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
+                                                                                    {
+                                                                                        fullName,
+                                                                                        contactId,
+                                                                                        title,
+                                                                                        fullName,
+                                                                                        email,
+                                                                                        phone
+                                                                                    };
+                                    i++;
+                                }
+                                ContactDataArray.Remove(match);
+                                break; // important: stop at first priority match
+                            }
+                        }
+
+
+                        // Fiscal selection by priority
+                        foreach (var fiscalTitle in ZohoFiscalOfficerList)
+                        {
+                            // Find the FIRST contact whose title matches this fiscalTitle
+                            var match = ContactDataArray.FirstOrDefault(c =>
+                                fiscalTitle.Equals(
+                                    (c["Title"]?.ToString() ?? "").Trim(),
+                                    StringComparison.OrdinalIgnoreCase));
+
+                            if (match != null && !fiscalOfficerSet)
+                            {
+                                string title = match["Title"]?.ToString().ToUpper() ?? "";
+                                string firstName = match["First_Name"]?.ToString() ?? "";
+                                string lastName = match["Last_Name"]?.ToString() ?? "";
+                                string fullName = (firstName + " " + lastName).Trim().ToUpper();
+                                string email = match["Email"]?.ToString() ?? "";
+                                string phone = match["Phone"]?.ToString() ?? "";
+                                string contactId = match["id"]?.ToString() ?? "";
+                                bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
+
+                                result["currentFiscalOfficer"] = fullName;
+                                result["currentFiscalZohoId"] = contactId;
+                                result["currentFiscalTitle"] = title;
+                                result["currentFiscalName"] = fullName;
+                                result["currentFiscalEmail"] = email;
+                                result["currentFiscalPhone"] = phone;
+                                fiscalOfficerSet = true;
+
+                                if (isAuthorized)
+                                {
+                                    authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
+                                                                                    {
+                                                                                        fullName,
+                                                                                        contactId,
+                                                                                        title,
+                                                                                        fullName,
+                                                                                        email,
+                                                                                        phone
+                                                                                    };
+                                    if (authOfficialCount == 0)
+                                    {
+                                        i++;
+                                    }
+                                }
+                                ContactDataArray.Remove(match);
+                                break; // important: stop at first priority match
+                            }
+                        }
+
+                        if (authOfficialCount != 2)
+                        {
+                            var match = ContactDataArray
+                            .Where(c => (c["Medicare_Authorized_Official"]?.ToString() ?? "")
+                                .Equals("true", StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+
+                            foreach (var authContact in match)
+                            {
+                                string title = authContact["Title"]?.ToString()?.ToUpper() ?? "";
+                                string firstName = authContact["First_Name"]?.ToString() ?? "";
+                                string lastName = authContact["Last_Name"]?.ToString() ?? "";
+                                string fullName = (firstName + " " + lastName).Trim().ToUpper();
+                                string email = authContact["Email"]?.ToString() ?? "";
+                                string phone = authContact["Phone"]?.ToString() ?? "";
+                                string contactId = authContact["id"]?.ToString() ?? "";
+                                bool isAuthorized = authContact["Medicare_Authorized_Official"] != null && (bool)authContact["Medicare_Authorized_Official"];
+
+
+                                if (isAuthorized)
+                                {
+                                    authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
+                                                                                    {
+                                                                                        fullName,
+                                                                                        contactId,
+                                                                                        title,
+                                                                                        fullName,
+                                                                                        email,
+                                                                                        phone
+                                                                                    };
+
+                                    if (authOfficialCount == 0)
+                                    {
+                                        i++;
+                                    }
+                                }
+                            }
+                        }
+
+                        // Assign authorized official(s) to result
+                        if (authorizedOfficialDict.Count > 0)
+                        {
+                            result["currentAuthorizedOfficial_1"] = authorizedOfficialDict["Authorized Official 1"][0];
+                            result["currentAuthorized1ZohoId"] = authorizedOfficialDict["Authorized Official 1"][1];
+                            result["currentAuthorizedTitle_1"] = authorizedOfficialDict["Authorized Official 1"][2];
+                            result["currentAuthorizedName_1"] = authorizedOfficialDict["Authorized Official 1"][3];
+                            result["currentAuthorizedEmail_1"] = authorizedOfficialDict["Authorized Official 1"][4];
+                            result["currentAuthorizedPhone_1"] = authorizedOfficialDict["Authorized Official 1"][5];
+
+                            if (authorizedOfficialDict.Count > 1)
+                            {
+                                result["currentAuthorizedOfficial_2"] = authorizedOfficialDict["Authorized Official 2"][0];
+                                result["currentAuthorized2ZohoId"] = authorizedOfficialDict["Authorized Official 2"][1];
+                                result["currentAuthorizedTitle_2"] = authorizedOfficialDict["Authorized Official 2"][2];
+                                result["currentAuthorizedName_2"] = authorizedOfficialDict["Authorized Official 2"][3];
+                                result["currentAuthorizedEmail_2"] = authorizedOfficialDict["Authorized Official 2"][4];
+                                result["currentAuthorizedPhone_2"] = authorizedOfficialDict["Authorized Official 2"][5];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Contact Data");
+                    }
+
+
+                    result["MailStreet"] = contact["Mailing_Street"]?.ToString().ToUpper() ?? "";
+                    result["MailCity"] = contact["Mailing_City1"]?.ToString().ToUpper() ?? "";
+                    result["MailState"] = contact["Mailing_State"]?.ToString().ToUpper() ?? "";
+                    result["MailZip"] = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";
+                    result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";
+                    result["ReviewInterval"] = contact["Review_Interval"]?.ToString().ToUpper() ?? "";
+
+
+                }
+            }
+
+            //return result;
+
             txtMeetingDate.Focus();
         }
 
@@ -737,7 +1154,341 @@ namespace ClientMeetingAgenda
 
         }
 
-     
+
+        ///////////// New Methods //////////////////////
+
+        public static string CleanedVersionOfValues(object value, bool removeDecimal = true, string type = "AMOUNT")
+        {
+
+            if (type.ToUpper() != "AMOUNT")
+            {
+                decimal numericValue = 0;
+                if (value is float || value is decimal || value is int)
+                {
+                    numericValue = Convert.ToDecimal(value) * 100;
+                }
+
+
+                if (removeDecimal)
+                {
+                    return $"{numericValue.ToString("F0")} %";
+                }
+                else
+                {
+                    return $"{numericValue.ToString("F2")} %";
+                }
+
+
+            }
+            else
+            {
+                string strValue = value.ToString();
+
+                if (decimal.TryParse(strValue, out decimal result))
+                {
+                    // Format with thousand separators and 2 decimal places
+                    strValue = result.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"));
+                }
+
+                if (removeDecimal)
+                {
+                    if (strValue == "")
+                        return "$0";
+
+                    return strValue.Substring(0, strValue.IndexOf('.'));
+                }
+                else
+                {
+                    if (strValue == "")
+                        return "$0";
+
+                    return strValue;
+                }
+            }
+        }
+
+
+        public static Dictionary<string, string> GetClientReviewData(string companyID, string startDate, string endDate)
+        {
+            var result = new Dictionary<string, string>();
+
+            string startDateFormatted = startDate.Replace("/", "-");
+            string endDateFormatted = endDate.Replace("/", "-");
+
+            string connectionString = ConfigurationManager.ConnectionStrings["EsoToZohoConnectionString"].ToString();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetClientReviewFormDetails]", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 360;
+                    cmd.Parameters.AddWithValue("@CompanyKey", companyID);
+                    cmd.Parameters.AddWithValue("@Period1BeginDate", startDateFormatted);
+                    cmd.Parameters.AddWithValue("@Period1EndDate", endDateFormatted);
+
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        if (rdr.Read())
+                        {
+                            result["Transports"] = ((long)Convert.ToDouble(rdr["Runs_Prev"])).ToString("N0", new System.Globalization.CultureInfo("en-US"));
+                            result["Charges"] = CleanedVersionOfValues(rdr["Charges_Prev"]);
+                            result["Revenue"] = CleanedVersionOfValues(rdr["Payments_Prev"]);
+                            result["Adjustments"] = CleanedVersionOfValues(rdr["Adjustments_Prev"]);
+                            result["WriteOffs"] = CleanedVersionOfValues(rdr["WriteOffs_Prev"]);
+                            result["Refunds"] = CleanedVersionOfValues(rdr["Refunds_Prev"]);
+                            result["RevenuePerTransport"] = CleanedVersionOfValues(rdr["RPT_Prev"]);
+                            result["CollectionRate"] = CleanedVersionOfValues(rdr["Collection_Rate_Prev"], removeDecimal: false, type: "PERCENTAGE");
+
+                            result["RunsReviewed"] = rdr["TotalRuns"].ToString();
+                            result["RunsNotMet"] = rdr["RunsNotMet"].ToString();
+                        }
+                        else
+                        {
+                            result["Transports"] = "0";
+                            result["Charges"] = "$0";
+                            result["Revenue"] = "$0";
+                            result["Adjustments"] = "$0";
+                            result["WriteOffs"] = "$0";
+                            result["Refunds"] = "$0";
+                            result["RevenuePerTransport"] = "$0";
+                            result["CollectionRate"] = "0 %";
+
+                            result["RunsReviewed"] = "0";
+                            result["RunsNotMet"] = "0";
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+        public List<List<string>> GetMedicountChargeRates(string clientIds)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["EsoToZohoConnectionString"].ToString();
+            var results = new List<List<string>>();
+
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetDetailsForClientReviewForm]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyCode", clientIds);
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var row = new List<string>();
+                        row.Add(reader["CompanyCode"].ToString());
+
+                        row.Add(CleanedVersionOfValues(reader["BLSE"]));
+                        row.Add(CleanedVersionOfValues(reader["BLSNE"]));
+                        row.Add(CleanedVersionOfValues(reader["ALSE"]));
+                        row.Add(CleanedVersionOfValues(reader["ALSNE"]));
+                        row.Add(CleanedVersionOfValues(reader["ALS2"]));
+                        row.Add(CleanedVersionOfValues(reader["Ground_Mileage"]));
+
+                        if (reader["LastRateChange"] != DBNull.Value)
+                        {
+                            try
+                            {
+                                DateTime lastRateChangeDate = (DateTime)reader["LastRateChange"];
+                                row.Add(lastRateChangeDate.ToString("MM/dd/yyyy"));
+                            }
+                            catch
+                            {
+                                row.Add("");
+                            }
+                        }
+                        else
+                        {
+                            row.Add("");
+                        }
+
+                        row.Add(reader["NonTransport"].ToString().ToUpper());
+
+                        row.Add(reader["InsPayToAddress"].ToString().ToUpper());
+                        row.Add(reader["InsPayToCity"].ToString().ToUpper());
+                        row.Add(reader["InsPayToState"].ToString().ToUpper());
+                        row.Add(reader["InsPayToZip"].ToString().ToUpper());
+
+                        row.Add(reader["PhysicalAddress"].ToString().ToUpper());
+                        row.Add(reader["PhysicalCity"].ToString().ToUpper());
+                        row.Add(reader["PhysicalState"].ToString().ToUpper());
+                        row.Add(reader["PhysicalZip"].ToString().ToUpper());
+                        results.Add(row);
+                    }
+
+                }
+            }
+
+            return results;
+        }
+
+
+        public List<List<string>> GetClientInfoList(string clientIds)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["EsoToZohoConnectionString"].ToString();
+            var results = new List<List<string>>();
+
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetClientInfoUsingClientIDs]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ClientIds", clientIds);
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var row = new List<string>();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string value = reader.IsDBNull(i) ? null : reader.GetValue(i).ToString();
+
+                            // Logic for Fee rate to add %
+                            if (i == reader.FieldCount - 1 && !string.IsNullOrEmpty(value))
+                            {
+                                value = value + " %";
+                            }
+
+                            row.Add(value);
+                        }
+
+                        results.Add(row);
+                    }
+                }
+            }
+
+            return results;
+        }
+
+        private static string GetAccessTokenFromRefreshToken()
+        {
+            try
+            {
+                ZohoApiCredentials ZohoCred = new ZohoApiCredentials();
+
+                ZohoCred.ClientId = ConfigurationManager.AppSettings[RunEnvironment == "LIVE" ? "ZohoClientId" : "SandboxZohoClientId"].ToString();
+                ZohoCred.ClientSecret = ConfigurationManager.AppSettings[RunEnvironment == "LIVE" ? "ZohoClientSecret" : "SandboxZohoClientSecret"].ToString();
+                ZohoCred.RefreshToken = ConfigurationManager.AppSettings[RunEnvironment == "LIVE" ? "ZohoRefreshToken" : "SandboxZohoRefreshToken"].ToString();
+
+                string zohoAuthUrl = ConfigurationManager.AppSettings["ZohoAuthenticationUrl"].ToString();
+                string postData = $"refresh_token={ZohoCred.RefreshToken}&client_id={ZohoCred.ClientId}&client_secret={ZohoCred.ClientSecret}&grant_type=refresh_token";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(zohoAuthUrl);
+                byte[] data = Encoding.UTF8.GetBytes(postData);
+
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+
+                using (Stream stream = request.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+                using (WebResponse response = request.GetResponse())
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var responseText = reader.ReadToEnd();
+                    JObject tokenObj = JObject.Parse(responseText);
+                    return tokenObj["access_token"]?.ToString() ?? string.Empty;
+                }
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        private static string MakeZohoApiRequest(string method, string url, string accessToken, string jsonPayload = null, string filePath = null, string clientName = null, string clientNumber = null, string pdfType = null)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = method;
+                request.Headers.Add("Authorization", $"Zoho-oauthtoken {accessToken}");
+
+                if (filePath != null && System.IO.File.Exists(filePath))
+                {
+                    // --- File upload logic ---
+                    string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
+                    byte[] boundaryBytes = Encoding.ASCII.GetBytes($"\r\n--{boundary}\r\n");
+                    byte[] trailer = Encoding.ASCII.GetBytes($"\r\n--{boundary}--\r\n");
+
+                    request.ContentType = $"multipart/form-data; boundary={boundary}";
+                    request.KeepAlive = true;
+
+                    using (Stream requestStream = request.GetRequestStream())
+                    {
+                        // Add file part
+                        requestStream.Write(boundaryBytes, 0, boundaryBytes.Length);
+
+                        //string fileHeader = $"Content-Disposition: form-data; name=\"file\"; filename=\"{Path.GetFileName(filePath)}\"\r\nContent-Type: application/octet-stream\r\n\r\n";
+                        string fileHeader = $"Content-Disposition: form-data; name=\"file\"; filename=\"{clientNumber}_{clientName}_CSF_{pdfType}_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf\"\r\nContent-Type: application/octet-stream\r\n\r\n";
+                        byte[] fileHeaderBytes = Encoding.UTF8.GetBytes(fileHeader);
+                        requestStream.Write(fileHeaderBytes, 0, fileHeaderBytes.Length);
+
+                        byte[] fileData = System.IO.File.ReadAllBytes(filePath);
+                        requestStream.Write(fileData, 0, fileData.Length);
+
+                        // Optionally, add JSON payload or other form parts
+                        if (!string.IsNullOrEmpty(jsonPayload))
+                        {
+                            requestStream.Write(boundaryBytes, 0, boundaryBytes.Length);
+                            string jsonPart = $"Content-Disposition: form-data; name=\"data\"\r\n\r\n{jsonPayload}";
+                            byte[] jsonPartBytes = Encoding.UTF8.GetBytes(jsonPart);
+                            requestStream.Write(jsonPartBytes, 0, jsonPartBytes.Length);
+                        }
+
+                        // End boundary
+                        requestStream.Write(trailer, 0, trailer.Length);
+                    }
+                }
+                else if (jsonPayload != null)
+                {
+                    byte[] byteArray = Encoding.UTF8.GetBytes(jsonPayload);
+                    request.ContentType = "application/json";
+                    request.ContentLength = byteArray.Length;
+                    using (Stream dataStream = request.GetRequestStream())
+                    {
+                        dataStream.Write(byteArray, 0, byteArray.Length);
+                    }
+                }
+
+                using (WebResponse response = request.GetResponse())
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch (WebException ex)
+            {
+                // Optionally log the error response for debugging
+                using (var errorResponse = (HttpWebResponse)ex.Response)
+                using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                {
+                    string errorText = reader.ReadToEnd();
+                    Console.WriteLine("Error: " + errorText);
+                }
+
+                if (method == "GET")
+                {
+                    return null;
+                }
+
+                throw; // Or return a structured error response
+            }
+        }
+        ////////////////////////////////////////////////
 
         //private void ClearTextBox()
         //{
@@ -3282,4 +4033,11 @@ namespace ClientMeetingAgenda
         //}
 
     }
+}
+
+public class ZohoApiCredentials
+{
+    public string ClientId { get; set; }
+    public string ClientSecret { get; set; }
+    public string RefreshToken { get; set; }
 }
