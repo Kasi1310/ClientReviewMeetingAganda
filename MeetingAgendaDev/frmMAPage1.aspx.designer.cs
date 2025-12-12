@@ -546,22 +546,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtComments;
 
         /// <summary>
-        /// rdolstAgingReview control.
+        /// ddlAgingReview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstAgingReview;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAgingReview;
 
         /// <summary>
-        /// rdolstDiscussedwithARTeam control.
+        /// ddlDiscussedwithARTeam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstDiscussedwithARTeam;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiscussedwithARTeam;
 
         /// <summary>
         /// txtARComments control.
@@ -582,15 +582,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlBillingPolicy;
 
         /// <summary>
-        /// rdolitCollections control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolitCollections;
-
-        /// <summary>
         /// ddlCollections control.
         /// </summary>
         /// <remarks>
@@ -598,6 +589,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCollections;
+
+        /// <summary>
+        /// ddlCollectionsCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCollectionsCheck;
 
         /// <summary>
         /// txtCollectionValue control.
@@ -624,7 +624,7 @@ namespace ClientMeetingAgenda
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstBillingRateReviewed;
+        protected global::System.Web.UI.WebControls.DropDownList rdolstBillingRateReviewed;
 
         /// <summary>
         /// txtLastRateChange control.
@@ -696,7 +696,7 @@ namespace ClientMeetingAgenda
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstNonTransport;
+        protected global::System.Web.UI.WebControls.DropDownList rdolstNonTransport;
 
         /// <summary>
         /// txtMileage control.
@@ -717,13 +717,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtCBRActionTaken;
 
         /// <summary>
-        /// RadioButtonList7 control.
+        /// ddlUCR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList7;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUCR;
 
         /// <summary>
         /// TextBox6 control.
@@ -771,112 +771,112 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlClientPorcessesOwnCreditcards;
 
         /// <summary>
-        /// rdolstNonEmergenctTranports control.
+        /// ddlNonEmergenctTranports control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstNonEmergenctTranports;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNonEmergenctTranports;
 
         /// <summary>
-        /// rdolstIsClientAwareofPriorAuthorizationRequirements control.
+        /// ddlIsClientAwareofPriorAuthorizationRequirements control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstIsClientAwareofPriorAuthorizationRequirements;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsClientAwareofPriorAuthorizationRequirements;
 
         /// <summary>
-        /// rdolstIsTraningNeeded control.
+        /// ddlIsTraningNeeded control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstIsTraningNeeded;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsTraningNeeded;
 
         /// <summary>
-        /// rdolstContractFacilityBilling control.
+        /// ddlContractFacilityBilling control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstContractFacilityBilling;
+        protected global::System.Web.UI.WebControls.DropDownList ddlContractFacilityBilling;
 
         /// <summary>
-        /// RadioButtonList6 control.
+        /// ddlSkilledNursingFacilities control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList6;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSkilledNursingFacilities;
 
         /// <summary>
-        /// RadioButtonList2 control.
+        /// ddlUpdatedContracts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUpdatedContracts;
 
         /// <summary>
-        /// RadioButtonList3 control.
+        /// ddlAttached control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAttached;
 
         /// <summary>
-        /// RadioButtonList4 control.
+        /// ddlFacilityCurrently control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList4;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFacilityCurrently;
 
         /// <summary>
-        /// RadioButtonList5 control.
+        /// ddlToBeBilled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList5;
+        protected global::System.Web.UI.WebControls.DropDownList ddlToBeBilled;
 
         /// <summary>
-        /// RadioButtonList1 control.
+        /// ddlWithTheFacility control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWithTheFacility;
 
         /// <summary>
-        /// RadioButtonList9 control.
+        /// ddlContractStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList9;
+        protected global::System.Web.UI.WebControls.DropDownList ddlContractStatus;
 
         /// <summary>
-        /// rdolstInForce control.
+        /// ddlInForce control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstInForce;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInForce;
 
         /// <summary>
         /// txtRenewalDate control.
@@ -897,22 +897,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtCurrentRate;
 
         /// <summary>
-        /// rdolstContractCurrent control.
+        /// ddlContractCurrent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstContractCurrent;
+        protected global::System.Web.UI.WebControls.DropDownList ddlContractCurrent;
 
         /// <summary>
-        /// rdolstPersonnelChanges control.
+        /// ddlPersonnelChanges control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstPersonnelChanges;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPersonnelChanges;
 
         /// <summary>
         /// TextBox3 control.
@@ -951,22 +951,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txt2ndAUTHORIZEDOfficial;
 
         /// <summary>
-        /// RadioButtonList8 control.
+        /// ddlClosedBusinesses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList8;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClosedBusinesses;
 
         /// <summary>
-        /// RadioButtonList10 control.
+        /// ddlNewBusiness control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList10;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNewBusiness;
 
         /// <summary>
         /// TextBox1 control.
@@ -987,13 +987,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
 
         /// <summary>
-        /// RadioButtonList11 control.
+        /// ddlUsage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList11;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUsage;
 
         /// <summary>
         /// TextBox8 control.
@@ -1005,22 +1005,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox TextBox8;
 
         /// <summary>
-        /// RadioButtonList14 control.
+        /// ddlAlertsReceived control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList14;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAlertsReceived;
 
         /// <summary>
-        /// RadioButtonList12 control.
+        /// ddlOIG_Exclsuionary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList12;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOIG_Exclsuionary;
 
         /// <summary>
         /// TextBox11 control.
@@ -1032,22 +1032,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox TextBox11;
 
         /// <summary>
-        /// RadioButtonList13 control.
+        /// ddlDiscussed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList13;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiscussed;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlePCRName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlePCRName;
 
         /// <summary>
         /// TextBox9 control.
@@ -1077,67 +1077,67 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox TextBox12;
 
         /// <summary>
-        /// RadioButtonList15 control.
+        /// ddlRunReconciliationDone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList15;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRunReconciliationDone;
 
         /// <summary>
-        /// rdolstPatientSignature control.
+        /// ddlPatientSignature control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstPatientSignature;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPatientSignature;
 
         /// <summary>
-        /// rdolstPatientSignatureEPCR control.
+        /// ddlPatientSignatureEPCR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstPatientSignatureEPCR;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPatientSignatureEPCR;
 
         /// <summary>
-        /// rdolstReceivingFacilitySignature control.
+        /// ddlReceivingFacilitySignature control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstReceivingFacilitySignature;
+        protected global::System.Web.UI.WebControls.DropDownList ddlReceivingFacilitySignature;
 
         /// <summary>
-        /// rdolstReceivingFacilitySignatureEPCR control.
+        /// ddlReceivingFacilitySignatureEPCR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstReceivingFacilitySignatureEPCR;
+        protected global::System.Web.UI.WebControls.DropDownList ddlReceivingFacilitySignatureEPCR;
 
         /// <summary>
-        /// rdolstCrewSignature control.
+        /// ddlCrewSignature control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstCrewSignature;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCrewSignature;
 
         /// <summary>
-        /// rdolstCrewSignatureEPCR control.
+        /// ddlCrewSignatureEPCR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstCrewSignatureEPCR;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCrewSignatureEPCR;
 
         /// <summary>
         /// TextBox7 control.
@@ -1149,13 +1149,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox TextBox7;
 
         /// <summary>
-        /// RadioButtonList16 control.
+        /// ddlStatementReconciliation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList16;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatementReconciliation;
 
         /// <summary>
         /// TextBox13 control.
@@ -1176,31 +1176,31 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox TextBox14;
 
         /// <summary>
-        /// RadioButtonList17 control.
+        /// ddlRunReconciliationDone_signature control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList17;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRunReconciliationDone_signature;
 
         /// <summary>
-        /// rdolstIsTraningCompleted control.
+        /// ddlTraningCompleted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstIsTraningCompleted;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTraningCompleted;
 
         /// <summary>
-        /// rdolstIsTraningPending control.
+        /// ddlIsTraningPending control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdolstIsTraningPending;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsTraningPending;
 
         /// <summary>
         /// rdolstCRI control.

@@ -343,7 +343,7 @@ namespace ClientMeetingAgenda
                     txtCURActionTaken.Text = dtMaster.Rows[0]["CURActionTaken"].ToString().Trim();
 
                     txtCSComments.Text = dtMaster.Rows[0]["CSComments"].ToString().Trim();
-                    rdolstContractCurrent.SelectedValue = dtMaster.Rows[0]["IsContractCurrent"].ToString().Trim();
+                    ddlContractCurrent.SelectedValue = dtMaster.Rows[0]["IsContractCurrent"].ToString().Trim();
                     txtRenewalDate.Text = dtMaster.Rows[0]["RenewalDate"].ToString().Trim();
                     txtCurrentRate.Text = dtMaster.Rows[0]["CurrentRate"].ToString().Trim();
                     txtEnforceActionTaken.Text = dtMaster.Rows[0]["EnforceActionTaken"].ToString().Trim();
@@ -363,14 +363,14 @@ namespace ClientMeetingAgenda
                     rdolstMGDiscussed.SelectedValue = dtMaster.Rows[0]["IsMGDiscussed"].ToString().Trim();
                     txtCPSComments.Text = dtMaster.Rows[0]["CPSComments"].ToString().Trim();
                     rdolstCPSDiscussed.SelectedValue = dtMaster.Rows[0]["IsCPSDiscussed"].ToString().Trim();
-                    rdolstPatientSignature.SelectedValue = dtMaster.Rows[0]["IsPatientSignature"].ToString().Trim();
-                    rdolstPatientSignatureEPCR.SelectedValue = dtMaster.Rows[0]["IsPatientSignatureEPCR"].ToString().Trim();
-                    rdolstReceivingFacilitySignature.SelectedValue = dtMaster.Rows[0]["IsReceivingFacilitySignature"].ToString().Trim();
-                    rdolstReceivingFacilitySignatureEPCR.SelectedValue = dtMaster.Rows[0]["IsReceivingFacilitySignatureEPCR"].ToString().Trim();
-                    rdolstCrewSignature.SelectedValue = dtMaster.Rows[0]["IsCrewSignature"].ToString().Trim();
-                    rdolstCrewSignatureEPCR.SelectedValue = dtMaster.Rows[0]["IsCrewSignatureEPCR"].ToString().Trim();
+                    ddlPatientSignature.SelectedValue = dtMaster.Rows[0]["IsPatientSignature"].ToString().Trim();
+                    ddlPatientSignatureEPCR.SelectedValue = dtMaster.Rows[0]["IsPatientSignatureEPCR"].ToString().Trim();
+                    ddlReceivingFacilitySignature.SelectedValue = dtMaster.Rows[0]["IsReceivingFacilitySignature"].ToString().Trim();
+                    ddlReceivingFacilitySignatureEPCR.SelectedValue = dtMaster.Rows[0]["IsReceivingFacilitySignatureEPCR"].ToString().Trim();
+                    ddlCrewSignature.SelectedValue = dtMaster.Rows[0]["IsCrewSignature"].ToString().Trim();
+                    ddlCrewSignatureEPCR.SelectedValue = dtMaster.Rows[0]["IsCrewSignatureEPCR"].ToString().Trim();
                     txtMERComments.Text = dtMaster.Rows[0]["MERComments"].ToString().Trim();
-                    rdolstIsTraningPending.SelectedValue = dtMaster.Rows[0]["IsTrainingPending"].ToString().Trim();
+                    ddlIsTraningPending.SelectedValue = dtMaster.Rows[0]["IsTrainingPending"].ToString().Trim();
                     rdolstCRI.SelectedValue = dtMaster.Rows[0]["CRI"].ToString().Trim();
                     txtNRScheduleDate.Text = dtMaster.Rows[0]["NRScheduleDate"].ToString().Trim();
                     txtChangeInZOHO.Text = dtMaster.Rows[0]["ChangeInZOHO"].ToString().Trim();
