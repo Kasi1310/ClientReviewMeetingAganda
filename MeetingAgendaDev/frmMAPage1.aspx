@@ -1162,14 +1162,17 @@
 
                              <!--Address Information-->
                               <tr>
-                                 <th colspan="2" style="width:23%;color: #00968F;font-weight:bold;vertical-align:middle">17.Address Information
-                                 </th>
+                                 <%--<th colspan="2" style="width:23%;color: #00968F;font-weight:bold;vertical-align:middle">17.Address Information
+                                 </th>--%>
                                  <td colspan="16">
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                                    <thead>
                                     
-
+                                       <tr style="background-color:#00979D; color:#fff; vertical-align:middle">
+                                            <th colspan="12" class="text-center">17.Address Information</th>
+                                        </tr>
                                       <tr style="background-color:#00979D; color:#fff;">
+                                           
                                           <th colspan="4" style="text-align:center;vertical-align:middle;">Billing Address</th>  
                                           <th colspan="4" style="text-align:center;vertical-align:middle;">Mailling Address</th>
                                           <th colspan="4" style="text-align:center;vertical-align:middle;">Physical Address</th>
