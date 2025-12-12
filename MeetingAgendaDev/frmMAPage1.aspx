@@ -461,25 +461,27 @@
                          <tbody>
                              <!-- 1. Aging Review-->
                              <tr>
-                                  <th colspan="2" style="width: 20% !important; color: #00968F; vertical-align:middle; font-weight: bold">1.Aging Review
+                                  <th colspan="2" style="width: 20% !important; color: #00968F; vertical-align:middle; font-weight: bold;">1.Aging Review
                                       <br />
                                     (Sent to araging@medicount.com)
 
                                   </th>
-                                  <td colspan="2" style="width: 17% !important;">                                    
-                                        <asp:RadioButtonList ID="rdolstAgingReview" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                            <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                            <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                        </asp:RadioButtonList>                                    
+                                  <td colspan="2" style="width: 17% !important; vertical-align:middle;font-weight: bold;">                                         
+                                       <asp:DropDownList ID="ddlAgingReview" runat="server" CssClass="form-control" style="font-weight: bold;" >
+                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                     </asp:DropDownList>
                                     </td>
                                 
-                                  <th colspan="1"  style="width: 14% !important; color: #00968F; vertical-align:middle; font-weight: bold">Discussed with AR Team</th>
+                                  <th colspan="1"  style="width: 14% !important; color: #00968F; vertical-align:middle; font-weight: bold;">Discussed with AR Team</th>
                               
-                                  <td colspan="3" style="width: 15% !important;">                                     
-                                         <asp:RadioButtonList ID="rdolstDiscussedwithARTeam" CssClass="custom-checkbox"  runat="server" RepeatDirection="Horizontal" >
-                                             <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                             <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                         </asp:RadioButtonList>                                    
+                                  <td colspan="3" style="width: 15% !important;vertical-align:middle;font-weight: bold;">                                         
+                                        <asp:DropDownList ID="ddlDiscussedwithARTeam" runat="server" CssClass="form-control" style="font-weight: bold;">
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                    </asp:DropDownList>
                                  </td>
                             
                                  <td colspan="4">
@@ -490,8 +492,8 @@
                               <!-- 2.Billing Policy-->
                              <tr> 
                                  <th colspan="2" style="width: 23% !important; color: #00968F;vertical-align:middle; font-weight: bold">2.Billing Policy  </th>
-                                 <td >
-                                <asp:DropDownList ID="ddlBillingPolicy" runat="server" AutoPostBack="false" CssClass="form-control">
+                                 <td style="vertical-align:middle;font-weight: bold;" >
+                                <asp:DropDownList ID="ddlBillingPolicy" runat="server" AutoPostBack="false" CssClass="form-control" style="font-weight: bold;">
                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="R1" Text="R1"></asp:ListItem>
                                      <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
@@ -500,13 +502,15 @@
                                </asp:DropDownList> 
                                </td>
                                    <th colspan="2" style="width: 5% !important; color: #00968F; vertical-align:middle;font-weight: bold">Collections </th>                                  
-                                  <td colspan="3" style="width: 22% !important;">                                     
-                                    <asp:RadioButtonList  ID="rdolitCollections" CssClass="custom-checkbox"  runat="server" RepeatDirection="Horizontal" >
-                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                    </asp:RadioButtonList> 
+                                  <td colspan="3" style="width: 22% !important; vertical-align:middle;">                                    
                                      
-                                         <asp:DropDownList  ID="ddlCollections" runat="server" AutoPostBack="false" CssClass="form-control" style="width: 30%;vertical-align:middle; display:none;">
+                                          <asp:DropDownList ID="ddlCollections" runat="server" CssClass="form-control" style="font-weight: bold; ">
+                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                        </asp:DropDownList>
+                                     
+                                         <asp:DropDownList  ID="ddlCollectionsCheck" runat="server" AutoPostBack="false" CssClass="form-control" style="font-weight: bold; width: 30%;vertical-align:middle; display:none;">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                          <asp:ListItem Value="R1" Text="OIG"></asp:ListItem>
                                           <asp:ListItem Value="R2" Text="Other"></asp:ListItem>                                      
@@ -524,21 +528,22 @@
                              <!-- 3.Billing Rates Reviewed-->
                              <tr>
                                  <th colspan="2" style="width: 23% !important; color: #00968F; font-weight: bold;vertical-align:middle;">3.Billing Rates Reviewed</th>                               
-                                 <td colspan="2" style="width: 15% !important;">                                     
-                                        <div>
-                                             <asp:RadioButtonList ID="rdolstBillingRateReviewed" CssClass="custom-checkbox"
-                                                 runat="server" RepeatDirection="Horizontal" onchange="BillingRateReviewedEnable()">
-                                                 <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                 <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                             </asp:RadioButtonList>
-                                         </div>                                    
+                                 <td colspan="2" style="width: 15% !important; vertical-align:middle;">                                     
+                                      
+                                         <asp:DropDownList ID="rdolstBillingRateReviewed" runat="server" CssClass="form-control" style="font-weight: bold; " onchange="BillingRateReviewedEnable()">
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                    </asp:DropDownList>
+                                                                         
                                 </td>                                
                                  
                                    <th colspan="1" style=" color: #00968F;vertical-align:middle;" >Last Rate Change</th>  
-                                    <td colspan="3"><asp:TextBox ID="txtLastRateChange" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                                     style="margin-top:4%; resize: none; height: 100%; width: 100%; border: none; outline: solid; padding: 5px;vertical-align:middle;"></asp:TextBox></td>
+                                    <td colspan="3" style="vertical-align:middle;">
+                                        <asp:TextBox ID="txtLastRateChange" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                                     style="resize: none; height: 100%; width: 100%; border: none; outline: none; padding: 5px;"></asp:TextBox></td>
                                            
-                                <td colspan="3">
+                                <td colspan="4">
                                     <asp:TextBox ID="txtBillingRatesReviewed" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
                                 </td>
                             </tr>
@@ -554,13 +559,13 @@
                                          <thead>
                                   
                                             <tr style="background-color:#00979D; color:#fff;">
-                                                <th colspan="2">BLS</th>
-                                                <th>BLS NE</th>
-                                                <th>ALS</th>
-                                                <th>ALS NE</th>
-                                                <th>ALS2</th>
-                                                <th>Non-Transport</th>
-                                                <th>Mileage</th>
+                                                <th colspan="2" style="text-align:center; vertical-align:middle;">BLS</th>
+                                                <th style="text-align:center; vertical-align:middle;">BLS NE</th>
+                                                <th style="text-align:center; vertical-align:middle;">ALS</th>
+                                                <th style="text-align:center; vertical-align:middle;">ALS NE</th>
+                                                <th style="text-align:center; vertical-align:middle;">ALS2</th>
+                                                <th style="text-align:center; vertical-align:middle;">Non-Transport</th>
+                                                <th style="text-align:center; vertical-align:middle;">Mileage</th>
                                         
             
                                             </tr>
@@ -578,11 +583,12 @@
                                                                   onblur="isMoneyKey(this,'ALS NE');" disabled="true"></asp:TextBox></td>
                                                 <td><asp:TextBox ID="txtALS2" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
                                                                    onblur="isMoneyKey(this,'ALS2');" disabled="true"></asp:TextBox></td>                                          
-                                                <td style="padding: inherit !important;">
-                                                    <asp:RadioButtonList ID="rdolstNonTransport" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                          <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                          <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                          </asp:RadioButtonList>
+                                                <td style="padding: inherit !important; vertical-align:middle;">                                                   
+                                                      <asp:DropDownList ID="rdolstNonTransport" runat="server" CssClass="form-control" style="font-weight: bold; ">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </td>
                                                 <td> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
                                                       onblur="isMoneyKey(this,'Mileage');" disabled="true"></asp:TextBox></td>
@@ -605,10 +611,12 @@
                                  <th colspan="2" style="width:23%;font-weight:bold;vertical-align:middle;color: #00968F;">5.UCR (Usual & Customary Rates)</th>
                                  <td colspan="4" style="font-weight:bold;vertical-align:middle; text-align:right;">Rate review sheet of Neighboring departments provided to Client</td>
                                 <td colspan="2" style="width:17%; vertical-align:middle;">
-                                    <asp:RadioButtonList ID="RadioButtonList7" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                    </asp:RadioButtonList>
+                                   
+                                      <asp:DropDownList ID="ddlUCR" runat="server" CssClass="form-control" style="font-weight: bold; ">
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                    </asp:DropDownList>
                                 </td>                                    
                                <td colspan="4"><asp:TextBox ID="TextBox6" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox></td>
       
@@ -622,29 +630,29 @@
                                 </td>
 
                                 <th style="font-weight:bold;vertical-align:middle; text-align:right;">Facility Transports</th>
-                                <td style="width:10%;">
-                                    <asp:DropDownList ID="ddlFacilityTransports" runat="server" CssClass="form-control">
+                                <td style="width:9%;vertical-align:middle;font-weight:bold;">
+                                    <asp:DropDownList ID="ddlFacilityTransports" runat="server" CssClass="form-control" style="font-weight:bold;">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                        <asp:ListItem Value="1" Text="Yes"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="No"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
 
                                 <th style="font-weight:bold;vertical-align:middle;text-align:right;width: 8%;">With Charge</th>
-                                <td style="width:10%;">
-                                    <asp:DropDownList ID="ddlWithCharge" runat="server" CssClass="form-control">
+                                <td style="width:10%;vertical-align:middle;font-weight:bold;">
+                                    <asp:DropDownList ID="ddlWithCharge" runat="server" CssClass="form-control" style="font-weight:bold;">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                        <asp:ListItem Value="1" Text="Yes"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="No"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
 
-                                <th colspan="2" style="font-weight:bold;width:18%;vertical-align:middle;text-align:right;">Client Processes Own Credit cards</th>
-                                <td colspan="2">
-                                    <asp:DropDownList ID="ddlClientPorcessesOwnCreditcards" runat="server" CssClass="form-control">
+                                <th  style="font-weight:bold;width:18%;vertical-align:middle;text-align:right;">Client Processes Own Credit cards</th>
+                                <td colspan="3" style="vertical-align:middle;">
+                                    <asp:DropDownList ID="ddlClientPorcessesOwnCreditcards" runat="server" CssClass="form-control" style="font-weight:bold;">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                        <asp:ListItem Value="1" Text="Yes"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="No"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
                             </tr>
@@ -652,36 +660,41 @@
                              <!--Non-Emergenct Tranports-->
                              <tr>
                                   <th colspan="2" style="width:23%;color: #00968F;font-weight:bold;vertical-align:middle;">7.Non-Emergenct Tranports</th>
-                                 <td colspan="2" style="width: 17% !important;">                                    
-                                  <asp:RadioButtonList ID="rdolstNonEmergenctTranports" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                      <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                      <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                  </asp:RadioButtonList>      
+                                 <td colspan="2" style="width: 17% !important; vertical-align:middle;">   
+                                        <asp:DropDownList ID="ddlNonEmergenctTranports" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                       <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                       <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                       <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                   </asp:DropDownList>
+                                    
                               </td>
                                  <th colspan="3" style="width:24%;color: #00968F;font-weight:bold;vertical-align:middle; text-align:right;">Is Client Aware of Prior Authorization Requirements</th>
-                                    <td colspan="2" style="width: 14% !important;">                                    
-                                    <asp:RadioButtonList ID="rdolstIsClientAwareofPriorAuthorizationRequirements" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                    </asp:RadioButtonList>      
+                                    <td colspan="1" style="width: 10% !important; vertical-align:middle;">      
+                                             <asp:DropDownList ID="ddlIsClientAwareofPriorAuthorizationRequirements" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                        </asp:DropDownList>
                                 </td>
-                                  <th colspan="2" style="width:15%;color: #00968F;font-weight:bold;vertical-align:middle;">Is Traning Needed</th>
-                                    <td colspan="2" style="width: 28% !important;">                                    
-                                    <asp:RadioButtonList ID="rdolstIsTraningNeeded" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                    </asp:RadioButtonList>      
+                                  <th  style="width:15%;color: #00968F;font-weight:bold;vertical-align:middle; text-align:right;">Is Traning Needed</th>
+                                    <td colspan="2" style="vertical-align:middle;">     
+                                     <asp:DropDownList ID="ddlIsTraningNeeded" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                        </asp:DropDownList>
                                 </td>
                              </tr>
 
                              <!--Contract Facility Billing or Correctional/Jail -->
                              <tr>
                                  <th colspan="2" style="width:23%;color: #00968F;font-weight:bold;vertical-align:middle">8.Contract Facility Billing or Correctional/Jail</th>
-                                 <td colspan="2" style="width: 17% !important;vertical-align:middle;">                                    
-                                     <asp:RadioButtonList ID="rdolstContractFacilityBilling" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                         <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                         <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                     </asp:RadioButtonList>
+                                 <td colspan="2" style="width: 17% !important;vertical-align:middle;">  
+                                          <asp:DropDownList ID="ddlContractFacilityBilling" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                        </asp:DropDownList>
                                      </td>
                                  <td colspan="10">
                                          <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
@@ -699,46 +712,52 @@
 
                                             <tbody>          
                                                 <tr>
-                                                    <td style="padding: inherit !important;width: 10%;" >
-                                                        <asp:RadioButtonList ID="RadioButtonList6" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                </asp:RadioButtonList>
+                                                    <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >
+                                                         <asp:DropDownList ID="ddlSkilledNursingFacilities" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
 
                                                     </td>
                                                                    
-                                                    <td style="padding: inherit !important;width: 10%;" >    
-                                                        <asp:RadioButtonList ID="RadioButtonList2" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                    </asp:RadioButtonList>
+                                                    <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >    
+                                                       <asp:DropDownList ID="ddlUpdatedContracts" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
                                                     </td>
-                                                    <td style="padding: inherit !important;width: 10%;" >  
-                                                        <asp:RadioButtonList ID="RadioButtonList3" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                    </asp:RadioButtonList>
+                                                    <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >  
+                                                           <asp:DropDownList ID="ddlAttached" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
 
                                                     </td>
-                                                    <td style="padding: inherit !important;width: 10%;" >   
-                                                        <asp:RadioButtonList ID="RadioButtonList4" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                     </asp:RadioButtonList>
+                                                    <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >   
+                                                           <asp:DropDownList ID="ddlFacilityCurrently" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                    <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                    <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                </asp:DropDownList>
 
                                                     </td>
-                                                    <td style="padding: inherit !important;width: 10%;" >  
-                                                        <asp:RadioButtonList ID="RadioButtonList5" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                       <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                       <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                    </asp:RadioButtonList>
+                                                    <td style="padding: inherit !important;width: 10%;vertical-align:middle;" >  
+                                                           <asp:DropDownList ID="ddlToBeBilled" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
 
                                                     </td>                                          
-                                                    <td style="padding: inherit !important;width: 10%;" >
-                                                        <asp:RadioButtonList ID="RadioButtonList1" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                              <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                              <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                              </asp:RadioButtonList>
+                                                    <td style="padding: inherit !important;width: 10%;vertical-align:middle;" >
+                                                           <asp:DropDownList ID="ddlWithTheFacility" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                     </td>
  
                                                 </tr>                                      
@@ -753,10 +772,11 @@
                              <tr>
                                  <th colspan="2" style="width:23%;color: #00968F;font-weight:bold;vertical-align:middle">9.Contract Status</th>
                                    <td colspan="2" style="width: 17% !important; vertical-align:middle"">                                    
-                                    <asp:RadioButtonList ID="RadioButtonList9" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                    </asp:RadioButtonList>                                    
+                                       <asp:DropDownList ID="ddlContractStatus" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                    </asp:DropDownList>                                   
                                 </td>
                                  <td colspan="10">
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
@@ -771,21 +791,26 @@
 
                                         <tbody>          
                                             <tr>
-                                                  <td colspan="2" style="width: 20% !important; vertical-align:middle"">                                    
-                                                    <asp:RadioButtonList ID="rdolstInForce" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                    </asp:RadioButtonList>                                    
+                                                  <td colspan="2" style="width: 20% !important; vertical-align:middle">     
+                                                         <asp:DropDownList ID="ddlInForce" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </td>
                                                 <td colspan="2"> <asp:TextBox ID="txtRenewalDate" CssClass="form-control form_datetime" runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                                                 <td colspan="2"><asp:TextBox ID="txtCurrentRate" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
                                                                 onblur="isPercentageKey(this,'Current Rate');"></asp:TextBox>
 
                                                 </td> 
-                                                <td colspan="2"><asp:RadioButtonList ID="rdolstContractCurrent" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                </asp:RadioButtonList>    </td>
+                                                <td colspan="2" style="vertical-align:middle">  
+                                                 <asp:DropDownList ID="ddlContractCurrent" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                            </asp:DropDownList>
+
+                                                </td>
                                             </tr>                                      
                                         </tbody>
                                     </table>
@@ -795,11 +820,12 @@
                               <!--Personnel Changes -->
                             <tr>
                                 <th colspan="2" style="width:23%;color: #00968F;font-weight:bold;vertical-align:middle">10.Personnel Changes</th>
-                                <td colspan="2" style="width: 17% !important; vertical-align:middle"">                                    
-                                  <asp:RadioButtonList ID="rdolstPersonnelChanges" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                      <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                      <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                  </asp:RadioButtonList>                                    
+                                <td colspan="2" style="width: 17% !important; vertical-align:middle"">   
+                                       <asp:DropDownList ID="ddlPersonnelChanges" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                    <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                    <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                </asp:DropDownList> 
                               </td>
                                 <td colspan="10"> 
 
@@ -829,15 +855,21 @@
                              <tr>
                                   <th colspan="2" style="width:23%;color: #00968F;font-weight:bold;vertical-align:middle;">11.Demographic Changes</th>
                                  <td colspan="1" style="color: #00968F;font-weight:bold;vertical-align:middle;">Closed Businesses</td>
-                                 <td colspan="4" style="vertical-align:middle"><asp:RadioButtonList ID="RadioButtonList8" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                </asp:RadioButtonList></td>
+                                 <td colspan="3" style="vertical-align:middle">
+                                        <asp:DropDownList ID="ddlClosedBusinesses" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                    </asp:DropDownList> 
+                                 </td>
                                  <td colspan="2" style="color: #00968F;font-weight:bold;vertical-align:middle;">New Business</td>
-                                 <td colspan="4" style="vertical-align:middle;"><asp:RadioButtonList ID="RadioButtonList10" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                </asp:RadioButtonList></td>
+                                 <td colspan="2" style="vertical-align:middle;">
+                                 <asp:DropDownList ID="ddlNewBusiness" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                            </asp:DropDownList> 
+                                 </td>
                              </tr>
 
                              <!--Client Data Status -->
@@ -862,25 +894,39 @@
                                              <tr>
                                                  <td colspan="2"> <asp:TextBox ID="TextBox1" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                                                  <td colspan="2"> <asp:TextBox ID="TextBox2" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
-                                                 <td colspan="2" style="width:15%;"> <asp:RadioButtonList ID="RadioButtonList11" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                                </asp:RadioButtonList>
+                                                 <td colspan="2" style="width:15%; vertical-align:middle;"> 
+                                                          <asp:DropDownList ID="ddlUsage" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                      </td>
                                                  <td colspan="2"> <asp:TextBox ID="TextBox8" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
-                                                 <td colspan="2" style="width:15%;"> <asp:RadioButtonList ID="RadioButtonList14" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                   <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                   <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                               </asp:RadioButtonList></td> 
-                                                 <td colspan="2" style="width:15%;"> <asp:RadioButtonList ID="RadioButtonList12" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                                </asp:RadioButtonList></td> 
+                                                 <td colspan="2" style="width:15%; vertical-align:middle;">
+                                                         <asp:DropDownList ID="ddlAlertsReceived" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                                <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                                <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                            </asp:DropDownList>
+
+                                                 </td> 
+                                                 <td colspan="2" style="width:15%; vertical-align:middle;"> 
+                                                          <asp:DropDownList ID="ddlOIG_Exclsuionary" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
+
+                                                 </td> 
                                                  <td colspan="2"> <asp:TextBox ID="TextBox11" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
-                                                 <td colspan="2" style="width:15%;"> <asp:RadioButtonList ID="RadioButtonList13" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                                </asp:RadioButtonList></asp:TextBox></td> 
+                                                 <td colspan="2" style="width:15%; vertical-align:middle;"> 
+                                                          <asp:DropDownList ID="ddlDiscussed" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
+
+                                                 </td> 
                                                  
                                               </tr>                                      
                                          </tbody>
@@ -908,19 +954,24 @@
 
                                          <tbody>          
                                              <tr>
-                                                 <td colspan="2"> <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
+                                                 <td colspan="2" style="vertical-align:middle">
+                                                     <asp:DropDownList ID="ddlePCRName" runat="server" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                         <asp:ListItem Value="1" Text="Yes"></asp:ListItem>
-                                                         <asp:ListItem Value="2" Text="No"></asp:ListItem>
+                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                      </asp:DropDownList>
                                                  </td> 
                                                  <td colspan="2"><asp:TextBox ID="TextBox9" CssClass="form-control form_datetime" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                  <td colspan="2"><asp:TextBox ID="TextBox10" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox>
                                                  <td colspan="2"><asp:TextBox ID="TextBox12" CssClass="form-control form_datetime" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox>
-                                                 <td colspan="2"><asp:RadioButtonList ID="RadioButtonList15" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                </asp:RadioButtonList> </td>
+                                                 <td colspan="2" style="vertical-align:middle">
+                                                     <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
+
+                                                 </td>
                                              </tr>                                      
                                          </tbody>
                                      </table>
@@ -944,42 +995,49 @@
 
                                         <tbody>          
                                             <tr>
-                                                 <td colspan="2">
-                                                              <asp:RadioButtonList ID="rdolstPatientSignature" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                             <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                             <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                         </asp:RadioButtonList>
+                                                 <td colspan="2" style="vertical-align:middle">                                                              
+                                                     <asp:DropDownList ID="ddlPatientSignature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
                                                  </td>
-                                                <td colspan="2">
-                                                             <asp:RadioButtonList ID="rdolstPatientSignatureEPCR" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                         <asp:ListItem Value="YES"><span></span>EPCR</asp:ListItem>
-                                                         <asp:ListItem Value="NO"><span></span>Hard Copy</asp:ListItem>
-                                                     </asp:RadioButtonList>
+                                                <td colspan="2" style="vertical-align:middle">                                                             
+                                                    <asp:DropDownList ID="ddlPatientSignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                    <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
+                                                    <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
+                                                </asp:DropDownList>
                                                   </td>
-                                                 <td colspan="2">
-                                                            <asp:RadioButtonList ID="rdolstReceivingFacilitySignature" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                            <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                            <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                        </asp:RadioButtonList>
+                                                 <td colspan="2" style="vertical-align:middle">
+                                                     
+                                                         <asp:DropDownList ID="ddlReceivingFacilitySignature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                    </td>
-                                                    <td colspan="2">
-                                                        <asp:RadioButtonList ID="rdolstReceivingFacilitySignatureEPCR" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                         <asp:ListItem Value="YES"><span></span>EPCR</asp:ListItem>
-                                                         <asp:ListItem Value="NO"><span></span>Hard Copy</asp:ListItem>
-                                                     </asp:RadioButtonList>
+                                                    <td colspan="2" style="vertical-align:middle">                                                        
+                                                         <asp:DropDownList ID="ddlReceivingFacilitySignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
+                                                            <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
+                                                        </asp:DropDownList>
                                               </td>
                                                
-                                                <td colspan="2">
-                                                     <asp:RadioButtonList ID="rdolstCrewSignature" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                     <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                     <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                 </asp:RadioButtonList>
+                                                <td colspan="2" style="vertical-align:middle">
+                                                     <asp:DropDownList ID="ddlCrewSignature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                     <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
+                                                     <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
+                                                </asp:DropDownList>
                                                 </td>
-                                                           <td colspan="2">
-                                                             <asp:RadioButtonList ID="rdolstCrewSignatureEPCR" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                         <asp:ListItem Value="YES"><span></span>EPCR</asp:ListItem>
-                                                         <asp:ListItem Value="NO"><span></span>Hard Copy</asp:ListItem>
-                                                     </asp:RadioButtonList>
+                                                 <td colspan="2" style="vertical-align:middle">                                                          
+                                                 <asp:DropDownList ID="ddlCrewSignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                            </asp:DropDownList>
                                                 </td>
 
                                             </tr>                                      
@@ -1013,34 +1071,45 @@
                                         <tbody>          
                                             <tr>
                                                 
-                                                <td colspan="4" style="width:15%;"> <asp:RadioButtonList ID="RadioButtonList16" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                                   <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                                   <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                               </asp:RadioButtonList>
+                                                <td colspan="4" style="width:15%; vertical-align:middle;"> 
+
+                                                         <asp:DropDownList ID="ddlStatementReconciliation" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
                                                     </td>
 
                                                 <td colspan="2"> <asp:TextBox ID="TextBox13" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                                                
                                                 <td colspan="2"> <asp:TextBox ID="TextBox14" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                                                                                                
-                                                <td colspan="4" style="width:15%;"> <asp:RadioButtonList ID="RadioButtonList17" CssClass="custom-checkbox" BorderStyle="None"  runat="server" RepeatDirection="Horizontal" >
-                                                  <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                  <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                              </asp:RadioButtonList></td> 
+                                                <td colspan="4" style="width:15%;"> 
 
-                                                <td colspan="2">                                              
-                                                  <div id="divIsTraningCompleted">
-                                                    <asp:RadioButtonList ID="rdolstIsTraningCompleted" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                        <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                        <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                    </asp:RadioButtonList>
+                                                    
+                                                         <asp:DropDownList ID="ddlRunReconciliationDone_signature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                        </asp:DropDownList>
+
+                                                </td> 
+
+                                                <td colspan="2" style="vertical-align:middle;">                                              
+                                                  <div id="divIsTraningCompleted">                                                   
+                                                           <asp:DropDownList ID="ddlTraningCompleted" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </div> 
-                                                    <td colspan="2">                                              
-                                              <div id="divIsTraningPending">
-                                                <asp:RadioButtonList ID="rdolstIsTraningPending" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
-                                                    <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
-                                                </asp:RadioButtonList>
+                                                    <td colspan="2" style="vertical-align:middle;">                                              
+                                              <div id="divIsTraningPending">                                          
+                                                         <asp:DropDownList ID="ddlIsTraningPending" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                    </asp:DropDownList>
                                             </div> 
                                              </td>
                                              </tr>                                      
@@ -1924,6 +1993,8 @@
                                     <asp:ListItem Value="YES"><span></span>Training Pending</asp:ListItem>
                                     <asp:ListItem Value="NO"><span></span>Training Completed</asp:ListItem>
                                 </asp:RadioButtonList>
+
+
                             </div>
                         </td>
                     </tr>
@@ -2601,7 +2672,7 @@
 
             clsMeetingAgenda.CSComments = document.getElementById("<%=txtCSComments.ClientID %>").value.trim();
 
-            var rdolstContractCurrent = document.getElementById("<%=rdolstContractCurrent.ClientID %>").getElementsByTagName("input");
+            var rdolstContractCurrent = document.getElementById("<%=ddlContractCurrent.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsContractCurrent = GetRadioListValue(rdolstContractCurrent);
 
             clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim();
@@ -2635,27 +2706,27 @@
             var rdolstCPSDiscussed = document.getElementById("<%=rdolstCPSDiscussed.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsCPSDiscussed = GetRadioListValue(rdolstCPSDiscussed);
 
-            var rdolstPatientSignature = document.getElementById("<%=rdolstPatientSignature.ClientID %>").getElementsByTagName("input");
+            var rdolstPatientSignature = document.getElementById("<%=ddlPatientSignature.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsPatientSignature = GetRadioListValue(rdolstPatientSignature);
 
-            var rdolstPatientSignatureEPCR = document.getElementById("<%=rdolstPatientSignatureEPCR.ClientID %>").getElementsByTagName("input");
+            var rdolstPatientSignatureEPCR = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsPatientSignatureEPCR = GetRadioListValue(rdolstPatientSignatureEPCR);
 
-            var rdolstReceivingFacilitySignature = document.getElementById("<%=rdolstReceivingFacilitySignature.ClientID %>").getElementsByTagName("input");
+            var rdolstReceivingFacilitySignature = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsReceivingFacilitySignature = GetRadioListValue(rdolstReceivingFacilitySignature);
 
-            var rdolstReceivingFacilitySignatureEPCR = document.getElementById("<%=rdolstReceivingFacilitySignatureEPCR.ClientID %>").getElementsByTagName("input");
+            var rdolstReceivingFacilitySignatureEPCR = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = GetRadioListValue(rdolstReceivingFacilitySignatureEPCR);
 
-            var rdolstCrewSignature = document.getElementById("<%=rdolstCrewSignature.ClientID %>").getElementsByTagName("input");
+            var rdolstCrewSignature = document.getElementById("<%=ddlCrewSignature.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsCrewSignature = GetRadioListValue(rdolstCrewSignature);
 
-            var rdolstCrewSignatureEPCR = document.getElementById("<%=rdolstCrewSignatureEPCR.ClientID %>").getElementsByTagName("input");
+            var rdolstCrewSignatureEPCR = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsCrewSignatureEPCR = GetRadioListValue(rdolstCrewSignatureEPCR);
 
             clsMeetingAgenda.MERComments = document.getElementById("<%=txtMERComments.ClientID %>").value.trim();
 
-            var rdolstIsTraningPending = document.getElementById("<%=rdolstIsTraningPending.ClientID %>").getElementsByTagName("input");
+            var rdolstIsTraningPending = document.getElementById("<%=ddlIsTraningPending.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsTrainingPending = GetRadioListValue(rdolstIsTraningPending);
 
             var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
