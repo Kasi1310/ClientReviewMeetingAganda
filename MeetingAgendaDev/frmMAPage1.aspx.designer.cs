@@ -591,24 +591,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlCollections;
 
         /// <summary>
-        /// ddlCollectionsCheck control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCollectionsCheck;
-
-        /// <summary>
-        /// txtCollectionValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCollectionValue;
-
-        /// <summary>
         /// txtCollectionComments control.
         /// </summary>
         /// <remarks>
@@ -870,15 +852,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlContractStatus;
 
         /// <summary>
-        /// ddlInForce control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlInForce;
-
-        /// <summary>
         /// txtRenewalDate control.
         /// </summary>
         /// <remarks>
@@ -915,40 +888,40 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlPersonnelChanges;
 
         /// <summary>
-        /// TextBox3 control.
+        /// txtChief control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtChief;
 
         /// <summary>
-        /// TextBox4 control.
+        /// txtFiscalOfficer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox txtFiscalOfficer;
 
         /// <summary>
-        /// TextBox5 control.
+        /// txtAuthorizedOfficial1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox txtAuthorizedOfficial1;
 
         /// <summary>
-        /// txt2ndAUTHORIZEDOfficial control.
+        /// txtAuthorizedOfficial2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt2ndAUTHORIZEDOfficial;
+        protected global::System.Web.UI.WebControls.TextBox txtAuthorizedOfficial2;
 
         /// <summary>
         /// ddlClosedBusinesses control.
@@ -969,24 +942,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlNewBusiness;
 
         /// <summary>
-        /// TextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-
-        /// <summary>
-        /// TextBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
-
-        /// <summary>
         /// ddlUsage control.
         /// </summary>
         /// <remarks>
@@ -994,15 +949,6 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlUsage;
-
-        /// <summary>
-        /// TextBox8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
 
         /// <summary>
         /// ddlAlertsReceived control.
@@ -1023,15 +969,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlOIG_Exclsuionary;
 
         /// <summary>
-        /// TextBox11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
-
-        /// <summary>
         /// ddlDiscussed control.
         /// </summary>
         /// <remarks>
@@ -1050,31 +987,31 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlePCRName;
 
         /// <summary>
-        /// TextBox9 control.
+        /// txtLastReconciliationDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.WebControls.TextBox txtLastReconciliationDate;
 
         /// <summary>
-        /// TextBox10 control.
+        /// txtByWhom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.WebControls.TextBox txtByWhom;
 
         /// <summary>
-        /// TextBox12 control.
+        /// txtByWhen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox txtByWhen;
 
         /// <summary>
         /// ddlRunReconciliationDone control.
@@ -1158,31 +1095,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlStatementReconciliation;
 
         /// <summary>
-        /// TextBox13 control.
+        /// txtByWho control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.TextBox txtByWho;
 
         /// <summary>
-        /// TextBox14 control.
+        /// txtHowOften control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
-
-        /// <summary>
-        /// ddlRunReconciliationDone_signature control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRunReconciliationDone_signature;
+        protected global::System.Web.UI.WebControls.TextBox txtHowOften;
 
         /// <summary>
         /// ddlTraningCompleted control.
@@ -1239,22 +1167,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtBillingStreet;
 
         /// <summary>
-        /// ddlBillingState control.
+        /// txtBillingCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBillingState;
+        protected global::System.Web.UI.WebControls.TextBox txtBillingCity;
 
         /// <summary>
-        /// ddlBillingCity control.
+        /// txtBillingState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBillingCity;
+        protected global::System.Web.UI.WebControls.TextBox txtBillingState;
 
         /// <summary>
         /// txtBillingZip control.
@@ -1275,22 +1203,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtMailingStreet;
 
         /// <summary>
-        /// ddlMailingState control.
+        /// txtMailingCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMailingState;
+        protected global::System.Web.UI.WebControls.TextBox txtMailingCity;
 
         /// <summary>
-        /// ddlMailingCity control.
+        /// txtMailingState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMailingCity;
+        protected global::System.Web.UI.WebControls.TextBox txtMailingState;
 
         /// <summary>
         /// txtMailingZip control.
@@ -1311,22 +1239,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtPhysicalLocationStreet;
 
         /// <summary>
-        /// ddlPhysicalLocationState control.
+        /// txtPhysicalLocationCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPhysicalLocationState;
+        protected global::System.Web.UI.WebControls.TextBox txtPhysicalLocationCity;
 
         /// <summary>
-        /// ddlPhysicalLocationCity control.
+        /// txtPhysicalLocationState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPhysicalLocationCity;
+        protected global::System.Web.UI.WebControls.TextBox txtPhysicalLocationState;
 
         /// <summary>
         /// txtPhysicalLocationZip control.
@@ -1347,22 +1275,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtBillingStreet_old;
 
         /// <summary>
-        /// ddlBillingState_old control.
+        /// txtBillingCity_Old control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBillingState_old;
+        protected global::System.Web.UI.WebControls.TextBox txtBillingCity_Old;
 
         /// <summary>
-        /// ddlBillingCity_Old control.
+        /// txtBillingState_old control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBillingCity_Old;
+        protected global::System.Web.UI.WebControls.TextBox txtBillingState_old;
 
         /// <summary>
         /// txtBillingZip_old control.
@@ -1383,22 +1311,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtMailingStreet_old;
 
         /// <summary>
-        /// ddlMailingState_old control.
+        /// txtMailingCity_old control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMailingState_old;
+        protected global::System.Web.UI.WebControls.TextBox txtMailingCity_old;
 
         /// <summary>
-        /// ddlMailingCity_old control.
+        /// txtMailingState_old control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMailingCity_old;
+        protected global::System.Web.UI.WebControls.TextBox txtMailingState_old;
 
         /// <summary>
         /// txtMailingZip_old control.
@@ -1419,22 +1347,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtPhysicalLocationStreet_old;
 
         /// <summary>
-        /// ddlPhysicalLocationState_old control.
+        /// txtPhysicalLocationCity_old control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPhysicalLocationState_old;
+        protected global::System.Web.UI.WebControls.TextBox txtPhysicalLocationCity_old;
 
         /// <summary>
-        /// ddlPhysicalLocationCity_old control.
+        /// txtPhysicalLocationState_old control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPhysicalLocationCity_old;
+        protected global::System.Web.UI.WebControls.TextBox txtPhysicalLocationState_old;
 
         /// <summary>
         /// txtPhysicalLocationZip_old control.

@@ -1,4 +1,5 @@
 ﻿using ClientMeetingAgenda.App_Code;
+using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.Wordprocessing;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
@@ -183,9 +184,9 @@ namespace ClientMeetingAgenda
                 objclsEPCRMaster.LoadEPCRDDL(ddlEPCR);
 
                 objclsMeetingAgenda = new clsMeetingAgenda();
-                objclsMeetingAgenda.LoadStateDDL(ddlBillingState);
-                objclsMeetingAgenda.LoadStateDDL(ddlMailingState);
-                objclsMeetingAgenda.LoadStateDDL(ddlPhysicalLocationState);
+                //objclsMeetingAgenda.LoadStateDDL(ddlBillingState);
+                //objclsMeetingAgenda.LoadStateDDL(ddlMailingState);
+                //objclsMeetingAgenda.LoadStateDDL(ddlPhysicalLocationState);
 
                 AssignTextBox();
 
@@ -379,21 +380,18 @@ namespace ClientMeetingAgenda
                     txtePCRByWhom.Text = dtMaster.Rows[0]["ePCRByWhom"].ToString().Trim();
 
                     txtBillingStreet.Text = dtMaster.Rows[0]["BillingStreet"].ToString().Trim();
-                    ddlBillingState.SelectedValue = dtMaster.Rows[0]["BillingState"].ToString().Trim();
-                    objclsMeetingAgenda.LoadCityDDL(ddlBillingCity, int.Parse(dtMaster.Rows[0]["BillingState"].ToString().Trim()));
-                    ddlBillingCity.SelectedValue = dtMaster.Rows[0]["BillingCity"].ToString().Trim();
+                    txtBillingCity.Text = dtMaster.Rows[0]["BillingCity"].ToString().Trim();
+                    txtBillingState.Text = dtMaster.Rows[0]["BillingState"].ToString().Trim();                    
                     txtBillingZip.Text = dtMaster.Rows[0]["BillingZip"].ToString().Trim();
 
                     txtMailingStreet.Text = dtMaster.Rows[0]["MailingStreet"].ToString().Trim();
-                    ddlMailingState.SelectedValue = dtMaster.Rows[0]["MailingState"].ToString().Trim();
-                    objclsMeetingAgenda.LoadCityDDL(ddlMailingCity, int.Parse(dtMaster.Rows[0]["MailingState"].ToString().Trim()));
-                    ddlMailingCity.SelectedValue = dtMaster.Rows[0]["MailingCity"].ToString().Trim();
+                    txtMailingCity.Text = dtMaster.Rows[0]["MailingCity"].ToString().Trim();
+                    txtMailingState.Text = dtMaster.Rows[0]["MailingState"].ToString().Trim();
                     txtMailingZip.Text = dtMaster.Rows[0]["MailingZip"].ToString().Trim();
 
                     txtPhysicalLocationStreet.Text = dtMaster.Rows[0]["PhysicalLocationStreet"].ToString().Trim();
-                    ddlPhysicalLocationState.SelectedValue = dtMaster.Rows[0]["PhysicalLocationState"].ToString().Trim();
-                    objclsMeetingAgenda.LoadCityDDL(ddlPhysicalLocationCity, int.Parse(dtMaster.Rows[0]["PhysicalLocationState"].ToString().Trim()));
-                    ddlPhysicalLocationCity.SelectedValue = dtMaster.Rows[0]["PhysicalLocationCity"].ToString().Trim();
+                    txtPhysicalLocationCity.Text = dtMaster.Rows[0]["PhysicalLocationCity"].ToString().Trim();
+                    txtPhysicalLocationState.Text = dtMaster.Rows[0]["PhysicalLocationState"].ToString().Trim();
                     txtPhysicalLocationZip.Text = dtMaster.Rows[0]["PhysicalLocationZip"].ToString().Trim();
 
                     txtOverAllMeetingNotes.Text = dtMaster.Rows[0]["OverAllMeetingNotes"].ToString().Trim();
@@ -844,14 +842,16 @@ namespace ClientMeetingAgenda
                     // Medicount_Billing_Address: [Street, City, State, Zip], //spCRF_GetDetailsForClientReviewForm
 
                     // Rates
-                    string blse = chargeRow[1];           // BLSE
-                    string blsne = chargeRow[2];          // BLSNE
-                    string alse = chargeRow[3];           // ALSE
-                    string alsne = chargeRow[4];          // ALSNE
-                    string als2 = chargeRow[5];           // ALS2
-                    string groundMileage = chargeRow[6];  // Ground Mileage
-                    string lastRateChange = chargeRow[7]; // Last Rate Change
-                    string nonTransport = chargeRow[8];   // Non Transport
+                    txtBLS.Text = chargeRow[1];                        // BLSE
+                    txtBLSNE.Text = chargeRow[2];                      // BLSNE
+                    txtALS.Text = chargeRow[3];                        // ALSE
+                    txtALSNE.Text = chargeRow[4];                      // ALSNE
+                    txtALS2.Text = chargeRow[5];                       // ALS2
+                    txtMileage.Text = chargeRow[6];                    // Ground Mileage
+                    txtLastRateChange.Text = chargeRow[7].Replace("-", "/");                         // Last Rate Change
+                    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                    rdolstNonTransport.SelectedValue = textInfo.ToTitleCase(chargeRow[8].ToLower()); // Non Transport
+
 
                     // Insurance Pay To Address
                     string insPayToStreet = chargeRow[9]; // InsPayToStreet
@@ -860,21 +860,26 @@ namespace ClientMeetingAgenda
                     string insPayToZip = chargeRow[12];   // InsPayToZip
 
                     // Physical and Billing Address are Same
-                    string billingStreet = chargeRow[13]; // PhysicalStreet
-                    string billingCity = chargeRow[14];   // PhysicalCity
-                    string billingState = chargeRow[15];  // PhysicalState
-                    string billingZip = chargeRow[16];    // PhysicalZip
+                    txtBillingStreet.Text = chargeRow[13]; // PhysicalStreet / BillingStreet
+                    txtBillingCity.Text = chargeRow[14];   // PhysicalCity / BillingCity
+                    txtBillingState.Text = chargeRow[15];  // PhysicalState / BillingState
+                    txtBillingZip.Text = chargeRow[16];    // PhysicalZip / BillingZip
+
+                    txtPhysicalLocationStreet.Text = chargeRow[13]; // PhysicalStreet
+                    txtPhysicalLocationCity.Text = chargeRow[14];   // PhysicalCity
+                    txtPhysicalLocationState.Text = chargeRow[15];  // PhysicalState
+                    txtPhysicalLocationZip.Text = chargeRow[16];    // PhysicalZip
 
                     break;
                 }
             }
 
 
-            // Customer Portal (ESO)  Rates data
-            string startDate = string.Empty; // MM-DD-YYYY
-            string endDate = string.Empty; // MM-DD-YYYY
-            Dictionary<string, string> preClientReviewData = GetClientReviewData(companyId, startDate, endDate);
-            Dictionary<string, string> curClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+            //// Customer Portal (ESO)  Rates data
+            //string startDate = string.Empty; // MM-DD-YYYY
+            //string endDate = string.Empty; // MM-DD-YYYY
+            //Dictionary<string, string> preClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+            //Dictionary<string, string> curClientReviewData = GetClientReviewData(companyId, startDate, endDate);
 
 
 
@@ -925,7 +930,8 @@ namespace ClientMeetingAgenda
                                 string contactId = match["id"]?.ToString() ?? "";
                                 bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
 
-                                result["currentChiefName"] = fullName;
+
+                                txtChief.Text = fullName;
                                 result["currentChiefZohoId"] = contactId;
                                 result["currentChiefTitle"] = title;
                                 result["currentChiefName"] = fullName;
@@ -972,7 +978,7 @@ namespace ClientMeetingAgenda
                                 string contactId = match["id"]?.ToString() ?? "";
                                 bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
 
-                                result["currentFiscalOfficer"] = fullName;
+                                txtFiscalOfficer.Text = fullName;
                                 result["currentFiscalZohoId"] = contactId;
                                 result["currentFiscalTitle"] = title;
                                 result["currentFiscalName"] = fullName;
@@ -1043,7 +1049,7 @@ namespace ClientMeetingAgenda
                         // Assign authorized official(s) to result
                         if (authorizedOfficialDict.Count > 0)
                         {
-                            result["currentAuthorizedOfficial_1"] = authorizedOfficialDict["Authorized Official 1"][0];
+                            txtAuthorizedOfficial1.Text = authorizedOfficialDict["Authorized Official 1"][0];
                             result["currentAuthorized1ZohoId"] = authorizedOfficialDict["Authorized Official 1"][1];
                             result["currentAuthorizedTitle_1"] = authorizedOfficialDict["Authorized Official 1"][2];
                             result["currentAuthorizedName_1"] = authorizedOfficialDict["Authorized Official 1"][3];
@@ -1052,7 +1058,7 @@ namespace ClientMeetingAgenda
 
                             if (authorizedOfficialDict.Count > 1)
                             {
-                                result["currentAuthorizedOfficial_2"] = authorizedOfficialDict["Authorized Official 2"][0];
+                                txtAuthorizedOfficial2.Text = authorizedOfficialDict["Authorized Official 2"][0];
                                 result["currentAuthorized2ZohoId"] = authorizedOfficialDict["Authorized Official 2"][1];
                                 result["currentAuthorizedTitle_2"] = authorizedOfficialDict["Authorized Official 2"][2];
                                 result["currentAuthorizedName_2"] = authorizedOfficialDict["Authorized Official 2"][3];
@@ -1067,14 +1073,12 @@ namespace ClientMeetingAgenda
                     }
 
 
-                    result["MailStreet"] = contact["Mailing_Street"]?.ToString().ToUpper() ?? "";
-                    result["MailCity"] = contact["Mailing_City1"]?.ToString().ToUpper() ?? "";
-                    result["MailState"] = contact["Mailing_State"]?.ToString().ToUpper() ?? "";
-                    result["MailZip"] = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";
+                    txtMailingStreet.Text = contact["Mailing_Street"]?.ToString().ToUpper() ?? "";    // MailingStreet
+                    txtMailingCity.Text = contact["Mailing_City1"]?.ToString().ToUpper() ?? "";       // MailingCity
+                    txtMailingState.Text = contact["Mailing_State"]?.ToString().ToUpper() ?? "";      // MailingState
+                    txtMailingZip.Text = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";          // MailingZip
                     result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";
                     result["ReviewInterval"] = contact["Review_Interval"]?.ToString().ToUpper() ?? "";
-
-
                 }
             }
 
@@ -1090,25 +1094,25 @@ namespace ClientMeetingAgenda
         }
 
 
-        protected void ddlBillingState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            objclsMeetingAgenda = new clsMeetingAgenda();
-            objclsMeetingAgenda.LoadCityDDL(ddlBillingCity, int.Parse(ddlBillingState.SelectedValue.Trim()));
-            ddlBillingCity.Focus();
-        }
+        //protected void ddlBillingState_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    objclsMeetingAgenda = new clsMeetingAgenda();
+        //    objclsMeetingAgenda.LoadCityDDL(ddlBillingCity, int.Parse(ddlBillingState.SelectedValue.Trim()));
+        //    ddlBillingCity.Focus();
+        //}
 
-        protected void ddlMailingState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            objclsMeetingAgenda = new clsMeetingAgenda();
-            objclsMeetingAgenda.LoadCityDDL(ddlMailingCity, int.Parse(ddlMailingState.SelectedValue.Trim()));
-            ddlMailingCity.Focus();
-        }
-        protected void ddlPhysicalLocationState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            objclsMeetingAgenda = new clsMeetingAgenda();
-            objclsMeetingAgenda.LoadCityDDL(ddlPhysicalLocationCity, int.Parse(ddlPhysicalLocationState.SelectedValue.Trim()));
-            ddlPhysicalLocationCity.Focus();
-        }
+        //protected void ddlMailingState_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    objclsMeetingAgenda = new clsMeetingAgenda();
+        //    objclsMeetingAgenda.LoadCityDDL(ddlMailingCity, int.Parse(ddlMailingState.SelectedValue.Trim()));
+        //    ddlMailingCity.Focus();
+        //}
+        //protected void ddlPhysicalLocationState_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    objclsMeetingAgenda = new clsMeetingAgenda();
+        //    objclsMeetingAgenda.LoadCityDDL(ddlPhysicalLocationCity, int.Parse(ddlPhysicalLocationState.SelectedValue.Trim()));
+        //    ddlPhysicalLocationCity.Focus();
+        //}
 
         protected void gvAttendees_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -1215,7 +1219,7 @@ namespace ClientMeetingAgenda
             string startDateFormatted = startDate.Replace("/", "-");
             string endDateFormatted = endDate.Replace("/", "-");
 
-            string connectionString = ConfigurationManager.ConnectionStrings["EsoToZohoConnectionString"].ToString();
+            string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ToString();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -1268,7 +1272,7 @@ namespace ClientMeetingAgenda
 
         public List<List<string>> GetMedicountChargeRates(string clientIds)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["EsoToZohoConnectionString"].ToString();
+            string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ToString();
             var results = new List<List<string>>();
 
             using (var conn = new SqlConnection(connectionString))
@@ -1333,7 +1337,7 @@ namespace ClientMeetingAgenda
 
         public List<List<string>> GetClientInfoList(string clientIds)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["EsoToZohoConnectionString"].ToString();
+            string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ToString();
             var results = new List<List<string>>();
 
             using (var conn = new SqlConnection(connectionString))
