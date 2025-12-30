@@ -1,5 +1,6 @@
 ﻿using ClientMeetingAgenda.App_Code;
 using DocumentFormat.OpenXml.EMMA;
+using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
@@ -327,7 +328,7 @@ namespace ClientMeetingAgenda
                     txtMileage.Text = dtMaster.Rows[0]["Mileage"].ToString().Trim();
                     rdolstNonTransport.SelectedValue = dtMaster.Rows[0]["IsNonTransport"].ToString().Trim();
 
-                    rdolstBillingRateReviewed.SelectedValue = dtMaster.Rows[0]["BillingRateReviewed"].ToString().Trim();
+                    ddlBillingRateReviewed.SelectedValue = dtMaster.Rows[0]["BillingRateReviewed"].ToString().Trim();
                     txtBLSReviewed.Text = dtMaster.Rows[0]["BLSReviewed"].ToString().Trim();
                     txtBLSNEReviewed.Text = dtMaster.Rows[0]["BLSNEReviewed"].ToString().Trim();
                     txtALSReviewed.Text = dtMaster.Rows[0]["ALSReviewed"].ToString().Trim();
@@ -583,11 +584,287 @@ namespace ClientMeetingAgenda
             }
         }
 
-        //protected void btnSave_Click(object sender, EventArgs e)
-        //{
-        //    SaveMeetingAgenda();
-        //    //Response.Redirect(Request.Url.AbsoluteUri);
-        //}
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            int intMAID = SaveMeetingAgenda();
+            // SaveMeetingAgenda();
+            //Response.Redirect(Request.Url.AbsoluteUri);
+        }
+        public int SaveMeetingAgenda()
+        {
+            objclsMeetingAgenda = new clsMeetingAgenda();
+            // Client Info
+            objclsMeetingAgenda.ClientID= ddlClientName.SelectedValue.Trim();
+            objclsMeetingAgenda.ClientName = ddlClientName.Text.Trim();
+            objclsMeetingAgenda.MeetingDate = txtMeetingDate.Text.Trim();
+
+            // Account Executive Info
+            objclsMeetingAgenda.AccExecName = txtAccountExecutive.Text.Trim();
+            objclsMeetingAgenda.AccExecEmailID = txtAccExecEmailID.Text.Trim();
+            objclsMeetingAgenda.AccExecPhone = txtAccExecPhone.Text.Trim();
+            objclsMeetingAgenda.MeetingType = ddlMeetingType.SelectedValue.Trim();
+
+            // ATTENDEES INVITED
+
+            //CLIENT REVENUE NUMBERS
+                                // Previous Date Records
+            objclsMeetingAgenda.PreviousStartDate = txtPreviousStartDate.Text.Trim();
+            objclsMeetingAgenda.PreviousEndDate = txtPreviousEndDate.Text.Trim();
+            objclsMeetingAgenda.PreviousReportType = ddlPreviousReportType.SelectedValue.Trim();
+
+            objclsMeetingAgenda.PreviousTransport = txtPrevTransports.Text;
+            objclsMeetingAgenda.PreviousCharges = txtPrevCharges.Text;
+            objclsMeetingAgenda.PreviousRevenue = txtPrevRevenue.Text;
+            objclsMeetingAgenda.PreviousAdjustments = txtPrevAdjust.Text;
+            objclsMeetingAgenda.PreviousWrite_Off = txtPrevWriteOff.Text;
+            objclsMeetingAgenda.PreviousRefund = txtPrevRefund.Text;
+            objclsMeetingAgenda.PreviousRPT = txtPrevRPT.Text;
+            objclsMeetingAgenda.PreviousCollRate = txtPrevCollRate.Text;
+
+            // Current Date Records
+            objclsMeetingAgenda.CurrentStartDate = txtCurrentStartDate.Text.Trim();
+            objclsMeetingAgenda.CurrentEndDate = txtCurrentEndDate.Text.Trim();
+            objclsMeetingAgenda.CurrentReportType = ddlCurrentReportType.SelectedValue.Trim();
+
+            objclsMeetingAgenda.CurrentTransport = txtCurrTransports.Text;
+            objclsMeetingAgenda.CurrentCharges = txtCurrCharges.Text;
+            objclsMeetingAgenda.CurrentRevenue = txtCurrRevenue.Text;
+            objclsMeetingAgenda.CurrentAdjustments = txtCurrAdjust.Text;
+            objclsMeetingAgenda.CurrentWrite_Off = txtCurrWriteOff.Text;
+            objclsMeetingAgenda.CurrentRefund = txtCurrRefund.Text;
+            objclsMeetingAgenda.CurrentRPT = txtCurrRPT.Text;
+            objclsMeetingAgenda.CurrentCollRate = txtCurrCollRate.Text;
+
+            objclsMeetingAgenda.ClientReviewNumberComment = txtComments.Text;
+
+            // Aging Review
+            objclsMeetingAgenda.IsAgingReview = ddlAgingReview.SelectedValue.Trim();
+            objclsMeetingAgenda.IsDiscussedwithARTeam = ddlDiscussedwithARTeam.SelectedValue.Trim();
+            objclsMeetingAgenda.ARComments= txtARComments.Text.Trim();
+
+            //Billing Policy
+            objclsMeetingAgenda.BillingPolicy = ddlBillingPolicy.SelectedValue.Trim();
+            objclsMeetingAgenda.Collections = ddlCollections.SelectedValue.Trim();
+            objclsMeetingAgenda.BillingPolicyComments = txtBillingPolicyComments.Text.Trim();
+
+            //Billing Rates Reviewed
+            objclsMeetingAgenda.IsBillingRateReviewed = ddlBillingRateReviewed.SelectedValue.Trim();
+            objclsMeetingAgenda.LastRateChanged = txtLastRateChange.Text.Trim();
+            objclsMeetingAgenda.BillingRateReviewedComments = txtBillingRatesReviewedComments.Text.Trim();
+
+            //Current Billing Rate
+            objclsMeetingAgenda.IsCurrentBillingRate = ddlCurrentBillingRates.SelectedValue.Trim();
+            objclsMeetingAgenda.BLS = txtBLS.Text.Trim();
+            objclsMeetingAgenda.BLSNE = txtBLSNE.Text.Trim();
+            objclsMeetingAgenda.ALS = txtALS.Text.Trim();
+            objclsMeetingAgenda.ALSNE = txtALSNE.Text.Trim();
+            objclsMeetingAgenda.ALS2 = txtALS2.Text.Trim();
+            objclsMeetingAgenda.Mileage = txtMileage.Text.Trim();
+            objclsMeetingAgenda.IsNonTransport = rdolstNonTransport.SelectedValue.Trim();
+            objclsMeetingAgenda.CBRActionTaken = txtCBRActionTaken.Text.Trim();
+
+            //UCR (Usual & Customary Rates)
+            objclsMeetingAgenda.UCR = ddlUCR.SelectedValue.Trim();
+            objclsMeetingAgenda.UCRComments = txtUCRComments.Text.Trim();
+
+            //Control Comments on Billing Rates
+            objclsMeetingAgenda.CommentsOnBillingRates = txtCommentsOnBillingRates.Text.Trim();
+            objclsMeetingAgenda.IsFacilityTransports = ddlFacilityTransports.SelectedValue.Trim();
+            objclsMeetingAgenda.IsWithCharged = ddlWithCharge.SelectedValue.Trim();
+            objclsMeetingAgenda.IsClientProcessesOwnCreditcards = ddlClientPorcessesOwnCreditcards.SelectedValue.Trim();
+
+            //Non-Emergency Tranports
+            objclsMeetingAgenda.IsNonEmergenctTranports = ddlNonEmergenctTranports.SelectedValue.Trim();
+            objclsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = ddlIsClientAwareofPriorAuthorizationRequirements.SelectedValue.Trim();
+            objclsMeetingAgenda.IsTraningNeeded = ddlIsTraningNeeded.SelectedValue.Trim();
+
+            //Contract Facility Billing or Correctional/Jail
+            objclsMeetingAgenda.IsContractFacilityBilling = ddlContractFacilityBilling.SelectedValue.Trim();
+            objclsMeetingAgenda.IsSkilledNursingFacilities = ddlSkilledNursingFacilities.SelectedValue.Trim();
+            objclsMeetingAgenda.IsUpdatedContracts = ddlUpdatedContracts.SelectedValue.Trim();
+            objclsMeetingAgenda.IsAttached = ddlAttached.SelectedValue.Trim();
+            objclsMeetingAgenda.IsFacilityCurrently = ddlFacilityCurrently.SelectedValue.Trim();
+            objclsMeetingAgenda.IsToBeBilled = ddlToBeBilled.SelectedValue.Trim();
+            objclsMeetingAgenda.IsToWithTheFacility = ddlWithTheFacility.SelectedValue.Trim();
+
+            //9. Contract Status
+            objclsMeetingAgenda.IsContractStatus = ddlContractStatus.SelectedValue.Trim();
+            objclsMeetingAgenda.RenewalDate = txtRenewalDate.Text;
+            objclsMeetingAgenda.CurrentRate = txtCurrentRate.Text;
+            objclsMeetingAgenda.IsContractCurrent = ddlContractCurrent.SelectedValue.Trim();
+
+            //10. Personnel Changes
+            objclsMeetingAgenda.IsPersonnelChanges = ddlPersonnelChanges.SelectedValue.Trim();
+            objclsMeetingAgenda.ChiefName = txtChief.Text;
+            objclsMeetingAgenda.FiscalOfficerName = txtFiscalOfficer.Text;
+            objclsMeetingAgenda.AuthorizedOfficialName1 = txtAuthorizedOfficial1.Text;
+            objclsMeetingAgenda.AuthorizedOfficialName2 = txtAuthorizedOfficial2.Text;
+
+            //Demographic Changes
+            objclsMeetingAgenda.IsClosedBusinesses = ddlClosedBusinesses.SelectedValue.Trim();
+            objclsMeetingAgenda.IsNewBusiness = ddlNewBusiness.SelectedValue.Trim();
+
+            //Client Data Status
+            objclsMeetingAgenda.IsUsage = ddlUsage.SelectedValue.Trim();
+            objclsMeetingAgenda.IsAlertsReceived = ddlAlertsReceived.SelectedValue.Trim();
+            objclsMeetingAgenda.IsOIG_Exclsuionary = ddlOIG_Exclsuionary.SelectedValue.Trim();
+            objclsMeetingAgenda.IsDiscussed = ddlDiscussed.SelectedValue.Trim();
+
+            // ePCR 
+            objclsMeetingAgenda.ePCRName = ddlePCRName.SelectedValue.Trim();
+            objclsMeetingAgenda.ePCRDate = txtLastReconciliationDate.Text.Trim();
+            objclsMeetingAgenda.ePCRByWhom = txtByWhom.Text.Trim();
+            objclsMeetingAgenda.ePCRByWhen = txtByWhen.Text.Trim();
+            objclsMeetingAgenda.IsRunReconciliationDone = ddlRunReconciliationDone.Text.Trim();
+
+            //Signature Capture
+            objclsMeetingAgenda.IsPatientSignature = ddlPatientSignature.SelectedValue.Trim(); 
+            objclsMeetingAgenda.IsPatientSignatureEPCR = ddlPatientSignatureEPCR.SelectedValue.Trim();
+            objclsMeetingAgenda.IsReceivingFacilitySignature = ddlReceivingFacilitySignature.SelectedValue.Trim();
+            objclsMeetingAgenda.IsReceivingFacilitySignatureEPCR = ddlReceivingFacilitySignatureEPCR.SelectedValue.Trim();
+            objclsMeetingAgenda.IsCrewSignature = ddlCrewSignature.SelectedValue.Trim();
+            objclsMeetingAgenda.IsCrewSignatureEPCR = ddlCrewSignatureEPCR.SelectedValue.Trim();
+            objclsMeetingAgenda.SignatureCaptureComments = txtSignatureCaptureComments.Text.Trim();
+
+            //15. Month End Report
+            objclsMeetingAgenda.IsStatementReconciliation = ddlStatementReconciliation.SelectedValue.Trim();
+            objclsMeetingAgenda.MonthEndReportByWho = txtMonthEndReportByWho.Text.Trim();
+            objclsMeetingAgenda.MonthEndReportHowOften = txtMonthEndReportHowOften.Text.Trim();
+            objclsMeetingAgenda.IsTraningCompleted = ddlTraningCompleted.Text.Trim();
+            objclsMeetingAgenda.IsTraningPending = ddlIsTraningPending.Text.Trim();
+
+            //Client Review Intervals
+            objclsMeetingAgenda.IsReviewIntervalCRI = rdolstCRI.SelectedValue.Trim();
+            objclsMeetingAgenda.NextReviewScheduleDate = txtNRScheduleDate.Text.Trim();
+            objclsMeetingAgenda.ChangeInZOHO = txtChangeInZOHO.Text.Trim();
+
+            //Address Information
+            objclsMeetingAgenda.BillingStreet = txtBillingStreet.Text.Trim();
+            objclsMeetingAgenda.BillingCity = txtBillingCity.Text.Trim();
+            objclsMeetingAgenda.BillingState = txtBillingState.Text.Trim();
+            objclsMeetingAgenda.BillingZip = txtBillingZip.Text.Trim();
+
+            objclsMeetingAgenda.MailingStreet = txtMailingStreet.Text.Trim();
+            objclsMeetingAgenda.MailingCity = txtMailingCity.Text.Trim();
+            objclsMeetingAgenda.MailingState = txtMailingState.Text.Trim();
+            objclsMeetingAgenda.MailingZip = txtMailingZip.Text.Trim();
+
+            objclsMeetingAgenda.PhysicalLocationStreet = txtPhysicalLocationStreet.Text.Trim();
+            objclsMeetingAgenda.PhysicalLocationCity = txtPhysicalLocationCity.Text.Trim();
+            objclsMeetingAgenda.PhysicalLocationState = txtPhysicalLocationState.Text.Trim();
+            objclsMeetingAgenda.PhysicalLocationZip = txtPhysicalLocationZip.Text.Trim();
+
+            //OVERALL MEETING NOTES
+            objclsMeetingAgenda.OverAllMeetingNotes = txtOverAllMeetingNotes.Text.Trim();
+            objclsMeetingAgenda.FollowUpAction = txtFollowUpAction.Text.Trim();
+
+            dsMeetingAgenda = new DataSet();
+            dsMeetingAgenda = objclsMeetingAgenda.InsertUpdateMeetingAgenda();
+
+            Session["dsMeetingAgenda"] = dsMeetingAgenda;
+
+            Session["ssnMAID"] = null;
+
+            if (dsMeetingAgenda != null && dsMeetingAgenda.Tables.Count == 3 && dsMeetingAgenda.Tables[0] != null && Session["dtAttendeesInvited"] != null)
+            {
+                Session["ssnMAID"] = dsMeetingAgenda.Tables[0].Rows[0]["ID"].ToString();
+
+                dtAttendeesInvited = new DataTable();
+                dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
+
+                //DataColumn newColumn = new System.Data.DataColumn("MeetingAgendaID", typeof(System.Int32));
+                //newColumn.DefaultValue = dt.Rows[0][0].ToString().Trim();
+                //dtAttendeesInvited.Columns.Add(newColumn);
+
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.DeleteAttendes();
+
+
+                for (int i = 0; i < dtAttendeesInvited.Rows.Count; i++)
+                {
+                    objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                    objclsMeetingAgenda.AttendeesName = dtAttendeesInvited.Rows[i]["Name"].ToString().Trim();
+                    objclsMeetingAgenda.AttendeesTitle = dtAttendeesInvited.Rows[i]["Title"].ToString().Trim();
+                    objclsMeetingAgenda.AttendeesEmail = dtAttendeesInvited.Rows[i]["Email"].ToString().Trim();
+                    objclsMeetingAgenda.InsertAttendes();
+                }
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature1.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient1.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature1.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility1.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature2.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient2.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature2.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility2.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature3.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient3.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature3.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility3.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature4.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient4.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature4.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility4.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature5.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient5.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature5.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility5.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature6.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient6.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature6.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility6.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature7.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient7.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature7.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility7.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature8.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient8.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature8.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility8.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature9.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient9.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature9.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility9.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature10.Value.Trim());
+                objclsMeetingAgenda.Patient = txtPatient10.Text.Trim();
+                objclsMeetingAgenda.Signature = txtSignature10.Text.Trim();
+                objclsMeetingAgenda.Facility = txtFacility10.Text.Trim();
+                objclsMeetingAgenda.InsertSignature();
+
+                return int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+            }
+
+            return 0;
+        }
 
         //protected void btnComplete_Click(object sender, EventArgs e)
         //{
@@ -631,7 +908,7 @@ namespace ClientMeetingAgenda
         //    objclsMeetingAgenda.ARActionTaken = txtARActionTaken.Text.Trim();
         //    objclsMeetingAgenda.BRRComments = txtBRRComments.Text.Trim();
         //    objclsMeetingAgenda.BRRActionTaken = txtBRRActionTaken.Text.Trim();
-        //    objclsMeetingAgenda.BLS = txtBLS.Text.Trim();
+        //objclsMeetingAgenda.BLS = txtBLS.Text.Trim();
         //    objclsMeetingAgenda.BLSNE = txtBLSNE.Text.Trim();
         //    objclsMeetingAgenda.ALS = txtALS.Text.Trim();
         //    objclsMeetingAgenda.ALSNE = txtALSNE.Text.Trim();
@@ -680,121 +957,121 @@ namespace ClientMeetingAgenda
         //    objclsMeetingAgenda.FollowUpAction = txtFollowUpAction.Text.Trim();
         //    objclsMeetingAgenda.LastUpdatedBy = Session["UserName"].ToString().Trim();
 
-        //    dsMeetingAgenda = new DataSet();
-        //    dsMeetingAgenda = objclsMeetingAgenda.InsertUpdateMeetingAgenda();
+//        dsMeetingAgenda = new DataSet();
+//        dsMeetingAgenda = objclsMeetingAgenda.InsertUpdateMeetingAgenda();
 
-        //    Session["dsMeetingAgenda"] = dsMeetingAgenda;
+//            Session["dsMeetingAgenda"] = dsMeetingAgenda;
 
-        //    Session["ssnMAID"] = null;
+//            Session["ssnMAID"] = null;
 
-        //    if (dsMeetingAgenda != null && dsMeetingAgenda.Tables.Count == 3 && dsMeetingAgenda.Tables[0] != null && Session["dtAttendeesInvited"] != null)
-        //    {
-        //        Session["ssnMAID"] = dsMeetingAgenda.Tables[0].Rows[0]["ID"].ToString();
+//            if (dsMeetingAgenda != null && dsMeetingAgenda.Tables.Count == 3 && dsMeetingAgenda.Tables[0] != null && Session["dtAttendeesInvited"] != null)
+//            {
+//                Session["ssnMAID"] = dsMeetingAgenda.Tables[0].Rows[0]["ID"].ToString();
 
-        //        dtAttendeesInvited = new DataTable();
-        //        dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
+//        dtAttendeesInvited = new DataTable();
+//        dtAttendeesInvited = (DataTable) Session["dtAttendeesInvited"];
 
-        //        //DataColumn newColumn = new System.Data.DataColumn("MeetingAgendaID", typeof(System.Int32));
-        //        //newColumn.DefaultValue = dt.Rows[0][0].ToString().Trim();
-        //        //dtAttendeesInvited.Columns.Add(newColumn);
-
-
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.DeleteAttendes();
+//        //DataColumn newColumn = new System.Data.DataColumn("MeetingAgendaID", typeof(System.Int32));
+//        //newColumn.DefaultValue = dt.Rows[0][0].ToString().Trim();
+//        //dtAttendeesInvited.Columns.Add(newColumn);
 
 
-        //        for (int i = 0; i < dtAttendeesInvited.Rows.Count; i++)
-        //        {
-        //            objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //            objclsMeetingAgenda.AttendeesName = dtAttendeesInvited.Rows[i]["Name"].ToString().Trim();
-        //            objclsMeetingAgenda.AttendeesTitle = dtAttendeesInvited.Rows[i]["Title"].ToString().Trim();
-        //            objclsMeetingAgenda.AttendeesEmail = dtAttendeesInvited.Rows[i]["Email"].ToString().Trim();
-        //            objclsMeetingAgenda.InsertAttendes();
-        //        }
+//        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//        objclsMeetingAgenda.DeleteAttendes();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature1.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient1.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature1.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility1.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature2.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient2.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature2.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility2.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                for (int i = 0; i<dtAttendeesInvited.Rows.Count; i++)
+//                {
+//                    objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//        objclsMeetingAgenda.AttendeesName = dtAttendeesInvited.Rows[i]["Name"].ToString().Trim();
+//        objclsMeetingAgenda.AttendeesTitle = dtAttendeesInvited.Rows[i]["Title"].ToString().Trim();
+//        objclsMeetingAgenda.AttendeesEmail = dtAttendeesInvited.Rows[i]["Email"].ToString().Trim();
+//        objclsMeetingAgenda.InsertAttendes();
+//                }
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature3.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient3.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature3.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility3.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//    objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature1.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient1.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature1.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility1.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature4.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient4.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature4.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility4.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature2.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient2.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature2.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility2.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature5.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient5.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature5.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility5.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature3.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient3.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature3.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility3.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature6.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient6.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature6.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility6.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature4.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient4.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature4.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility4.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature7.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient7.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature7.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility7.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature5.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient5.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature5.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility5.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature8.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient8.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature8.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility8.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature6.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient6.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature6.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility6.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature9.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient9.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature9.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility9.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature7.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient7.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature7.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility7.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //        objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature10.Value.Trim());
-        //        objclsMeetingAgenda.Patient = txtPatient10.Text.Trim();
-        //        objclsMeetingAgenda.Signature = txtSignature10.Text.Trim();
-        //        objclsMeetingAgenda.Facility = txtFacility10.Text.Trim();
-        //        objclsMeetingAgenda.InsertSignature();
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature8.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient8.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature8.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility8.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //        return int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-        //    }
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature9.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient9.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature9.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility9.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
-        //    return 0;
+//                objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//    objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature10.Value.Trim());
+//    objclsMeetingAgenda.Patient = txtPatient10.Text.Trim();
+//                objclsMeetingAgenda.Signature = txtSignature10.Text.Trim();
+//                objclsMeetingAgenda.Facility = txtFacility10.Text.Trim();
+//                objclsMeetingAgenda.InsertSignature();
 
+//                return int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+//}
+
+//return 0;
+
+//}
+
+        //protected void ddlAccountExecutive_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    objclsUsers = new clsUsers();
+        //    objclsUsers.LoadEmailPhoneDDL(int.Parse(ddlAccountExecutive.SelectedValue.Trim()), ddlEmail, ddlPhone, ddlAccountExecutive);
+        //    ddlMeetingType.Focus();
         //}
-
-        protected void ddlAccountExecutive_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            objclsUsers = new clsUsers();
-            objclsUsers.LoadEmailPhoneDDL(int.Parse(ddlAccountExecutive.SelectedValue.Trim()), ddlEmail, ddlPhone, ddlAccountExecutive);
-            ddlMeetingType.Focus();
-        }
 
         protected void ddlClientNo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -814,16 +1091,25 @@ namespace ClientMeetingAgenda
 
                     if (match != null)
                     {
+                        //string companyName = match[1];
+                        //string aeName = match[2];
+                        //string aeEmail = match[3];
+                        //string aePhone = match[4];
+                        //string renewalDate = match[5];
+                        //string expiryDate = match[6];
+                        //string feeRate = $"{match[7]} %";
+                        //break;
                         string companyName = match[1];
-                        string aeName = match[2];
-                        string aeEmail = match[3];
-                        string aePhone = match[4];
+                        txtAccountExecutive.Text = match[2];
+                        txtAccExecEmailID.Text = match[3];
+                        txtAccExecPhone.Text = match[4];
                         string renewalDate = match[5];
                         string expiryDate = match[6];
                         string feeRate = $"{match[7]} %";
                         break;
                     }
-                }
+                }              
+                
             }
 
             // Customer Portal (ESO)  Rates data
@@ -876,10 +1162,10 @@ namespace ClientMeetingAgenda
 
 
             //// Customer Portal (ESO)  Rates data
-            //string startDate = string.Empty; // MM-DD-YYYY
-            //string endDate = string.Empty; // MM-DD-YYYY
-            //Dictionary<string, string> preClientReviewData = GetClientReviewData(companyId, startDate, endDate);
-            //Dictionary<string, string> curClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+           // string startDate = string.Empty; // MM-DD-YYYY
+         //   string endDate = string.Empty; // MM-DD-YYYY
+           // Dictionary<string, string> preClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+          //  Dictionary<string, string> curClientReviewData = GetClientReviewData(companyId, startDate, endDate);
 
 
 
@@ -1077,8 +1363,10 @@ namespace ClientMeetingAgenda
                     txtMailingCity.Text = contact["Mailing_City1"]?.ToString().ToUpper() ?? "";       // MailingCity
                     txtMailingState.Text = contact["Mailing_State"]?.ToString().ToUpper() ?? "";      // MailingState
                     txtMailingZip.Text = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";          // MailingZip
-                    result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";
-                    result["ReviewInterval"] = contact["Review_Interval"]?.ToString().ToUpper() ?? "";
+                    result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";                           
+                    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                    rdolstCRI.SelectedValue = textInfo.ToTitleCase(contact["Review_Interval"]?.ToString() ?? "".ToLower());  // Review Interval
+                    
                 }
             }
 
@@ -1211,7 +1499,55 @@ namespace ClientMeetingAgenda
             }
         }
 
+        protected void txtPreviousEndDate_TextChanged(object sender, EventArgs e)
+        {
+            string comp_id=ddlClientNo.SelectedValue.ToString();
+            string pre_startDate=txtPreviousStartDate.Text;
+            string pre_endDate=txtPreviousEndDate.Text;
+           var previousRecord = GetClientReviewData(comp_id, pre_startDate, pre_endDate);
+            txtPrevTransports.Text = previousRecord["Transports"].ToString();
+            txtPrevCharges.Text= previousRecord["Charges"].ToString();
+            txtPrevRevenue.Text = previousRecord["Revenue"].ToString();
+            txtPrevAdjust.Text = previousRecord["Adjustments"].ToString();
+            txtPrevWriteOff.Text = previousRecord["WriteOffs"].ToString();
+            txtPrevRefund.Text = previousRecord["Refunds"].ToString();
+            txtPrevRPT.Text = previousRecord["RevenuePerTransport"].ToString();
+            txtPrevCollRate.Text = previousRecord["CollectionRate"].ToString();
 
+           var GetPreviousBillingRateValue = GetMedicountChargeRates(comp_id);
+            txtBLS.Text = GetPreviousBillingRateValue[0][1];
+            txtBLSNE.Text = GetPreviousBillingRateValue[0][2];
+            txtALS.Text = GetPreviousBillingRateValue[0][3];
+            txtALSNE.Text = GetPreviousBillingRateValue[0][4];
+            txtALS2.Text = GetPreviousBillingRateValue[0][5];
+            txtMileage.Text = GetPreviousBillingRateValue[0][6];
+            rdolstNonTransport.Text = GetPreviousBillingRateValue[0][8];        
+
+        }
+        protected void txtCurrentEndDate_TextChanged(object sender, EventArgs e)
+        {
+            string comp_id = ddlClientNo.SelectedValue.ToString();
+            string cur_startDate = txtCurrentStartDate.Text;
+            string cur_endDate = txtCurrentEndDate.Text;
+            var CurrentRecord = GetClientReviewData(comp_id, cur_startDate, cur_endDate);
+            txtCurrTransports.Text = CurrentRecord["Transports"].ToString();
+            txtCurrCharges.Text = CurrentRecord["Charges"].ToString();
+            txtCurrRevenue.Text = CurrentRecord["Revenue"].ToString();
+            txtCurrAdjust.Text = CurrentRecord["Adjustments"].ToString();
+            txtCurrWriteOff.Text = CurrentRecord["WriteOffs"].ToString();
+            txtCurrRefund.Text = CurrentRecord["Refunds"].ToString();
+            txtCurrRPT.Text = CurrentRecord["RevenuePerTransport"].ToString();
+            txtCurrCollRate.Text = CurrentRecord["CollectionRate"].ToString();
+
+            var GetCurrentBillingRateValue = GetMedicountChargeRates(comp_id);
+            txtBLS.Text = GetCurrentBillingRateValue[0][1];
+            txtBLSNE.Text = GetCurrentBillingRateValue[0][2];
+            txtALS.Text = GetCurrentBillingRateValue[0][3];
+            txtALSNE.Text = GetCurrentBillingRateValue[0][4];
+            txtALS2.Text = GetCurrentBillingRateValue[0][5];
+            txtMileage.Text = GetCurrentBillingRateValue[0][6];
+            rdolstNonTransport.Text = GetCurrentBillingRateValue[0][8];
+        }
         public static Dictionary<string, string> GetClientReviewData(string companyID, string startDate, string endDate)
         {
             var result = new Dictionary<string, string>();
@@ -1492,6 +1828,8 @@ namespace ClientMeetingAgenda
                 throw; // Or return a structured error response
             }
         }
+
+        
         ////////////////////////////////////////////////
 
         //private void ClearTextBox()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -38,18 +39,11 @@ namespace ClientMeetingAgenda.App_Code
         public string RPTCollectionEndDate1 { get; set; }
         public string RPTCollectionStartDate2 { get; set; }
         public string RPTCollectionEndDate2 { get; set; }
-        public string PNComments { get; set; }
-        public string ARComments { get; set; }
+        public string PNComments { get; set; }        
         public string ARActionTaken { get; set; }
         public string BRRComments { get; set; }
         public string BRRActionTaken { get; set; }
-        public string BLS { get; set; }
-        public string BLSNE { get; set; }
-        public string ALS { get; set; }
-        public string ALSNE { get; set; }
-        public string ALS2 { get; set; }
-        public string Mileage { get; set; }
-        public string IsNonTransport { get; set; }
+   
         public string BillingRateReviewed { get; set; }
         public string BLSReviewed { get; set; }
         public string BLSNEReviewed { get; set; }
@@ -64,9 +58,7 @@ namespace ClientMeetingAgenda.App_Code
         public string LastRateChange { get; set; }
         public string CURActionTaken { get; set; }
         public string CSComments { get; set; }
-        public string IsContractCurrent { get; set; }
-        public string RenewalDate { get; set; }
-        public string CurrentRate { get; set; }
+        
         public string EnforceActionTaken { get; set; }
         public string PCChief { get; set; }
         public string PCFiscalOfficer { get; set; }
@@ -84,35 +76,14 @@ namespace ClientMeetingAgenda.App_Code
         public string IsMGDiscussed { get; set; }
         public string CPSComments { get; set; }
         public string IsCPSDiscussed { get; set; }
-        public string IsPatientSignature { get; set; }
-        public string IsPatientSignatureEPCR { get; set; }
-        public string IsReceivingFacilitySignature { get; set; }
-        public string IsReceivingFacilitySignatureEPCR { get; set; }
-        public string IsCrewSignature { get; set; }
-        public string IsCrewSignatureEPCR { get; set; }
+       
         public string MERComments { get; set; }
         public string IsTrainingPending { get; set; }
         public string CRI { get; set; }
         public string NRScheduleDate { get; set; }
-        public string ChangeInZOHO { get; set; }
-        public int ePCRID { get; set; }
-        public string ePCRName { get; set; }
-        public string ePCRDate { get; set; }
-        public string ePCRByWhom { get; set; }
-        public string BillingStreet { get; set; }
-        public string BillingState { get; set; }
-        public string BillingCity { get; set; }
-        public string BillingZip { get; set; }
-        public string MailingStreet { get; set; }
-        public string MailingState { get; set; }
-        public string MailingCity { get; set; }
-        public string MailingZip { get; set; }
-        public string PhysicalLocationStreet { get; set; }
-        public string PhysicalLocationState { get; set; }
-        public string PhysicalLocationCity { get; set; }
-        public string PhysicalLocationZip { get; set; }
-        public string OverAllMeetingNotes { get; set; }
-        public string FollowUpAction { get; set; }
+        //public string ChangeInZOHO { get; set; }        
+       
+     
         public string LastUpdatedBy { get; set; }
         public string FileName { get; set; }
         public bool IsPDFGenerated { get; set; }
@@ -141,6 +112,128 @@ namespace ClientMeetingAgenda.App_Code
         public string PhysicalLocationStateName { get; set; }
         public string PhysicalLocationCityName { get; set; }
 
+        public string PreviousStartDate { get; set; }
+        public string PreviousEndDate { get; set; }
+        public string PreviousReportType { get; set; }
+        public string PreviousTransport { get; set; }
+        public string PreviousCharges { get; set; }
+        public string PreviousRevenue { get; set; }
+        public string PreviousAdjustments { get; set; }
+        public string PreviousWrite_Off { get; set; }
+        public string PreviousRefund { get; set; }
+        public string PreviousRPT { get; set; }
+        public string PreviousCollRate { get; set; }
+        public string PreviousComments { get; set; }
+
+        public string CurrentStartDate { get; set; }
+        public string CurrentEndDate { get; set; }
+        public string CurrentReportType { get; set; }
+        public string CurrentTransport { get; set; }
+        public string CurrentCharges { get; set; }
+        public string CurrentRevenue { get; set; }
+        public string CurrentAdjustments { get; set; }
+        public string CurrentWrite_Off { get; set; }
+        public string CurrentRefund { get; set; }
+        public string CurrentRPT { get; set; }
+        public string CurrentCollRate { get; set; }
+
+        public string ClientReviewNumberComment { get; set; }
+
+        public string IsAgingReview { get; set; }
+        public string IsDiscussedwithARTeam { get; set; }
+
+        public string ARComments { get; set; }
+
+        public string BillingPolicy { get; set; }
+        public string Collections { get; set; }
+        public string BillingPolicyComments { get; set; }
+
+        //public string BillingRateReviewed { get; set; }
+        public string IsBillingRateReviewed { get; set; }
+        public string LastRateChanged { get; set; }
+        public string BillingRateReviewedComments { get; set; }
+
+        public string IsCurrentBillingRate { get; set; }
+
+        public string BLS { get; set; }
+        public string BLSNE { get; set; }
+        public string ALS { get; set; }
+        public string ALSNE { get; set; }
+        public string ALS2 { get; set; }
+        public string Mileage { get; set; }
+        public string IsNonTransport { get; set; }
+        
+        public string UCR { get; set; }
+        public string UCRComments { get; set; }
+
+        public string CommentsOnBillingRates { get; set; }
+        public string IsFacilityTransports { get; set; }
+        public string IsWithCharged { get; set; }
+        public string IsClientProcessesOwnCreditcards { get; set; }
+        public string IsNonEmergenctTranports { get; set; }
+        public string IsClientAwareofPriorAuthorizationRequirements { get; set; }
+        public string IsTraningNeeded { get; set; }
+        public string IsContractFacilityBilling { get; set; }
+        public string IsSkilledNursingFacilities { get; set; }
+        public string IsUpdatedContracts { get; set; }
+        public string IsAttached { get; set; }
+        public string IsFacilityCurrently { get; set; }
+        public string IsToBeBilled { get; set; }
+        public string IsToWithTheFacility { get; set; }
+        public string IsContractStatus { get; set; }        
+        public string RenewalDate { get; set; }
+        public string CurrentRate { get; set; }
+        public string IsContractCurrent { get; set; }
+        public string IsPersonnelChanges { get; set; }
+        public string ChiefName { get; set; }
+        public string FiscalOfficerName { get; set; }
+        public string AuthorizedOfficialName1 { get; set; }
+        public string AuthorizedOfficialName2 { get; set; }
+        public string IsClosedBusinesses { get; set; }
+        public string IsNewBusiness { get; set; }
+        public string IsUsage { get; set; }
+        public string IsAlertsReceived { get; set; }
+        public string IsOIG_Exclsuionary { get; set; }
+        public string IsDiscussed { get; set; }
+
+        public int ePCRID { get; set; }
+        public string ePCRName { get; set; }
+        public string ePCRDate { get; set; }
+        public string ePCRByWhom { get; set; }
+        public string ePCRByWhen { get; set; }
+        public string IsRunReconciliationDone { get; set; }
+        public string IsPatientSignature { get; set; }
+        public string IsPatientSignatureEPCR { get; set; }
+        public string IsReceivingFacilitySignature { get; set; }
+        public string IsReceivingFacilitySignatureEPCR { get; set; }
+        public string IsCrewSignature { get; set; }
+        public string IsCrewSignatureEPCR { get; set; }
+        public string SignatureCaptureComments { get; set; }
+        public string IsStatementReconciliation { get; set; }
+        public string MonthEndReportByWho { get; set; }
+        public string MonthEndReportHowOften { get; set; }
+        public string IsTraningCompleted { get; set; }
+        public string IsTraningPending { get; set; }
+        public string IsReviewIntervalCRI { get; set; }
+        public string NextReviewScheduleDate { get; set; }
+        public string ChangeInZOHO { get; set; }
+
+        public string BillingStreet { get; set; }
+        public string BillingState { get; set; }
+        public string BillingCity { get; set; }
+        public string BillingZip { get; set; }
+        public string MailingStreet { get; set; }
+        public string MailingState { get; set; }
+        public string MailingCity { get; set; }
+        public string MailingZip { get; set; }
+        public string PhysicalLocationStreet { get; set; }
+        public string PhysicalLocationState { get; set; }
+        public string PhysicalLocationCity { get; set; }
+        public string PhysicalLocationZip { get; set; }
+        public string OverAllMeetingNotes { get; set; }
+        public string FollowUpAction { get; set; }
+
+
         public List<clsSignature> lstclsSignature { get; set; }
 
         public DataSet InsertUpdateMeetingAgenda()
@@ -158,35 +251,119 @@ namespace ClientMeetingAgenda.App_Code
             }
             objSqlCommand.CommandType = CommandType.StoredProcedure;
 
+
+            //  //objSqlCommand.Parameters.AddWithValue("@ClientName", ClientName);
+            //  objSqlCommand.Parameters.AddWithValue("@MeetingDate", MeetingDate);
+            ////  objSqlCommand.Parameters.AddWithValue("@AccExecID", AccExecID);
+            //  objSqlCommand.Parameters.AddWithValue("@AccExecName", AccExecName);
+            //  objSqlCommand.Parameters.AddWithValue("@AccExecEmailID", AccExecEmailID);
+            //  objSqlCommand.Parameters.AddWithValue("@AccExecPhone", AccExecPhone);
+            //  objSqlCommand.Parameters.AddWithValue("@MeetingType", MeetingType);
+            // // objSqlCommand.Parameters.AddWithValue("@CallInNumber", CallInNumber);
+            //  objSqlCommand.Parameters.AddWithValue("@MeetingID", MeetingID);
+            //  //objSqlCommand.Parameters.AddWithValue("@MeetingWebLink", MeetingWebLink);
+            //  //objSqlCommand.Parameters.AddWithValue("@YTDRevenue", YTDRevenue);
+            //  objSqlCommand.Parameters.AddWithValue("@YTDTransports", YTDTransports);
+            //  objSqlCommand.Parameters.AddWithValue("@RevenuePerTransport", RevenuePerTransport);
+            //  objSqlCommand.Parameters.AddWithValue("@CPAWComments", CPAWComments);
+            //  objSqlCommand.Parameters.AddWithValue("@CPAWStartDate1", CPAWStartDate1);
+            //  objSqlCommand.Parameters.AddWithValue("@CPAWEndDate1", CPAWEndDate1);
+            //  objSqlCommand.Parameters.AddWithValue("@CPAWStartDate2", CPAWStartDate2);
+            //  objSqlCommand.Parameters.AddWithValue("@CPAWEndDate2", CPAWEndDate2);
+            //  objSqlCommand.Parameters.AddWithValue("@RPTCollectionComments", RPTCollectionComments);
+            //objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate1", RPTCollectionStartDate1);
+            //objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate1", RPTCollectionEndDate1);
+            //objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate2", RPTCollectionStartDate2);
+            //objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate2", RPTCollectionEndDate2);
+            //objSqlCommand.Parameters.AddWithValue("@PNComments", PNComments);
+            //  objSqlCommand.Parameters.AddWithValue("@ARComments", ARComments);
+            //  objSqlCommand.Parameters.AddWithValue("@ARActionTaken", ARActionTaken);
+
+            //  objSqlCommand.Parameters.AddWithValue("@BRRActionTaken", BRRActionTaken);
+
+
+            //  objSqlCommand.Parameters.AddWithValue("@BLSReviewed", BLSReviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@BLSNEReviewed", BLSNEReviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@ALSReviewed", ALSReviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@ALSNEReviewed", ALSNEReviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@ALS2Reviewed", ALS2Reviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@MileageReviewed", MileageReviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@IsNonTransportReviewed", IsNonTransportReviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", CBRActionTaken);
+            //  objSqlCommand.Parameters.AddWithValue("@CURReviewed", CURReviewed);
+            //  objSqlCommand.Parameters.AddWithValue("@CURComments", CURComments);
+
+            //  objSqlCommand.Parameters.AddWithValue("@CURActionTaken", CURActionTaken);
+            //  objSqlCommand.Parameters.AddWithValue("@CSComments", CSComments);
+
+
+            //  objSqlCommand.Parameters.AddWithValue("@EnforceActionTaken", EnforceActionTaken);
+            //  //objSqlCommand.Parameters.AddWithValue("@PCChief", PCChief);
+            //  //objSqlCommand.Parameters.AddWithValue("@PCFiscalOfficer", PCFiscalOfficer);
+            // // objSqlCommand.Parameters.AddWithValue("@PCAuthorizedOfficial", PCAuthorizedOfficial);
+            //  objSqlCommand.Parameters.AddWithValue("@PCActionTaken", PCActionTaken);
+            //  objSqlCommand.Parameters.AddWithValue("@DCComments", DCComments);
+            //  objSqlCommand.Parameters.AddWithValue("@DCActionTaken", DCActionTaken);
+            //  objSqlCommand.Parameters.AddWithValue("@NBComments", NBComments);
+            //  objSqlCommand.Parameters.AddWithValue("@NBActionTaken", NBActionTaken);
+
+
             objSqlCommand.Parameters.AddWithValue("@ClientID", ClientID);
-            //objSqlCommand.Parameters.AddWithValue("@ClientName", ClientName);
-            objSqlCommand.Parameters.AddWithValue("@MeetingDate", MeetingDate);
-            objSqlCommand.Parameters.AddWithValue("@AccExecID", AccExecID);
-            // objSqlCommand.Parameters.AddWithValue("@AccExecName", AccExecName);
-            // objSqlCommand.Parameters.AddWithValue("@AccExecEmailID", AccExecEmailID);
-            // objSqlCommand.Parameters.AddWithValue("@AccExecPhone", AccExecPhone);
+            objSqlCommand.Parameters.AddWithValue("@MeetingDate", MeetingDate);            
+            objSqlCommand.Parameters.AddWithValue("@AccExecName", AccExecName);
+            objSqlCommand.Parameters.AddWithValue("@AccExecEmailID", AccExecEmailID);
+            objSqlCommand.Parameters.AddWithValue("@AccExecPhone", AccExecPhone);
             objSqlCommand.Parameters.AddWithValue("@MeetingType", MeetingType);
-            objSqlCommand.Parameters.AddWithValue("@CallInNumber", CallInNumber);
-            objSqlCommand.Parameters.AddWithValue("@MeetingID", MeetingID);
-            objSqlCommand.Parameters.AddWithValue("@MeetingWebLink", MeetingWebLink);
-            objSqlCommand.Parameters.AddWithValue("@YTDRevenue", YTDRevenue);
-            objSqlCommand.Parameters.AddWithValue("@YTDTransports", YTDTransports);
-            objSqlCommand.Parameters.AddWithValue("@RevenuePerTransport", RevenuePerTransport);
-            objSqlCommand.Parameters.AddWithValue("@CPAWComments", CPAWComments);
-            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate1", CPAWStartDate1);
-            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate1", CPAWEndDate1);
-            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate2", CPAWStartDate2);
-            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate2", CPAWEndDate2);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionComments", RPTCollectionComments);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate1", RPTCollectionStartDate1);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate1", RPTCollectionEndDate1);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate2", RPTCollectionStartDate2);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate2", RPTCollectionEndDate2);
-            objSqlCommand.Parameters.AddWithValue("@PNComments", PNComments);
-            objSqlCommand.Parameters.AddWithValue("@ARComments", ARComments);
-            objSqlCommand.Parameters.AddWithValue("@ARActionTaken", ARActionTaken);
-            objSqlCommand.Parameters.AddWithValue("@BRRComments", BRRComments);
-            objSqlCommand.Parameters.AddWithValue("@BRRActionTaken", BRRActionTaken);
+
+            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate1", PreviousStartDate); //new
+            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate1", PreviousEndDate); //new
+            objSqlCommand.Parameters.AddWithValue("@PreviousReportType", PreviousReportType); //new
+            objSqlCommand.Parameters.AddWithValue("@YTDTransports", PreviousTransport); //new
+            objSqlCommand.Parameters.AddWithValue("@PreviousCharges", PreviousCharges); //new
+            objSqlCommand.Parameters.AddWithValue("@YTDRevenue", PreviousRevenue); //new
+            objSqlCommand.Parameters.AddWithValue("@PreviousAdjustments", PreviousAdjustments); //new
+            objSqlCommand.Parameters.AddWithValue("@PreviousWrite_Off", PreviousWrite_Off); //new
+            objSqlCommand.Parameters.AddWithValue("@RevenuePerTransport", PreviousRPT); //new
+            objSqlCommand.Parameters.AddWithValue("@PreviousCollRate", PreviousCollRate); //new
+
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate1", PreviousStartDate);
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate1", PreviousEndDate);
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate2", CurrentStartDate);
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate2", CurrentEndDate);
+
+            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate2", CurrentStartDate); //new
+            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate2", CurrentEndDate); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentReportType", CurrentReportType); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentTransport", CurrentTransport); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentCharges", CurrentCharges); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentRevenue", CurrentRevenue); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentAdjustments", CurrentAdjustments); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentWrite_Off", CurrentWrite_Off); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentRefund", CurrentRefund); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentRPT", CurrentRPT); //new
+            objSqlCommand.Parameters.AddWithValue("@CurrentCollRate", CurrentCollRate); //new
+            objSqlCommand.Parameters.AddWithValue("@PNComments", ClientReviewNumberComment);
+
+            objSqlCommand.Parameters.AddWithValue("@ARActionTaken", IsAgingReview); //new
+            objSqlCommand.Parameters.AddWithValue("@IsDiscussedwithARTeam", IsDiscussedwithARTeam); //new
+            objSqlCommand.Parameters.AddWithValue("@ARComments", ARComments); //new
+            
+            
+            
+            
+            objSqlCommand.Parameters.AddWithValue("@BillingPolicy", BillingPolicy); //new
+            objSqlCommand.Parameters.AddWithValue("@Collections", Collections); //new
+            objSqlCommand.Parameters.AddWithValue("@BillingPolicyComments", BillingPolicyComments); //new
+            
+
+
+
+
+            objSqlCommand.Parameters.AddWithValue("@BRRActionTaken", IsBillingRateReviewed);
+            objSqlCommand.Parameters.AddWithValue("@LastRateChange", LastRateChanged);
+            objSqlCommand.Parameters.AddWithValue("@BRRComments", BillingRateReviewedComments);
+
+            objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", IsCurrentBillingRate);  //new
             objSqlCommand.Parameters.AddWithValue("@BLS", BLS);
             objSqlCommand.Parameters.AddWithValue("@BLSNE", BLSNE);
             objSqlCommand.Parameters.AddWithValue("@ALS", ALS);
@@ -194,50 +371,77 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@ALS2", ALS2);
             objSqlCommand.Parameters.AddWithValue("@Mileage", Mileage);
             objSqlCommand.Parameters.AddWithValue("@IsNonTransport", IsNonTransport);
-            objSqlCommand.Parameters.AddWithValue("@BillingRateReviewed", BillingRateReviewed);
-            objSqlCommand.Parameters.AddWithValue("@BLSReviewed", BLSReviewed);
-            objSqlCommand.Parameters.AddWithValue("@BLSNEReviewed", BLSNEReviewed);
-            objSqlCommand.Parameters.AddWithValue("@ALSReviewed", ALSReviewed);
-            objSqlCommand.Parameters.AddWithValue("@ALSNEReviewed", ALSNEReviewed);
-            objSqlCommand.Parameters.AddWithValue("@ALS2Reviewed", ALS2Reviewed);
-            objSqlCommand.Parameters.AddWithValue("@MileageReviewed", MileageReviewed);
-            objSqlCommand.Parameters.AddWithValue("@IsNonTransportReviewed", IsNonTransportReviewed);
-            objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", CBRActionTaken);
-            objSqlCommand.Parameters.AddWithValue("@CURReviewed", CURReviewed);
-            objSqlCommand.Parameters.AddWithValue("@CURComments", CURComments);
-            objSqlCommand.Parameters.AddWithValue("@LastRateChange", LastRateChange);
-            objSqlCommand.Parameters.AddWithValue("@CURActionTaken", CURActionTaken);
-            objSqlCommand.Parameters.AddWithValue("@CSComments", CSComments);
+
+            objSqlCommand.Parameters.AddWithValue("@CURActionTaken", UCR); //new
+            objSqlCommand.Parameters.AddWithValue("@CURComments", UCRComments); //new
+
+            objSqlCommand.Parameters.AddWithValue("@CommentsOnBillingRates", CommentsOnBillingRates); //new
+            objSqlCommand.Parameters.AddWithValue("@IsFacilityTransports", IsFacilityTransports); //new
+            objSqlCommand.Parameters.AddWithValue("@IsWithCharged", IsWithCharged); //new
+            objSqlCommand.Parameters.AddWithValue("@IsClientProcessesOwnCreditcards", IsClientProcessesOwnCreditcards); //new
+
+
+            objSqlCommand.Parameters.AddWithValue("@IsNonEmergenctTranports", IsNonEmergenctTranports); //new
+            objSqlCommand.Parameters.AddWithValue("@IsClientAwareofPriorAuthorizationRequirements", IsClientAwareofPriorAuthorizationRequirements); //new
+            objSqlCommand.Parameters.AddWithValue("@IsTraningNeeded", IsTraningNeeded); //new
+
+
+            objSqlCommand.Parameters.AddWithValue("@IsContractFacilityBilling", IsContractFacilityBilling); //new
+            objSqlCommand.Parameters.AddWithValue("@IsSkilledNursingFacilities", IsSkilledNursingFacilities); //new
+            objSqlCommand.Parameters.AddWithValue("@IsUpdatedContracts", IsUpdatedContracts); //new
+            objSqlCommand.Parameters.AddWithValue("@IsAttached", IsAttached); //new
+            objSqlCommand.Parameters.AddWithValue("@IsFacilityCurrently", IsFacilityCurrently); //new
+            objSqlCommand.Parameters.AddWithValue("@IsToBeBilled", IsToBeBilled); //new
+            objSqlCommand.Parameters.AddWithValue("@IsToWithTheFacility", IsToWithTheFacility); //new
+
+
+
+
+            objSqlCommand.Parameters.AddWithValue("@EnforceActionTaken", IsContractStatus);
             objSqlCommand.Parameters.AddWithValue("@IsContractCurrent", IsContractCurrent);
             objSqlCommand.Parameters.AddWithValue("@RenewalDate", RenewalDate);
             objSqlCommand.Parameters.AddWithValue("@CurrentRate", CurrentRate);
-            objSqlCommand.Parameters.AddWithValue("@EnforceActionTaken", EnforceActionTaken);
-            objSqlCommand.Parameters.AddWithValue("@PCChief", PCChief);
-            objSqlCommand.Parameters.AddWithValue("@PCFiscalOfficer", PCFiscalOfficer);
-            objSqlCommand.Parameters.AddWithValue("@PCAuthorizedOfficial", PCAuthorizedOfficial);
-            objSqlCommand.Parameters.AddWithValue("@PCActionTaken", PCActionTaken);
-            objSqlCommand.Parameters.AddWithValue("@DCComments", DCComments);
-            objSqlCommand.Parameters.AddWithValue("@DCActionTaken", DCActionTaken);
-            objSqlCommand.Parameters.AddWithValue("@NBComments", NBComments);
-            objSqlCommand.Parameters.AddWithValue("@NBActionTaken", NBActionTaken);
-            objSqlCommand.Parameters.AddWithValue("@CPComments", CPComments);
-            objSqlCommand.Parameters.AddWithValue("@IsCPUsage", IsCPUsage);
-            objSqlCommand.Parameters.AddWithValue("@RAComments", RAComments);
-            objSqlCommand.Parameters.AddWithValue("@IsRAAlertsReceived", IsRAAlertsReceived);
-            objSqlCommand.Parameters.AddWithValue("@MGComments", MGComments);
-            objSqlCommand.Parameters.AddWithValue("@IsMGDiscussed", IsMGDiscussed);
-            objSqlCommand.Parameters.AddWithValue("@CPSComments", CPSComments);
-            objSqlCommand.Parameters.AddWithValue("@IsCPSDiscussed", IsCPSDiscussed);
+
+            objSqlCommand.Parameters.AddWithValue("@PCActionTaken", IsPersonnelChanges); //new
+            objSqlCommand.Parameters.AddWithValue("@PCChief", ChiefName); //new
+            objSqlCommand.Parameters.AddWithValue("@PCFiscalOfficer", FiscalOfficerName); //new
+            objSqlCommand.Parameters.AddWithValue("@PCAuthorizedOfficial", AuthorizedOfficialName1); //new
+            objSqlCommand.Parameters.AddWithValue("@AuthorizedOfficialName2", AuthorizedOfficialName2); //new
+
+
+            objSqlCommand.Parameters.AddWithValue("@DCComments", IsClosedBusinesses); //new
+            objSqlCommand.Parameters.AddWithValue("@DCActionTaken", IsNewBusiness); //new
+           
+
+
+
+            objSqlCommand.Parameters.AddWithValue("@IsCPUsage", IsUsage);
+            objSqlCommand.Parameters.AddWithValue("@IsRAAlertsReceived", IsAlertsReceived);
+            objSqlCommand.Parameters.AddWithValue("@IsMGDiscussed", IsOIG_Exclsuionary);
+            objSqlCommand.Parameters.AddWithValue("@IsCPSDiscussed", IsDiscussed);
+            
+            objSqlCommand.Parameters.AddWithValue("@ePCRID", ePCRID); //new
+            objSqlCommand.Parameters.AddWithValue("@ePCRName", ePCRName); //new
+            objSqlCommand.Parameters.AddWithValue("@ePCRDate", ePCRDate); //new
+            objSqlCommand.Parameters.AddWithValue("@ePCRByWhom", ePCRByWhom); //new
+            objSqlCommand.Parameters.AddWithValue("@ePCRByWhen", ePCRByWhen); //new
+
             objSqlCommand.Parameters.AddWithValue("@IsPatientSignature", IsPatientSignature);
             objSqlCommand.Parameters.AddWithValue("@IsPatientSignatureEPCR", IsPatientSignatureEPCR);
             objSqlCommand.Parameters.AddWithValue("@IsReceivingFacilitySignature", IsReceivingFacilitySignature);
             objSqlCommand.Parameters.AddWithValue("@IsReceivingFacilitySignatureEPCR", IsReceivingFacilitySignatureEPCR);
             objSqlCommand.Parameters.AddWithValue("@IsCrewSignature", IsCrewSignature);
             objSqlCommand.Parameters.AddWithValue("@IsCrewSignatureEPCR", IsCrewSignatureEPCR);
+            objSqlCommand.Parameters.AddWithValue("@SignatureCaptureComments", SignatureCaptureComments); //New
+
+            objSqlCommand.Parameters.AddWithValue("@IsStatementReconciliation", IsStatementReconciliation); //New
+            objSqlCommand.Parameters.AddWithValue("@MonthEndReportByWho", MonthEndReportByWho); //New
+            objSqlCommand.Parameters.AddWithValue("@MonthEndReportHowOften", MonthEndReportHowOften); //New           
+            objSqlCommand.Parameters.AddWithValue("@IsTrainingCompleted", IsTraningCompleted); //new
+            objSqlCommand.Parameters.AddWithValue("@IsTrainingPending", IsTraningPending);
+            objSqlCommand.Parameters.AddWithValue("@CRI", IsReviewIntervalCRI);
             objSqlCommand.Parameters.AddWithValue("@MERComments", MERComments);
-            objSqlCommand.Parameters.AddWithValue("@IsTrainingPending", IsTrainingPending);
-            objSqlCommand.Parameters.AddWithValue("@CRI", CRI);
-            objSqlCommand.Parameters.AddWithValue("@NRScheduleDate", NRScheduleDate);
+            objSqlCommand.Parameters.AddWithValue("@NRScheduleDate", NextReviewScheduleDate);
             objSqlCommand.Parameters.AddWithValue("@ChangeInZOHO", ChangeInZOHO);
             objSqlCommand.Parameters.AddWithValue("@ePCRID", ePCRID);
             objSqlCommand.Parameters.AddWithValue("@ePCRDate", ePCRDate);
@@ -258,7 +462,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@FollowUpAction", FollowUpAction);
             objSqlCommand.Parameters.AddWithValue("@LastUpdatedBy", LastUpdatedBy);
             objSqlCommand.Parameters.AddWithValue("@FileName", FileName);
-            //objSqlCommand.Parameters.AddWithValue("@IsPDFGenerated", IsPDFGenerated);
+            objSqlCommand.Parameters.AddWithValue("@IsPDFGenerated", IsPDFGenerated);
 
             return objclsConnection.ExecuteDataSet(objSqlCommand);
 

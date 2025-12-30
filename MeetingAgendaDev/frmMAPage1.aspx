@@ -111,11 +111,12 @@
                         </tr>
                      </thead>
                      <tbody>
-                         <tr>
+                         <tr hidden>
                              <td colspan="3">
-                                    <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAccountExecutive_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" runat="server" >
                                       <asp:ListItem Value="">--Select--</asp:ListItem>
                                   </asp:DropDownList>
+                               <%--  AutoPostBack="true"  OnSelectedIndexChanged="ddlAccountExecutive_SelectedIndexChanged"--%>
                              </td>
                              <td colspan="3">
                                  <asp:DropDownList ID="ddlEmail" CssClass="form-control" runat="server">
@@ -127,14 +128,26 @@
                                     <asp:ListItem Value="">--Select--</asp:ListItem>
                                 </asp:DropDownList>
                              </td>
-                             <td colspan="3">
-                                <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
-                                    <asp:ListItem Value="">--Select--</asp:ListItem>
-                                    <asp:ListItem Value="Online">Online</asp:ListItem>
-                                    <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
-                                </asp:DropDownList>
-                             </td>
-                         </tr>
+                           
+                         </tr>     
+                         <tr>
+                            <td colspan="3">
+                                    <asp:TextBox ID="txtAccountExecutive" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                            </td>
+                            <td colspan="3">
+                                 <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                            </td>
+                            <td colspan="3">
+                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                            </td>
+                            <td colspan="3">
+                               <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
+                                   <asp:ListItem Value="">--Select--</asp:ListItem>
+                                   <asp:ListItem Value="Online">Online</asp:ListItem>
+                                   <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
+                               </asp:DropDownList>
+                            </td>
+                        </tr> 
                      </tbody>
                  </table>
               
@@ -181,7 +194,8 @@
                              <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPhone" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2" style="padding: inherit !important;"><asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2" style="padding: inherit !important;"><div class="form-group text-center">
-                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" CssClass="btn btn-info" OnClientClick="return AddValidation();" />
+                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" CssClass="btn btn-info"  />
+                               <%--  OnClientClick="return AddValidation();"--%>
                             </div></td>
                              <td colspan="2"  style="padding: inherit !important;"><div class="form-group text-center" >
                             <span class="text-danger" style="font-size: 12px;">Click Add to save the Attendees entered</span>
@@ -251,104 +265,8 @@
                     </EmptyDataTemplate>
                 </asp:GridView>
             </div>
-            <div hidden class="col-lg-12 form-group">
-                <div class="col-lg-12 form-group text-lg-left bg-info text-white">
-                    <h4><b>CLIENT REVENUE NUMBERS</b></h4>
-                </div>
-            </div>
-            <div hidden class="col-lg-12 form-group">
-                <div class="col-lg-4 form-group">
-                    <%--<span class="text-danger">*</span>--%>
-                    YTD Revenue:               
-                     <asp:TextBox ID="txtYTDRevenue" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"
-                         onblur="isMoneyKey(this,'YTD Revenue');"></asp:TextBox>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <%--<span class="text-danger">*</span>--%>
-                    YTD Transports:               
-                     <asp:TextBox ID="txtYTDTransports" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <%--<span class="text-danger">*</span>--%>
-                    Revenue Per Transport:               
-                     <asp:TextBox ID="txtRevenuePerTransport" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"
-                         onblur="isMoneyKey(this,'Revenue Per Transport');"></asp:TextBox>
-                </div>
-            </div>
-            <div hidden class="col-lg-12 form-group">
-                <table class="col-lg-12" border="1">
-                    <tr style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">
-                        <td>REVIEW
-                        </td>
-                        <td>COMMENTS
-                        </td>
-                        <td>START DATE
-                        </td>
-                        <td>END DATE
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2"><span style="padding-left: 10px;">i. Charges, Payments,Adjustments and Write-offs</span>
-                        </td>
-                        <td rowspan="2">
-                            <asp:TextBox ID="txtCPAWComments" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="3"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtCPAWStartDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtCPAWEndDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:TextBox ID="txtCPAWStartDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtCPAWEndDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2"><span style="padding-left: 10px;">ii. RPT and Collection Rates</span>
-                        </td>
-                        <td rowspan="2">
-                            <asp:TextBox ID="txtRPTCollectionComments" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="3"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtRPTCollectionStartDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtRPTCollectionEndDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:TextBox ID="txtRPTCollectionStartDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtRPTCollectionEndDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
-                                Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div hidden class="col-lg-12">
-                <div class="col-lg-12 form-group text-lg-left bg-info text-white">
-                    <h4><b>POSITIVE / NEGATIVE COMMENTS</b></h4>
-                </div>
-            </div>
-            <div hidden class="col-lg-12">
-                <asp:TextBox ID="txtPNComments" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="5" Style="resize: none;"></asp:TextBox>
-            </div>
+          
+            
            
             <!--Client Revenue Numbers-->
             <div class="col-lg-12 form-group">
@@ -366,12 +284,12 @@
 
                             <th colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle;">
                                 <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
+                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto;" OnTextChanged="txtPreviousEndDate_TextChanged"></asp:TextBox>
                             </th>
 
                             <th colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle;">
                                 <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px;">Previous Report Type</label>
-                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged" style="display:inline-block; width: auto;">
+                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto;">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
@@ -413,12 +331,12 @@
 
                             <th colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle;">
                                 <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" OnTextChanged="txtCurrentEndDate_TextChanged" AutoPostBack="true" style="display:inline-block; width: auto;"></asp:TextBox>
                             </th>
 
                             <th colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle;">
                                 <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px;">Current Report Type</label>
-                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged" style="display:inline-block; width: auto;">
+                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"  style="display:inline-block; width: auto;">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
@@ -482,7 +400,7 @@
                              <tr>
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;position: relative;">
                                     <label for="ddlAgingReview" style="float: left; margin-right: 20px; width: 45%;">1.Aging Review   <br />
-                                        (Sent to araging@medicount.com)
+                                        (Sent to arengasamy@medicount.com)
                                     </label>
                                     <asp:DropDownList ID="ddlAgingReview" runat="server" CssClass="form-control" style="float: right; width: 35%; font-weight: bold;">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
@@ -507,16 +425,7 @@
                             
                               <!-- 2. Billing Policy-->
                              <tr> 
-                                 <%--<td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;">
-                                    <label for="ddlBillingPolicy" style="display:inline-block; margin-right:20px;">2.Billing Policy</label>
-                                    <asp:DropDownList ID="ddlBillingPolicy" runat="server" CssClass="form-control" style="display:inline-block; width: auto; font-weight: bold; ">
-                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                         <asp:ListItem Value="R1" Text="R1"></asp:ListItem>
-                                         <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
-                                         <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
-                                         <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>--%>
+                                
 
                                 <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle; color: #00968F; position: relative;">
                                     <label for="ddlBillingPolicy" style="float: left; margin-right: 20px; width: 45%;">2. Billing Policy</label>
@@ -540,15 +449,15 @@
                                 </td>
 
                                 <td >
-                                    <asp:TextBox ID="txtCollectionComments" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtBillingPolicyComments" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
                                 </td>
                              </tr>
                            
                              <!-- 3. Billing Rates Reviewed-->
                              <tr>
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;position: relative;">
-                                    <label for="rdolstBillingRateReviewed" style="float: left; margin-right: 20px; width: 45%;">3.Billing Rates Reviewed</label>
-                                    <asp:DropDownList ID="rdolstBillingRateReviewed" runat="server" CssClass="form-control" style="float: right; width: 35%; font-weight: bold;" onchange="BillingRateReviewedEnable()">
+                                    <label for="ddlBillingRateReviewed" style="float: left; margin-right: 20px; width: 45%;">3.Billing Rates Reviewed</label>
+                                    <asp:DropDownList ID="ddlBillingRateReviewed" runat="server" CssClass="form-control" style="float: right; width: 35%; font-weight: bold;" onchange="BillingRateReviewedEnable()">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -561,15 +470,20 @@
                                 </td>
                                                                  
                                 <td>
-                                    <asp:TextBox ID="txtBillingRatesReviewed" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtBillingRatesReviewedComments" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
                                 </td>
                             </tr>
                              
                              <!--4. Current Billing Rates-->                            
-                             <tr  >
-                                <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
-                                    4.Current Billing Rates
-                                </td>
+                             <tr>                                
+                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;position: relative;">
+                                <label for="ddlCurrentBillingRates" style="float: left; margin-right: 20px; width: 45%;">4.Current Billing Rates</label>
+                                <asp:DropDownList ID="ddlCurrentBillingRates" runat="server" CssClass="form-control" style="float: right; width: 35%; font-weight: bold;" onchange="BillingRateReviewedEnable()">
+                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                    <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                    <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
 
                                 <td>
                                         <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
@@ -587,7 +501,7 @@
                                         </thead>
 
                                         <tbody>          
-                                            <tr>
+                                            <%--<tr hidden >
                                                 <td colspan="2"><asp:TextBox ID="txtBLS" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
                                                                  onblur="isMoneyKey(this,'BLS');" disabled="true"></asp:TextBox></td>
                                                 <td> <asp:TextBox ID="txtBLSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
@@ -599,16 +513,36 @@
                                                 <td><asp:TextBox ID="txtALS2" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
                                                                    onblur="isMoneyKey(this,'ALS2');" disabled="true"></asp:TextBox></td>                                          
                                                 <td style="padding: inherit !important; vertical-align:middle;">                                                   
-                                                      <asp:DropDownList ID="rdolstNonTransport" runat="server" CssClass="form-control" style="font-weight: bold; ">
+                                                      <asp:DropDownList ID="rdolstNonTransport_New" runat="server" CssClass="form-control" style="font-weight: bold; ">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
-                                                      onblur="isMoneyKey(this,'Mileage');" disabled="true"></asp:TextBox></td>
-                                     
-                                            </tr>                                      
+                                                      onblur="isMoneyKey(this,'Mileage');" disabled="true"></asp:TextBox></td>                                     
+                                            </tr> --%>
+                                             <tr  >
+                                                 <td colspan="2"><asp:TextBox ID="txtBLS" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                                  onblur="isMoneyKey(this,'BLS');" disabled="true"></asp:TextBox></td>
+                                                 <td> <asp:TextBox ID="txtBLSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                                   onblur="isMoneyKey(this,'BLS NE');" disabled="true"></asp:TextBox></td>
+                                                 <td><asp:TextBox ID="txtALS" CssClass="form-control" runat="server" Text="" MaxLength="10"
+                                                                   onblur="isMoneyKey(this,'ALS');" disabled="true"></asp:TextBox></td>
+                                                 <td><asp:TextBox ID="txtALSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                                   onblur="isMoneyKey(this,'ALS NE');" disabled="true"></asp:TextBox></td>
+                                                 <td><asp:TextBox ID="txtALS2" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                                    onblur="isMoneyKey(this,'ALS2');" disabled="true"></asp:TextBox></td>                                          
+                                                 <td style="padding: inherit !important; vertical-align:middle;">                                                   
+                                                       <asp:DropDownList ID="rdolstNonTransport" runat="server" CssClass="form-control" style="font-weight: bold; ">
+                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                     </asp:DropDownList>
+                                                 </td>
+                                                 <td> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                       onblur="isMoneyKey(this,'Mileage');" disabled="true"></asp:TextBox></td>                                     
+                                             </tr>
                                         </tbody>
     
                                     </table>
@@ -636,42 +570,18 @@
                                     </asp:DropDownList>
                                 </td>    
                                  
-                                <td><asp:TextBox ID="TextBox6" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtUCRComments" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox></td>
                              </tr>
 
                             <!--6. Comments on Billing Rates -->
                             <tr>
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;position: relative;">
                                     <label for="txtCommentsOnBillingRates" style="float: left; margin-right: 20px; width: 45%;">6.Comments on Billing Rates</label>
-                                    <asp:TextBox ID="txtCommentsOnBillingRates" TextMode="MultiLine" runat="server" CssClass="form-control" style="float: right; width: 45%; font-weight: bold;">
-                                    </asp:TextBox>
+                                    
                                 </td>
+                                               
 
-                       
-                                <%--<td colspan="2" style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">
-                                    <label for="ddlFacilityTransports" style="display:inline-block; margin-right:10px;">Facility Transports</label>
-                                    <asp:DropDownList ID="ddlFacilityTransports" runat="server" CssClass="form-control" style="display:inline-block; width: auto; font-weight: bold; ">
-                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                    </asp:DropDownList>
-
-                                    <label for="ddlWithCharge" style="display:inline-block; margin-right:10px;">With Charge</label>
-                                    <asp:DropDownList ID="ddlWithCharge" runat="server" CssClass="form-control" style="display:inline-block; width: auto; font-weight: bold;">
-                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                    </asp:DropDownList>
-
-                                    <label for="ddlClientPorcessesOwnCreditcards" style="display:inline-block; margin-right:20px;">Client Processes Own Credit cards</label>
-                                    <asp:DropDownList ID="ddlClientPorcessesOwnCreditcards" runat="server" CssClass="form-control" style="display:inline-block; width: auto; font-weight: bold;">
-                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>--%>
-
-                            <td colspan="2">
+                            <td>
                                  <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                                      <thead>
                                         <tr style="background-color:rgb(0,148,144); color:#fff;">
@@ -710,8 +620,11 @@
                                     </tbody>
                                 </table>
                             </td>
-
-
+                                <td>
+                                    <asp:TextBox ID="txtCommentsOnBillingRates" TextMode="MultiLine" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                        </asp:TextBox>
+                                </td>
+                        </tr>
                              <!--Non-Emergency Tranports-->
                              <tr>
                                   <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;position: relative;">
@@ -741,38 +654,6 @@
                                     </asp:DropDownList>
                                 </td>
                              </tr>
-
-                             <%--<td colspan="2">
-                                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                     <thead>
-                                        <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                            <th style="text-align: left;vertical-align: middle;">Is Client Aware of Prior Authorization Requirements?</th>
-                                            <th style="text-align: left;vertical-align: middle;">Is Traning Needed?</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>          
-                                        <tr>
-                                            <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >
-                                                 <asp:DropDownList ID="ddlIsClientAwareofPriorAuthorizationRequirements" runat="server" CssClass="form-control" style="font-weight:bold;">
-                                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                            </asp:DropDownList>
-
-                                            </td>
-       
-                                            <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >    
-                                               <asp:DropDownList ID="ddlIsTraningNeeded" runat="server" CssClass="form-control" style="font-weight:bold;">
-                                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                            </asp:DropDownList>
-                                            </td>                                          
-                                        </tr>                                      
-                                    </tbody>
-                                </table>
-                             </td>--%>
 
                              <!--Contract Facility Billing or Correctional/Jail -->
                              <tr>
@@ -1109,14 +990,14 @@
                                               </td>
                                                
                                                 <td colspan="2" style="vertical-align:middle">
-                                                     <asp:DropDownList ID="ddlCrewSignature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                     <asp:DropDownList ID="ddlCrewSignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                      <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
                                                      <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
                                                 </asp:DropDownList>
                                                 </td>
                                                  <td colspan="2" style="vertical-align:middle">                                                          
-                                                 <asp:DropDownList ID="ddlCrewSignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                 <asp:DropDownList ID="ddlCrewSignature" runat="server" CssClass="form-control" style="font-weight:bold;">
                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                 <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                 <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1128,10 +1009,168 @@
                                     </table>
                                 </td>
                                   <td  style="height:100px;width:100%;">
-                                    <asp:TextBox ID="TextBox7" runat="server"
+                                    <asp:TextBox ID="txtSignatureCaptureComments" runat="server"
                                         TextMode="MultiLine" CssClass="cbraction" autocomplete="off"></asp:TextBox>
                                 </td>
                             </tr>
+                              <tr >
+                                 <td style="padding-left: 10px; color: #00968F; font-weight: bold"> AE: Pull 5 or 10 runs (under 100 runs per month 5 runs, over 100 pull 10 runs) review patient and crew signatures, and place in the report
+                                 </td>
+                                 <td colspan="2">
+                                     <table class="col-lg-12" border="1">
+                                         <tr>
+                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Run
+                                             </td>
+                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Patient
+                                             </td>
+                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Signature
+                                             </td>
+                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Facility
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">1
+                                                 <asp:HiddenField ID="hdnSignature1" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">2                                        
+                                                 <asp:HiddenField ID="hdnSignature2" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">3
+                                                 <asp:HiddenField ID="hdnSignature3" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">4
+                                                 <asp:HiddenField ID="hdnSignature4" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">5
+                                                 <asp:HiddenField ID="hdnSignature5" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">6
+                                                 <asp:HiddenField ID="hdnSignature6" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">7
+                                                 <asp:HiddenField ID="hdnSignature7" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">8
+                                                 <asp:HiddenField ID="hdnSignature8" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">9
+                                                 <asp:HiddenField ID="hdnSignature9" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: center;">10
+                                                 <asp:HiddenField ID="hdnSignature10" runat="server" Value="0" />
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtPatient10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSignature10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtFacility10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                     </table>
+                                 </td>
+                             </tr>
 
                              <!--Month End Report Reconciliation Tutorial (report to run)-->
                              <tr>
@@ -1164,9 +1203,9 @@
                                                     </asp:DropDownList>
                                                     </td>
 
-                                                <td> <asp:TextBox ID="txtByWho" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
+                                                <td> <asp:TextBox ID="txtMonthEndReportByWho" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                                                
-                                                <td> <asp:TextBox ID="txtHowOften" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
+                                                <td> <asp:TextBox ID="txtMonthEndReportHowOften" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                                                                                                
                                                 <td style="vertical-align:middle;">                                              
                                                     <div id="divIsTraningCompleted">                                                   
@@ -1242,13 +1281,9 @@
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                                    <thead>
                                     
-                                       <%--<tr style="background-color:rgb(0,148,144); color:#fff; vertical-align:middle">
-                                            <th colspan="12" class="text-center">17. Address Information</th>
-                                        </tr>--%>
                                       <tr style="background-color:rgb(0,148,144); color:#fff;">
                                           <th colspan="4" style="text-align:center;vertical-align:middle;">Billing Address</th>  
-                                          <th colspan="4" style="text-align:center;vertical-align:middle;">Mailling Address</th>
-                                          <th colspan="4" style="text-align:center;vertical-align:middle;">Physical Address</th>
+                                          <th colspan="4" style="text-align:center;vertical-align:middle;">Mailling Address</th>                                        
                                       </tr>
 
                                       <tr style="background-color:#3A3F46; color:#fff;">
@@ -1261,12 +1296,7 @@
                                           <th style="text-align:center;vertical-align:middle;">City</th>
                                           <th style="text-align:center;vertical-align:middle;">State</th>
                                           <th style="text-align:center;vertical-align:middle;">Zip</th> 
-
-                                          <th style="text-align:center;vertical-align:middle;">Street</th>
-                                          <th style="text-align:center;vertical-align:middle;">City</th>
-                                          <th style="text-align:center;vertical-align:middle;">State</th>
-                                          <th style="text-align:center;vertical-align:middle;">Zip</th> 
-                                      </tr>
+                                       </tr>
                                   </thead>
 
                                   <tbody>
@@ -1278,139 +1308,40 @@
                                           <td><asp:TextBox ID="txtBillingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                           <td><asp:TextBox ID="txtBillingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
 
-                                            <%--<td>
-                                                  <asp:DropDownList ID="txtBillingState" CssClass="form-control" runat="server"
-                                                OnSelectedIndexChanged="txtBillingState_SelectedIndexChanged" AutoPostBack="true">
-                                                <asp:ListItem Value="">--Select--</asp:ListItem>
-                                            </asp:DropDownList>
-                                              </td>
-                                              <td>
-                                                   <asp:DropDownList ID="txtBillingCity" CssClass="form-control" runat="server">
-                                                     <asp:ListItem Value="">--Select--</asp:ListItem>
-                                                 </asp:DropDownList>
-                                              </td>--%>
-
                                           <!--Mailing Address Info-->
                                           <td><asp:TextBox ID="txtMailingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                           <td><asp:TextBox ID="txtMailingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                           <td><asp:TextBox ID="txtMailingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                           <td><asp:TextBox ID="txtMailingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                            
-                                          <!--Physical Address Info-->
-                                          <td><asp:TextBox ID="txtPhysicalLocationStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtPhysicalLocationCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtPhysicalLocationState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtPhysicalLocationZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                      </tr>
-
+                                          </tr>
                                   </tbody>
-
                                  
-                              </table>
-                
-                                     <table class="col-lg-12" border="0">
-                                         <tr hidden>
-                                             <td>
-                                                 <table class="col-lg-12" border="1">
-                                                     <tr>
-                                                         <td colspan="2" style="padding-left: 10px; color: #00968F; font-weight: bold">Billing Address
-                                                         </td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">Street</td>
-                                                         <td>
-                                                             <asp:TextBox ID="txtBillingStreet_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                     <tr>
-                                                        <td style="padding-left: 10px; font-weight: bold">City</td>
-                                                        <td>
-                                                            <asp:TextBox ID="txtBillingCity_Old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">State</td>
-                                                         <td>
-                                                            <asp:TextBox ID="txtBillingState_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                     
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">Zip</td>
-                                                         <td>
-                                                             <asp:TextBox ID="txtBillingZip_old" CssClass="form-control" runat="server" Text="" MaxLength="9" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                 </table>
-                                             </td>
-                                             <td>
-                                                 <table class="col-lg-12" border="1">
-                                                     <tr>
-                                                         <td colspan="2" style="padding-left: 10px; color: #00968F; font-weight: bold">Mailing Address
-                                                         </td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">Street</td>
-                                                         <td>
-                                                             <asp:TextBox ID="txtMailingStreet_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                     <tr>
-                                                        <td style="padding-left: 10px; font-weight: bold">City</td>
-                                                        <td>
-                                                           <asp:TextBox ID="txtMailingCity_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">State</td>
-                                                         <td>
-                                                            <asp:TextBox ID="txtMailingState_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                     
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">Zip</td>
-                                                         <td>
-                                                             <asp:TextBox ID="txtMailingZip_old" CssClass="form-control" runat="server" Text="" MaxLength="9" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                 </table>
-                                             </td>
-                                             <td>
-                                                 <table class="col-lg-12" border="1">
-                                                     <tr>
-                                                         <td colspan="2" style="padding-left: 10px; color: #00968F; font-weight: bold">Physical Location Address
-                                                         </td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">Street</td>
-                                                         <td>
-                                                             <asp:TextBox ID="txtPhysicalLocationStreet_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                     <tr>
-                                                        <td style="padding-left: 10px; font-weight: bold">City</td>
-                                                        <td>
-                                                            <asp:TextBox ID="txtPhysicalLocationCity_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">State</td>
-                                                         <td>
-                                                         <asp:TextBox ID="txtPhysicalLocationState_old" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td style="padding-left: 10px; font-weight: bold">Zip</td>
-                                                         <td>
-                                                             <asp:TextBox ID="txtPhysicalLocationZip_old" CssClass="form-control" runat="server" Text="" MaxLength="9" autocomplete="off"></asp:TextBox>
-                                                         </td>
-                                                     </tr>
-                                                 </table>
-                                             </td>
-                                         </tr>
                                      </table>
-                                 </td>
+                                      <!--Physical Address Info-->
+                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                         <thead>
+                                              <tr style="background-color:rgb(0,148,144); color:#fff;">
+                                                <th colspan="4" style="text-align:center;vertical-align:middle;">Physical Address</th>
+                                             </tr>
+                                             <tr>
+                                                  <th style="text-align:center;vertical-align:middle;">Street</th>
+                                                  <th style="text-align:center;vertical-align:middle;">City</th>
+                                                  <th style="text-align:center;vertical-align:middle;">State</th>
+                                                  <th style="text-align:center;vertical-align:middle;">Zip</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tr>
+                                               
+                                                <td><asp:TextBox ID="txtPhysicalLocationStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                            </tr>
+                                         </tbody>
+                                     </table>                
+                                   
+                                     </td>
                              </tr>
                          </tbody>
                      </table>
@@ -1461,8 +1392,7 @@
                     <tr hidden>
                         <td style="padding: 20px;">
                             <div>
-                                <asp:RadioButtonList ID="rdolstBillingRateReviewed_old" CssClass="custom-checkbox"
-                                    runat="server" RepeatDirection="Horizontal" onchange="BillingRateReviewedEnable()">
+                                <asp:RadioButtonList ID="ddlBillingRateReviewed_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal" onchange="BillingRateReviewedEnable_()">
                                     <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
                                     <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
                                 </asp:RadioButtonList>
@@ -1863,164 +1793,7 @@
                         </td>
                     </tr>
                    
-                    <tr hidden>
-                        <td style="padding-left: 10px; color: #00968F; font-weight: bold">7. AE: Pull 5 or 10 runs (under 100 runs per month 5 runs, over 100 pull 10 runs) review patient and crew signatures, and place in the report
-                        </td>
-                        <td colspan="2">
-                            <table class="col-lg-12" border="1">
-                                <tr>
-                                    <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Run
-                                    </td>
-                                    <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Patient
-                                    </td>
-                                    <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Signature
-                                    </td>
-                                    <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Facility
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">1
-                                        <asp:HiddenField ID="hdnSignature1" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">2                                        
-                                        <asp:HiddenField ID="hdnSignature2" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">3
-                                        <asp:HiddenField ID="hdnSignature3" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">4
-                                        <asp:HiddenField ID="hdnSignature4" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">5
-                                        <asp:HiddenField ID="hdnSignature5" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">6
-                                        <asp:HiddenField ID="hdnSignature6" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">7
-                                        <asp:HiddenField ID="hdnSignature7" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">8
-                                        <asp:HiddenField ID="hdnSignature8" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">9
-                                        <asp:HiddenField ID="hdnSignature9" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">10
-                                        <asp:HiddenField ID="hdnSignature10" runat="server" Value="0" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPatient10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtSignature10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtFacility10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+                   
                     <tr hidden>
                         <td style="padding-left: 10px; color: #00968F; font-weight: bold">8. Month End Report Reconciliation Tutorial (report to run)
                         </td>
@@ -2129,7 +1902,107 @@
             <div class="col-lg-12">
                 <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
             </div>
-        </div>
+
+            <div hidden class="col-lg-12 form-group">
+    <div class="col-lg-12 form-group text-lg-left bg-info text-white">
+        <h4><b>CLIENT REVENUE NUMBERS</b></h4>
+    </div>
+</div>
+                <div hidden class="col-lg-12 form-group">
+                    <div class="col-lg-4 form-group">
+                        <%--<span class="text-danger">*</span>--%>
+                        YTD Revenue:               
+                         <asp:TextBox ID="txtYTDRevenue" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"
+                             onblur="isMoneyKey(this,'YTD Revenue');"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        <%--<span class="text-danger">*</span>--%>
+                        YTD Transports:               
+                         <asp:TextBox ID="txtYTDTransports" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        <%--<span class="text-danger">*</span>--%>
+                        Revenue Per Transport:               
+                         <asp:TextBox ID="txtRevenuePerTransport" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"
+                             onblur="isMoneyKey(this,'Revenue Per Transport');"></asp:TextBox>
+                    </div>
+                </div>
+                <div hidden class="col-lg-12 form-group">
+                    <table class="col-lg-12" border="1">
+                        <tr style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">
+                            <td>REVIEW
+                            </td>
+                            <td>COMMENTS
+                            </td>
+                            <td>START DATE
+                            </td>
+                            <td>END DATE
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"><span style="padding-left: 10px;">i. Charges, Payments,Adjustments and Write-offs</span>
+                            </td>
+                            <td rowspan="2">
+                                <asp:TextBox ID="txtCPAWComments" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="3"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCPAWStartDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCPAWEndDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:TextBox ID="txtCPAWStartDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCPAWEndDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"><span style="padding-left: 10px;">ii. RPT and Collection Rates</span>
+                            </td>
+                            <td rowspan="2">
+                                <asp:TextBox ID="txtRPTCollectionComments" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="3"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtRPTCollectionStartDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtRPTCollectionEndDate1" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:TextBox ID="txtRPTCollectionStartDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtRPTCollectionEndDate2" CssClass="form_datetime" runat="server" Text="" autocomplete="off"
+                                    Style="resize: none; height: 100%; width: 100%; border: none; outline: none;"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div hidden class="col-lg-12">
+                    <div class="col-lg-12 form-group text-lg-left bg-info text-white">
+                        <h4><b>POSITIVE / NEGATIVE COMMENTS</b></h4>
+                    </div>
+                </div>
+                <div hidden class="col-lg-12">
+                    <asp:TextBox ID="txtPNComments" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="5" Style="resize: none;"></asp:TextBox>
+                </div>
+
+                        </div>
     </div>
 
 
@@ -2199,11 +2072,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" runat="server">
     <div id="divButton" class="col-lg-12 text-lg-right">
-        <%--<asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClientClick="return Validation('false');" />--%>
-        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print" onclick="return saveDraft('true');" />
-        <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />
+        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"  /> <!--OnClientClick="return Validation('false');"-->
+        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />
+       <%-- onclick="return saveDraft('true');
+        <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" OnClick="btnSave_Click" /> "--%>
+       <%-- onclick="return Validation('false');"--%>
         <%--<asp:Button ID="btnComplete" runat="server" CssClass="btn btn-info custom" Text="Convert PDF" OnClick="btnComplete_Click" OnClientClick="return Validation('true');" />--%>
         <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="return Validation('true');" />
+      <%--  onclick="return Validation('true');"--%>
     </div>
     <div id="divLoading" class="spinner-border text-dark" role="status" style="float: right; display: none;">
         <span class="sr-only">Loading...</span>
@@ -2355,7 +2231,8 @@
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
             var txtMeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>");
-            var ddlAccountExecutive = document.getElementById("<%=ddlAccountExecutive.ClientID %>");
+            // var ddlAccountExecutive = document.getElementById("<%=ddlAccountExecutive.ClientID %>");
+            var txtAccountExecutive = document.getElementById('<%= txtAccountExecutive.ClientID %>');
             var ddlEmail = document.getElementById("<%=ddlEmail.ClientID %>");
             var ddlPhone = document.getElementById("<%=ddlPhone.ClientID %>");
 
@@ -2420,13 +2297,19 @@
                 txtMeetingDate.focus();
                 return false;
             }
-            if (ddlAccountExecutive.value == "0") {
-                //alert("Select Account Executive");
+            //if (ddlAccountExecutive.value == "0") {
+            //    //alert("Select Account Executive");
+            //    lblErrorMsg.innerHTML = "Select Account Executive";
+            //    OpenAlertPopup();
+            //    ddlAccountExecutive.focus();
+            //    return false;
+            //}
+            if (txtAccountExecutive.value.trim() == "") {
                 lblErrorMsg.innerHTML = "Select Account Executive";
                 OpenAlertPopup();
-                ddlAccountExecutive.focus();
                 return false;
             }
+            
             if (ddlEmail.value == "0") {
                 //alert("Select Email");
                 lblErrorMsg.innerHTML = "Select Email";
@@ -2451,13 +2334,13 @@
             //alert(gvAttendees.rows[0].cells.length);
             //alert(gvAttendees.rows[1].cells.length);
 
-            if (gvAttendees == null || gvAttendees.rows.length == 1 || (gvAttendees.rows.length == 2 && gvAttendees.rows[1].cells.length == 1)) {
-                //alert("Enter Attendees Invited");
-                lblErrorMsg.innerHTML = "Enter Attendees Invited";
-                OpenAlertPopup();
-                txtName.focus();
-                return false;
-            }
+            //if (gvAttendees == null || gvAttendees.rows.length == 1 || (gvAttendees.rows.length == 2 && gvAttendees.rows[1].cells.length == 1)) {
+            //    //alert("Enter Attendees Invited");
+            //    lblErrorMsg.innerHTML = "Enter Attendees Invited";
+            //    OpenAlertPopup();
+            //    txtName.focus();
+            //    return false;
+            //}
 
 
             //if (txtYTDRevenue.value.trim() == "") {
@@ -2554,21 +2437,21 @@
             //    return false;
             //}
 
-            if (!RadioValidate(rdolstCRI)) {
-                //alert("Select Client Review Intervals");
-                lblErrorMsg.innerHTML = "Select Client Review Intervals";
-                OpenAlertPopup();
-                document.getElementById("divIsTraningPending").scrollIntoView();
-                return false;
-            }
+            //if (!RadioValidate(rdolstCRI)) {
+            //    //alert("Select Client Review Intervals");
+            //    lblErrorMsg.innerHTML = "Select Client Review Intervals";
+            //    OpenAlertPopup();
+            //    document.getElementById("divIsTraningPending").scrollIntoView();
+            //    return false;
+            //}
 
-            if (txtNRScheduleDate.value.trim() == "") {
-                //alert("Select Next Review Schedule Date");
-                lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
-                OpenAlertPopup();
-                txtNRScheduleDate.focus();
-                return false;
-            }
+            //if (txtNRScheduleDate.value.trim() == "") {
+            //    //alert("Select Next Review Schedule Date");
+            //    lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
+            //    OpenAlertPopup();
+            //    txtNRScheduleDate.focus();
+            //    return false;
+            //}
 
             //return true
 
@@ -2627,42 +2510,51 @@
             //window.setInterval(saveDraft, 120000);//calling saveDraft function for every 2 min  
             window.setInterval(() => saveDraft(false), 120000);
 
-            BillingRateReviewedEnable();
+          //  BillingRateReviewedEnable();
         });
 
-        // ajax method  
+        // ajax method
+        //|| document.getElementById("<%=ddlAccountExecutive.ClientID %>").value.trim() == "0"
         function saveDraft(isPrint) {
 
             var clsMeetingAgenda = {};
             if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
-                || document.getElementById("<%=ddlAccountExecutive.ClientID %>").value.trim() == "0")) {
+                )) {
                 return;
             }
 
+            //Client Info
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
-            var ddlAccountExecutive = document.getElementById("<%=ddlAccountExecutive.ClientID %>");
-            var ddlEmail = document.getElementById("<%=ddlEmail.ClientID %>");
-            var ddlPhone = document.getElementById("<%=ddlPhone.ClientID %>");
+
+            // var ddlAccountExecutive = document.getElementById("<%=txtAccountExecutive.ClientID %>");
+            var AccountExecutiveName = document.getElementById('<%= txtAccountExecutive.ClientID %>');
+            var AccExecEmailID = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
+            var AccExecPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
 
 
             clsMeetingAgenda.ID = parseInt(document.getElementById("<%=hdnID.ClientID %>").value.trim());
             clsMeetingAgenda.ClientID = document.getElementById("<%=ddlClientName.ClientID %>").value.trim();
 
+            //Client Info
             clsMeetingAgenda.ClientNo = ddlClientNo.value == 0 ? "" : ddlClientNo.options[ddlClientNo.selectedIndex].text;
             clsMeetingAgenda.ClientName = ddlClientName.value == 0 ? "" : ddlClientName.options[ddlClientName.selectedIndex].text;
-            clsMeetingAgenda.AccExecName = ddlAccountExecutive.value == 0 ? "" : ddlAccountExecutive.options[ddlAccountExecutive.selectedIndex].text;
-            clsMeetingAgenda.AccExecEmailID = ddlAccountExecutive.value == 0 ? "" : ddlEmail.options[ddlEmail.selectedIndex].text;
-            clsMeetingAgenda.AccExecPhone = ddlAccountExecutive.value == 0 ? "" : ddlPhone.options[ddlPhone.selectedIndex].text;
-
             clsMeetingAgenda.MeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim();
-            clsMeetingAgenda.AccExecID = parseInt(document.getElementById("<%=ddlAccountExecutive.ClientID %>").value.trim());
+
+            //Account Executive Info
+            clsMeetingAgenda.AccExecName = AccountExecutiveName.value.trim();
+            clsMeetingAgenda.AccExecEmailID = AccExecEmailID.value.trim();
+            clsMeetingAgenda.AccExecPhone = AccExecPhone.value.trim();
             clsMeetingAgenda.MeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>").value.trim();
-            clsMeetingAgenda.CallInNumber = document.getElementById("<%=txtCallInNumber.ClientID %>").value.trim();
-            clsMeetingAgenda.MeetingID = document.getElementById("<%=txtMeetingID.ClientID %>").value.trim();
-            clsMeetingAgenda.MeetingWebLink = document.getElementById("<%=txtMeetingWebLink.ClientID %>").value.trim();
-            clsMeetingAgenda.YTDRevenue = document.getElementById("<%=txtYTDRevenue.ClientID %>").value.trim();
-            clsMeetingAgenda.YTDTransports = document.getElementById("<%=txtYTDTransports.ClientID %>").value.trim();
+
+           <%--
+           // clsMeetingAgenda.AccExecID = parseInt(document.getElementById("<%=ddlAccountExecutive.ClientID %>").value.trim());
+            
+            //clsMeetingAgenda.CallInNumber = document.getElementById("<%=txtCallInNumber.ClientID %>").value.trim();
+           // clsMeetingAgenda.MeetingID = document.getElementById("<%=txtMeetingID.ClientID %>").value.trim();
+           // clsMeetingAgenda.MeetingWebLink = document.getElementById("<%=txtMeetingWebLink.ClientID %>").value.trim();
+           // clsMeetingAgenda.YTDRevenue = document.getElementById("<%=txtYTDRevenue.ClientID %>").value.trim();
+           // clsMeetingAgenda.YTDTransports = document.getElementById("<%=txtYTDTransports.ClientID %>").value.trim();
             clsMeetingAgenda.RevenuePerTransport = document.getElementById("<%=txtRevenuePerTransport.ClientID %>").value.trim();
             clsMeetingAgenda.CPAWComments = document.getElementById("<%=txtCPAWComments.ClientID %>").value.trim();
             clsMeetingAgenda.CPAWStartDate1 = document.getElementById("<%=txtCPAWStartDate1.ClientID %>").value.trim();
@@ -2679,6 +2571,245 @@
             clsMeetingAgenda.ARActionTaken = document.getElementById("<%=txtARActionTaken.ClientID %>").value.trim();
             clsMeetingAgenda.BRRComments = document.getElementById("<%=txtBRRComments.ClientID %>").value.trim();
             clsMeetingAgenda.BRRActionTaken = document.getElementById("<%=txtBRRActionTaken.ClientID %>").value.trim();
+        --%>
+
+           // Previous and Current Date
+            clsMeetingAgenda.PreviousStartDate = document.getElementById("<%=txtPreviousStartDate.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousEndDate = document.getElementById("<%=txtPreviousEndDate.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousReportType = document.getElementById("<%=ddlPreviousReportType.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevTransports = document.getElementById("<%=txtPrevTransports.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevCharges = document.getElementById("<%=txtPrevCharges.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevRevenue = document.getElementById("<%=txtPrevRevenue.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevAdjust = document.getElementById("<%=txtPrevAdjust.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevWriteOff = document.getElementById("<%=txtPrevWriteOff.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevRefund = document.getElementById("<%=txtPrevRefund.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevRPT = document.getElementById("<%=txtPrevRPT.ClientID %>").value.trim();
+            clsMeetingAgenda.PrevCollRate = document.getElementById("<%=txtPrevCollRate.ClientID %>").value.trim();
+
+            clsMeetingAgenda.CurrentStartDate = document.getElementById("<%=txtCurrentStartDate.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentEndDate = document.getElementById("<%=txtCurrentEndDate.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentCurrentReportType = document.getElementById("<%=ddlCurrentReportType.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrTransports = document.getElementById("<%=txtCurrTransports.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrCharges = document.getElementById("<%=txtCurrCharges.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrRevenue = document.getElementById("<%=txtCurrRevenue.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrAdjust = document.getElementById("<%=txtCurrAdjust.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrWriteOff = document.getElementById("<%=txtCurrWriteOff.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrRefund = document.getElementById("<%=txtCurrRefund.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrRPT = document.getElementById("<%=txtCurrRPT.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrCollRate = document.getElementById("<%=txtCurrCollRate.ClientID %>").value.trim();
+
+            clsMeetingAgenda.ARComments = document.getElementById("<%=txtComments.ClientID %>").value.trim();
+
+            //Aging Review
+            var IsAgingReviewddl = document.getElementById("<%=ddlAgingReview.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsAgingReview = IsAgingReviewddl.value; // GetRadioListValue(IsAgingReviewddl);
+            var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);
+            clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
+
+
+            //Billing Policy
+            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl.value;// GetRadioListValue(IsBillingPolicyddl);
+            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.Collections = IsCollectionddl.value;// GetRadioListValue(IsCollectionddl);          
+            clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();           
+           
+
+            //Billing Rates Reviewed
+            var IsBillingRateReviewedddl = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);                      
+            clsMeetingAgenda.LastRateChanged = document.getElementById("<%=txtLastRateChange.ClientID %>").value.trim(); 
+            clsMeetingAgenda.BillingRateReviewedComments = document.getElementById("<%=txtBillingRatesReviewedComments.ClientID %>").value.trim(); 
+
+
+            //Current Billing Rate
+            var IsCurrentBillingRateddl = document.getElementById("<%=ddlCurrentBillingRates.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsCurrentBillingRate = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);
+            // clsMeetingAgenda.IsCurrentBillingRate = ddlCurrentBillingRates.SelectedValue.Trim();
+            clsMeetingAgenda.BLS = document.getElementById("<%=txtBLS.ClientID %>").value.trim(); 
+            clsMeetingAgenda.BLSNE = document.getElementById("<%=txtBLSNE.ClientID %>").value.trim(); 
+            clsMeetingAgenda.ALS = document.getElementById("<%=txtALS.ClientID %>").value.trim(); 
+            clsMeetingAgenda.ALSNE = document.getElementById("<%=txtALSNE.ClientID %>").value.trim(); 
+            clsMeetingAgenda.ALS2 = document.getElementById("<%=txtALS2.ClientID %>").value.trim(); 
+            clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim(); 
+            var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsNonTransport = IsNonTransportddl.value;// GetRadioListValue(IsNonTransportddl);
+            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRActionTaken.ClientID %>").value.trim(); 
+            
+
+            //UCR (Usual & Customary Rates)
+            var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.UCR = IsUCRddl.value;// GetRadioListValue(IsUCRddl);            
+            clsMeetingAgenda.UCRComments = document.getElementById("<%=txtUCRComments.ClientID %>").value.trim();
+
+           
+
+            //Control Comments on Billing Rates
+            clsMeetingAgenda.CommentsOnBillingRates = document.getElementById("<%=txtCommentsOnBillingRates.ClientID %>").value.trim();
+            var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
+            var IsWithChargedddl = document.getElementById("<%=ddlWithCharge.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsWithCharged = IsWithChargedddl.value;// GetRadioListValue(IsWithChargedddl);
+            var IsClientProcessesOwnCreditcardsddl = document.getElementById("<%=ddlClientPorcessesOwnCreditcards.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsClientProcessesOwnCreditcards = IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+
+
+            //Non-Emergency Tranports
+            var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsNonEmergenctTranports = IsNonEmergenctTranportsddl.value;// GetRadioListValue(IsNonEmergenctTranportsddl);
+            var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl.value;// GetRadioListValue(IsClientAwareofPriorAuthorizationRequirementsddl);
+            var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl.value;// GetRadioListValue(IsTraningNeededddl);
+           
+
+            //Contract Facility Billing or Correctional/Jail
+            var IsContractFacilityBillingddl = document.getElementById("<%=ddlContractFacilityBilling.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsContractFacilityBilling = IsContractFacilityBillingddl.value;// GetRadioListValue(IsContractFacilityBillingddl);
+
+            var IsSkilledNursingFacilitiesddl = document.getElementById("<%=ddlSkilledNursingFacilities.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsTranIsSkilledNursingFacilitiesingNeeded = IsSkilledNursingFacilitiesddl.value;// GetRadioListValue(IsSkilledNursingFacilitiesddl);
+
+            var IsUpdatedContractsddl = document.getElementById("<%=ddlUpdatedContracts.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsUpdatedContracts = IsUpdatedContractsddl.value;// GetRadioListValue(IsUpdatedContractsddl);
+
+            var IsAttachedddl = document.getElementById("<%=ddlAttached.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsAttached = IsAttachedddl.value;// GetRadioListValue(IsAttachedddl);
+
+            var IsFacilityCurrentlyddl = document.getElementById("<%=ddlFacilityCurrently.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsFacilityCurrently = IsFacilityCurrentlyddl.value;// GetRadioListValue(IsFacilityCurrentlyddl);
+
+            var IsToBeBilledddl = document.getElementById("<%=ddlToBeBilled.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsToBeBilled = IsToBeBilledddl.value;// GetRadioListValue(IsToBeBilledddl);
+
+            var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl.value;// GetRadioListValue(IsToWithTheFacilityddl);
+                        
+
+            //9. Contract Status
+            var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsContractStatus = IsContractStatusddl.value;// GetRadioListValue(IsContractStatusddl);
+            clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim(); 
+            clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
+            var IsContractCurrentddl = document.getElementById("<%=ddlContractCurrent.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsContractCurrent = IsContractCurrentddl.value;// GetRadioListValue(IsContractCurrentddl);
+           
+
+            //10. Personnel Changes
+            var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl.value;// GetRadioListValue(IsPersonnelChangesddl);          
+            clsMeetingAgenda.ChiefName = document.getElementById("<%=txtChief.ClientID %>").value.trim();
+            clsMeetingAgenda.FiscalOfficerName = document.getElementById("<%=txtFiscalOfficer.ClientID %>").value.trim(); 
+            clsMeetingAgenda.AuthorizedOfficialName1 = document.getElementById("<%=txtAuthorizedOfficial1.ClientID %>").value.trim(); 
+            clsMeetingAgenda.AuthorizedOfficialName2 = document.getElementById("<%=txtAuthorizedOfficial2.ClientID %>").value.trim();
+
+            //Demographic Changes
+            var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl); 
+            var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl.value;// GetRadioListValue(IsNewBusinessddl); 
+            
+
+            //Client Data Status
+            var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsUsage = IsUsageddl.value;// GetRadioListValue(IsUsageddl); 
+            var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl.value;// GetRadioListValue(IsAlertsReceivedddl); 
+            var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl.value;// GetRadioListValue(IsOIG_Exclsuionaryddl); 
+            var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl);
+            var IsDiscussedddl = document.getElementById("<%=ddlDiscussed.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsDiscussed = IsDiscussedddl.value;// GetRadioListValue(IsDiscussedddl); 
+
+
+            // ePCR 
+            var ePCRNameddl = document.getElementById("<%=ddlePCRName.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IePCRNamesUsage = ePCRNameddl.value;// GetRadioListValue(ePCRNameddl);
+
+            clsMeetingAgenda.ePCRDate = document.getElementById("<%=txtLastReconciliationDate.ClientID %>").value.trim();
+            clsMeetingAgenda.ePCRByWhom = document.getElementById("<%=txtByWhom.ClientID %>").value.trim();
+            clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
+
+            var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
+            
+
+            //Signature Capture
+            var IsPatientSignatureddl = document.getElementById("<%=ddlPatientSignature.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsPatientSignature = IsPatientSignatureddl.value;// GetRadioListValue(IsPatientSignatureddl); 
+            var IsPatientSignatureEPCRddl = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl.value;// GetRadioListValue(IsPatientSignatureEPCRddl); 
+            var IsReceivingFacilitySignatureddl = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsReceivingFacilitySignature = IsReceivingFacilitySignatureddl.value;// GetRadioListValue(IsReceivingFacilitySignatureddl); 
+            var IsReceivingFacilitySignatureEPCRddl = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = IsReceivingFacilitySignatureEPCRddl.value;// GetRadioListValue(IsReceivingFacilitySignatureEPCRddl); 
+            var IsCrewSignatureddl = document.getElementById("<%=ddlCrewSignature.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsCrewSignature = IsCrewSignatureddl.value;// GetRadioListValue(IsCrewSignatureddl); 
+            var IsCrewSignatureEPCRddl = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl.value;// GetRadioListValue(IsCrewSignatureEPCRddl);           
+            clsMeetingAgenda.SignatureCaptureComments = document.getElementById("<%=txtSignatureCaptureComments.ClientID %>").value.trim();
+
+            //15. Month End Report
+            var IsStatementReconciliationddl = document.getElementById("<%=ddlStatementReconciliation.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl.value;// GetRadioListValue(IsStatementReconciliationddl);          
+            clsMeetingAgenda.MonthEndReportByWho = document.getElementById("<%=txtMonthEndReportByWho.ClientID %>").value.trim(); 
+            clsMeetingAgenda.MonthEndReportHowOften = document.getElementById("<%=txtMonthEndReportHowOften.ClientID %>").value.trim();
+            var IsTraningCompletedddl = document.getElementById("<%=ddlTraningCompleted.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl.value;// GetRadioListValue(IsTraningCompletedddl);   
+            var IsTraningPendingddl = document.getElementById("<%=ddlIsTraningPending.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsTraningPending = IsTraningPendingddl.value;// GetRadioListValue(IsTraningPendingddl); 
+           
+            //Client Review Intervals
+            var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");           
+            var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
+            if (rdolstCRI[0].checked) {
+                clsMeetingAgenda.IsReviewIntervalCRI = "Monthly";
+            }
+            else if (rdolstCRI[1].checked) {
+                clsMeetingAgenda.IsReviewIntervalCRI = "Quarterly";
+            }
+            else if (rdolstCRI[2].checked) {
+                clsMeetingAgenda.IsReviewIntervalCRI = "Semi-Annual";
+            }
+            else if (rdolstCRI[3].checked) {
+                clsMeetingAgenda.IsReviewIntervalCRI = "Yearly";
+            }
+            else {
+                clsMeetingAgenda.IsReviewIntervalCRI = "";
+            }
+
+            clsMeetingAgenda.NextReviewScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>").value.trim(); 
+            clsMeetingAgenda.ChangeInZOHO = document.getElementById("<%=txtChangeInZOHO.ClientID %>").value.trim(); 
+
+            //Address Information
+            clsMeetingAgenda.BillingStreet = document.getElementById("<%=txtBillingStreet.ClientID %>").value.trim(); 
+            clsMeetingAgenda.BillingCity = document.getElementById("<%=txtBillingCity.ClientID %>").value.trim(); 
+            clsMeetingAgenda.BillingState = document.getElementById("<%=txtBillingState.ClientID %>").value.trim(); 
+            clsMeetingAgenda.BillingZip = document.getElementById("<%=txtBillingZip.ClientID %>").value.trim(); 
+
+            clsMeetingAgenda.MailingStreet = document.getElementById("<%=txtMailingStreet.ClientID %>").value.trim(); 
+            clsMeetingAgenda.MailingCity = document.getElementById("<%=txtMailingCity.ClientID %>").value.trim(); 
+            clsMeetingAgenda.MailingState = document.getElementById("<%=txtMailingState.ClientID %>").value.trim();  
+            clsMeetingAgenda.MailingZip = document.getElementById("<%=txtMailingZip.ClientID %>").value.trim();;
+
+            clsMeetingAgenda.PhysicalLocationStreet = document.getElementById("<%=txtPhysicalLocationStreet.ClientID %>").value.trim();
+            clsMeetingAgenda.PhysicalLocationCity = document.getElementById("<%=txtPhysicalLocationCity.ClientID %>").value.trim(); 
+            clsMeetingAgenda.PhysicalLocationState = document.getElementById("<%=txtPhysicalLocationState.ClientID %>").value.trim(); 
+            clsMeetingAgenda.PhysicalLocationZip = document.getElementById("<%=txtPhysicalLocationZip.ClientID %>").value.trim(); 
+
+            //OVERALL MEETING NOTES
+            clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim(); 
+            clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
+
+
+
+
+
+
+<%--     
+        //Billing Policy
 
             clsMeetingAgenda.BLS = document.getElementById("<%=txtBLS.ClientID %>").value.trim();
             clsMeetingAgenda.BLSNE = document.getElementById("<%=txtBLSNE.ClientID %>").value.trim();
@@ -2689,10 +2820,6 @@
 
             var rdolstNonTransport = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsNonTransport = GetRadioListValue(rdolstNonTransport);
-
-            var rdolstBillingRateReviewed = document.getElementById("<%=rdolstBillingRateReviewed.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.BillingRateReviewed = GetRadioListValue(rdolstBillingRateReviewed);
-
 
             clsMeetingAgenda.BLSReviewed = document.getElementById("<%=txtBLSReviewed.ClientID %>").value.trim();
             clsMeetingAgenda.BLSNEReviewed = document.getElementById("<%=txtBLSNEReviewed.ClientID %>").value.trim();
@@ -2772,23 +2899,7 @@
             var rdolstIsTraningPending = document.getElementById("<%=ddlIsTraningPending.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsTrainingPending = GetRadioListValue(rdolstIsTraningPending);
 
-            var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
-
-            if (rdolstCRI[0].checked) {
-                clsMeetingAgenda.CRI = "Monthly";
-            }
-            else if (rdolstCRI[1].checked) {
-                clsMeetingAgenda.CRI = "Quarterly";
-            }
-            else if (rdolstCRI[2].checked) {
-                clsMeetingAgenda.CRI = "Semi-Annual";
-            }
-            else if (rdolstCRI[3].checked) {
-                clsMeetingAgenda.CRI = "Yearly";
-            }
-            else {
-                clsMeetingAgenda.CRI = "";
-            }
+            
 
             clsMeetingAgenda.NRScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>").value.trim();
             clsMeetingAgenda.ChangeInZOHO = document.getElementById("<%=txtChangeInZOHO.ClientID %>").value.trim();
@@ -2833,6 +2944,8 @@
 
             clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim();
             clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
+        --%>
+
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             clsMeetingAgenda.isPrint = isPrint;
 
@@ -3010,7 +3123,7 @@
         }
 
         function BillingRateReviewedEnable() {
-            var rdolstBillingRateReviewed = document.getElementById("<%=rdolstBillingRateReviewed.ClientID %>").getElementsByTagName("input");
+            var ddlBillingRateReviewed = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").getElementsByTagName("input");
             var txtBLSReviewed = document.getElementById("<%=txtBLSReviewed.ClientID %>");
             var txtBLSNEReviewed = document.getElementById("<%=txtBLSNEReviewed.ClientID %>");
             var txtALSReviewed = document.getElementById("<%=txtALSReviewed.ClientID %>");
@@ -3019,7 +3132,7 @@
             var txtMileageReviewed = document.getElementById("<%=txtMileageReviewed.ClientID %>");
             var rdolstNonTransportReviewed = document.getElementById("<%=rdolstNonTransportReviewed.ClientID %>").getElementsByTagName("input");
 
-            if (rdolstBillingRateReviewed[0].checked) {
+            if (ddlBillingRateReviewed[0].checked) {
                 txtBLSReviewed.disabled = false;
                 txtBLSNEReviewed.disabled = false;
                 txtALSReviewed.disabled = false;
