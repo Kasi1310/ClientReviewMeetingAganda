@@ -670,8 +670,8 @@ namespace ClientMeetingAgenda
             //Control Comments on Billing Rates
             objclsMeetingAgenda.CommentsOnBillingRates = txtCommentsOnBillingRates.Text.Trim();
             objclsMeetingAgenda.IsFacilityTransports = ddlFacilityTransports.SelectedValue.Trim();
-            objclsMeetingAgenda.IsWithCharged = ddlWithCharge.SelectedValue.Trim();
-            objclsMeetingAgenda.IsClientProcessesOwnCreditcards = ddlClientPorcessesOwnCreditcards.SelectedValue.Trim();
+            //objclsMeetingAgenda.IsWithCharged = ddlWithCharge.SelectedValue.Trim();
+            //objclsMeetingAgenda.IsClientProcessesOwnCreditcards = ddlClientPorcessesOwnCreditcards.SelectedValue.Trim();
 
             //Non-Emergency Tranports
             objclsMeetingAgenda.IsNonEmergenctTranports = ddlNonEmergenctTranports.SelectedValue.Trim();

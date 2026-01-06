@@ -288,6 +288,14 @@ namespace ClientMeetingAgenda
             cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
             childTable1.AddCell(cell);
 
+            cell = new PdfPCell(new Phrase("REPORT DATE", fontHeader));
+            cell.PaddingBottom = 5f;
+            cell.Colspan = 1;
+            cell.Border = Rectangle.RIGHT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.TOP_BORDER | Rectangle.LEFT_BORDER;
+            cell.BackgroundColor = customBGAshColor;
+            cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+            childTable1.AddCell(cell);
+
             cell = new PdfPCell(new Phrase(objclsMeetingAgenda.ClientNo, fontContent));
             cell.PaddingBottom = 5f;
             cell.Colspan = 1;
@@ -303,6 +311,14 @@ namespace ClientMeetingAgenda
             childTable1.AddCell(cell);
 
             cell = new PdfPCell(new Phrase(objclsMeetingAgenda.MeetingDate, fontContent));
+            cell.PaddingBottom = 5f;
+            cell.Colspan = 1;
+            cell.Border = Rectangle.RIGHT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.TOP_BORDER | Rectangle.LEFT_BORDER;
+            //cell.BorderColor=
+            cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+            childTable1.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase(objclsMeetingAgenda.ReportDate, fontContent));
             cell.PaddingBottom = 5f;
             cell.Colspan = 1;
             cell.Border = Rectangle.RIGHT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.TOP_BORDER | Rectangle.LEFT_BORDER;
@@ -1012,14 +1028,14 @@ namespace ClientMeetingAgenda
             cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             childTable7.AddCell(cell);
 
-            if (objclsMeetingAgenda.IsNonTransport.ToUpper() == "YES")
-            {
-                cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
-            }
-            else
-            {
-                cell = new PdfPCell(new Phrase(" ", fontContent));
-            }
+            //if (objclsMeetingAgenda.IsNonTransport.ToUpper() == "YES")
+            //{
+            //    cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
+            //}
+            //else
+            //{
+            //    cell = new PdfPCell(new Phrase(" ", fontContent));
+            //}
             //cell.PaddingBottom = 5f;
             cell.Colspan = 1;
             //cell.Border = Rectangle.RIGHT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.TOP_BORDER | Rectangle.LEFT_BORDER;
@@ -1050,14 +1066,14 @@ namespace ClientMeetingAgenda
             cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             childTable7.AddCell(cell);
 
-            if (objclsMeetingAgenda.IsNonTransport.ToUpper() == "NO")
-            {
-                cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
-            }
-            else
-            {
-                cell = new PdfPCell(new Phrase(" ", fontContent));
-            }
+            //if (objclsMeetingAgenda.IsNonTransport.ToUpper() == "NO")
+            //{
+            //    cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
+            //}
+            //else
+            //{
+            //    cell = new PdfPCell(new Phrase(" ", fontContent));
+            //}
             //cell.PaddingTop = 3f;
             cell.Colspan = 1;
             //cell.Border = PdfPCell.RECTANGLE;
@@ -1104,15 +1120,15 @@ namespace ClientMeetingAgenda
             cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             childTableBRR.AddCell(cell);
 
-            if (objclsMeetingAgenda.BillingRateReviewed.ToUpper() == "YES")
-            {
-                cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
-            }
-            else
-            {
-                cell = new PdfPCell(new Phrase("  ", fontHeader));
+            //if (objclsMeetingAgenda.BillingRateReviewed.ToUpper() == "YES")
+            //{
+            //    cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
+            //}
+            //else
+            //{
+            //    cell = new PdfPCell(new Phrase("  ", fontHeader));
 
-            }
+            //}
             //cell.PaddingTop = 3f;
             cell.Colspan = 1;
             //cell.Border = PdfPCell.RECTANGLE;
@@ -1121,15 +1137,15 @@ namespace ClientMeetingAgenda
             childTableBRR.AddCell(cell);
 
 
-            if (objclsMeetingAgenda.BillingRateReviewed.ToUpper() == "NO")
-            {
-                cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
-            }
-            else
-            {
-                cell = new PdfPCell(new Phrase("  ", fontHeader));
+            //if (objclsMeetingAgenda.BillingRateReviewed.ToUpper() == "NO")
+            //{
+            //    cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
+            //}
+            //else
+            //{
+            //    cell = new PdfPCell(new Phrase("  ", fontHeader));
 
-            }
+            //}
             //cell.PaddingTop = 3f;
             cell.Colspan = 1;
             //cell.Border = PdfPCell.RECTANGLE;
