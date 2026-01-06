@@ -18,6 +18,7 @@ namespace ClientMeetingAgenda.App_Code
         public string ClientID { get; set; }
         public string ClientName { get; set; }
         public string MeetingDate { get; set; }
+        public string ReportDate { get; set; }
         public int AccExecID { get; set; }
         public string AccExecName { get; set; }
         public string AccExecEmailID { get; set; }
