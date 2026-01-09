@@ -120,7 +120,7 @@
                                     <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" runat="server" >
                                       <asp:ListItem Value="">--Select--</asp:ListItem>
                                   </asp:DropDownList>
-                               <%--  AutoPostBack="true"  OnSelectedIndexChanged="ddlAccountExecutive_SelectedIndexChanged"--%>
+                               
                              </td>
                              <td colspan="3">
                                  <asp:DropDownList ID="ddlEmail" CssClass="form-control" runat="server">
@@ -156,7 +156,7 @@
                  </table>
               
             </div>
-            <div hidden class="col-lg-12 form-group">
+           <%-- <div hidden class="col-lg-12 form-group">
                 <div class="col-lg-4 form-group">
                     Call In Number:               
                      <asp:TextBox ID="txtCallInNumber" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
@@ -175,7 +175,7 @@
                      <asp:TextBox ID="txtMeetingWebLink" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                 </div>
 
-            </div>
+            </div>--%>
             <div class="col-lg-12">
                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                     <thead>
@@ -1363,7 +1363,7 @@
                         <td style="width: 35%;">MAIN ISSUES (If Any)
                         </td>
                     </tr>
-                    <tr class="hidden">
+                 <%--   <tr class="hidden">
                         <td style="padding-left: 10px; color: #00968F; font-weight: bold">Aging Review
                             <br />
                             (Sent to araging@medicount.com)
@@ -1467,8 +1467,8 @@
                                 </tr>
                             </table>
                         </td>
-                    </tr>
-                    <tr hidden>
+                    </tr>--%>
+                    <%--<tr hidden>
                         <td rowspan="3" style="padding-left: 20px; font-weight: bold">b.CUR (Customary and usual rates for the area)
                         </td>
                         <td class="text-lg-center bg-info text-white font-weight-bold" style="padding: 5px;">CUR Reviewed                          
@@ -1509,10 +1509,10 @@
                         </td>
                         <td class="text-lg-center bg-info text-white font-weight-bold">Contract Current                          
                         </td>
-                    </tr>
+                    </tr> 
                     <tr hidden>
                         <td style="padding-left: 20px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
+                           
                             <div>
                                 <asp:RadioButtonList ID="rdolstContractCurrent_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
@@ -1626,11 +1626,11 @@
                         </td>
                         <td class="text-lg-center bg-info text-white font-weight-bold">Usage                          
                         </td>
-                    </tr>
-                    <tr hidden>
+                    </tr>--%>
+                   <%-- <tr hidden>
                         <td style="padding-left: 20px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
-                            <div>
+                      
+                           <div>
                                 <asp:RadioButtonList ID="rdolstCPUsage" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
                                     <asp:ListItem Value="NO"><span></span>No</asp:ListItem>
@@ -1647,10 +1647,10 @@
                         </td>
                         <td class="text-lg-center bg-info text-white font-weight-bold">Alert Received                          
                         </td>
-                    </tr>
-                    <tr hidden>
+                    </tr>--%>
+                    <%--<tr hidden>
                         <td style="padding-left: 20px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
+                           
                             <div>
                                 <asp:RadioButtonList ID="rdolstRAAlertReceived" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
@@ -1671,7 +1671,7 @@
                     </tr>
                     <tr hidden>
                         <td style="padding-left: 20px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
+                          
                             <div>
                                 <asp:RadioButtonList ID="rdolstMGDiscussed" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
@@ -1692,7 +1692,7 @@
                     </tr>
                     <tr hidden>
                         <td style="padding-left: 20px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
+                           
                             <div>
                                 <asp:RadioButtonList ID="rdolstCPSDiscussed" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
@@ -1713,7 +1713,7 @@
                                         <span style="padding-left: 10px; color: #00968F; font-weight: bold;">Patient Signature:          
                                         </span></td>
                                     <td style="padding-left: 10px; padding-top: 10px; width: 50%;">
-                                        <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
+                                      
                                         <div>
                                             <asp:RadioButtonList ID="rdolstPatientSignature_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                                 <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
@@ -1726,7 +1726,7 @@
                         </td>
 
                         <td style="padding-left: 20px; padding-top: 10px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
+                           
                             <div>
                                 <asp:RadioButtonList ID="rdolstPatientSignatureEPCR_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>EPCR</asp:ListItem>
@@ -1734,8 +1734,8 @@
                                 </asp:RadioButtonList>
                             </div>
                         </td>
-                    </tr>
-                    <tr hidden>
+                    </tr>--%>
+                    <%--<tr hidden>
                         <td>
                             <table class="col-lg-12">
                                 <tr>
@@ -1743,7 +1743,6 @@
                                         <span style="padding-left: 10px; color: #00968F; font-weight: bold">Receiving Facility Signature:
                                         </span></td>
                                     <td style="padding-left: 10px; padding-top: 10px; width: 50%;">
-                                        <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
                                         <div>
                                             <asp:RadioButtonList ID="rdolstReceivingFacilitySignature_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                                 <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
@@ -1756,7 +1755,6 @@
                         </td>
 
                         <td style="padding-left: 20px; padding-top: 10px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
                             <div>
                                 <asp:RadioButtonList ID="rdolstReceivingFacilitySignatureEPCR_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>EPCR</asp:ListItem>
@@ -1773,7 +1771,6 @@
                                         <span style="padding-left: 10px; color: #00968F; font-weight: bold">Crew Signature:
                                         </span></td>
                                     <td style="padding-left: 10px; padding-top: 10px; width: 50%;">
-                                        <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
                                         <div>
                                             <asp:RadioButtonList ID="rdolstCrewSignature_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                                 <asp:ListItem Value="YES"><span></span>Yes</asp:ListItem>
@@ -1786,7 +1783,6 @@
                         </td>
 
                         <td style="padding-left: 20px; padding-top: 10px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
                             <div>
                                 <asp:RadioButtonList ID="rdolstCrewSignatureEPCR_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>EPCR</asp:ListItem>
@@ -1795,9 +1791,9 @@
                             </div>
                         </td>
                     </tr>
+                   --%>
                    
-                   
-                    <tr hidden>
+                   <%-- <tr hidden>
                         <td style="padding-left: 10px; color: #00968F; font-weight: bold">Month End Report Reconciliation Tutorial (report to run)
                         </td>
                         <td>
@@ -1806,7 +1802,6 @@
                         </td>
 
                         <td style="padding-left: 20px;">
-                            <%--<div style="float: left;"><span class="text-danger">*</span></div>--%>
                             <div id="divIsTraningPending_old">
                                 <asp:RadioButtonList ID="rdolstIsTraningPending_old" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="YES"><span></span>Training Pending</asp:ListItem>
@@ -1883,7 +1878,7 @@
                                 </tr>
                             </table>
                         </td>
-                    </tr>
+                    </tr>--%>
 
                    
 
@@ -1906,25 +1901,22 @@
                 <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
             </div>
 
-            <div hidden class="col-lg-12 form-group">
+            <%--<div hidden class="col-lg-12 form-group">
                 <div class="col-lg-12 form-group text-lg-left bg-info text-white">
                     <h4><b>CLIENT REVENUE NUMBERS</b></h4>
                 </div>
             </div>
                 <div hidden class="col-lg-12 form-group">
                     <div class="col-lg-4 form-group">
-                        <%--<span class="text-danger">*</span>--%>
                         YTD Revenue:               
                          <asp:TextBox ID="txtYTDRevenue" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"
                              onblur="isMoneyKey(this,'YTD Revenue');"></asp:TextBox>
                     </div>
                     <div class="col-lg-4 form-group">
-                        <%--<span class="text-danger">*</span>--%>
                         YTD Transports:               
                          <asp:TextBox ID="txtYTDTransports" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                     </div>
                     <div class="col-lg-4 form-group">
-                        <%--<span class="text-danger">*</span>--%>
                         Revenue Per Transport:               
                          <asp:TextBox ID="txtRevenuePerTransport" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"
                              onblur="isMoneyKey(this,'Revenue Per Transport');"></asp:TextBox>
@@ -2003,9 +1995,8 @@
                 </div>
                 <div hidden class="col-lg-12">
                     <asp:TextBox ID="txtPNComments" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="5" Style="resize: none;"></asp:TextBox>
-                </div>
-
-                        </div>
+                </div>--%>
+         </div>
     </div>
 
 
@@ -3125,7 +3116,7 @@
             }
         }
 
-        function BillingRateReviewedEnable() {
+       <%-- function BillingRateReviewedEnable() {
             var ddlBillingRateReviewed = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").getElementsByTagName("input");
             var txtBLSReviewed = document.getElementById("<%=txtBLSReviewed.ClientID %>");
             var txtBLSNEReviewed = document.getElementById("<%=txtBLSNEReviewed.ClientID %>");
@@ -3165,7 +3156,7 @@
                 rdolstNonTransportReviewed[1].checked = false;
 
             }
-        }
+        }--%>
     </script>
 
 </asp:Content>
