@@ -212,62 +212,26 @@
           
 
             <div class="col-lg-12 form-group">
-                <asp:GridView ID="gvAttendees" runat="server" AutoGenerateColumns="false"
-                    CssClass="table table-striped table-bordered table-hover"
-                     OnRowCommand="gvAttendees_RowCommand" OnRowDataBound="gvAttendees_RowDataBound"
-                    AllowPaging="false" ShowHeaderWhenEmpty="true">                  
-                    <Columns>
-                        <asp:TemplateField HeaderText="S.No">
-                            <ItemTemplate>
-                                <%#Container.DataItemIndex + 1%>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Name">
-                            <ItemTemplate>
-                                <asp:HiddenField ID="gvhdnID" runat="server" Value='<%# Eval("ID") %>' />
-                                <asp:Label ID="gvlblName" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Title">
-                            <ItemTemplate>
-                                <asp:Label ID="gvlblTitle" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Phone">
-                            <ItemTemplate>
-                                <asp:Label ID="gvlblPhone" runat="server" Text='<%# Eval("Phone") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="EmailID">
-                            <ItemTemplate>
-                                <asp:Label ID="gvlblEmailID" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Attended Meeting">
-                            <ItemTemplate>
-                                <asp:Label ID="gvlblAttendedMeeting" runat="server" Text='<%# Eval("AttendedMeeting") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Action">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="gvlnkConfirmAttendess" runat="server" CommandName="cmdConfirmAttendess" ToolTip="Attended Meeting"
-                                    CssClass="fa fa-user-plus" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
-                                <asp:LinkButton ID="gvlnkUnConfirmAttendess" runat="server" CommandName="cmdUnConfirmAttendess" ToolTip="Not Attended Meeting"
-                                    CssClass="fa fa-user-times" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
-                                
-                                <asp:LinkButton ID="gvlnkEdit" runat="server" CommandName="cmdEdit" ToolTip="Edit" CssClass="fa fa-pencil"
-                                CommandArgument='<%# Eval("ID") %>' OnClientClick="gvAttendees_RowCommand"></asp:LinkButton>   
-                                
-                                <asp:LinkButton ID="gvlnkDelete" runat="server" CommandName="cmdDelete" ToolTip="Delete" CssClass="fa fa-trash"
-                                    CommandArgument='<%# Eval("ID") %>' OnClientClick="return confirm('Are you sure to Delete Permanently?')"></asp:LinkButton>
+              
+                        <asp:GridView ID="gvAttendees" runat="server"
+                       AutoGenerateColumns="false"
+                       CssClass="table table-striped table-bordered"
+                       DataKeyNames="RowID"
+                       OnRowEditing="gvAttendees_RowEditing"
+                       OnRowUpdating="gvAttendees_RowUpdating"
+                       OnRowCancelingEdit="gvAttendees_RowCancelingEdit"
+                       OnRowDeleting="gvAttendees_RowDeleting">
 
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <EmptyDataTemplate>
-                        <div align="center">No records found.</div>
-                    </EmptyDataTemplate>
-                </asp:GridView>
+                       <Columns>
+                           <asp:BoundField DataField="Name" HeaderText="Name" />
+                           <asp:BoundField DataField="Title" HeaderText="Title" />
+                           <asp:BoundField DataField="Phone" HeaderText="Phone" />
+                           <asp:BoundField DataField="Email" HeaderText="Email" />
+
+                           <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
+                       </Columns>
+                   </asp:GridView>
+           
             </div>
           
             

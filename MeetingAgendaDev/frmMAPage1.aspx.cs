@@ -417,51 +417,132 @@ namespace ClientMeetingAgenda
 
             AttendeesConfirmation();
         }
+        //protected void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    if (btnAdd.Text == "Add")
+        //    {
+        //        if (Session["dtAttendeesInvited"] == null)
+        //        {
+        //            AssignTextBox();
+        //        }
+        //        dtAttendeesInvited = new DataTable();
+        //        dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
+
+        //        int ID = dtAttendeesInvited.Rows.Count == 0 ? 0 : int.Parse(dtAttendeesInvited.Rows[dtAttendeesInvited.Rows.Count - 1]["ID"].ToString().Trim());
+
+        //        dtAttendeesInvited.Rows.Add(ID + 1, Session["ssnMAID"] != null ? int.Parse(Session["ssnMAID"].ToString().Trim()) : 0
+        //                , txtName.Text.Trim(), txtTitle.Text.Trim(), txtPhone.Text.Trim(), txtEmail.Text.Trim(), false, "NO");
+
+        //    }
+        //    else
+        //    {
+        //        string id = hdnEditId.Value;
+
+        //        foreach (DataRow row in dtAttendeesInvited.Rows)
+        //        {
+        //            if (row["ID"].ToString() == id)
+        //            {
+        //                row["Name"] = txtName.Text;
+        //                row["Title"] = txtTitle.Text;
+        //                row["Phone"] = txtPhone.Text;
+        //                row["Email"] = txtEmail.Text;
+
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    gvAttendees.DataSource = dtAttendeesInvited;
+        //    gvAttendees.DataBind();
+
+        //    txtName.Text = "";
+        //    txtTitle.Text = "";
+        //    txtEmail.Text = "";
+        //    txtPhone.Text = "";
+        //    txtName.Focus();
+
+        //}
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (btnAdd.Text == "Add")
-            {
-                if (Session["dtAttendeesInvited"] == null)
-                {
-                    AssignTextBox();
-                }
-                dtAttendeesInvited = new DataTable();
-                dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
+            DataTable dt = AttendeesTable;
 
-                int ID = dtAttendeesInvited.Rows.Count == 0 ? 0 : int.Parse(dtAttendeesInvited.Rows[dtAttendeesInvited.Rows.Count - 1]["ID"].ToString().Trim());
+            DataRow dr = dt.NewRow();
+            dr["RowID"] = dt.Rows.Count + 1;
+            dr["Name"] = txtName.Text.Trim();
+            dr["Title"] = txtTitle.Text.Trim();
+            dr["Phone"] = txtPhone.Text.Trim();
+            dr["Email"] = txtEmail.Text.Trim();
 
-                dtAttendeesInvited.Rows.Add(ID + 1, Session["ssnMAID"] != null ? int.Parse(Session["ssnMAID"].ToString().Trim()) : 0
-                        , txtName.Text.Trim(), txtTitle.Text.Trim(), txtPhone.Text.Trim(), txtEmail.Text.Trim(), false, "NO");
+            dt.Rows.Add(dr);
 
-            }
-            else
-            {
-                string id = hdnEditId.Value;
-
-                foreach (DataRow row in dtAttendeesInvited.Rows)
-                {
-                    if (row["ID"].ToString() == id)
-                    {
-                        row["Name"] = txtName.Text;
-                        row["Title"] = txtTitle.Text;
-                        row["Phone"] = txtPhone.Text;
-                        row["Email"] = txtEmail.Text;
-
-                        break;
-                    }
-                }
-            }
-            gvAttendees.DataSource = dtAttendeesInvited;
-            gvAttendees.DataBind();
-
+            BindGrid();
+            ClearFields();
+        }
+        private void ClearFields()
+        {
             txtName.Text = "";
             txtTitle.Text = "";
-            txtEmail.Text = "";
             txtPhone.Text = "";
-            txtName.Focus();
+            txtEmail.Text = "";
 
         }
-       
+        private void BindGrid()
+        {
+            gvAttendees.DataSource = AttendeesTable;
+            gvAttendees.DataBind();
+        }
+        protected void gvAttendees_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvAttendees.EditIndex = e.NewEditIndex;
+            BindGrid();
+        }
+        protected void gvAttendees_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            DataTable dt = AttendeesTable;
+            int rowId = Convert.ToInt32(gvAttendees.DataKeys[e.RowIndex].Value);
+
+            DataRow row = dt.Select("RowID=" + rowId)[0];
+            dt.Rows.Remove(row);
+
+            BindGrid();
+        }
+        protected void gvAttendees_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvAttendees.EditIndex = -1;
+            BindGrid();
+        }
+        protected void gvAttendees_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            DataTable dt = AttendeesTable;
+            int rowId = Convert.ToInt32(gvAttendees.DataKeys[e.RowIndex].Value);
+
+            DataRow row = dt.Select("RowID=" + rowId)[0];
+
+            row["Name"] = ((TextBox)gvAttendees.Rows[e.RowIndex].Cells[0].Controls[0]).Text;
+            row["Title"] = ((TextBox)gvAttendees.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
+            row["Phone"] = ((TextBox)gvAttendees.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
+            row["Email"] = ((TextBox)gvAttendees.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
+
+            gvAttendees.EditIndex = -1;
+            BindGrid();
+        }
+        private DataTable AttendeesTable
+        {
+            get
+            {
+                if (ViewState["Attendees"] == null)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("RowID", typeof(int));
+                    dt.Columns.Add("Name");
+                    dt.Columns.Add("Title");
+                    dt.Columns.Add("Phone");
+                    dt.Columns.Add("Email");
+
+                    ViewState["Attendees"] = dt;
+                }
+                return (DataTable)ViewState["Attendees"];
+            }
+        }
         protected void gvAttendees_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "cmdEdit")
