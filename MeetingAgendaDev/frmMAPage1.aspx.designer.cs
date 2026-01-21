@@ -420,13 +420,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtCurrCollRate;
 
         /// <summary>
-        /// txtComments control.
+        /// txtClientReviewComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtComments;
+        protected global::System.Web.UI.WebControls.TextBox txtClientReviewComments;
 
         /// <summary>
         /// txtAccountExecutiveComments control.
@@ -454,6 +454,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDiscussedwithARTeam;
+
+        /// <summary>
+        /// txtAgingReviewComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAgingReviewComments;
 
         /// <summary>
         /// txtARComments control.
@@ -492,6 +501,15 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtBillingPolicyComments;
 
         /// <summary>
+        /// txtBillingPolicyMainIssueComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBillingPolicyMainIssueComments;
+
+        /// <summary>
         /// ddlBillingRateReviewed control.
         /// </summary>
         /// <remarks>
@@ -517,6 +535,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBillingRatesReviewedComments;
+
+        /// <summary>
+        /// txtBillingRatesReviewedMainIssueComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBillingRatesReviewedMainIssueComments;
 
         /// <summary>
         /// ddlCurrentBillingRates control.
@@ -618,6 +645,15 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtUCRComments;
 
         /// <summary>
+        /// txtUCRMainIssuComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUCRMainIssuComments;
+
+        /// <summary>
         /// ddlFacilityTransports control.
         /// </summary>
         /// <remarks>
@@ -625,6 +661,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFacilityTransports;
+
+        /// <summary>
+        /// txtFacilityTransportsComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFacilityTransportsComments;
 
         /// <summary>
         /// txtCommentsOnBillingRates control.
@@ -652,6 +697,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlIsClientAwareofPriorAuthorizationRequirements;
+
+        /// <summary>
+        /// txtClientAwareComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientAwareComments;
 
         /// <summary>
         /// ddlIsTraningNeeded control.
@@ -834,6 +888,15 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlNewBusiness;
 
         /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+
+        /// <summary>
         /// txtDemographicChangesComments control.
         /// </summary>
         /// <remarks>
@@ -841,6 +904,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDemographicChangesComments;
+
+        /// <summary>
+        /// ddlReceiveMedicountReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlReceiveMedicountReport;
 
         /// <summary>
         /// ddlUsage control.
@@ -931,6 +1003,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStatementReconciliation;
+
+        /// <summary>
+        /// txtDateofMonthEndReconilations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDateofMonthEndReconilations;
 
         /// <summary>
         /// txtMonthEndReportByWho control.
@@ -1561,5 +1642,14 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+
+        /// <summary>
+        /// ddlIsReferal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsReferal;
     }
 }

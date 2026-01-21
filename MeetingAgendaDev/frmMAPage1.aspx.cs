@@ -678,12 +678,14 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.ClientID= ddlClientName.SelectedValue.Trim();
             objclsMeetingAgenda.ClientName = ddlClientName.Text.Trim();
             objclsMeetingAgenda.MeetingDate = txtMeetingDate.Text.Trim();
+            objclsMeetingAgenda.ReportDate = txtReportDate.Text.Trim();
 
             // Account Executive Info
             objclsMeetingAgenda.AccExecName = txtAccountExecutive.Text.Trim();
             objclsMeetingAgenda.AccExecEmailID = txtAccExecEmailID.Text.Trim();
             objclsMeetingAgenda.AccExecPhone = txtAccExecPhone.Text.Trim();
             objclsMeetingAgenda.MeetingType = ddlMeetingType.SelectedValue.Trim();
+           // objclsMeetingAgenda.ReportDate = txtReportDate.Text.Trim();
 
             // ATTENDEES INVITED
 
@@ -716,7 +718,8 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.CurrentRPT = txtCurrRPT.Text;
             objclsMeetingAgenda.CurrentCollRate = txtCurrCollRate.Text;
 
-            objclsMeetingAgenda.ClientReviewNumberComment = txtComments.Text;
+            objclsMeetingAgenda.ClientReviewClientComment = txtClientReviewComments.Text;
+            objclsMeetingAgenda.ClientReviewAEComments = txtAccountExecutiveComments.Text;
 
             // Aging Review
             objclsMeetingAgenda.IsAgingReview = ddlAgingReview.SelectedValue.Trim();
@@ -753,6 +756,8 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.IsFacilityTransports = ddlFacilityTransports.SelectedValue.Trim();
             //objclsMeetingAgenda.IsWithCharged = ddlWithCharge.SelectedValue.Trim();
             //objclsMeetingAgenda.IsClientProcessesOwnCreditcards = ddlClientPorcessesOwnCreditcards.SelectedValue.Trim();
+            objclsMeetingAgenda.FacilityTransportsComments = txtFacilityTransportsComments.Text.Trim();
+            objclsMeetingAgenda.IsClientProcessesOwnCreditcards = txtCommentsOnBillingRates.Text.Trim();
 
             //Non-Emergency Tranports
             objclsMeetingAgenda.IsNonEmergenctTranports = ddlNonEmergenctTranports.SelectedValue.Trim();
@@ -784,6 +789,7 @@ namespace ClientMeetingAgenda
             //Demographic Changes
             objclsMeetingAgenda.IsClosedBusinesses = ddlClosedBusinesses.SelectedValue.Trim();
             objclsMeetingAgenda.IsNewBusiness = ddlNewBusiness.SelectedValue.Trim();
+            objclsMeetingAgenda.DCComments = txtDemographicChangesComments.Text.Trim();
 
             //Client Data Status
             objclsMeetingAgenda.IsUsage = ddlUsage.SelectedValue.Trim();

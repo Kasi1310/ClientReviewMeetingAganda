@@ -7,6 +7,7 @@ using System.Web;
 using System.Configuration;
 using System.Web.UI;
 using System.Net;
+using System.Web.Services;
 
 namespace ClientMeetingAgenda
 {
@@ -14,10 +15,11 @@ namespace ClientMeetingAgenda
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GeneratePDF();
+           // GeneratePDF();
         }
 
-        private void GeneratePDF()
+        [WebMethod]
+        public void GeneratePDF()
         {
             string designationFileName = @"D:\Common\MeetingAgenda\test.pdf";
 
@@ -1996,11 +1998,9 @@ namespace ClientMeetingAgenda
             }
             File.WriteAllBytes(designationFileName, bytes);
 
-
-
-
-
             System.Diagnostics.Process.Start(designationFileName);
+
+          // return true;
         }
 
         public class PDFFooter : PdfPageEventHelper

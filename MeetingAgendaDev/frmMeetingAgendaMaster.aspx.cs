@@ -595,9 +595,6 @@ namespace ClientMeetingAgenda
 			Response.Redirect(Request.Url.AbsoluteUri);
 		}
 
-		protected void btnExport_Click1(object sender, EventArgs e)
-		{
-
-		}
+		
 	}
 }
