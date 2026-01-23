@@ -208,7 +208,7 @@ namespace ClientMeetingAgenda
                 dtSignature = new DataTable();
 
                 objclsMeetingAgenda = new clsMeetingAgenda();
-                objclsUsers = new clsUsers();
+                objclsUsers = new clsUsers();                
                 objclsMeetingAgenda.ID = int.Parse(Session["ssnMAID"].ToString().Trim());
                 ds = objclsMeetingAgenda.SelectMeetingAgenda();
                 if (ds != null && ds.Tables.Count == 3)
@@ -844,6 +844,7 @@ namespace ClientMeetingAgenda
             //OVERALL MEETING NOTES
             objclsMeetingAgenda.OverAllMeetingNotes = txtOverAllMeetingNotes.Text.Trim();
             objclsMeetingAgenda.FollowUpAction = txtFollowUpAction.Text.Trim();
+            objclsMeetingAgenda.LastUpdatedBy = hdnUserid.Value.Trim();
 
             dsMeetingAgenda = new DataSet();
             dsMeetingAgenda = objclsMeetingAgenda.InsertUpdateMeetingAgenda();
@@ -1916,7 +1917,7 @@ namespace ClientMeetingAgenda
             }
         }
 
-        
+
         ////////////////////////////////////////////////
 
         //private void ClearTextBox()

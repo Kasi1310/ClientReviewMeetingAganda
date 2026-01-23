@@ -58,9 +58,36 @@
     </style>
 
     <div>
-        <div class="col-lg-12  text-lg-center">
+        <div class="col-lg-6  text-lg-left">
             <img src="Images/Logo.jpg" />
         </div>
+         <div class="col-lg-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">Pre-Meeting Checklist</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Before meeting with the client, did you:</td>
+                    </tr>
+                    <tr>
+                        <td>Identify other clients nearby you can visit on the same day?</td>
+                    </tr>
+                    <tr>
+                        <td>Research potential departments in the area and plan to ask your client for referrals?</td>
+                    </tr>
+                    <tr>
+                        <td>Check Google, Facebook, or other platforms for recent news or updates about the department or municipality?</td>
+                    </tr>
+                    <tr>
+                        <td>Bring business cards or contact cards to leave behind?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="col-lg-12">
             <asp:HiddenField ID="hdnID" runat="server" Value="0" />
             <asp:HiddenField ID="hdnAttendeesConfirm" runat="server" Value="" />
@@ -68,6 +95,7 @@
             <asp:HiddenField ID="hdnIsPrint" runat="server" Value="false" />
             <asp:HiddenField ID="hdnEditId" runat="server" Value="0" />
             <asp:HiddenField ID="hdnIsButtonClick" runat="server" Value="false" />
+            <asp:HiddenField ID="hdnUserid" runat="server" Value="0" />
             <div class="col-lg-12 form-group text-lg-center text-info">
                 <h3><b>CLIENT REVIEW MEETING AGENDA</b></h3>
                 <h3><span style="color:red; text-align:center;">*</span>Mandatory fields fill in</h3>
@@ -1655,7 +1683,7 @@
        <%-- onclick="return Validation('false');"--%>
         <%--<asp:Button ID="btnComplete" runat="server" CssClass="btn btn-info custom" Text="Convert PDF" OnClick="btnComplete_Click" OnClientClick="return Validation('true');" />--%>
         <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatePDF()" />
-      <%--  onclick="return Validation('true');  onclick="return Validation('true');""--%>
+      <%--    onclick="return Validation('true'); onclick="return Validation('true'); ""--%>
     </div>
     <div id="divLoading" class="spinner-border text-dark" role="status" style="float: right; display: none;">
         <span class="sr-only">Loading...</span>
@@ -1805,7 +1833,7 @@
 
             document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";
 
-            var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
+    <%--        var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
             var txtMeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>");
             // var ddlAccountExecutive = document.getElementById("<%=ddlAccountExecutive.ClientID %>");
@@ -1813,12 +1841,12 @@
             var ddlEmail = document.getElementById("<%=ddlEmail.ClientID %>");
             var ddlPhone = document.getElementById("<%=ddlPhone.ClientID %>");
 
-            var gvAttendees = document.getElementById("<%=gvAttendees.ClientID %>");
+            var gvAttendees = document.getElementById("<%=gvAttendees.ClientID %>");--%>
 
-            var txtName = document.getElementById("<%=txtName.ClientID %>");
+         <%--var txtName = document.getElementById("<%=txtName.ClientID %>");
             var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
             var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
-            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");
+            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");--%>
 
 
             <%--var ddlMeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>");
@@ -1846,7 +1874,7 @@
 
             var rdolstIsTraningPending = document.getElementById("<%=rdolstIsTraningPending.ClientID %>");--%>
 
-            var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>");
+           <%-- var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>");
             var txtNRScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>");
 
             var lblErrorMsg = document.getElementById("lblErrorMsg");
@@ -1900,7 +1928,7 @@
                 OpenAlertPopup();
                 ddlPhone.focus();
                 return false;
-            }
+            }--%>
             //if (ddlMeetingType.value == "") {
             //    alert("Select Meeting Type");
             //    ddlMeetingType.focus();
@@ -2124,31 +2152,7 @@
             clsMeetingAgenda.AccExecPhone = AccExecPhone.value.trim();
             clsMeetingAgenda.MeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>").value.trim();
 
-           <%--
-           // clsMeetingAgenda.AccExecID = parseInt(document.getElementById("<%=ddlAccountExecutive.ClientID %>").value.trim());
-            
-            //clsMeetingAgenda.CallInNumber = document.getElementById("<%=txtCallInNumber.ClientID %>").value.trim();
-           // clsMeetingAgenda.MeetingID = document.getElementById("<%=txtMeetingID.ClientID %>").value.trim();
-           // clsMeetingAgenda.MeetingWebLink = document.getElementById("<%=txtMeetingWebLink.ClientID %>").value.trim();
-           // clsMeetingAgenda.YTDRevenue = document.getElementById("<%=txtYTDRevenue.ClientID %>").value.trim();
-           // clsMeetingAgenda.YTDTransports = document.getElementById("<%=txtYTDTransports.ClientID %>").value.trim();
-            clsMeetingAgenda.RevenuePerTransport = document.getElementById("<%=txtRevenuePerTransport.ClientID %>").value.trim();
-            clsMeetingAgenda.CPAWComments = document.getElementById("<%=txtCPAWComments.ClientID %>").value.trim();
-            clsMeetingAgenda.CPAWStartDate1 = document.getElementById("<%=txtCPAWStartDate1.ClientID %>").value.trim();
-            clsMeetingAgenda.CPAWEndDate1 = document.getElementById("<%=txtCPAWEndDate1.ClientID %>").value.trim();
-            clsMeetingAgenda.CPAWStartDate2 = document.getElementById("<%=txtCPAWStartDate2.ClientID %>").value.trim();
-            clsMeetingAgenda.CPAWEndDate2 = document.getElementById("<%=txtCPAWEndDate2.ClientID %>").value.trim();
-            clsMeetingAgenda.RPTCollectionComments = document.getElementById("<%=txtRPTCollectionComments.ClientID %>").value.trim();
-            clsMeetingAgenda.RPTCollectionStartDate1 = document.getElementById("<%=txtRPTCollectionStartDate1.ClientID %>").value.trim();
-            clsMeetingAgenda.RPTCollectionEndDate1 = document.getElementById("<%=txtRPTCollectionEndDate1.ClientID %>").value.trim();
-            clsMeetingAgenda.RPTCollectionStartDate2 = document.getElementById("<%=txtRPTCollectionStartDate2.ClientID %>").value.trim();
-            clsMeetingAgenda.RPTCollectionEndDate2 = document.getElementById("<%=txtRPTCollectionEndDate2.ClientID %>").value.trim();
-            clsMeetingAgenda.PNComments = document.getElementById("<%=txtPNComments.ClientID %>").value.trim();
-            clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
-            clsMeetingAgenda.ARActionTaken = document.getElementById("<%=txtARActionTaken.ClientID %>").value.trim();
-            clsMeetingAgenda.BRRComments = document.getElementById("<%=txtBRRComments.ClientID %>").value.trim();
-            clsMeetingAgenda.BRRActionTaken = document.getElementById("<%=txtBRRActionTaken.ClientID %>").value.trim();
-        --%>
+          
 
             // Previous and Current Date
             clsMeetingAgenda.PreviousStartDate = document.getElementById("<%=txtPreviousStartDate.ClientID %>").value.trim();
@@ -2312,7 +2316,7 @@
             clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
 
             var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
+            clsMeetingAgenda.IsRunReconciliationDone = GetRadioListValue(IsRunReconciliationDoneddl);// IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
             
 
             //Signature Capture
@@ -2378,149 +2382,8 @@
             //OVERALL MEETING NOTES
             clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim(); 
             clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
+            clsMeetingAgenda.LastUpdatedBy = Session["UserName"].ToString().Trim();
 
-
-
-
-
-
-<%--     
-        //Billing Policy
-
-            clsMeetingAgenda.BLS = document.getElementById("<%=txtBLS.ClientID %>").value.trim();
-            clsMeetingAgenda.BLSNE = document.getElementById("<%=txtBLSNE.ClientID %>").value.trim();
-            clsMeetingAgenda.ALS = document.getElementById("<%=txtALS.ClientID %>").value.trim();
-            clsMeetingAgenda.ALSNE = document.getElementById("<%=txtALSNE.ClientID %>").value.trim();
-            clsMeetingAgenda.ALS2 = document.getElementById("<%=txtALS2.ClientID %>").value.trim();
-            clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
-
-            var rdolstNonTransport = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsNonTransport = GetRadioListValue(rdolstNonTransport);
-
-            clsMeetingAgenda.BLSReviewed = document.getElementById("<%=txtBLSReviewed.ClientID %>").value.trim();
-            clsMeetingAgenda.BLSNEReviewed = document.getElementById("<%=txtBLSNEReviewed.ClientID %>").value.trim();
-            clsMeetingAgenda.ALSReviewed = document.getElementById("<%=txtALSReviewed.ClientID %>").value.trim();
-            clsMeetingAgenda.ALSNEReviewed = document.getElementById("<%=txtALSNEReviewed.ClientID %>").value.trim();
-            clsMeetingAgenda.ALS2Reviewed = document.getElementById("<%=txtALS2Reviewed.ClientID %>").value.trim();
-            clsMeetingAgenda.MileageReviewed = document.getElementById("<%=txtMileageReviewed.ClientID %>").value.trim();
-
-            var rdolstNonTransportReviewed = document.getElementById("<%=rdolstNonTransportReviewed.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsNonTransportReviewed = GetRadioListValue(rdolstNonTransportReviewed);
-
-            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRActionTaken.ClientID %>").value.trim();
-
-            var rdoCURReviewed = document.getElementById("<%=rdoCURReviewed.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.CURReviewed = GetRadioListValue(rdoCURReviewed);
-
-            clsMeetingAgenda.CURComments = document.getElementById("<%=txtCURComments.ClientID %>").value.trim();
-            clsMeetingAgenda.LastRateChange = document.getElementById("<%=txtLastRateChange.ClientID %>").value.trim();
-            clsMeetingAgenda.CURActionTaken = document.getElementById("<%=txtCURActionTaken.ClientID %>").value.trim();
-
-            clsMeetingAgenda.CSComments = document.getElementById("<%=txtCSComments.ClientID %>").value.trim();
-
-            var rdolstContractCurrent = document.getElementById("<%=ddlContractCurrent.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsContractCurrent = GetRadioListValue(rdolstContractCurrent);
-
-            clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim();
-            clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
-            clsMeetingAgenda.EnforceActionTaken = document.getElementById("<%=txtEnforceActionTaken.ClientID %>").value.trim();
-            clsMeetingAgenda.PCChief = document.getElementById("<%=txtPCChief.ClientID %>").value.trim();
-            clsMeetingAgenda.PCFiscalOfficer = document.getElementById("<%=txtPCFiscalOfficer.ClientID %>").value.trim();
-            clsMeetingAgenda.PCAuthorizedOfficial = document.getElementById("<%=txtPCAuthorizedOfficial.ClientID %>").value.trim();
-            clsMeetingAgenda.PCActionTaken = document.getElementById("<%=txtPCActionTaken.ClientID %>").value.trim();
-            clsMeetingAgenda.DCComments = document.getElementById("<%=txtDCComments.ClientID %>").value.trim();
-            clsMeetingAgenda.DCActionTaken = document.getElementById("<%=txtDCActionTaken.ClientID %>").value.trim();
-            clsMeetingAgenda.NBComments = document.getElementById("<%=txtNBComments.ClientID %>").value.trim();
-            clsMeetingAgenda.NBActionTaken = document.getElementById("<%=txtNBActionTaken.ClientID %>").value.trim();
-            clsMeetingAgenda.CPComments = document.getElementById("<%=txtCPComments.ClientID %>").value.trim();
-
-            var rdolstCPUsage = document.getElementById("<%=rdolstCPUsage.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCPUsage = GetRadioListValue(rdolstCPUsage);
-
-            clsMeetingAgenda.RAComments = document.getElementById("<%=txtRAComments.ClientID %>").value.trim();
-
-            var rdolstRAAlertReceived = document.getElementById("<%=rdolstRAAlertReceived.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsRAAlertsReceived = GetRadioListValue(rdolstRAAlertReceived);
-
-            clsMeetingAgenda.MGComments = document.getElementById("<%=txtMGComments.ClientID %>").value.trim();
-
-            var rdolstMGDiscussed = document.getElementById("<%=rdolstMGDiscussed.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsMGDiscussed = GetRadioListValue(rdolstMGDiscussed);
-
-            clsMeetingAgenda.CPSComments = document.getElementById("<%=txtCPSComments.ClientID %>").value.trim();
-
-            var rdolstCPSDiscussed = document.getElementById("<%=rdolstCPSDiscussed.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCPSDiscussed = GetRadioListValue(rdolstCPSDiscussed);
-
-            var rdolstPatientSignature = document.getElementById("<%=ddlPatientSignature.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsPatientSignature = GetRadioListValue(rdolstPatientSignature);
-
-            var rdolstPatientSignatureEPCR = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsPatientSignatureEPCR = GetRadioListValue(rdolstPatientSignatureEPCR);
-
-            var rdolstReceivingFacilitySignature = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsReceivingFacilitySignature = GetRadioListValue(rdolstReceivingFacilitySignature);
-
-            var rdolstReceivingFacilitySignatureEPCR = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = GetRadioListValue(rdolstReceivingFacilitySignatureEPCR);
-
-            var rdolstCrewSignature = document.getElementById("<%=ddlCrewSignature.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCrewSignature = GetRadioListValue(rdolstCrewSignature);
-
-            var rdolstCrewSignatureEPCR = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCrewSignatureEPCR = GetRadioListValue(rdolstCrewSignatureEPCR);
-
-            clsMeetingAgenda.MERComments = document.getElementById("<%=txtMERComments.ClientID %>").value.trim();
-
-            var rdolstIsTraningPending = document.getElementById("<%=ddlIsTraningPending.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsTrainingPending = GetRadioListValue(rdolstIsTraningPending);
-
-            
-
-            clsMeetingAgenda.NRScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>").value.trim();
-            clsMeetingAgenda.ChangeInZOHO = document.getElementById("<%=txtChangeInZOHO.ClientID %>").value.trim();
-            clsMeetingAgenda.ePCRID = parseInt(document.getElementById("<%=ddlEPCR.ClientID %>").value.trim());
-            clsMeetingAgenda.ePCRDate = document.getElementById("<%=txtePCRDate.ClientID %>").value.trim();
-            clsMeetingAgenda.ePCRByWhom = document.getElementById("<%=txtePCRByWhom.ClientID %>").value.trim();
-
-            clsMeetingAgenda.BillingStreet = document.getElementById("<%=txtBillingStreet.ClientID %>").value.trim();
-            clsMeetingAgenda.BillingState = document.getElementById("<%=txtBillingState.ClientID %>").value.trim();
-            clsMeetingAgenda.BillingCity = document.getElementById("<%=txtBillingCity.ClientID %>").value.trim();
-            clsMeetingAgenda.BillingZip = document.getElementById("<%=txtBillingZip.ClientID %>").value.trim();
-
-            var txtBillingState = document.getElementById("<%=txtBillingState.ClientID %>");
-            var txtBillingCity = document.getElementById("<%=txtBillingCity.ClientID %>");
-
-            clsMeetingAgenda.BillingStateName = txtBillingState.value == 0 ? "" : txtBillingState.options[txtBillingState.selectedIndex].text;
-            clsMeetingAgenda.BillingCityName = txtBillingCity.value == 0 ? "" : txtBillingCity.options[txtBillingCity.selectedIndex].text;
-
-            clsMeetingAgenda.MailingStreet = document.getElementById("<%=txtMailingStreet.ClientID %>").value.trim();
-            clsMeetingAgenda.MailingState = document.getElementById("<%=txtMailingState.ClientID %>").value.trim();
-            clsMeetingAgenda.MailingCity = document.getElementById("<%=txtMailingCity.ClientID %>").value.trim();
-            clsMeetingAgenda.MailingZip = document.getElementById("<%=txtMailingZip.ClientID %>").value.trim();
-
-            var txtMailingState = document.getElementById("<%=txtMailingState.ClientID %>");
-            var txtMailingCity = document.getElementById("<%=txtMailingCity.ClientID %>");
-
-            clsMeetingAgenda.MailingStateName = txtMailingState.value == 0 ? "" : txtMailingState.options[txtMailingState.selectedIndex].text;
-            clsMeetingAgenda.MailingCityName = txtMailingCity.value == 0 ? "" : txtMailingCity.options[txtMailingCity.selectedIndex].text;
-
-            clsMeetingAgenda.PhysicalLocationStreet = document.getElementById("<%=txtPhysicalLocationStreet.ClientID %>").value.trim();
-            clsMeetingAgenda.PhysicalLocationState = document.getElementById("<%=txtPhysicalLocationState.ClientID %>").value.trim();
-            clsMeetingAgenda.PhysicalLocationCity = document.getElementById("<%=txtPhysicalLocationCity.ClientID %>").value.trim();
-            clsMeetingAgenda.PhysicalLocationZip = document.getElementById("<%=txtPhysicalLocationZip.ClientID %>").value.trim();
-
-            var txtPhysicalLocationState = document.getElementById("<%=txtPhysicalLocationState.ClientID %>");
-            var txtPhysicalLocationCity = document.getElementById("<%=txtPhysicalLocationCity.ClientID %>");
-
-            clsMeetingAgenda.PhysicalLocationStateName = txtPhysicalLocationState.value == 0 ? "" : txtPhysicalLocationState.options[txtPhysicalLocationState.selectedIndex].text;
-            clsMeetingAgenda.PhysicalLocationCityName = txtPhysicalLocationCity.value == 0 ? "" : txtPhysicalLocationCity.options[txtPhysicalLocationCity.selectedIndex].text;
-
-
-
-            clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim();
-            clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
-        --%>
 
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             clsMeetingAgenda.isPrint = isPrint;
@@ -2678,17 +2541,285 @@
             });
         }
         function generatePDF() {
+
+            var clsMeetingAgenda = {};
+          <%--  if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
+            )) {
+                return;
+            }--%>
+
+            //Client Info
+            var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
+            var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
+
+ // var ddlAccountExecutive = document.getElementById("<%=txtAccountExecutive.ClientID %>");
+            var AccountExecutiveName = document.getElementById('<%= txtAccountExecutive.ClientID %>');
+            var AccExecEmailID = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
+            var AccExecPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
+
+
+            clsMeetingAgenda.ID = parseInt(document.getElementById("<%=hdnID.ClientID %>").value.trim());
+            clsMeetingAgenda.ClientID = document.getElementById("<%=ddlClientName.ClientID %>").value.trim();
+
+            //Client Info
+            clsMeetingAgenda.ClientNo = ddlClientNo.value == 0 ? "" : ddlClientNo.options[ddlClientNo.selectedIndex].text;
+            clsMeetingAgenda.ClientName = ddlClientName.value == 0 ? "" : ddlClientName.options[ddlClientName.selectedIndex].text;
+            clsMeetingAgenda.MeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim();
+
+            //Account Executive Info
+            clsMeetingAgenda.AccExecName = AccountExecutiveName.value.trim();
+            clsMeetingAgenda.AccExecEmailID = AccExecEmailID.value.trim();
+            clsMeetingAgenda.AccExecPhone = AccExecPhone.value.trim();
+            clsMeetingAgenda.MeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>").value.trim();
+
+
+
+            // Previous and Current Date
+            clsMeetingAgenda.PreviousStartDate = document.getElementById("<%=txtPreviousStartDate.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousEndDate = document.getElementById("<%=txtPreviousEndDate.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousReportType = document.getElementById("<%=ddlPreviousReportType.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousTransport = document.getElementById("<%=txtPrevTransports.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousCharges = document.getElementById("<%=txtPrevCharges.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousRevenue = document.getElementById("<%=txtPrevRevenue.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousAdjustments = document.getElementById("<%=txtPrevAdjust.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousWrite_Off = document.getElementById("<%=txtPrevWriteOff.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousRefund = document.getElementById("<%=txtPrevRefund.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousRPT = document.getElementById("<%=txtPrevRPT.ClientID %>").value.trim();
+            clsMeetingAgenda.PreviousCollRate = document.getElementById("<%=txtPrevCollRate.ClientID %>").value.trim();
+
+            clsMeetingAgenda.CurrentStartDate = document.getElementById("<%=txtCurrentStartDate.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentEndDate = document.getElementById("<%=txtCurrentEndDate.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentReportType = document.getElementById("<%=ddlCurrentReportType.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentTransport = document.getElementById("<%=txtCurrTransports.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentCharges = document.getElementById("<%=txtCurrCharges.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentRevenue = document.getElementById("<%=txtCurrRevenue.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentAdjustments = document.getElementById("<%=txtCurrAdjust.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentWrite_Off = document.getElementById("<%=txtCurrWriteOff.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentRefund = document.getElementById("<%=txtCurrRefund.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentRPT = document.getElementById("<%=txtCurrRPT.ClientID %>").value.trim();
+            clsMeetingAgenda.CurrentCollRate = document.getElementById("<%=txtCurrCollRate.ClientID %>").value.trim();
+
+            clsMeetingAgenda.ClientReviewClientComment = document.getElementById("<%=txtClientReviewComments.ClientID %>").value.trim();
+            clsMeetingAgenda.ClientReviewAEComments = document.getElementById("<%=txtAccountExecutiveComments.ClientID %>").value.trim();
+
+            //Aging Review
+            var IsAgingReviewddl = document.getElementById("<%=ddlAgingReview.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsAgingReview = IsAgingReviewddl.value;// GetRadioListValue(IsAgingReviewddl);// IsAgingReviewddl.value; // GetRadioListValue(IsAgingReviewddl);
+            var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);;// IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);
+            clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
+
+
+            //Billing Policy
+            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl.value;// GetRadioListValue(IsBillingPolicyddl);
+            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.Collections = IsCollectionddl.value;// GetRadioListValue(IsCollectionddl);          
+            clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();
+
+
+            //Billing Rates Reviewed
+            var IsBillingRateReviewedddl = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);                      
+            clsMeetingAgenda.LastRateChanged = document.getElementById("<%=txtLastRateChange.ClientID %>").value.trim();
+            clsMeetingAgenda.BillingRateReviewedComments = document.getElementById("<%=txtBillingRatesReviewedComments.ClientID %>").value.trim();
+
+
+            //Current Billing Rate
+            var IsCurrentBillingRateddl = document.getElementById("<%=ddlCurrentBillingRates.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsCurrentBillingRate = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);
+            // clsMeetingAgenda.IsCurrentBillingRate = ddlCurrentBillingRates.SelectedValue.Trim();
+            clsMeetingAgenda.BLS = document.getElementById("<%=txtBLS.ClientID %>").value.trim();
+            clsMeetingAgenda.BLSNE = document.getElementById("<%=txtBLSNE.ClientID %>").value.trim();
+            clsMeetingAgenda.ALS = document.getElementById("<%=txtALS.ClientID %>").value.trim();
+            clsMeetingAgenda.ALSNE = document.getElementById("<%=txtALSNE.ClientID %>").value.trim();
+            clsMeetingAgenda.ALS2 = document.getElementById("<%=txtALS2.ClientID %>").value.trim();
+            clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
+            var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsNonTransport = IsNonTransportddl.value;// GetRadioListValue(IsNonTransportddl);
+            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRActionTaken.ClientID %>").value.trim();
+
+
+            //UCR (Usual & Customary Rates)
+            var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.UCR = IsUCRddl.value;// GetRadioListValue(IsUCRddl);            
+            clsMeetingAgenda.UCRComments = document.getElementById("<%=txtUCRComments.ClientID %>").value.trim();
+
+
+
+            //Control Comments on Billing Rates
+            clsMeetingAgenda.CommentsOnBillingRates = document.getElementById("<%=txtCommentsOnBillingRates.ClientID %>").value.trim();
+            var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);// IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
+            <%--// var IsWithChargedddl = document.getElementById("<%=ddlWithCharge.ClientID %>").getElementsByTagName("input");
+            // clsMeetingAgenda.IsWithCharged = IsWithChargedddl.value;// GetRadioListValue(IsWithChargedddl);
+            // var IsClientProcessesOwnCreditcardsddl = document.getElementById("<%=ddlClientPorcessesOwnCreditcards.ClientID %>").getElementsByTagName("input");--%>
+                        clsMeetingAgenda.FacilityTransportsComments = document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+                        clsMeetingAgenda.IsClientProcessesOwnCreditcards = document.getElementById("<%=txtCommentsOnBillingRates.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+
+
+                        //Non-Emergency Tranports
+                        var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsNonEmergenctTranports = IsNonEmergenctTranportsddl.value;// GetRadioListValue(IsNonEmergenctTranportsddl);
+             var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl.value;// GetRadioListValue(IsClientAwareofPriorAuthorizationRequirementsddl);
+             var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl.value;// GetRadioListValue(IsTraningNeededddl);
+
+
+             //Contract Facility Billing or Correctional/Jail
+             var IsContractFacilityBillingddl = document.getElementById("<%=ddlContractFacilityBilling.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsContractFacilityBilling = IsContractFacilityBillingddl.value;// GetRadioListValue(IsContractFacilityBillingddl);
+
+             var IsSkilledNursingFacilitiesddl = document.getElementById("<%=ddlSkilledNursingFacilities.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsTranIsSkilledNursingFacilitiesingNeeded = IsSkilledNursingFacilitiesddl.value;// GetRadioListValue(IsSkilledNursingFacilitiesddl);
+
+             var IsUpdatedContractsddl = document.getElementById("<%=ddlUpdatedContracts.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsUpdatedContracts = IsUpdatedContractsddl.value;// GetRadioListValue(IsUpdatedContractsddl);
+
+             var IsAttachedddl = document.getElementById("<%=ddlAttached.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsAttached = IsAttachedddl.value;// GetRadioListValue(IsAttachedddl);
+
+             var IsFacilityCurrentlyddl = document.getElementById("<%=ddlFacilityCurrently.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsFacilityCurrently = IsFacilityCurrentlyddl.value;// GetRadioListValue(IsFacilityCurrentlyddl);
+
+             var IsToBeBilledddl = document.getElementById("<%=ddlToBeBilled.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsToBeBilled = IsToBeBilledddl.value;// GetRadioListValue(IsToBeBilledddl);
+
+             var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl.value;// GetRadioListValue(IsToWithTheFacilityddl);
+
+
+             //9. Contract Status
+             var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsContractStatus = IsContractStatusddl.value;// GetRadioListValue(IsContractStatusddl);
+             clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim();
+             clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
+             var IsContractCurrentddl = document.getElementById("<%=ddlContractCurrent.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsContractCurrent = IsContractCurrentddl.value;// GetRadioListValue(IsContractCurrentddl);
+
+
+             //10. Personnel Changes
+             var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl.value;// GetRadioListValue(IsPersonnelChangesddl);          
+             clsMeetingAgenda.ChiefName = document.getElementById("<%=txtChief.ClientID %>").value.trim();
+             clsMeetingAgenda.FiscalOfficerName = document.getElementById("<%=txtFiscalOfficer.ClientID %>").value.trim();
+             clsMeetingAgenda.AuthorizedOfficialName1 = document.getElementById("<%=txtAuthorizedOfficial1.ClientID %>").value.trim();
+             clsMeetingAgenda.AuthorizedOfficialName2 = document.getElementById("<%=txtAuthorizedOfficial2.ClientID %>").value.trim();
+
+             //Demographic Changes
+             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl); 
+             var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl.value;// GetRadioListValue(IsNewBusinessddl); 
+
+
+             //Client Data Status
+             var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsUsage = IsUsageddl.value;// GetRadioListValue(IsUsageddl); 
+             var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl.value;// GetRadioListValue(IsAlertsReceivedddl); 
+             var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl.value;// GetRadioListValue(IsOIG_Exclsuionaryddl); 
+             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl);
+             var IsDiscussedddl = document.getElementById("<%=ddlDiscussed.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsDiscussed = IsDiscussedddl.value;// GetRadioListValue(IsDiscussedddl); 
+
+
+             // ePCR 
+             var ePCRNameddl = document.getElementById("<%=ddlePCRName.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IePCRNamesUsage = ePCRNameddl.value;// GetRadioListValue(ePCRNameddl);
+
+             clsMeetingAgenda.ePCRDate = document.getElementById("<%=txtLastReconciliationDate.ClientID %>").value.trim();
+             clsMeetingAgenda.ePCRByWhom = document.getElementById("<%=txtByWhom.ClientID %>").value.trim();
+             clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
+
+             var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").getElementsByTagName("input");
+            clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl);// IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
+ 
+
+             //Signature Capture
+             var IsPatientSignatureddl = document.getElementById("<%=ddlPatientSignature.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsPatientSignature = IsPatientSignatureddl.value;// GetRadioListValue(IsPatientSignatureddl); 
+             var IsPatientSignatureEPCRddl = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl.value;// GetRadioListValue(IsPatientSignatureEPCRddl); 
+             var IsReceivingFacilitySignatureddl = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsReceivingFacilitySignature = IsReceivingFacilitySignatureddl.value;// GetRadioListValue(IsReceivingFacilitySignatureddl); 
+             var IsReceivingFacilitySignatureEPCRddl = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = IsReceivingFacilitySignatureEPCRddl.value;// GetRadioListValue(IsReceivingFacilitySignatureEPCRddl); 
+             var IsCrewSignatureddl = document.getElementById("<%=ddlCrewSignature.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsCrewSignature = IsCrewSignatureddl.value;// GetRadioListValue(IsCrewSignatureddl); 
+             var IsCrewSignatureEPCRddl = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl.value;// GetRadioListValue(IsCrewSignatureEPCRddl);           
+             clsMeetingAgenda.SignatureCaptureComments = document.getElementById("<%=txtSignatureCaptureComments.ClientID %>").value.trim();
+
+             //15. Month End Report
+             var IsStatementReconciliationddl = document.getElementById("<%=ddlStatementReconciliation.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl.value;// GetRadioListValue(IsStatementReconciliationddl);          
+             clsMeetingAgenda.MonthEndReportByWho = document.getElementById("<%=txtMonthEndReportByWho.ClientID %>").value.trim(); 
+             clsMeetingAgenda.MonthEndReportHowOften = document.getElementById("<%=txtMonthEndReportHowOften.ClientID %>").value.trim();
+             var IsTraningCompletedddl = document.getElementById("<%=ddlTraningCompleted.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl.value;// GetRadioListValue(IsTraningCompletedddl);   
+             var IsTraningPendingddl = document.getElementById("<%=ddlIsTraningPending.ClientID %>").getElementsByTagName("input");
+             clsMeetingAgenda.IsTraningPending = IsTraningPendingddl.value;// GetRadioListValue(IsTraningPendingddl); 
+
+             //Client Review Intervals
+             var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");           
+             var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
+              if (rdolstCRI[0].checked) {
+                 clsMeetingAgenda.IsReviewIntervalCRI = "Quarterly";
+             }
+             else if (rdolstCRI[1].checked) {
+                 clsMeetingAgenda.IsReviewIntervalCRI = "Semi-Annual";
+             }
+             else if (rdolstCRI[2].checked) {
+                 clsMeetingAgenda.IsReviewIntervalCRI = "Yearly";
+             }
+             else {
+                 clsMeetingAgenda.IsReviewIntervalCRI = "";
+             }
+
+             clsMeetingAgenda.NextReviewScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>").value.trim(); 
+             clsMeetingAgenda.ChangeInZOHO = document.getElementById("<%=txtChangeInZOHO.ClientID %>").value.trim(); 
+
+             //Address Information
+             clsMeetingAgenda.BillingStreet = document.getElementById("<%=txtBillingStreet.ClientID %>").value.trim(); 
+             clsMeetingAgenda.BillingCity = document.getElementById("<%=txtBillingCity.ClientID %>").value.trim(); 
+             clsMeetingAgenda.BillingState = document.getElementById("<%=txtBillingState.ClientID %>").value.trim(); 
+             clsMeetingAgenda.BillingZip = document.getElementById("<%=txtBillingZip.ClientID %>").value.trim(); 
+
+             clsMeetingAgenda.MailingStreet = document.getElementById("<%=txtMailingStreet.ClientID %>").value.trim(); 
+             clsMeetingAgenda.MailingCity = document.getElementById("<%=txtMailingCity.ClientID %>").value.trim(); 
+             clsMeetingAgenda.MailingState = document.getElementById("<%=txtMailingState.ClientID %>").value.trim();  
+             clsMeetingAgenda.MailingZip = document.getElementById("<%=txtMailingZip.ClientID %>").value.trim();;
+
+             clsMeetingAgenda.PhysicalLocationStreet = document.getElementById("<%=txtPhysicalLocationStreet.ClientID %>").value.trim();
+             clsMeetingAgenda.PhysicalLocationCity = document.getElementById("<%=txtPhysicalLocationCity.ClientID %>").value.trim(); 
+             clsMeetingAgenda.PhysicalLocationState = document.getElementById("<%=txtPhysicalLocationState.ClientID %>").value.trim(); 
+             clsMeetingAgenda.PhysicalLocationZip = document.getElementById("<%=txtPhysicalLocationZip.ClientID %>").value.trim(); 
+
+             //OVERALL MEETING NOTES
+             clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim(); 
+             clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
+             //clsMeetingAgenda.LastUpdatedBy = Session["UserName"].ToString().Trim();
+
+
+                        clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             $.ajax({
                 type: "POST",
-                url: "MeetingAgendaPDF.aspx/GeneratePDF",
+                url: "frmInnerMAPage1.aspx/GeneratePDF",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                data: JSON.stringify({
+                    objclsMeetingAgenda: clsMeetingAgenda   // MUST MATCH
+                }),
                 success: function (response) {
                     if (response.d === true) {
                         window.location.replace("frmMeetingAgendaMaster.aspx");
                     }
                 },
-                error: function (xhr, status, error) {
+                error: function (xhr) {
                     console.log(xhr.responseText);
                 }
             });

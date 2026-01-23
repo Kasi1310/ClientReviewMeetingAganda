@@ -32,13 +32,13 @@ namespace ClientMeetingAgenda
 
             if (clsMeetingAgenda.IsPrint)
             {
-                string PDFPath = GeneratePDF(clsMeetingAgenda);
+               // string PDFPath = GeneratePDF(clsMeetingAgenda);
 
                 clsOutput objclsOutput = new clsOutput();
                 objclsOutput.MeetingAgendaID = 0;
                 objclsOutput.SignatureID = 0;
 
-                HttpContext.Current.Session["PrintDocument"] = PDFPath;
+               // HttpContext.Current.Session["PrintDocument"] = PDFPath;
 
                 lstclsOutput.Add(objclsOutput);
             }
@@ -140,8 +140,8 @@ namespace ClientMeetingAgenda
             return lstclsOutput;
         }
 
-        //[WebMethod]
-        public static string GeneratePDF(clsMeetingAgenda objclsMeetingAgenda)
+        [WebMethod]
+        public static bool GeneratePDF(clsMeetingAgenda objclsMeetingAgenda)
         {
             //clsMeetingAgenda objclsMeetingAgenda;
             //DataSet dsMeetingAgenda;
@@ -3091,7 +3091,8 @@ namespace ClientMeetingAgenda
             }
             File.WriteAllBytes(designationFilePath, bytes);
 
-            return designationFilePath;
+            //return designationFilePath;
+            return true;
 
             //Response.Redirect("frmMeetingAgendaMaster.aspx");
 
