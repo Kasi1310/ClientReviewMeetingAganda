@@ -795,7 +795,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.IsUsage = ddlUsage.SelectedValue.Trim();
             objclsMeetingAgenda.IsAlertsReceived = ddlAlertsReceived.SelectedValue.Trim();
             objclsMeetingAgenda.IsOIG_Exclsuionary = ddlOIG_Exclsuionary.SelectedValue.Trim();
-            objclsMeetingAgenda.IsDiscussed = ddlDiscussed.SelectedValue.Trim();
+            objclsMeetingAgenda.IsDiscussed = ddlReceiveMedicountReport.SelectedValue.Trim();
 
             // ePCR 
             objclsMeetingAgenda.ePCRName = ddlePCRName.SelectedValue.Trim();

@@ -915,15 +915,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtDemographicChangesComments;
 
         /// <summary>
-        /// ddlReceiveMedicountReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlReceiveMedicountReport;
-
-        /// <summary>
         /// ddlUsage control.
         /// </summary>
         /// <remarks>
@@ -951,13 +942,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlOIG_Exclsuionary;
 
         /// <summary>
-        /// ddlDiscussed control.
+        /// ddlReceiveMedicountReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDiscussed;
+        protected global::System.Web.UI.WebControls.DropDownList ddlReceiveMedicountReport;
 
         /// <summary>
         /// ddlePCRName control.

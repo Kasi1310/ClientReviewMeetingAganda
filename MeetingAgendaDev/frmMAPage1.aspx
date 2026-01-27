@@ -58,35 +58,41 @@
     </style>
 
     <div>
-        <div class="col-lg-6  text-lg-left">
+        <div class="col-lg-6  text-lg-center">
             <img src="Images/Logo.jpg" />
         </div>
-         <div class="col-lg-6">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="text-align:center;">Pre-Meeting Checklist</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Before meeting with the client, did you:</td>
-                    </tr>
-                    <tr>
-                        <td>Identify other clients nearby you can visit on the same day?</td>
-                    </tr>
-                    <tr>
-                        <td>Research potential departments in the area and plan to ask your client for referrals?</td>
-                    </tr>
-                    <tr>
-                        <td>Check Google, Facebook, or other platforms for recent news or updates about the department or municipality?</td>
-                    </tr>
-                    <tr>
-                        <td>Bring business cards or contact cards to leave behind?</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="col-lg-6 text-lg-left">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;border:none; font-family:Calibri;">Pre-Meeting Checklist</th>
+                        </tr>
+                    </thead>
+                   <tbody>
+                        <tr>
+                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                                ✔ Identify other clients nearby you can visit on the same day?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                                ✔ Research potential departments in the area and plan to ask your client for referrals?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                                ✔ Check Google, Facebook, or other platforms for recent news or updates about the department or municipality?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                                ✔ Bring business cards or contact cards to leave behind?
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+         </div>
+
 
         <div class="col-lg-12">
             <asp:HiddenField ID="hdnID" runat="server" Value="0" />
@@ -185,26 +191,7 @@
                  </table>
               
             </div>
-           <%-- <div hidden class="col-lg-12 form-group">
-                <div class="col-lg-4 form-group">
-                    Call In Number:               
-                     <asp:TextBox ID="txtCallInNumber" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
-                         onkeypress="return isNumberKey(event);"
-                         onfocus="mngPhoneFaxNumber(this);"
-                         onblur="ValidatePhoneFaxNumber(this,'Invalid Phone');"></asp:TextBox>
-
-                </div>
-                <div class="col-lg-4 form-group">
-                    Meeting ID/Code:               
-                     <asp:TextBox ID="txtMeetingID" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-
-                </div>
-                <div class="col-lg-4 form-group">
-                    Meeting Web Link:               
-                     <asp:TextBox ID="txtMeetingWebLink" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                </div>
-
-            </div>--%>
+         
             <div class="col-lg-12">
                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                     <thead>
@@ -1029,28 +1016,10 @@
 
                              <!--Client Data Status -->
                              <tr>
-                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
-                                  
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                         <thead>
-                                             <tr style="background-color:rgb(0,148,144); color:#fff; text-align:center; vertical-align:middle;">
-                                                 <th style="text-align:center; vertical-align:middle;width:50%">Who receives the mendicount reports?</th>
-                                                 <th style="text-align:center; vertical-align:middle;width:50%">Client Portal & Data Usage Status</th>
-                                             </tr>
-                                         </thead>
-                                         <tbody>
-                                             <tr>
-                                                 <td style="width:15%; vertical-align:middle;"> 
-                                                 <asp:DropDownList ID="ddlReceiveMedicountReport" runat="server" CssClass="form-control" style="font-weight:bold;">
-                                                   <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                   <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                   <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                               </asp:DropDownList>
-                                            </td>
-                                             </tr>
-                                         </tbody>
-                                     </table>
-                                 </td>
+                                  <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                                    Client Portal & Data Usage Status
+                                  </td>
+                                
 
                                  <td colspan="2">
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
@@ -1059,7 +1028,7 @@
                                                  <th style="text-align:center; vertical-align:middle;">Client Portal Usage</th>
                                                  <th style="text-align:center; vertical-align:middle;">Receiving alerts from Medicount's Portal</th> 
                                                  <th style="text-align:center; vertical-align:middle;">Current Uses OIG Exclusionary List</th> 
-                                                 <th hidden style="text-align:center; vertical-align:middle;">Client Patient Survey Program Discussed</th>                                                   
+                                                 <th style="text-align:center; vertical-align:middle;">Who receives the mendicount reports?</th>                                                   
                                              </tr>
                                          </thead>
 
@@ -1088,8 +1057,8 @@
                                                         </asp:DropDownList>
 
                                                  </td> 
-                                                 <td hidden style="width:15%; vertical-align:middle;"> 
-                                                          <asp:DropDownList ID="ddlDiscussed" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                 <td style="width:15%; vertical-align:middle;"> 
+                                                           <asp:DropDownList ID="ddlReceiveMedicountReport" runat="server" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -2303,7 +2272,7 @@
             clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl.value;// GetRadioListValue(IsOIG_Exclsuionaryddl); 
             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl);
-            var IsDiscussedddl = document.getElementById("<%=ddlDiscussed.ClientID %>").getElementsByTagName("input");
+            var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsDiscussed = IsDiscussedddl.value;// GetRadioListValue(IsDiscussedddl); 
 
 
@@ -2723,7 +2692,7 @@
              clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl.value;// GetRadioListValue(IsOIG_Exclsuionaryddl); 
              var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
              clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl);
-             var IsDiscussedddl = document.getElementById("<%=ddlDiscussed.ClientID %>").getElementsByTagName("input");
+             var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").getElementsByTagName("input");
              clsMeetingAgenda.IsDiscussed = IsDiscussedddl.value;// GetRadioListValue(IsDiscussedddl); 
 
 
@@ -2805,7 +2774,7 @@
              //clsMeetingAgenda.LastUpdatedBy = Session["UserName"].ToString().Trim();
 
 
-                        clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
+             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             $.ajax({
                 type: "POST",
                 url: "frmInnerMAPage1.aspx/GeneratePDF",
@@ -2891,12 +2860,11 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphReferal" runat="server">
     <div class="col-lg-12">
         <div class="col-lg-12 form-group">
-     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;width:75% !important;">
+    <%-- <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;width:75% !important;">
          <thead>
              <tr style="background-color:rgb(0,148,144) !important; color:#fff;">
                  <th colspan="6" class="text-center">Did you ask for a referal</th>
-                 <th colspan="6" class="text-center">Discuss: What Makes Medicount Different:</th>
-              
+                 <th colspan="6" class="text-center">Discuss: What Makes Medicount Different:</th>              
             </tr>
          </thead>
          <tbody>
@@ -2910,23 +2878,76 @@
                  </td>
                  <td colspan="6">
                     <div style="text-align:left;">
-                        <ul style="margin:0; padding-left:20px;">
-                            <li><strong>Dedicated Account Executives</strong> – Meet with you face-to-face for personalized support.</li>
-                            <li><strong>Clear, Easy-to-Understand Reports</strong> – No confusing data or jargon.</li>
-                            <li><strong>Accessible & Responsive Team</strong> – Easy to reach and always available.</li>
-                            <li><strong>User-Friendly Customer Portal</strong> – Real-time access to actionable information.</li>
-                            <li><strong>Regular Reporting</strong> – Includes semi-annual and annual performance reports.</li>
-                            <li><strong>Ongoing Client Reviews</strong> – Stay informed and aligned on your agency’s performance.</li>
+                        <ul style="margin:0; padding-left:0; list-style:none;">
+                            <li style="margin-bottom:6px;">✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.</li>
+                            <li style="margin-bottom:6px;">✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.</li>
+                            <li style="margin-bottom:6px;">✔ Accessible & Responsive Team – Easy to reach and always available.</li>
+                            <li style="margin-bottom:6px;">✔ User-Friendly Customer Portal – Real-time access to actionable information.</li>
+                            <li style="margin-bottom:6px;">✔ Regular Reporting – Includes semi-annual and annual performance reports.</li>
+                            <li>✔ Ongoing Client Reviews – Stay informed and aligned on your agency’s performance.</li>
                         </ul>
                     </div>
-                </td>
-
-                 
+            </td>                 
              </tr>
          </tbody>
-     </table>
+     </table>--%>
+            <div class="row" style="width:75%; margin:0;">
+
+    <!-- LEFT SECTION -->
+            <div class="col-md-6" style="padding:0 5px;">
+                <div style="border:1px solid #dee2e6; height:100%;">
+            
+                    <!-- Header -->
+                    <div style="background-color:rgb(0,148,144); color:#fff; padding:10px; font-weight:bold; text-align:center;">
+                        Did you ask for a referral
+                    </div>
+
+                    <!-- Content -->
+                    <div style="padding:15px;">
+                        <asp:DropDownList ID="ddlIsReferal" runat="server" CssClass="form-control" style="font-weight:bold;">
+                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+
+                </div>
+            </div>
+                    </div>
+    </div>
+        </div>
+    <br />
+    <br />
+  <div class="col-lg-12">
+    <div class="col-lg-12 form-group">
+            <!-- RIGHT SECTION -->
+            <div class="col-md-6" style="padding:0 5px;">
+                <div style="border:1px solid #dee2e6; height:100%;">
+            
+                    <!-- Header -->
+                    <div style="background-color:rgb(0,148,144); color:#fff; padding:10px; font-weight:bold; text-align:center;">
+                        Discuss: What Makes Medicount Different:
+                    </div>
+
+                    <!-- Content -->
+                    <div style="padding:15px; text-align:left;">
+                        <ul style="margin:0; padding-left:0; list-style:none;">
+                            <li style="margin-bottom:6px;">✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.</li>
+                            <li style="margin-bottom:6px;">✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.</li>
+                            <li style="margin-bottom:6px;">✔ Accessible & Responsive Team – Easy to reach and always available.</li>
+                            <li style="margin-bottom:6px;">✔ User-Friendly Customer Portal – Real-time access to actionable information.</li>
+                            <li style="margin-bottom:6px;">✔ Regular Reporting – Includes semi-annual and annual performance reports.</li>
+                            <li>✔ Ongoing Client Reviews – Stay informed and aligned on your agency’s performance.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
 </div>
         
 
-    </div>
+   
 </asp:Content>
