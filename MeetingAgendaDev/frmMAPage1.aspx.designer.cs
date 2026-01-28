@@ -654,13 +654,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtUCRComments;
 
         /// <summary>
-        /// txtUCRMainIssuComments control.
+        /// txtUCRMainIssueComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUCRMainIssuComments;
+        protected global::System.Web.UI.WebControls.TextBox txtUCRMainIssueComments;
 
         /// <summary>
         /// ddlFacilityTransports control.
@@ -681,13 +681,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtFacilityTransportsComments;
 
         /// <summary>
-        /// txtCommentsOnBillingRates control.
+        /// txtCommentsOnBillingRateMainIssue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCommentsOnBillingRates;
+        protected global::System.Web.UI.WebControls.TextBox txtCommentsOnBillingRateMainIssue;
 
         /// <summary>
         /// ddlNonEmergenctTranports control.
@@ -897,15 +897,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlNewBusiness;
 
         /// <summary>
-        /// TextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-
-        /// <summary>
         /// txtDemographicChangesComments control.
         /// </summary>
         /// <remarks>
@@ -913,6 +904,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDemographicChangesComments;
+
+        /// <summary>
+        /// txtDemographicChangesMainIssueComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDemographicChangesMainIssueComments;
 
         /// <summary>
         /// ddlUsage control.

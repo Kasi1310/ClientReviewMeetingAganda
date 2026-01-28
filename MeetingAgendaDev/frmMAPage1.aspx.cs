@@ -317,6 +317,7 @@ namespace ClientMeetingAgenda
                    // txtRPTCollectionEndDate2.Text = dtMaster.Rows[0]["RPTCollectionEndDate2"].ToString().Trim();
                    // txtPNComments.Text = dtMaster.Rows[0]["PNComments"].ToString().Trim();
                     txtARComments.Text = dtMaster.Rows[0]["ARComments"].ToString().Trim();
+                    txtAgingReviewComments.Text = dtMaster.Rows[0]["AgingReviewComments"].ToString().Trim();
                     ///txtARActionTaken.Text = dtMaster.Rows[0]["ARActionTaken"].ToString().Trim();
                    // txtBRRComments.Text = dtMaster.Rows[0]["BRRComments"].ToString().Trim();
                     //txtBRRActionTaken.Text = dtMaster.Rows[0]["BRRActionTaken"].ToString().Trim();
@@ -724,17 +725,20 @@ namespace ClientMeetingAgenda
             // Aging Review
             objclsMeetingAgenda.IsAgingReview = ddlAgingReview.SelectedValue.Trim();
             objclsMeetingAgenda.IsDiscussedwithARTeam = ddlDiscussedwithARTeam.SelectedValue.Trim();
-            objclsMeetingAgenda.ARComments= txtARComments.Text.Trim();
+            objclsMeetingAgenda.AgingReviewComments = txtAgingReviewComments.Text.Trim();
+            objclsMeetingAgenda.ARComments = txtARComments.Text.Trim();
 
             //Billing Policy
             objclsMeetingAgenda.BillingPolicy = ddlBillingPolicy.SelectedValue.Trim();
             objclsMeetingAgenda.Collections = ddlCollections.SelectedValue.Trim();
             objclsMeetingAgenda.BillingPolicyComments = txtBillingPolicyComments.Text.Trim();
+            objclsMeetingAgenda.BillingPolicyMainIssueComments = txtBillingPolicyMainIssueComments.Text.Trim();
 
             //Billing Rates Reviewed
             objclsMeetingAgenda.IsBillingRateReviewed = ddlBillingRateReviewed.SelectedValue.Trim();
             objclsMeetingAgenda.LastRateChanged = txtLastRateChange.Text.Trim();
             objclsMeetingAgenda.BillingRateReviewedComments = txtBillingRatesReviewedComments.Text.Trim();
+            objclsMeetingAgenda.BRRMainIssueComments = txtBillingRatesReviewedMainIssueComments.Text.Trim();
 
             //Current Billing Rate
             objclsMeetingAgenda.IsCurrentBillingRate = ddlCurrentBillingRates.SelectedValue.Trim();
@@ -750,19 +754,22 @@ namespace ClientMeetingAgenda
             //UCR (Usual & Customary Rates)
             objclsMeetingAgenda.UCR = ddlUCR.SelectedValue.Trim();
             objclsMeetingAgenda.UCRComments = txtUCRComments.Text.Trim();
+            objclsMeetingAgenda.UCRMainIssueComments = txtUCRMainIssueComments.Text.Trim();
 
             //Control Comments on Billing Rates
-            objclsMeetingAgenda.CommentsOnBillingRates = txtCommentsOnBillingRates.Text.Trim();
+            objclsMeetingAgenda.CommentsOnBillingRatesMainIssue = txtCommentsOnBillingRateMainIssue.Text.Trim();
             objclsMeetingAgenda.IsFacilityTransports = ddlFacilityTransports.SelectedValue.Trim();
             //objclsMeetingAgenda.IsWithCharged = ddlWithCharge.SelectedValue.Trim();
             //objclsMeetingAgenda.IsClientProcessesOwnCreditcards = ddlClientPorcessesOwnCreditcards.SelectedValue.Trim();
             objclsMeetingAgenda.FacilityTransportsComments = txtFacilityTransportsComments.Text.Trim();
-            objclsMeetingAgenda.IsClientProcessesOwnCreditcards = txtCommentsOnBillingRates.Text.Trim();
+            //objclsMeetingAgenda.IsClientProcessesOwnCreditcards = txtCommentsOnBillingRateMainIssue.Text.Trim();
 
             //Non-Emergency Tranports
             objclsMeetingAgenda.IsNonEmergenctTranports = ddlNonEmergenctTranports.SelectedValue.Trim();
             objclsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = ddlIsClientAwareofPriorAuthorizationRequirements.SelectedValue.Trim();
             objclsMeetingAgenda.IsTraningNeeded = ddlIsTraningNeeded.SelectedValue.Trim();
+            objclsMeetingAgenda.NonEmergenctTranportsComments = txtClientAwareComments.Text.Trim();
+
 
             //Contract Facility Billing or Correctional/Jail
             objclsMeetingAgenda.IsContractFacilityBilling = ddlContractFacilityBilling.SelectedValue.Trim();
@@ -778,6 +785,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.RenewalDate = txtRenewalDate.Text;
             objclsMeetingAgenda.CurrentRate = txtCurrentRate.Text;
             objclsMeetingAgenda.IsContractCurrent = ddlContractCurrent.SelectedValue.Trim();
+            objclsMeetingAgenda.CurrentContractStatusComments = txtCurrentContractStatusComments.Text.Trim();
 
             //10. Personnel Changes
             objclsMeetingAgenda.IsPersonnelChanges = ddlPersonnelChanges.SelectedValue.Trim();
@@ -790,6 +798,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.IsClosedBusinesses = ddlClosedBusinesses.SelectedValue.Trim();
             objclsMeetingAgenda.IsNewBusiness = ddlNewBusiness.SelectedValue.Trim();
             objclsMeetingAgenda.DCComments = txtDemographicChangesComments.Text.Trim();
+            objclsMeetingAgenda.DCMainIssueComments = txtDemographicChangesMainIssueComments.Text.Trim();
 
             //Client Data Status
             objclsMeetingAgenda.IsUsage = ddlUsage.SelectedValue.Trim();
@@ -803,15 +812,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.ePCRByWhom = txtByWhom.Text.Trim();
             objclsMeetingAgenda.ePCRByWhen = txtByWhen.Text.Trim();
             objclsMeetingAgenda.IsRunReconciliationDone = ddlRunReconciliationDone.Text.Trim();
-
-            //Signature Capture
-            objclsMeetingAgenda.IsPatientSignature = ddlPatientSignature.SelectedValue.Trim(); 
-            objclsMeetingAgenda.IsPatientSignatureEPCR = ddlPatientSignatureEPCR.SelectedValue.Trim();
-            objclsMeetingAgenda.IsReceivingFacilitySignature = ddlReceivingFacilitySignature.SelectedValue.Trim();
-            objclsMeetingAgenda.IsReceivingFacilitySignatureEPCR = ddlReceivingFacilitySignatureEPCR.SelectedValue.Trim();
-            objclsMeetingAgenda.IsCrewSignature = ddlCrewSignature.SelectedValue.Trim();
-            objclsMeetingAgenda.IsCrewSignatureEPCR = ddlCrewSignatureEPCR.SelectedValue.Trim();
-            objclsMeetingAgenda.SignatureCaptureComments = txtSignatureCaptureComments.Text.Trim();
+           
 
             //15. Month End Report
             objclsMeetingAgenda.IsStatementReconciliation = ddlStatementReconciliation.SelectedValue.Trim();
@@ -819,6 +820,16 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.MonthEndReportHowOften = txtMonthEndReportHowOften.Text.Trim();
             objclsMeetingAgenda.IsTraningCompleted = ddlTraningCompleted.Text.Trim();
             objclsMeetingAgenda.IsTraningPending = ddlIsTraningPending.Text.Trim();
+            objclsMeetingAgenda.DateofMonthEndReconilations = txtDateofMonthEndReconilations.Text.Trim();
+
+            //Signature Capture
+            objclsMeetingAgenda.IsPatientSignature = ddlPatientSignature.SelectedValue.Trim();
+            objclsMeetingAgenda.IsPatientSignatureEPCR = ddlPatientSignatureEPCR.SelectedValue.Trim();
+            objclsMeetingAgenda.IsReceivingFacilitySignature = ddlReceivingFacilitySignature.SelectedValue.Trim();
+            objclsMeetingAgenda.IsReceivingFacilitySignatureEPCR = ddlReceivingFacilitySignatureEPCR.SelectedValue.Trim();
+            objclsMeetingAgenda.IsCrewSignature = ddlCrewSignature.SelectedValue.Trim();
+            objclsMeetingAgenda.IsCrewSignatureEPCR = ddlCrewSignatureEPCR.SelectedValue.Trim();
+            objclsMeetingAgenda.SignatureCaptureComments = txtSignatureCaptureComments.Text.Trim();
 
             //Client Review Intervals
             objclsMeetingAgenda.IsReviewIntervalCRI = rdolstCRI.SelectedValue.Trim();

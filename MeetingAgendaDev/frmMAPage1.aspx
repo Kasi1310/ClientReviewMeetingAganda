@@ -639,7 +639,7 @@
                                      </table>
                                 </td>    
                                  
-                                <td><asp:TextBox ID="txtUCRMainIssuComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtUCRMainIssueComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control"></asp:TextBox></td>
                              </tr>
 
                             <!--6. Comments on Billing Rates -->
@@ -673,7 +673,7 @@
                                 </td>    
                                                           
                                 <td>
-                                    <asp:TextBox ID="txtCommentsOnBillingRates" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                    <asp:TextBox ID="txtCommentsOnBillingRateMainIssue" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
                                         </asp:TextBox>
                                 </td>
                         </tr>
@@ -1002,14 +1002,14 @@
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                 </asp:DropDownList>
                                              </td>
-                                                  <td> <asp:TextBox ID="TextBox1" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                                  <td> <asp:TextBox ID="txtDemographicChangesComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
                                                  </tr>
                                         </tbody>
                                     </table>
 
                                 </td>
                                  <td>
-                                    <asp:TextBox ID="txtDemographicChangesComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                    <asp:TextBox ID="txtDemographicChangesMainIssueComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
                                         </asp:TextBox>
                                 </td>
                              </tr>
@@ -2197,14 +2197,14 @@
 
 
             //Control Comments on Billing Rates
-            clsMeetingAgenda.CommentsOnBillingRates = document.getElementById("<%=txtCommentsOnBillingRates.ClientID %>").value.trim();
+         
             var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsFacilityTransports = GetRadioListValue(IsFacilityTransportsddl);// IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
            <%--// var IsWithChargedddl = document.getElementById("<%=ddlWithCharge.ClientID %>").getElementsByTagName("input");
            // clsMeetingAgenda.IsWithCharged = IsWithChargedddl.value;// GetRadioListValue(IsWithChargedddl);
            // var IsClientProcessesOwnCreditcardsddl = document.getElementById("<%=ddlClientPorcessesOwnCreditcards.ClientID %>").getElementsByTagName("input");--%>
             clsMeetingAgenda.FacilityTransportsComments =  document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
-            clsMeetingAgenda.IsClientProcessesOwnCreditcards =  document.getElementById("<%=txtCommentsOnBillingRates.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+            clsMeetingAgenda.IsClientProcessesOwnCreditcards =  document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
 
 
             //Non-Emergency Tranports
@@ -2617,14 +2617,11 @@
 
 
             //Control Comments on Billing Rates
-            clsMeetingAgenda.CommentsOnBillingRates = document.getElementById("<%=txtCommentsOnBillingRates.ClientID %>").value.trim();
+          
             var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);// IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
-            <%--// var IsWithChargedddl = document.getElementById("<%=ddlWithCharge.ClientID %>").getElementsByTagName("input");
-            // clsMeetingAgenda.IsWithCharged = IsWithChargedddl.value;// GetRadioListValue(IsWithChargedddl);
-            // var IsClientProcessesOwnCreditcardsddl = document.getElementById("<%=ddlClientPorcessesOwnCreditcards.ClientID %>").getElementsByTagName("input");--%>
-                        clsMeetingAgenda.FacilityTransportsComments = document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
-                        clsMeetingAgenda.IsClientProcessesOwnCreditcards = document.getElementById("<%=txtCommentsOnBillingRates.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+            clsMeetingAgenda.FacilityTransportsComments = document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+            clsMeetingAgenda.IsClientProcessesOwnCreditcards = document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
 
 
                         //Non-Emergency Tranports
@@ -2921,7 +2918,7 @@
   <div class="col-lg-12">
     <div class="col-lg-12 form-group">
             <!-- RIGHT SECTION -->
-            <div class="col-md-6" style="padding:0 5px;">
+            <div class="col-md-6" style="padding:0 5px;width: auto;">
                 <div style="border:1px solid #dee2e6; height:100%;">
             
                     <!-- Header -->
