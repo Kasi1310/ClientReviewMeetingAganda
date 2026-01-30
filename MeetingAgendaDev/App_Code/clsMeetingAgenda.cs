@@ -331,7 +331,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@CURMainIssueComments", UCRMainIssueComments); //new
            
             objSqlCommand.Parameters.AddWithValue("@IsFacilityTransports", IsFacilityTransports); //new
-            objSqlCommand.Parameters.AddWithValue("@IsClientProcessesOwnCreditcards", IsClientProcessesOwnCreditcards); //new
+            objSqlCommand.Parameters.AddWithValue("@IsClientProcessesOwnCreditcards", FacilityTransportsComments); //new
             objSqlCommand.Parameters.AddWithValue("@CommentsOnBillingRates", CommentsOnBillingRatesMainIssue); //new
 
 
