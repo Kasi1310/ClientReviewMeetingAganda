@@ -65,22 +65,22 @@
                 <table class="table table-borderless">
                    <tbody>
                         <tr>
-                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                            <td style="border:none; font-size:medium; font-family:Calibri;">
                                 ✔ Identify other clients nearby you can visit on the same day?
                             </td>
                         </tr>
                         <tr>
-                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                            <td style="border:none; font-size:medium; font-family:Calibri;">
                                 ✔ Research potential departments in the area and plan to ask your client for referrals?
                             </td>
                         </tr>
                         <tr>
-                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                            <td style="border:none; font-size:medium; font-family:Calibri;">
                                 ✔ Check Google, Facebook, or other platforms for recent news or updates about the department or municipality?
                             </td>
                         </tr>
                         <tr>
-                            <td style="border:none; font-size:larger; font-family:Calibri;">
+                            <td style="border:none; font-size:medium; font-family:Calibri;">
                                 ✔ Bring business cards or contact cards to leave behind?
                             </td>
                         </tr>
@@ -228,7 +228,7 @@
                         <asp:GridView ID="gvAttendees" runat="server"
                        AutoGenerateColumns="false"
                        CssClass="table table-striped table-bordered"
-                       DataKeyNames="RowID"
+                       DataKeyNames="ID"
                        OnRowEditing="gvAttendees_RowEditing"
                        OnRowUpdating="gvAttendees_RowUpdating"
                        OnRowCancelingEdit="gvAttendees_RowCancelingEdit"
@@ -880,8 +880,7 @@
                                         <tbody>          
                                             <tr>
                                                 <td> <asp:TextBox ID="txtRenewalDate" CssClass="form-control form_datetime" runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
-                                                <td><asp:TextBox ID="txtCurrentRate" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"
-                                                                onblur="isPercentageKey(this,'Current Rate');"></asp:TextBox>
+                                                <td><asp:TextBox ID="txtCurrentRate" CssClass="form-control" runat="server" Text="" MaxLength="10"></asp:TextBox>
 
                                                 </td> 
                                                 <td style="vertical-align:middle">  
@@ -1798,234 +1797,7 @@
         function Validation(isPDFGenerated) {
 
 
-            document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";
-
-    <%--        var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
-            var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
-            var txtMeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>");
-            // var ddlAccountExecutive = document.getElementById("<%=ddlAccountExecutive.ClientID %>");
-            var txtAccountExecutive = document.getElementById('<%= txtAccountExecutive.ClientID %>');
-            var ddlEmail = document.getElementById("<%=ddlEmail.ClientID %>");
-            var ddlPhone = document.getElementById("<%=ddlPhone.ClientID %>");
-
-            var gvAttendees = document.getElementById("<%=gvAttendees.ClientID %>");--%>
-
-         <%--var txtName = document.getElementById("<%=txtName.ClientID %>");
-            var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
-            var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
-            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");--%>
-
-
-            <%--var ddlMeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>");
-
-            var txtYTDRevenue = document.getElementById("<%=txtYTDRevenue.ClientID %>");
-            var txtYTDTransports = document.getElementById("<%=txtYTDTransports.ClientID %>");
-            var txtRevenuePerTransport = document.getElementById("<%=txtRevenuePerTransport.ClientID %>");
-
-            var rdolstNonTransport = document.getElementById("<%=rdolstNonTransport.ClientID %>");
-
-            var rdolstContractCurrent = document.getElementById("<%=rdolstContractCurrent.ClientID %>");
-            var rdolstCPUsage = document.getElementById("<%=rdolstCPUsage.ClientID %>");
-            var rdolstRAAlertReceived = document.getElementById("<%=rdolstRAAlertReceived.ClientID %>");
-            var rdolstMGDiscussed = document.getElementById("<%=rdolstMGDiscussed.ClientID %>");
-            var rdolstCPSDiscussed = document.getElementById("<%=rdolstCPSDiscussed.ClientID %>");
-
-            var rdolstPatientSignature = document.getElementById("<%=rdolstPatientSignature.ClientID %>");
-            var rdolstPatientSignatureEPCR = document.getElementById("<%=rdolstPatientSignatureEPCR.ClientID %>");
-
-            var rdolstReceivingFacilitySignature = document.getElementById("<%=rdolstReceivingFacilitySignature.ClientID %>");
-            var rdolstReceivingFacilitySignatureEPCR = document.getElementById("<%=rdolstReceivingFacilitySignatureEPCR.ClientID %>");
-
-            var rdolstCrewSignature = document.getElementById("<%=rdolstCrewSignature.ClientID %>");
-            var rdolstCrewSignatureEPCR = document.getElementById("<%=rdolstCrewSignatureEPCR.ClientID %>");
-
-            var rdolstIsTraningPending = document.getElementById("<%=rdolstIsTraningPending.ClientID %>");--%>
-
-           <%-- var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>");
-            var txtNRScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>");
-
-            var lblErrorMsg = document.getElementById("lblErrorMsg");
-
-            lblErrorMsg.style.color = "red";
-
-            if (ddlClientNo.value == "0") {
-                //alert("Select Client#");
-                lblErrorMsg.innerHTML = "Select Client#";
-                OpenAlertPopup();
-                ddlClientNo.focus();
-                return false;
-            }
-            if (ddlClientName.value == "0") {
-                //alert("Select Client Name");
-                lblErrorMsg.innerHTML = "Select Client Name";
-                OpenAlertPopup();
-                ddlClientName.focus();
-                return false;
-            }
-            if (txtMeetingDate.value.trim() == "") {
-                //alert("Enter Meeting Date");
-                lblErrorMsg.innerHTML = "Enter Meeting Date";
-                OpenAlertPopup();
-                txtMeetingDate.focus();
-                return false;
-            }
-            //if (ddlAccountExecutive.value == "0") {
-            //    //alert("Select Account Executive");
-            //    lblErrorMsg.innerHTML = "Select Account Executive";
-            //    OpenAlertPopup();
-            //    ddlAccountExecutive.focus();
-            //    return false;
-            //}
-            if (txtAccountExecutive.value.trim() == "") {
-                lblErrorMsg.innerHTML = "Select Account Executive";
-                OpenAlertPopup();
-                return false;
-            }
-
-            if (ddlEmail.value == "0") {
-                //alert("Select Email");
-                lblErrorMsg.innerHTML = "Select Email";
-                OpenAlertPopup();
-                ddlEmail.focus();
-                return false;
-            }
-            if (ddlPhone.value == "0") {
-                //alert("Select Phone");
-                lblErrorMsg.innerHTML = "Select Phone";
-                OpenAlertPopup();
-                ddlPhone.focus();
-                return false;
-            }--%>
-            //if (ddlMeetingType.value == "") {
-            //    alert("Select Meeting Type");
-            //    ddlMeetingType.focus();
-            //    return false;
-            //}
-
-            //alert(gvAttendees.rows.length);
-            //alert(gvAttendees.rows[0].cells.length);
-            //alert(gvAttendees.rows[1].cells.length);
-
-            //if (gvAttendees == null || gvAttendees.rows.length == 1 || (gvAttendees.rows.length == 2 && gvAttendees.rows[1].cells.length == 1)) {
-            //    //alert("Enter Attendees Invited");
-            //    lblErrorMsg.innerHTML = "Enter Attendees Invited";
-            //    OpenAlertPopup();
-            //    txtName.focus();
-            //    return false;
-            //}
-
-
-            //if (txtYTDRevenue.value.trim() == "") {
-            //    alert("Enter YTD Revenue");
-            //    txtYTDRevenue.focus();
-            //    return false;
-            //}
-            //if (txtYTDTransports.value.trim() == "") {
-            //    alert("Enter YTD Transports");
-            //    txtYTDTransports.focus();
-            //    return false;
-            //}
-            //if (txtRevenuePerTransport.value.trim() == "") {
-            //    alert("Enter Revenue Per Transport");
-            //    txtRevenuePerTransport.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstNonTransport)) {
-            //    alert("Select Non-Transport");
-            //    rdolstNonTransport.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstContractCurrent)) {
-            //    alert("Select Contract Current");
-            //    rdolstContractCurrent.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstCPUsage)) {
-            //    alert("Select Usage");
-            //    rdolstCPUsage.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstRAAlertReceived)) {
-            //    alert("Select Alert Received");
-            //    rdolstRAAlertReceived.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstMGDiscussed)) {
-            //    alert("Select  Medicare Ground Ambulance Data Collection System Discussed");
-            //    rdolstMGDiscussed.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstCPSDiscussed)) {
-            //    alert("Select Client Patient Survey Program Discussed");
-            //    rdolstCPSDiscussed.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstPatientSignature)) {
-            //    alert("Select Patient Signature");
-            //    rdolstPatientSignature.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstPatientSignatureEPCR)) {
-            //    alert("Select Patient Signature EPCR");
-            //    rdolstPatientSignatureEPCR.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstReceivingFacilitySignature)) {
-            //    alert("Select Receiving Facility Signature");
-            //    rdolstReceivingFacilitySignature.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstReceivingFacilitySignatureEPCR)) {
-            //    alert("Select Receiving Facility Signature EPCR");
-            //    rdolstReceivingFacilitySignatureEPCR.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstCrewSignature)) {
-            //    alert("Select Crew Signature");
-            //    rdolstCrewSignature.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstCrewSignatureEPCR)) {
-            //    alert("Select Crew Signature EPCR");
-            //    rdolstCrewSignatureEPCR.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstIsTraningPending)) {
-            //    alert("Select Traning Pending");
-            //    rdolstIsTraningPending.focus();
-            //    return false;
-            //}
-
-            //if (!RadioValidate(rdolstCRI)) {
-            //    //alert("Select Client Review Intervals");
-            //    lblErrorMsg.innerHTML = "Select Client Review Intervals";
-            //    OpenAlertPopup();
-            //    document.getElementById("divIsTraningPending").scrollIntoView();
-            //    return false;
-            //}
-
-            //if (txtNRScheduleDate.value.trim() == "") {
-            //    //alert("Select Next Review Schedule Date");
-            //    lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
-            //    OpenAlertPopup();
-            //    txtNRScheduleDate.focus();
-            //    return false;
-            //}
-
-            //return true
+            document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";   
 
             document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;
 
@@ -3075,47 +2847,7 @@
             }
         }
 
-       <%--function BillingRateReviewedEnable() {
-            var ddlBillingRateReviewed = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").getElementsByTagName("input");
-            var txtBLSReviewed = document.getElementById("<%=txtBLSReviewed.ClientID %>");
-            var txtBLSNEReviewed = document.getElementById("<%=txtBLSNEReviewed.ClientID %>");
-            var txtALSReviewed = document.getElementById("<%=txtALSReviewed.ClientID %>");
-            var txtALSNEReviewed = document.getElementById("<%=txtALSNEReviewed.ClientID %>");
-            var txtALS2Reviewed = document.getElementById("<%=txtALS2Reviewed.ClientID %>");
-            var txtMileageReviewed = document.getElementById("<%=txtMileageReviewed.ClientID %>");
-            var rdolstNonTransportReviewed = document.getElementById("<%=rdolstNonTransportReviewed.ClientID %>").getElementsByTagName("input");
-
-            if (ddlBillingRateReviewed[0].checked) {
-                txtBLSReviewed.disabled = false;
-                txtBLSNEReviewed.disabled = false;
-                txtALSReviewed.disabled = false;
-                txtALSNEReviewed.disabled = false;
-                txtALS2Reviewed.disabled = false;
-                txtMileageReviewed.disabled = false;
-                $('#<%=rdolstNonTransportReviewed.ClientID %>').removeClass("custom-checkbox-disable");
-                $('#<%=rdolstNonTransportReviewed.ClientID %>').addClass("custom-checkbox");
-            }
-            else {
-                txtBLSReviewed.disabled = true;
-                txtBLSNEReviewed.disabled = true;
-                txtALSReviewed.disabled = true;
-                txtALSNEReviewed.disabled = true;
-                txtALS2Reviewed.disabled = true;
-                txtMileageReviewed.disabled = true;
-                $('#<%=rdolstNonTransportReviewed.ClientID %>').removeClass("custom-checkbox");
-                $('#<%=rdolstNonTransportReviewed.ClientID %>').addClass("custom-checkbox-disable");
-
-                txtBLSReviewed.value = "";
-                txtBLSNEReviewed.value = "";
-                txtALSReviewed.value = "";
-                txtALSNEReviewed.value = "";
-                txtALS2Reviewed.value = "";
-                txtMileageReviewed.value = "";
-                rdolstNonTransportReviewed[0].checked = false;
-                rdolstNonTransportReviewed[1].checked = false;
-
-            }
-        }--%>
+     
     </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphReferal" runat="server">
@@ -3181,14 +2913,7 @@
 </tr>
 </tbody>
 </table>
-<%-- <ul class="list-unstyled" style="font-family:Calibri; font-size:medium;">
-<li class="mb-2">✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.</li>
-<li class="mb-2">✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.</li>
-<li class="mb-2">✔ Accessible & Responsive Team – Easy to reach and always available.</li>
-<li class="mb-2">✔ User-Friendly Customer Portal – Real-time access to actionable information.</li>
-<li class="mb-2">✔ Regular Reporting – Semi-annual and annual performance reports.</li>
-<li class="mb-2">✔ Ongoing Client Reviews – Stay aligned on agency performance.</li>
-</ul>--%>
+
 </div>
  
         </div>

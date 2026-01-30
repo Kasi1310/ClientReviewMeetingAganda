@@ -418,66 +418,31 @@ namespace ClientMeetingAgenda
 
             AttendeesConfirmation();
         }
-        //protected void btnAdd_Click(object sender, EventArgs e)
-        //{
-        //    if (btnAdd.Text == "Add")
-        //    {
-        //        if (Session["dtAttendeesInvited"] == null)
-        //        {
-        //            AssignTextBox();
-        //        }
-        //        dtAttendeesInvited = new DataTable();
-        //        dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
-
-        //        int ID = dtAttendeesInvited.Rows.Count == 0 ? 0 : int.Parse(dtAttendeesInvited.Rows[dtAttendeesInvited.Rows.Count - 1]["ID"].ToString().Trim());
-
-        //        dtAttendeesInvited.Rows.Add(ID + 1, Session["ssnMAID"] != null ? int.Parse(Session["ssnMAID"].ToString().Trim()) : 0
-        //                , txtName.Text.Trim(), txtTitle.Text.Trim(), txtPhone.Text.Trim(), txtEmail.Text.Trim(), false, "NO");
-
-        //    }
-        //    else
-        //    {
-        //        string id = hdnEditId.Value;
-
-        //        foreach (DataRow row in dtAttendeesInvited.Rows)
-        //        {
-        //            if (row["ID"].ToString() == id)
-        //            {
-        //                row["Name"] = txtName.Text;
-        //                row["Title"] = txtTitle.Text;
-        //                row["Phone"] = txtPhone.Text;
-        //                row["Email"] = txtEmail.Text;
-
-        //                break;
-        //            }
-        //        }
-        //    }
-        //    gvAttendees.DataSource = dtAttendeesInvited;
-        //    gvAttendees.DataBind();
-
-        //    txtName.Text = "";
-        //    txtTitle.Text = "";
-        //    txtEmail.Text = "";
-        //    txtPhone.Text = "";
-        //    txtName.Focus();
-
-        //}
+        
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             DataTable dt = AttendeesTable;
 
-            DataRow dr = dt.NewRow();
-            dr["RowID"] = dt.Rows.Count + 1;
-            dr["Name"] = txtName.Text.Trim();
-            dr["Title"] = txtTitle.Text.Trim();
-            dr["Phone"] = txtPhone.Text.Trim();
-            dr["Email"] = txtEmail.Text.Trim();
+            int id = dt.Rows.Count == 0
+                ? 1
+                : Convert.ToInt32(dt.Compute("MAX(ID)", "")) + 1;
 
-            dt.Rows.Add(dr);
+            dt.Rows.Add(
+                id,
+                Session["ssnMAID"] != null ? Convert.ToInt32(Session["ssnMAID"]) : 0,
+                txtName.Text.Trim(),
+                txtTitle.Text.Trim(),
+                txtPhone.Text.Trim(),
+                txtEmail.Text.Trim(),
+                false,
+                "NO"
+            );
 
+            AttendeesTable = dt;
             BindGrid();
             ClearFields();
         }
+
         private void ClearFields()
         {
             txtName.Text = "";
@@ -499,11 +464,13 @@ namespace ClientMeetingAgenda
         protected void gvAttendees_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             DataTable dt = AttendeesTable;
-            int rowId = Convert.ToInt32(gvAttendees.DataKeys[e.RowIndex].Value);
+            int id = Convert.ToInt32(gvAttendees.DataKeys[e.RowIndex].Value);
 
-            DataRow row = dt.Select("RowID=" + rowId)[0];
-            dt.Rows.Remove(row);
+            DataRow row = dt.Select("ID=" + id).FirstOrDefault();
+            if (row != null)
+                dt.Rows.Remove(row);
 
+            AttendeesTable = dt;
             BindGrid();
         }
         protected void gvAttendees_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -516,7 +483,7 @@ namespace ClientMeetingAgenda
             DataTable dt = AttendeesTable;
             int rowId = Convert.ToInt32(gvAttendees.DataKeys[e.RowIndex].Value);
 
-            DataRow row = dt.Select("RowID=" + rowId)[0];
+            DataRow row = dt.Select("ID=" + rowId)[0];
 
             row["Name"] = ((TextBox)gvAttendees.Rows[e.RowIndex].Cells[0].Controls[0]).Text;
             row["Title"] = ((TextBox)gvAttendees.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
@@ -526,22 +493,21 @@ namespace ClientMeetingAgenda
             gvAttendees.EditIndex = -1;
             BindGrid();
         }
+
         private DataTable AttendeesTable
         {
             get
             {
-                if (ViewState["Attendees"] == null)
+                if (Session["dtAttendeesInvited"] == null)
                 {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("RowID", typeof(int));
-                    dt.Columns.Add("Name");
-                    dt.Columns.Add("Title");
-                    dt.Columns.Add("Phone");
-                    dt.Columns.Add("Email");
-
-                    ViewState["Attendees"] = dt;
+                    AssignTextBox();
                 }
-                return (DataTable)ViewState["Attendees"];
+                return (DataTable)Session["dtAttendeesInvited"];              
+
+            }
+            set
+            {
+                Session["dtAttendeesInvited"] = value;
             }
         }
         protected void gvAttendees_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -556,7 +522,7 @@ namespace ClientMeetingAgenda
                 dtAttendeesInvited = (DataTable)Session["dtAttendeesInvited"];
 
                 string id = e.CommandArgument.ToString();
-                DataRow[] rows = dtAttendeesInvited.Select("ID = '" + id + "'");
+                DataRow[] rows = dtAttendeesInvited.Select("RowID = '" + id + "'");
 
                 if (rows.Length > 0)
                 {
@@ -883,6 +849,7 @@ namespace ClientMeetingAgenda
                     objclsMeetingAgenda.AttendeesName = dtAttendeesInvited.Rows[i]["Name"].ToString().Trim();
                     objclsMeetingAgenda.AttendeesTitle = dtAttendeesInvited.Rows[i]["Title"].ToString().Trim();
                     objclsMeetingAgenda.AttendeesEmail = dtAttendeesInvited.Rows[i]["Email"].ToString().Trim();
+                    objclsMeetingAgenda.AttendeesPhone = dtAttendeesInvited.Rows[i]["Phone"].ToString().Trim();
                     objclsMeetingAgenda.InsertAttendes();
                 }
 
