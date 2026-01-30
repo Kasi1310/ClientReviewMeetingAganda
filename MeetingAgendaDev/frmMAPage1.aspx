@@ -58,16 +58,11 @@
     </style>
 
     <div>
-        <div class="col-lg-6  text-lg-center">
+        <div class="col-lg-6 text-lg-center">
             <img src="Images/Logo.jpg" />
         </div>
         <div class="col-lg-6 text-lg-left">
                 <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center;border:none; font-family:Calibri;">Pre-Meeting Checklist</th>
-                        </tr>
-                    </thead>
                    <tbody>
                         <tr>
                             <td style="border:none; font-size:larger; font-family:Calibri;">
@@ -102,18 +97,19 @@
             <asp:HiddenField ID="hdnEditId" runat="server" Value="0" />
             <asp:HiddenField ID="hdnIsButtonClick" runat="server" Value="false" />
             <asp:HiddenField ID="hdnUserid" runat="server" Value="0" />
-            <div class="col-lg-12 form-group text-lg-center text-info">
-                <h3><b>CLIENT REVIEW MEETING AGENDA</b></h3>
-                <h3><span style="color:red; text-align:center;">*</span>Mandatory fields fill in</h3>
+            <div class="col-lg-12 form-group text-lg-center">
+                <h3><b style="color: rgb(0,148,144) !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
+                <h3 style="color: rgb(0,148,144) !important;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
             </div>
+
             <div class="col-lg-12 form-group">
                  <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                      <thead>
-                         <tr style="background-color:rgb(0,148,144) !important; color:#fff;">
-                             <th colspan="3" class="text-center">CLIENT# <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center">CLIENT NAME <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center">MEETING DATE <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center">REPORT DATE <span class="text-danger">*</span></th>
+                         <tr>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT# <span class="text-danger">*</span></th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT NAME <span class="text-danger">*</span></th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING DATE <span class="text-danger">*</span></th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">REPORT DATE <span class="text-danger">*</span></th>
                         </tr>
                      </thead>
                      <tbody>
@@ -142,11 +138,11 @@
             <div class="col-lg-12 form-group">
                  <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                      <thead>
-                         <tr style="background-color:rgb(0,148,144) !important; color:#fff;">
-                            <th colspan="3" class="text-center">ACCOUNT EXECUTIVE <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center">EMAIL <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center">PHONE # <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center">MEETING TYPE</th>
+                         <tr>
+                            <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE <span class="text-danger">*</span></th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">EMAIL <span class="text-danger">*</span></th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">PHONE # <span class="text-danger">*</span></th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING TYPE</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -195,21 +191,21 @@
             <div class="col-lg-12">
                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                     <thead>
-                        <tr style="background-color:rgb(0,148,144); color:#fff;">
-                            <th colspan="12" class="text-center">ATTENDEES </th>
-                        </tr>
-                         <tr style="background-color:#3A3F46; color:#fff;">
-                         <th colspan="2" class="text-center">Name <span class="text-danger">*</span></th>
-                         <th colspan="2" class="text-center">Title <span class="text-danger">*</span></th>
-                         <th colspan="2" class="text-center">Phone <span class="text-danger">*</span></th>
-                         <th colspan="2" class="text-center">Email <span class="text-danger">*</span></th>
-                         <th colspan="2" class="text-center">Action</th>
-                         <th colspan="2" class="text-center"></th>                         
-                     </tr>
-                    </thead>
-                    <tbody>
                         <tr>
-                              <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                            <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ATTENDEES </th>
+                        </tr>
+                    </thead>
+                    <tbody class="pdf-exclude">
+                        <tr>
+                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Name <span class="text-danger">*</span></th>
+                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Title <span class="text-danger">*</span></th>
+                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Phone <span class="text-danger">*</span></th>
+                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Email <span class="text-danger">*</span></th>
+                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Action</th>
+                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;"></th>                         
+                        </tr>
+                        <tr>
+                             <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtTitle" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPhone" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2" style="padding: inherit !important;"><asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
@@ -249,31 +245,35 @@
                    </asp:GridView>
            
             </div>
-          
-            
-           
+
+         
+
             <!--Client Revenue Numbers-->
             <div class="col-lg-12 form-group">
                <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
                      <thead>
-                        <tr style="background-color:rgb(0,148,144); color:#fff;">
-                            <th colspan="8" class="text-center">CLIENT REVENUE NUMBERS</th>
+                        <tr>
+                            <th colspan="8" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT REVENUE NUMBERS</th>
                         </tr>
 
-                        <tr style="background-color:rgb(0,148,144); color:#fff;">
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle;">
-                                <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px;">Previous Start Date</label>
-                                <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
+                        
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
+                                <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle;">
-                                <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto;" OnTextChanged="txtPreviousEndDate_TextChanged"></asp:TextBox>
+                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
+                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;" OnTextChanged="txtPreviousEndDate_TextChanged"></asp:TextBox>
                             </th>
 
-                            <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle;">
-                                <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px;">Previous Report Type</label>
-                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto;">
+                            <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Report Type</label>
+                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
@@ -281,20 +281,17 @@
                             </th>
                         </tr>
 
-                        <tr style="background-color:#3A3F46; color:#fff;">
-                            <th class="text-center">Transports</th>
-                            <th class="text-center">Charges</th>
-                            <th class="text-center">Revenue</th>
-                            <th class="text-center">Adjustments</th>
-                            <th class="text-center">Write-Off</th>
-                            <th class="text-center">Refund</th>
-                            <th class="text-center">RPT</th>
-                            <th class="text-center">Coll Rate%</th>
+                        <tr>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Transports</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Charges</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Revenue</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Adjustments</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Write-Off</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Refund</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">RPT</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Coll Rate%</th>
                         </tr>
-                    </thead>
 
-                    <tbody>
-                
                         <tr>
                             <td><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control"></asp:TextBox></td>
                             <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control"></asp:TextBox></td>
@@ -306,21 +303,20 @@
                             <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control"></asp:TextBox></td>
                         </tr>
 
-                      
                         <tr style="background-color:rgb(0,148,144); color:#fff;">
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle;">
-                                <label for="txtCurrentStartDate" style="display:inline-block; margin-right:20px;">Current Start Date</label>
-                                <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
+                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                <label for="txtCurrentStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Start Date</label>
+                                <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle;">
-                                <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" OnTextChanged="txtCurrentEndDate_TextChanged" AutoPostBack="true" style="display:inline-block; width: auto;"></asp:TextBox>
+                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
+                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" OnTextChanged="txtCurrentEndDate_TextChanged" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
-                            <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle;">
-                                <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px;">Current Report Type</label>
-                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"  style="display:inline-block; width: auto;">
+                            <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
+                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"  style="display:inline-block; width: auto; background-color:#fff !important;">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
@@ -328,16 +324,15 @@
                             </th>
                         </tr>
 
-
-                        <tr style="background-color:#3A3F46; color:#fff;">
-                            <th class="text-center">Transports</th>
-                            <th class="text-center">Charges</th>
-                            <th class="text-center">Revenue</th>
-                            <th class="text-center">Adjustments</th>
-                            <th class="text-center">Write-Off</th>
-                            <th class="text-center">Refund</th>
-                            <th class="text-center">RPT</th>
-                            <th class="text-center">Coll Rate%</th>
+                        <tr>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Transports</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Charges</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Revenue</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Adjustments</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Write-Off</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Refund</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">RPT</th>
+                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Coll Rate%</th>
                         </tr>
 
                         <tr>
@@ -350,12 +345,10 @@
                             <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control"></asp:TextBox></td>
                             <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control"></asp:TextBox></td>
                         </tr>
-                    </tbody>
 
-                    <tfoot>
-                        <tr style="background-color:rgb(0,148,144); color:#fff;">
-                            <th colspan="4" class="text-center">CLIENT COMMENTS</th>
-                            <th colspan="4" class="text-center">ACCOUNT EXECUTIVE COMMENTS</th>
+                        <tr>
+                            <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT COMMENTS</th>
+                            <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE COMMENTS</th>
                         </tr>
                
                         <tr>
@@ -366,32 +359,31 @@
                                 <asp:TextBox ID="txtAccountExecutiveComments" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
                             </td>
                         </tr>
-                    </tfoot>
+                    </tbody>
                 </table>
-   
             </div>
             
             
             <div class="col-lg-12 form-group">
                 <div class="table-responsive">
                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                         <thead>
-                             <tr style="background-color:rgb(0,148,144) !important; color:#fff;">
-                                <th class="text-center" style="width:25%">CONTENT TO DISCUSS</th>
-                                <th class="text-center" style="width:50%"></th>
-                                <th class="text-center" style="width:25%">MAIN ISSUES (If Any)</th>
+                         
+                             <tr>
+                                <th class="text-center" style="width:25%; background-color:rgb(0,148,144) !important; color:#fff !important;">CONTENT TO DISCUSS</th>
+                                <th class="text-center" style="width:50%; background-color:rgb(0,148,144) !important; color:#fff !important;"></th>
+                                <th class="text-center" style="width:25%; background-color:rgb(0,148,144) !important; color:#fff !important;">MAIN ISSUES (If Any)</th>
                             </tr>
-                         </thead>
+                         
                          <tbody>
                              <!-- 1. Aging Review-->
                              <tr>
-                                 <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;position: relative;">    
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                <th style="text-align:center; vertical-align:middle;">Aging Review (Sent to araging@medicount.com)</th>                                                                                          
+                                 <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">    
+                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; color: #00968F;">
+                                                                           
+                                            <tr >                                                
+                                                <th style="text-align:center; vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Aging Review (Sent to araging@medicount.com)</th>                                                                                          
                                             </tr>
-                                        </thead>
+                                        
                                           <tbody>        
                                               <tr>
                                                   <td >
@@ -405,14 +397,15 @@
                                          </tbody>
                                     </table>
                                  </td>
+
                                  <td>
                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                <th style="text-align:center; vertical-align:middle;">Discussed with AR Team</th>
-                                                <th style="text-align:center; vertical-align:middle;">Comments</th>                                               
+                                                                           
+                                            <tr>                                                
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Discussed with AR Team</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                               
                                             </tr>
-                                        </thead>
+                                        
                                           <tbody>        
                                               <tr>
                                                   <td >
@@ -426,23 +419,23 @@
                                                   </tr>
                                          </tbody>
                                     </table>
-                                 </td>   
+                                 </td> 
+                                 
                                  <td>
                                      <asp:TextBox ID="txtARComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control"></asp:TextBox>
                                  </td>
                              </tr>
                             
-                              <!-- 2. Current Billing Policy-->
-                             <tr> 
-                                
-                                <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;position: relative;">
+                             <!-- 2. Current Billing Policy-->
+                             <tr>
+                                <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">
 
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                <th style="text-align:center; vertical-align:middle;">Client Billing Policy</th>                                                                                          
+                                                                           
+                                            <tr>                                                
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Client Billing Policy</th>                                                                                          
                                             </tr>
-                                        </thead>
+                                        
                                           <tbody>        
                                               <tr>
                                                   <td >
@@ -462,12 +455,12 @@
 
                                 <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">      
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
-                                     <thead>                                  
-                                        <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                            <th style="text-align:center; vertical-align:middle;width:50%;">Collections</th>                                                                                          
-                                            <th style="text-align:center; vertical-align:middle;">Comments</th>                                                                                          
+                                                                       
+                                        <tr>                                                
+                                            <th style="text-align:center; vertical-align:middle;width:50%; background-color:rgb(0,148,144) !important; color:#fff !important;">Collections</th>                                                                                          
+                                            <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                                                                          
                                         </tr>
-                                    </thead>
+                                    
                                       <tbody>        
                                           <tr>
                                               <td >
@@ -490,14 +483,14 @@
                            
                              <!-- 3. Billing Rates Reviewed-->
                              <tr>
-                                 <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;position: relative;">                                 
+                                 <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">                                 
                                     
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                <th style="text-align:center; vertical-align:middle;">Client Billing Rates Reviewed</th>                                                                                          
+                                                                           
+                                            <tr>                                                
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Client Billing Rates Reviewed</th>                                                                                          
                                             </tr>
-                                        </thead>
+                                        
                                           <tbody>        
                                               <tr>
                                                   <td >
@@ -514,12 +507,12 @@
 
                                  <td style="font-weight:bold; text-align:left; padding-left:10px;">   
                                        <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                <th style="text-align:center; vertical-align:middle;">Date of Last Rate Change</th>
-                                                <th style="text-align:center; vertical-align:middle;">Comments</th>                                               
+                                                                           
+                                            <tr>                                                
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Date of Last Rate Change</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                               
                                             </tr>
-                                        </thead>
+                                        
                                           <tbody>        
                                               <tr>
                                                   <td>
@@ -538,14 +531,13 @@
                              
                              <!--4. Current Billing Rates-->                            
                              <tr>                               
-                              
-                                  <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;position: relative;">    
+                                <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">    
                                           <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
-                                             <thead>                                  
-                                                <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                    <th style="text-align:center; vertical-align:middle;">Current Billing Rates</th>                                                                                          
+                                                                               
+                                                <tr>                                                
+                                                    <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Current Billing Rates</th>                                                                                          
                                                 </tr>
-                                            </thead>
+                                            
                                               <tbody>        
                                                   <tr>
                                                       <td >
@@ -559,20 +551,21 @@
                                              </tbody>
                                         </table>
                                      </td>
+
                                 <td>
                                         <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                         <thead>
+                                         
                                   
-                                            <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                <th colspan="2" style="text-align:center; vertical-align:middle;">BLS</th>
-                                                <th style="text-align:center; vertical-align:middle;">BLS NE</th>
-                                                <th style="text-align:center; vertical-align:middle;">ALS</th>
-                                                <th style="text-align:center; vertical-align:middle;">ALS NE</th>
-                                                <th style="text-align:center; vertical-align:middle;">ALS2</th>
-                                                <th style="text-align:center; vertical-align:middle;">Non-Transport</th>
-                                                <th style="text-align:center; vertical-align:middle;">Mileage</th>
+                                            <tr>
+                                                <th colspan="2" style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">BLS</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">BLS NE</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">ALS</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">ALS NE</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">ALS2</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Non-Transport</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Mileage</th>
                                             </tr>
-                                        </thead>
+                                        
 
                                         <tbody>          
                                           
@@ -611,19 +604,19 @@
 
                              <!--5. UCR (Usual & Customary Rates)-->
                              <tr>
-                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                      UCR (Usual & Customary Rates)
                                  </td>
 
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">                                   
 
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144);  color:#fff;">                                                
-                                                <th style="text-align:center; vertical-align:middle; width:50% !important;">RATE REVIEW SHEET OF NEIGHBORING DEPARTMENTS PROVIDED TO CLIENT</th>
-                                                <th style="text-align:center; vertical-align:middle;">Comments</th>                                               
+                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F !important;">
+                                                                           
+                                            <tr>                                                
+                                                <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">RATE REVIEW SHEET OF NEIGHBORING DEPARTMENTS PROVIDED TO CLIENT</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                               
                                             </tr>
-                                        </thead>
+                                        
                                           <tbody>        
                                               <tr>
                                                   <td>
@@ -639,24 +632,26 @@
                                      </table>
                                 </td>    
                                  
-                                <td><asp:TextBox ID="txtUCRMainIssueComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                 <td>
+                                    <asp:TextBox ID="txtUCRMainIssueComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control"></asp:TextBox>
+                                </td>
                              </tr>
 
-                            <!--6. Comments on Billing Rates -->
-                            <tr>
-                                 <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;position: relative;">
-                                    <label for="txtCommentsOnBillingRates" style="float: left; margin-right: 20px; width: 50%;">Comments on Billing Rates</label>                                    
+                             <!--6. Comments on Billing Rates -->
+                             <tr>
+                                 <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">
+                                    <label for="txtCommentsOnBillingRates" style="float: left; margin-right: 20px; width: 50%;color: #00968F !important;">Comments on Billing Rates</label>                                    
                                 </td>
                                
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">                                   
 
                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144);  color:#fff;">                                                
-                                                <th style="text-align:center; vertical-align:middle; width:50% !important;">Does Client Charge for Facility Transports?</th>
-                                                <th style="text-align:center; vertical-align:middle;">Comments</th>                                               
+                                                                           
+                                            <tr>                                                
+                                                <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Does Client Charge for Facility Transports?</th>
+                                                <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                               
                                             </tr>
-                                        </thead>
+                                        
                                           <tbody>        
                                               <tr>
                                                   <td>
@@ -676,16 +671,17 @@
                                     <asp:TextBox ID="txtCommentsOnBillingRateMainIssue" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
                                         </asp:TextBox>
                                 </td>
-                        </tr>
+                            </tr>
+
                              <!--Non-Emergency Tranports-->
                              <tr>
-                                  <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;position: relative;">
+                                  <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;">
                                        <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                        <thead>                                  
-                                           <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                               <th style="text-align:center; vertical-align:middle; width:50% !important;">Non-Emergency Tranports</th>                                                                                            
+                                                                          
+                                           <tr>                                                
+                                               <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Non-Emergency Tranports</th>                                                                                            
                                            </tr>
-                                       </thead>
+                                       
                                          <tbody>        
                                              <tr>
                                                  <td>
@@ -704,12 +700,12 @@
                                     
 
                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                        <thead>                                  
-                                           <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                               <th style="text-align:center; vertical-align:middle; width:50% !important;">Is Client Aware of Prior Authorization Requirements?</th>
-                                               <th style="text-align:center; vertical-align:middle;">Comments</th>                                               
+                                                                          
+                                           <tr>                                                
+                                               <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Is Client Aware of Prior Authorization Requirements?</th>
+                                               <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                               
                                            </tr>
-                                       </thead>
+                                       
                                          <tbody>        
                                              <tr>
                                                  <td>
@@ -728,11 +724,11 @@
                                  <td  style="font-weight:bold; text-align:left; padding-left:10px;">
                                    
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                        <thead>                                  
+                                                                          
                                            <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                               <th style="text-align:center; vertical-align:middle; width:50% !important;">Is Prior Authorization Traning Needed?</th>
+                                               <th style="text-align:center; vertical-align:middle; width:50% !important;background-color:rgb(0,148,144) !important; color:#fff !important;">Is Prior Authorization Traning Needed?</th>
                                            </tr>
-                                       </thead>
+                                       
                                          <tbody>        
                                              <tr>
                                                  <td>
@@ -751,14 +747,13 @@
 
                              <!--Contract Facility Billing or Correctional/Jail -->
                              <tr>
-                                 
-                                  <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;position: relative;">
+                                <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;">
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                       <thead>                                  
-                                          <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                              <th style="text-align:center; vertical-align:middle; width:100% !important;">Does the Client have contracts with Facilities, Jails or Correctional facilities. If Yes, we need a copy attached</th>                                                                                            
+                                                                         
+                                          <tr>                                                
+                                              <th style="text-align:center; vertical-align:middle; width:100% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Does the Client have contracts with Facilities, Jails or Correctional facilities. If Yes, we need a copy attached</th>                                                                                            
                                           </tr>
-                                      </thead>
+                                      
                                         <tbody>        
                                             <tr>
                                                 <td>
@@ -772,19 +767,20 @@
                                        </tbody>
                                    </table>
                                  </td>
+
                                 <td colspan="2">
                                          <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                             <thead>
+                                             
                                   
-                                                <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                    <th style="text-align: center;vertical-align: middle;">Do they transport to Skilled Nursing Facilities / Correctional Facilities? </th>
-                                                    <th style="text-align: center;vertical-align: middle;">What type of contracts?</th>
-                                                    <th style="text-align: center;vertical-align: middle;">Attached?</th>
-                                                    <th style="text-align: center;vertical-align: middle;">If no, does the client transport from a Nursing Home,Jail,Correctional Facilities, Others?</th>
-                                                    <th style="text-align: center;vertical-align: middle;">Do these types need to be billed? </th>
-                                                    <th style="text-align: center;vertical-align: middle;">Do we have the correct information to bill these type of transports?</th>
+                                                <tr>
+                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Do they transport to Skilled Nursing Facilities / Correctional Facilities? </th>
+                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">What type of contracts?</th>
+                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Attached?</th>
+                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">If no, does the client transport from a Nursing Home,Jail,Correctional Facilities, Others?</th>
+                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Do these types need to be billed? </th>
+                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Do we have the correct information to bill these type of transports?</th>
                                                 </tr>
-                                            </thead>
+                                            
 
                                             <tbody>          
                                                 <tr>
@@ -849,14 +845,14 @@
                             
                              <!-- Contract Status -->
                              <tr>
-                                 <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;position: relative;">                                     
+                                 <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;">                                     
 
                                         <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                        <thead>                                  
-                                           <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                               <th style="text-align:center; vertical-align:middle; width:100% !important;">Current Contract Status - Contract Inforce</th>                                                                                            
+                                                                          
+                                           <tr>                                                
+                                               <th style="text-align:center; vertical-align:middle; width:100% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Current Contract Status - Contract Inforce</th>                                                                                            
                                            </tr>
-                                       </thead>
+                                       
                                      <tbody>        
                                          <tr>
                                              <td>
@@ -873,13 +869,13 @@
 
                                  <td>
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                <th class="text-center">Renewal Date</th>
-                                                <th class="text-center">Current Rate</th>
-                                                <th class="text-center">Does the client have a copy of the current contract</th>   
+                                                                           
+                                            <tr>
+                                                <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Renewal Date</th>
+                                                <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Current Rate</th>
+                                                <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Does the client have a copy of the current contract</th>   
                                             </tr>
-                                        </thead>
+                                        
 
                                         <tbody>          
                                             <tr>
@@ -900,14 +896,15 @@
                                         </tbody>
                                     </table>
                                  </td>   
-                                <td>
+
+                                 <td>
                                     
                                             <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                            <thead>                                  
-                                               <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                   <th style="text-align:center; vertical-align:middle; width:100% !important;">Comments</th>                                                                                            
+                                                                              
+                                               <tr>                                                
+                                                   <th style="text-align:center; vertical-align:middle; width:100% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                                                                            
                                                </tr>
-                                           </thead>
+                                           
                                          <tbody>        
                                              <tr>
                                                  <td>
@@ -918,19 +915,17 @@
                                         </tbody>
                                     </table>
                                      </td>
-                                
                              </tr>
                              
-                              <!--Personnel Changes -->
-                            <tr>
-
-                                 <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;position: relative;">                                     
+                             <!--Personnel Changes -->
+                             <tr>
+                                 <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;">                                     
                                          <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                            <thead>                                  
-                                               <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                                   <th style="text-align:center; vertical-align:middle; width:100% !important;">Personnel Changes</th>                                                                                            
+                                                                              
+                                               <tr>                                                
+                                                   <th style="text-align:center; vertical-align:middle; width:100% !important;background-color:rgb(0,148,144) !important; color:#fff !important;">Personnel Changes</th>                                                                                            
                                                </tr>
-                                           </thead>
+                                           
                                          <tbody>        
                                              <tr>
                                                  <td>
@@ -949,14 +944,14 @@
                                 <td colspan="2"> 
 
                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                <th colspan="2" class="text-center">Chief</th>
-                                                <th colspan="2" class="text-center">Fiscal Officer</th>
-                                                <th colspan="2" class="text-center">Authorized Official# 1</th> 
-                                                <th colspan="2" class="text-center">Authorized Official# 2</th> 
+                                                                           
+                                            <tr>
+                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Chief</th>
+                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Fiscal Officer</th>
+                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Authorized Official# 1</th> 
+                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Authorized Official# 2</th> 
                                             </tr>
-                                        </thead>
+                                        
 
                                         <tbody>          
                                             <tr>
@@ -972,20 +967,20 @@
 
                              <!--Demographic Changes -->
                              <tr>
-                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                     Demographic Changes
                                   </td>
 
-                                  <td  style="font-weight:bold; text-align:left; padding-left:10px;">
+                                 <td  style="font-weight:bold; text-align:left; padding-left:10px;">
    
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                        <thead>                                  
-                                           <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                               <th style="text-align:center; vertical-align:middle; width:20% !important;">Closed Businesses</th>
-                                               <th style="text-align:center; vertical-align:middle; width:20% !important;">New Business</th>
-                                               <th style="text-align:center; vertical-align:middle; width:60% !important;">Comments</th>
+                                                                          
+                                           <tr>                                                
+                                               <th style="text-align:center; vertical-align:middle; width:20% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Closed Businesses</th>
+                                               <th style="text-align:center; vertical-align:middle; width:20% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">New Business</th>
+                                               <th style="text-align:center; vertical-align:middle; width:60% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>
                                            </tr>
-                                       </thead>
+                                       
                                          <tbody>        
                                              <tr>
                                                  <td>
@@ -1008,6 +1003,7 @@
                                     </table>
 
                                 </td>
+
                                  <td>
                                     <asp:TextBox ID="txtDemographicChangesMainIssueComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
                                         </asp:TextBox>
@@ -1016,21 +1012,20 @@
 
                              <!--Client Data Status -->
                              <tr>
-                                  <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                     Client Portal & Data Usage Status
                                   </td>
-                                
 
                                  <td colspan="2">
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                          <thead>                                  
-                                             <tr style="background-color:rgb(0,148,144); color:#fff; text-align:center; vertical-align:middle;">
-                                                 <th style="text-align:center; vertical-align:middle;">Client Portal Usage</th>
-                                                 <th style="text-align:center; vertical-align:middle;">Receiving alerts from Medicount's Portal</th> 
-                                                 <th style="text-align:center; vertical-align:middle;">Current Uses OIG Exclusionary List</th> 
-                                                 <th style="text-align:center; vertical-align:middle;">Who receives the mendicount reports?</th>                                                   
+                                                                            
+                                             <tr>
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Client Portal Usage</th>
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Receiving alerts from Medicount's Portal</th> 
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Current Uses OIG Exclusionary List</th> 
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Who receives the mendicount reports?</th>                                                   
                                              </tr>
-                                         </thead>
+                                         
 
                                          <tbody>          
                                              <tr>
@@ -1072,23 +1067,23 @@
                              </tr>
 
                              <!--ePCR-->
-                              <tr>
-                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                             <tr>
+                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                   ePCR - Reconciliation
                                  </td>
 
                                  <td colspan="2"> 
 
                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                          <thead>                                  
-                                             <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                 <th class="text-center">ePCR Vendor</th>
-                                                 <th class="text-center">Date of Last Run Reconciliation</th>
-                                                 <th class="text-center">By Whom</th> 
-                                                 <th class="text-center">By When</th> 
-                                                 <th class="text-center">Run Reconciliation done on Regular Basis</th> 
+                                                                            
+                                             <tr>
+                                                 <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ePCR Vendor</th>
+                                                 <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Date of Last Run Reconciliation</th>
+                                                 <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">By Whom</th> 
+                                                 <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">By When</th> 
+                                                 <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Run Reconciliation done on Regular Basis</th> 
                                              </tr>
-                                         </thead>
+                                         
 
                                          <tbody>          
                                              <tr>
@@ -1116,9 +1111,10 @@
                                      </table>
                                  </td>
                              </tr>
-                               <!--Month End Report Reconciliation Tutorial (report to run)-->
-                                     <tr>
-                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+
+                             <!--Month End Report Reconciliation Tutorial (report to run)-->
+                             <tr>
+                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                   Snapshot - Month End Report
                                      <br />
                                    Bank Reconciliations
@@ -1126,17 +1122,17 @@
 
                                  <td colspan="2">
                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                          <thead>                                  
-                                             <tr style="background-color:rgb(0,148,144); color:#fff; text-align:center; vertical-align:middle;">
-                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important;">Month End Report bank Reconciliations</th>
-                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important;">Date of Month End Report Bank Reconciliations</th>
-                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important;">By Who</th>
-                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important;">How Often</th> 
-                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important;">Training Needed</th> 
-                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important;">Training Pending</th> 
+                                                                            
+                                             <tr>
+                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Month End Report bank Reconciliations</th>
+                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Date of Month End Report Bank Reconciliations</th>
+                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">By Who</th>
+                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">How Often</th> 
+                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Training Needed</th> 
+                                                 <th style="text-align:center; vertical-align:middle; width: 16% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Training Pending</th> 
                     
                                              </tr>
-                                         </thead>
+                                         
 
                                          <tbody>          
                                              <tr>
@@ -1176,24 +1172,24 @@
                                          </tbody>
                                      </table>
                                  </td>
-
                              </tr>
+
                              <!--Signature Capture-->
-                              <tr>
-                                <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                             <tr>
+                                <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                  Signature Capture
                                 </td>
 
                                 <td> 
                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                         <thead>                                  
-                                            <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                <th colspan="4" style="text-align:center;vertical-align:middle;">Patient Signature</th>
-                                                <th colspan="4" style="text-align:center;vertical-align:middle;">Receiving Facility Signature</th>
-                                                <th colspan="4" style="text-align:center;vertical-align:middle;">Crew Signature</th> 
+                                                                           
+                                            <tr>
+                                                <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Patient Signature</th>
+                                                <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Receiving Facility Signature</th>
+                                                <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Crew Signature</th> 
                                                  
                                             </tr>
-                                        </thead>
+                                        
 
                                         <tbody>          
                                             <tr>
@@ -1245,15 +1241,16 @@
                                             </tr>                                      
                                         </tbody>
                                     </table>
-                                </td> 
-                                  <td>
+                                </td>
+
+                                <td>
     
                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
-                                    <thead>                                  
-                                       <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
-                                           <th style="text-align:center; vertical-align:middle; width:100% !important;">Comments</th>                                                                                            
+                                                                      
+                                       <tr>                                                
+                                           <th style="text-align:center; vertical-align:middle; width:100% !important;background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                                                                            
                                        </tr>
-                                   </thead>
+                                   
                                  <tbody>        
                                      <tr>
                                          <td>
@@ -1265,19 +1262,23 @@
                             </table>
                              </td>
                             </tr>
-                              <tr >
-                                 <td style="padding-left: 10px; color: #00968F; font-weight: bold"> AE: Pull 5 or 10 runs (under 100 runs per month 5 runs, over 100 pull 10 runs) review patient and crew signatures, and place in the report
+
+                             <!--AE-->
+                             <tr>
+                                 <td style="padding-left: 10px; color: #00968F !important; font-weight: bold">
+                                     AE: Pull 5 or 10 runs (under 100 runs per month 5 runs, over 100 pull 10 runs) review patient and crew signatures, and place in the report
                                  </td>
+
                                  <td colspan="2">
                                      <table class="col-lg-12" border="1">
                                          <tr>
-                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Run
+                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Run
                                              </td>
-                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Patient
+                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Patient
                                              </td>
-                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Signature
+                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Signature
                                              </td>
-                                             <td style="background-color: #5D6770; color: white; font-weight: bold; text-align: center;">Facility
+                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Facility
                                              </td>
                                          </tr>
                                          <tr>
@@ -1424,24 +1425,21 @@
                                  </td>
                              </tr>
 
-                           
-
                              <!--Client Review Intervals-->
-
-                              <tr>
-                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                             <tr>
+                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                   Client Review Intervals
                                  </td>
 
                                  <td colspan="2"> 
                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                          <thead>                                  
-                                             <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                 <th style="text-align:center; vertical-align:middle;"><span class="text-danger">*</span> Review Interval</th> 
-                                                 <th><span class="text-danger">*</span>Next Review Schedule Date:</th> 
-                                                 <th>Change in ZOHO</th> 
+                                                                            
+                                             <tr>
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;"><span class="text-danger">*</span> Review Interval</th> 
+                                                 <th style="background-color:rgb(0,148,144) !important; color:#fff !important;"><span class="text-danger">*</span>Next Review Schedule Date:</th> 
+                                                 <th style="background-color:rgb(0,148,144) !important; color:#fff !important;">Change in ZOHO</th> 
                                              </tr>
-                                         </thead>
+                                         
 
                                          <tbody>          
                                              <tr>
@@ -1463,32 +1461,31 @@
                                          </tbody>
                                      </table>
                                  </td>
-                             
                             </tr>
 
                              <!--Address Information-->
-                              <tr>
-                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F;">
+                             <tr>
+                                 <td style="font-weight:bold;text-align:left; padding-left:10px;vertical-align:middle; color: #00968F !important;">
                                      Client Address Information
                                  </td>
                                  
                                  <td colspan="2">
                                   <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                   <thead>
+                                   
                                     
-                                      <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                          <th colspan="4" style="text-align:center;vertical-align:middle;">Billing Address</th>  
+                                      <tr>
+                                          <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Billing Address</th>  
                                                                            
                                       </tr>
 
-                                      <tr style="background-color:#3A3F46; color:#fff;">
-                                          <th style="text-align:center;vertical-align:middle;">Street</th>
-                                          <th style="text-align:center;vertical-align:middle;">City</th>
-                                          <th style="text-align:center;vertical-align:middle;">State</th>
-                                          <th style="text-align:center;vertical-align:middle;">Zip</th>  
+                                      <tr>
+                                          <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">Street</th>
+                                          <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">City</th>
+                                          <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">State</th>
+                                          <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">Zip</th>  
 
                                        </tr>
-                                  </thead>
+                                  
 
                                   <tbody>
           
@@ -1505,17 +1502,17 @@
                                      </table>
 
                                   <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                         <thead>
-                                              <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                <th colspan="4" style="text-align:center;vertical-align:middle;">Mailing Address</th>
+                                         
+                                              <tr>
+                                                <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Mailing Address</th>
                                              </tr>
-                                             <tr style="background-color:#3A3F46; color:#fff;">
-                                                  <th style="text-align:center;vertical-align:middle;">Street</th>
-                                                  <th style="text-align:center;vertical-align:middle;">City</th>
-                                                  <th style="text-align:center;vertical-align:middle;">State</th>
-                                                  <th style="text-align:center;vertical-align:middle;">Zip</th>
+                                             <tr>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">Street</th>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">City</th>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">State</th>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">Zip</th>
                                              </tr>
-                                         </thead>
+                                         
                                          <tbody>
                                              <tr>
            
@@ -1528,17 +1525,17 @@
                                      </table> 
                                   <!--Physical Address Info-->
                                   <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                                         <thead>
-                                              <tr style="background-color:rgb(0,148,144); color:#fff;">
-                                                <th colspan="4" style="text-align:center;vertical-align:middle;">Physical Address</th>
+                                         
+                                              <tr>
+                                                <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Physical Address</th>
                                              </tr>
-                                             <tr style="background-color:#3A3F46; color:#fff;">
-                                                  <th style="text-align:center;vertical-align:middle;">Street</th>
-                                                  <th style="text-align:center;vertical-align:middle;">City</th>
-                                                  <th style="text-align:center;vertical-align:middle;">State</th>
-                                                  <th style="text-align:center;vertical-align:middle;">Zip</th>
+                                             <tr>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">Street</th>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">City</th>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">State</th>
+                                                  <th style="text-align:center;vertical-align:middle;background-color:#5D6770 !important; color:#fff !important;">Zip</th>
                                              </tr>
-                                         </thead>
+                                         
                                          <tbody>
                                              <tr>
                                                
@@ -1560,15 +1557,15 @@
             
                       
             <div class="col-lg-12">
-                <div class="col-lg-12 form-group text-lg-left text-white" style="background-color: #5D6770;">
-                    <h4><b>OVERALL MEETING NOTES</b></h4>
+                <div class="col-lg-12 form-group text-lg-left" style="background-color: #5D6770 !important;">
+                    <h4><b style="color:#fff !important">OVERALL MEETING NOTES</b></h4>
                 </div>
             </div>
             <div class="col-lg-12">
                 <asp:TextBox ID="txtOverAllMeetingNotes" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
             </div>
-            <div class="col-lg-12 form-group text-lg-left text-info font-weight-bold">
-                <h4><u><b>Follow Up Action:</b></u></h4>
+            <div class="col-lg-12 form-group text-lg-left font-weight-bold">
+                <h4><u style="color:rgb(0,148,144) !important;"><b style="color:rgb(0,148,144) !important;">Follow Up Action:</b></u></h4>
             </div>
             <div class="col-lg-12">
                 <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
@@ -1644,14 +1641,15 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" runat="server">
-    <div id="divButton" class="col-lg-12 text-lg-right">
+    <div id="divButton" class="col-lg-12 text-lg-right pdf-exclude">
         <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"  /> <!--OnClientClick="return Validation('false');"-->
         <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />
        <%-- onclick="return saveDraft('true');
         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" OnClick="btnSave_Click" /> "--%>
        <%-- onclick="return Validation('false');"--%>
         <%--<asp:Button ID="btnComplete" runat="server" CssClass="btn btn-info custom" Text="Convert PDF" OnClick="btnComplete_Click" OnClientClick="return Validation('true');" />--%>
-        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatePDF()" />
+        <%--<input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatePDF()" />--%>
+        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatepdfBtnClick()" />
       <%--    onclick="return Validation('true'); onclick="return Validation('true'); ""--%>
     </div>
     <div id="divLoading" class="spinner-border text-dark" role="status" style="float: right; display: none;">
@@ -1659,7 +1657,7 @@
     </div>
 
 
-        <script type="text/javascript">
+    <script type="text/javascript">
             function OpenMessagePopup() {
                 document.getElementById("btnDummy").click();
             }
@@ -2078,6 +2076,272 @@
         }
 
     </script>
+
+    <script type="text/javascript">
+        function adjustDynamicFieldHeights($clonedDoc) {
+            const defaultLineHeight = 30;
+
+            $clonedDoc.find('textarea').each(function () {
+                const $el = $(this);
+                const value = $el.val();
+
+                if (!value || value.trim() === '') return; // Skip empty
+
+                $el.attr('value', value);
+                if ($el.is('textarea')) $el.text(value); // For wkhtmltopdf to pick it up
+
+                // Get actual width, fallback if hidden
+                let width = $el.outerWidth();
+                if (!width || width < 50) width = 300; // Fallback width
+
+                const lineHeight = parseFloat($el.css('line-height')) || defaultLineHeight;
+
+                // Create a hidden element to measure height
+                const $measure = $('<div>').css({
+                    position: 'absolute',
+                    visibility: 'hidden',
+                    width: width + 'px',
+                    minHeight: '60px',
+                    fontSize: $el.css('font-size'),
+                    fontFamily: $el.css('font-family'),
+                    lineHeight: lineHeight + 'px',
+                    whiteSpace: 'pre-wrap',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word',
+                    padding: $el.css('padding'),
+                    boxSizing: 'border-box',
+                }).text(value).appendTo('body');
+
+                const requiredHeight = Math.min($measure[0].scrollHeight, 1000); // Optional max height
+                $measure.remove();
+
+                $el.css({
+                    height: requiredHeight + 'px',
+                    overflow: 'hidden',
+                    whiteSpace: 'pre-wrap',
+                    wordWrap: 'break-word',
+                    resize: 'none'
+                });
+
+                if ($el.is('textarea')) {
+                    const rows = Math.ceil(requiredHeight / lineHeight);
+                    $el.attr('rows', rows);
+                }
+            });
+        }
+
+
+        function generatePdfButton() {
+            var $clonedDoc = $(document.documentElement).clone();
+            
+            $clonedDoc.find('.w-100.p-3').removeClass('w-100 p-3')
+            //$clonedDoc.find('body').css('padding', '5px');
+            $clonedDoc.find('.meeting-agenda-form');
+            $clonedDoc.find('.pdf-exclude').remove();
+            //$clonedDoc.find('.swal2-container').remove();
+            $clonedDoc.find('script').remove();
+
+            $clonedDoc.find('.col-lg-12').each(function () {
+                this.style.setProperty('padding-right', '1px', 'important');
+                this.style.setProperty('padding-left', '1px', 'important');
+            });
+            //$clonedDoc.find('input.flatpickr-input:disabled').each(function () {
+            //    this.style.setProperty('background-color', 'rgba(255, 255, 255, 0.8)', 'important');
+            //});
+            $clonedDoc.find('[disabled]').removeAttr('disabled');     
+            
+
+            // --- Handle other form fields ---
+            //$('input, textarea, select').each(function () {
+            //    const $original = $(this);
+            //    const name = $original.attr('name') || $original.attr('id');
+            //    if (!name || ['recipientReceivingName', 'recipientReceivingTitle', 'recipientReceivingEmail'].includes(name)) return;
+
+            //    const type = $original.attr('type');
+            //    const value = $original.val();
+            //    const $clonedElements = $clonedDoc.find(`[name="${name}"], #${name}`);
+
+            //    if ($original.is('textarea') || type === 'text' || type === 'number' || type === 'date' || type === 'email') {
+            //        $clonedElements.val(value).attr('value', value);
+            //    } else if (type === 'radio') {
+            //        if ($original.is(':checked')) {
+            //            $clonedDoc.find(`input[type="radio"][name="${name}"][value="${value}"]`).prop('checked', true).attr('checked', 'checked');
+            //        }
+            //    } else if (type === 'checkbox') {
+            //        const checked = $original.is(':checked');
+            //        $clonedElements.prop('checked', checked);
+            //        if (checked) $clonedElements.attr('checked', 'checked');
+            //        else $clonedElements.removeAttr('checked');
+            //    } else if ($original.is('select')) {
+            //        $clonedElements.find('option').each(function () {
+            //            if ($(this).val() === value) {
+            //                $(this).attr('selected', 'selected');
+            //            } else {
+            //                $(this).removeAttr('selected');
+            //            }
+            //        });
+            //    }
+            //});
+
+            adjustDynamicFieldHeights($clonedDoc);
+
+            $clonedDoc.find('link[href], script[src], img[src]').each(function () {
+                const $el = $(this);
+                const tag = this.tagName.toUpperCase();
+                const attr = (tag === 'LINK' || tag === 'A') ? 'href' : 'src';
+                const val = $el.attr(attr);
+
+                if (val && !val.startsWith('http') && !val.startsWith('data:')) {
+                    // Get current pathname and remove file name (e.g., frmClientReview.aspx)
+                    const fullPath = window.location.pathname;
+                    const lastSlashIndex = fullPath.lastIndexOf('/');
+                    const pathBeforePage = fullPath.substring(0, lastSlashIndex + 1); // includes trailing slash
+
+                    // Build full base path
+                    const basePath = window.location.origin + pathBeforePage;
+
+                    // Resolve the relative URL to an absolute one
+                    const absoluteUrl = new URL(val, basePath).href;
+                    $el.attr(attr, absoluteUrl);
+                }
+            });
+
+     
+            $clonedDoc.find('head').append(`
+              <style>
+                input[type="radio"] {
+                  appearance: none;
+                  -webkit-appearance: none;
+                  background-color: #fff;
+                  border: 2px solid #555;
+                  border-radius: 50%;
+                  width: 16px;
+                  height: 16px;
+                  position: relative;
+                  vertical-align: middle;
+                  cursor: default;
+                }
+                input[type="radio"]:checked::before {
+                  content: '';
+                  display: block;
+                  width: 8px;
+                  height: 8px;
+                  background: #000;
+                  border-radius: 50%;
+                  position: absolute;
+                  top: 2px;
+                  left: 2px;
+                }
+                select {
+                  -webkit-appearance: none;
+                  appearance: none;
+                  background-color: #fff;
+                  border: 2px solid #555;
+                  border-radius: 5px;
+                  padding: 5px 10px;
+                  font-family: Calibri, sans-serif;
+                  font-size: 14px;
+                  width: auto;
+                  background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="12" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+                  background-repeat: no-repeat;
+                  background-position: right 10px center;
+                  background-size: 12px;
+                }
+                label.radio-label, label.checkbox-label {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 5px;
+                  font-family: Calibri, sans-serif;
+                  font-size: 14px;
+                }
+
+              </style>
+            `);
+
+            $('input[type="radio"]').each(function () {
+                const $input = $(this);
+                const name = $input.attr('name');
+                const val = $input.val();
+
+                if (!name || typeof val === 'undefined') return;
+
+                const $clonedInput = $clonedDoc.find(`input[type="${$input.attr('type')}"][name="${name}"][value="${val}"]`);
+
+                if ($input.is(':checked')) {
+                    $clonedInput.prop('checked', true);
+                    $clonedInput.attr('checked', 'checked');
+                } else {
+                    $clonedInput.prop('checked', false);
+                    $clonedInput.removeAttr('checked');
+                }
+            });
+
+            $clonedDoc.find('script').remove();
+
+            const fullHtml = '<!DOCTYPE html>\n' + $('<div>').append($clonedDoc).html();
+            console.log(fullHtml);
+            return fullHtml;
+        }
+
+        function getCurrentDate() {
+            const today = new Date();
+
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const year = today.getFullYear();
+
+            return `${month}-${day}-${year}`;
+        }
+
+        function generatepdfBtnClick() {
+            var fullHtml = generatePdfButton();
+            //var clientName = "test";
+            //var clientNumber = "12345";
+            var clientNumber = $("#cphMainContent_ddlClientNo").val();
+            var clientName = "";
+            if (clientNumber == '0') {
+                clientName = "CLIENT"
+            } else {
+                clientName = $('#cphMainContent_ddlClientName option[value="' + clientNumber + '"]').text();
+            }
+            
+            // Send HTML to server for PDF generation
+            $.ajax({
+                url: 'frmInnerMAPage1.aspx/NewGeneratePDF',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({ formHtml: fullHtml, clientName: clientName, clientNumber: clientNumber }),
+                success: function (response) {
+                    var base64Pdf = response.d;
+                    var binary = atob(base64Pdf);
+                    var len = binary.length;
+                    var buffer = new ArrayBuffer(len);
+                    var view = new Uint8Array(buffer);
+                    for (var i = 0; i < len; i++) {
+                        view[i] = binary.charCodeAt(i);
+                    }
+                    var blob = new Blob([view], { type: 'application/pdf' });
+                    var url = URL.createObjectURL(blob);
+
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${clientNumber}_${clientName}_MeetingAgenda_${getCurrentDate()}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    //hideLoader();
+                },
+                error: function (xhr, status, error) {
+                    alert('PDF generation failed: ' + xhr.responseText);
+                }
+            });
+
+        }
+
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             // Configure to save every 2 min  
@@ -2855,96 +3119,79 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphReferal" runat="server">
-    <div class="col-lg-12">
-        <div class="col-lg-12 form-group">
-    <%-- <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;width:75% !important;">
-         <thead>
-             <tr style="background-color:rgb(0,148,144) !important; color:#fff;">
-                 <th colspan="6" class="text-center">Did you ask for a referal</th>
-                 <th colspan="6" class="text-center">Discuss: What Makes Medicount Different:</th>              
-            </tr>
-         </thead>
-         <tbody>
-             <tr>
-                 <td colspan="6" style="vertical-align:middle">                                                                          
-                     <asp:DropDownList ID="ddlIsReferal" runat="server" CssClass="form-control" style="font-weight:bold;">
-                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                     </asp:DropDownList>
-                 </td>
-                 <td colspan="6">
-                    <div style="text-align:left;">
-                        <ul style="margin:0; padding-left:0; list-style:none;">
-                            <li style="margin-bottom:6px;">✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.</li>
-                            <li style="margin-bottom:6px;">✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.</li>
-                            <li style="margin-bottom:6px;">✔ Accessible & Responsive Team – Easy to reach and always available.</li>
-                            <li style="margin-bottom:6px;">✔ User-Friendly Customer Portal – Real-time access to actionable information.</li>
-                            <li style="margin-bottom:6px;">✔ Regular Reporting – Includes semi-annual and annual performance reports.</li>
-                            <li>✔ Ongoing Client Reviews – Stay informed and aligned on your agency’s performance.</li>
-                        </ul>
-                    </div>
-            </td>                 
-             </tr>
-         </tbody>
-     </table>--%>
-            <div class="row" style="width:75%; margin:0;">
-
-    <!-- LEFT SECTION -->
-            <div class="col-md-6" style="padding:0 5px;">
-                <div style="border:1px solid #dee2e6; height:100%;">
-            
+ 
+    <div class="container-fluid">
+<div class="row">
+ 
+            <!-- LEFT COLUMN -->
+<div class="col-lg-4 col-md-12 form-group">
+<div class="border h-100">
+ 
                     <!-- Header -->
-                    <div style="background-color:rgb(0,148,144); color:#fff; padding:10px; font-weight:bold; text-align:center;">
+<div class="text-center font-weight-bold p-2" style="background-color:rgb(0,148,144) !important; color: #fff !important">
                         Did you ask for a referral
-                    </div>
-
-                    <!-- Content -->
-                    <div style="padding:15px;">
-                        <asp:DropDownList ID="ddlIsReferal" runat="server" CssClass="form-control" style="font-weight:bold;">
-                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-
-                </div>
-            </div>
-                    </div>
-    </div>
-        </div>
-    <br />
-    <br />
-  <div class="col-lg-12">
-    <div class="col-lg-12 form-group">
-            <!-- RIGHT SECTION -->
-            <div class="col-md-6" style="padding:0 5px;width: auto;">
-                <div style="border:1px solid #dee2e6; height:100%;">
-            
-                    <!-- Header -->
-                    <div style="background-color:rgb(0,148,144); color:#fff; padding:10px; font-weight:bold; text-align:center;">
-                        Discuss: What Makes Medicount Different:
-                    </div>
-
-                    <!-- Content -->
-                    <div style="padding:15px; text-align:left;">
-                        <ul style="margin:0; padding-left:0; list-style:none;">
-                            <li style="margin-bottom:6px;">✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.</li>
-                            <li style="margin-bottom:6px;">✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.</li>
-                            <li style="margin-bottom:6px;">✔ Accessible & Responsive Team – Easy to reach and always available.</li>
-                            <li style="margin-bottom:6px;">✔ User-Friendly Customer Portal – Real-time access to actionable information.</li>
-                            <li style="margin-bottom:6px;">✔ Regular Reporting – Includes semi-annual and annual performance reports.</li>
-                            <li>✔ Ongoing Client Reviews – Stay informed and aligned on your agency’s performance.</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
 </div>
-        
-
-   
+ 
+                    <!-- Dropdown -->
+<div class="p-3">
+<asp:DropDownList ID="ddlIsReferal" runat="server"
+                            CssClass="form-control font-weight-bold">
+<asp:ListItem Value="0">--Select--</asp:ListItem>
+<asp:ListItem Value="Yes">Yes</asp:ListItem>
+<asp:ListItem Value="No">No</asp:ListItem>
+</asp:DropDownList>
+</div>
+ 
+                </div>
+</div>
+ 
+            <!-- RIGHT COLUMN -->
+<div class="col-lg-8 col-md-12 form-group">
+<table class="table table-borderless" >           
+<tbody>
+<tr>
+<td style="border:none; font-size:medium; font-family:Calibri;">
+                                ✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.
+</td>
+</tr>
+<tr>
+<td style="border:none; font-size:medium; font-family:Calibri;">
+                                ✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.
+</td>
+</tr>
+<tr>
+<td style="border:none; font-size:medium; font-family:Calibri;">
+                                ✔ Accessible & Responsive Team – Easy to reach and always available.
+</td>
+</tr>
+<tr>
+<td style="border:none; font-size:medium; font-family:Calibri;">
+                                ✔ User-Friendly Customer Portal – Real-time access to actionable information.
+</td>
+</tr>
+<tr>
+<td style="border:none; font-size:medium; font-family:Calibri;">
+                                 ✔ Regular Reporting – Includes semi-annual and annual performance reports.
+</td>
+</tr>
+<tr>
+<td style="border:none; font-size:medium; font-family:Calibri;">
+                                 ✔ Ongoing Client Reviews – Stay informed and aligned on your agency’s performance.
+</td>
+</tr>
+</tbody>
+</table>
+<%-- <ul class="list-unstyled" style="font-family:Calibri; font-size:medium;">
+<li class="mb-2">✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.</li>
+<li class="mb-2">✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.</li>
+<li class="mb-2">✔ Accessible & Responsive Team – Easy to reach and always available.</li>
+<li class="mb-2">✔ User-Friendly Customer Portal – Real-time access to actionable information.</li>
+<li class="mb-2">✔ Regular Reporting – Semi-annual and annual performance reports.</li>
+<li class="mb-2">✔ Ongoing Client Reviews – Stay aligned on agency performance.</li>
+</ul>--%>
+</div>
+ 
+        </div>
+</div>
+ 
 </asp:Content>

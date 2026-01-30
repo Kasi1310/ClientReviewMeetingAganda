@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -218,7 +219,7 @@ namespace ClientMeetingAgenda
 
 
 
-          float[] widths = new float[] { 28, 44 }; //, 28
+            float[] widths = new float[] { 28, 44 }; //, 28
             //float[] widths = new float[] { 30f, 70f };
 
             PdfPTable table = new PdfPTable(3);
@@ -233,7 +234,7 @@ namespace ClientMeetingAgenda
 
             table = new PdfPTable(2);
             table.WidthPercentage = 93f;
-            table.HorizontalAlignment =  Element.ALIGN_CENTER;// 1;
+            table.HorizontalAlignment = Element.ALIGN_CENTER;// 1;
             table.SetWidths(widths);
 
             table.SplitLate = false;
@@ -243,7 +244,7 @@ namespace ClientMeetingAgenda
             document.Add(new Paragraph(20, "\u00a0"));
 
             image = Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/Logo.jpg"));
-           // image.ScaleToFit(15f, 60f);
+            // image.ScaleToFit(15f, 60f);
             image.ScaleAbsolute(200f, 80f);
             cell = new PdfPCell(image, false);
             cell.Colspan = 2;
@@ -274,7 +275,7 @@ namespace ClientMeetingAgenda
             text.Add(new Chunk("4 ", tickFont));
             text.Add(new Chunk("Bring business cards or contact cards to leave behind?\n", textFont)
 
-           
+
             );
             // "Your Company Name\nAddress Line 1\nAddress Line 2\nPhone: 9876543210",
             // PdfPCell textCell = new PdfPCell();
@@ -1890,7 +1891,7 @@ namespace ClientMeetingAgenda
             cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             childTable12.AddCell(cell);
 
-           // if (objclsMeetingAgenda.IsRAAlertsReceived.ToUpper() == "YES")
+            // if (objclsMeetingAgenda.IsRAAlertsReceived.ToUpper() == "YES")
             //{
             //    cell = new PdfPCell(Image.GetInstance(HttpContext.Current.Server.MapPath("~/Images/tick.png")), false);
             //}
@@ -3057,7 +3058,7 @@ namespace ClientMeetingAgenda
             cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             childTable19.AddCell(cell);
 
-          
+
 
             cell = new PdfPCell(new Phrase("Follow Up Action:", fontContentGreen));
             cell.PaddingBottom = 5f;
@@ -3123,6 +3124,76 @@ namespace ClientMeetingAgenda
 
             //System.Diagnostics.Process.Start(designationFileName);
         }
+
+
+        ///////////////////////////////////////////////////////
+        [WebMethod]
+        public static string NewGeneratePDF(string formHtml, string clientName, string clientNumber)
+        {
+            string htmlPath = null;
+            string pdfPath = null;
+
+            try
+            {
+                htmlPath = SaveHtmlToTempFile(formHtml, clientName, clientNumber);
+                byte[] pdfBytes = ConvertHtmlToPdf(htmlPath);
+                pdfPath = System.IO.Path.ChangeExtension(htmlPath, ".pdf");
+
+                return Convert.ToBase64String(pdfBytes);
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(htmlPath) && System.IO.File.Exists(htmlPath))
+                    System.IO.File.Delete(htmlPath);
+
+                if (!string.IsNullOrEmpty(pdfPath) && System.IO.File.Exists(pdfPath))
+                    System.IO.File.Delete(pdfPath);
+            }
+        }
+
+        private static string SaveHtmlToTempFile(string html, string clientName, string clientNumber)
+        {
+            string folder = HttpContext.Current.Server.MapPath("~/Temp/");
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            string currentDate = DateTime.Now.ToString("MM-dd-yyyy");
+
+            string fileName = $"{clientNumber}_{clientName}_MeetingAgenda_{currentDate}_{Guid.NewGuid()}.html";
+            string path = System.IO.Path.Combine(folder, fileName);
+            System.IO.File.WriteAllText(path, html, Encoding.UTF8);
+            return path;
+        }
+
+        private static byte[] ConvertHtmlToPdf(string htmlFilePath)
+        {
+            string wkhtmlPath = @"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"; // Adjust path if needed
+
+            string inputFile = "file:///" + htmlFilePath.Replace("\\", "/");
+            string outputPdf = System.IO.Path.ChangeExtension(htmlFilePath, ".pdf");
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = wkhtmlPath,
+                Arguments = $"--enable-local-file-access --viewport-size 1280x1024 --zoom 1.0 --page-size A4 --print-media-type \"{inputFile}\" \"{outputPdf}\"",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+
+            using (var proc = Process.Start(startInfo))
+            {
+                string err = proc.StandardError.ReadToEnd();
+                proc.WaitForExit();
+
+                if (proc.ExitCode != 0)
+                    throw new Exception("wkhtmltopdf failed: " + err);
+            }
+
+            return System.IO.File.ReadAllBytes(outputPdf);
+        }
+        ////////////////////////////////////////////////////////
 
         [WebMethod]
         public static string UpdateMeetingCompleteStatus(int MAID, string UserName, string From)
