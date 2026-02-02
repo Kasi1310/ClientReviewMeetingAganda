@@ -58,6 +58,11 @@
     </style>
 
     <div>
+        <div id="loader" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0;background: rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
         <div class="col-lg-6 text-lg-center">
             <img src="Images/Logo.jpg" />
         </div>
@@ -1850,6 +1855,15 @@
     </script>
 
     <script type="text/javascript">
+
+        function showLoader() {
+            $('#loader').css('display', 'flex');
+        }
+
+        function hideLoader() {
+            $('#loader').css('display', 'none');
+        }
+
         function adjustDynamicFieldHeights($clonedDoc) {
             const defaultLineHeight = 30;
 
@@ -2066,6 +2080,7 @@
         }
 
         function generatepdfBtnClick() {
+            showLoader();
             var fullHtml = generatePdfButton();
             //var clientName = "test";
             //var clientNumber = "12345";
@@ -2103,10 +2118,11 @@
                     a.click();
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
-                    //hideLoader();
+                    hideLoader();
                 },
                 error: function (xhr, status, error) {
                     alert('PDF generation failed: ' + xhr.responseText);
+                    hideLoader();
                 }
             });
 
