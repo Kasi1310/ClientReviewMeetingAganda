@@ -577,29 +577,29 @@
 
                                         <tbody>          
                                           
-                                             <tr  >
-                                                 <td colspan="2"><asp:TextBox ID="txtBLS" CssClass="form-control" runat="server" Text="" BackColor="#FFFF99" MaxLength="10" 
-                                                                  onblur="isMoneyKey(this,'BLS');" disabled="true"></asp:TextBox></td>
-                                                 <td> <asp:TextBox ID="txtBLSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
-                                                                   onblur="isMoneyKey(this,'BLS NE');" disabled="true"></asp:TextBox></td>
-                                                 <td><asp:TextBox ID="txtALS" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
-                                                                   onblur="isMoneyKey(this,'ALS');" disabled="true"></asp:TextBox></td>
-                                                 <td><asp:TextBox ID="txtALSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
-                                                                   onblur="isMoneyKey(this,'ALS NE');" disabled="true"></asp:TextBox></td>
-                                                 <td><asp:TextBox ID="txtALS2" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
-                                                                    onblur="isMoneyKey(this,'ALS2');" disabled="true"></asp:TextBox></td>                                          
+                                             <tr>
+                                                 <td colspan="2" style="padding: 7px 2px;"><asp:TextBox ID="txtBLS" CssClass="form-control" runat="server" Text="" BackColor="#FFFF99" MaxLength="10" 
+                                                                  onblur="isMoneyKey(this,'BLS');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>
+                                                 <td style="padding: 7px 2px;"> <asp:TextBox ID="txtBLSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
+                                                                   onblur="isMoneyKey(this,'BLS NE');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>
+                                                 <td style="padding: 7px 2px;"><asp:TextBox ID="txtALS" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
+                                                                   onblur="isMoneyKey(this,'ALS');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>
+                                                 <td style="padding: 7px 2px;"><asp:TextBox ID="txtALSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
+                                                                   onblur="isMoneyKey(this,'ALS NE');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>
+                                                 <td style="padding: 7px 2px;"><asp:TextBox ID="txtALS2" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
+                                                                    onblur="isMoneyKey(this,'ALS2');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>                                          
                                                  <td style="padding: inherit !important; vertical-align:middle;">                                                   
-                                                       <asp:DropDownList ID="rdolstNonTransport" runat="server" CssClass="form-control" style="font-weight: bold;" BackColor="#FFFF99">
+                                                       <asp:DropDownList ID="rdolstNonTransport" runat="server" CssClass="form-control" style="font-weight: bold;padding-left:0px;padding-right:0px;text-align:center;" BackColor="#FFFF99">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                      </asp:DropDownList>
                                                  </td>
-                                                 <td> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
-                                                       onblur="isMoneyKey(this,'Mileage');" disabled="true"></asp:TextBox></td>                                     
+                                                 <td style="padding: 7px 2px;"> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
+                                                       onblur="isMoneyKey(this,'Mileage');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>                                     
                                              </tr>
                                             <tr id="rateChangesMsg" style="display: none;">
-                                            <td colspan="8" style="padding: 15px; text-align: center; color: red; font-weight: bold;">
+                                            <td colspan="8" style="padding: 15px; text-align: center; color: red !important; font-weight: bold;">
                                                 PLEASE NOTE THAT ALL CHANGES TO CHARGE RATES MUST BE SUBMITTED USING THE CHARGE RATE FORM AND UPLOADED EXCLUSIVELY THROUGH THE CUSTOMER PORTAL
                                             </td>
                                             </tr>
