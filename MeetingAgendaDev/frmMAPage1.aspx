@@ -103,8 +103,9 @@
             <asp:HiddenField ID="hdnIsButtonClick" runat="server" Value="false" />
             <asp:HiddenField ID="hdnUserid" runat="server" Value="0" />
             <div class="col-lg-12 form-group text-lg-center">
-                <h3><b style="color: rgb(0,148,144) !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
-                <h3 style="color: rgb(0,148,144) !important;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
+                <h3><b style="color: rgb(0,148,144) !important; font-size:50px !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
+                <h3 style="font-size:30px !important;  color:black;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
+                <h3 style="font-size:30px !important;  color:black;">Fields highlighted in yellow are automatically populated.</h3>
             </div>
 
             <div class="col-lg-12 form-group">
@@ -114,23 +115,23 @@
                              <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT# <span class="text-danger">*</span></th>
                              <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT NAME <span class="text-danger">*</span></th>
                              <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING DATE <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">REPORT DATE <span class="text-danger">*</span></th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">REPORT DATE </th>
                         </tr>
                      </thead>
                      <tbody>
                          <tr>
                              <td colspan="3">
-                                  <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
+                                  <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" onchange="showLoader();"  OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
                                      <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                  </asp:DropDownList>
                              </td>
                              <td colspan="3">
-                                 <asp:DropDownList ID="ddlClientName" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
+                                 <asp:DropDownList ID="ddlClientName" runat="server"  AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                 </asp:DropDownList>
                              </td>
                              <td colspan="3">
-                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text=""  MaxLength="50" autocomplete="off"></asp:TextBox>
                              </td>
                              <td colspan="3">
                                  <asp:TextBox ID="txtReportDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
@@ -147,41 +148,41 @@
                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE <span class="text-danger">*</span></th>
                              <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">EMAIL <span class="text-danger">*</span></th>
                              <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">PHONE # <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING TYPE</th>
+                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING TYPE <span class="text-danger">*</span></th>
                         </tr>
                      </thead>
                      <tbody>
                          <tr hidden>
                              <td colspan="3">
-                                    <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" runat="server" >
+                                    <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" BackColor="#FFFF99" runat="server" >
                                       <asp:ListItem Value="">--Select--</asp:ListItem>
                                   </asp:DropDownList>
-                               
+       
                              </td>
                              <td colspan="3">
-                                 <asp:DropDownList ID="ddlEmail" CssClass="form-control" runat="server">
+                                 <asp:DropDownList ID="ddlEmail" CssClass="form-control" BackColor="#FFFF99" runat="server">
                                     <asp:ListItem Value="">--Select--</asp:ListItem>
                                 </asp:DropDownList>
                              </td>
                              <td colspan="3">
-                                 <asp:DropDownList ID="ddlPhone" CssClass="form-control" runat="server">
+                                 <asp:DropDownList ID="ddlPhone" CssClass="form-control" BackColor="#FFFF99" runat="server">
                                     <asp:ListItem Value="">--Select--</asp:ListItem>
                                 </asp:DropDownList>
                              </td>
-                           
+   
                          </tr>     
                          <tr>
                             <td colspan="3">
-                                    <asp:TextBox ID="txtAccountExecutive" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                    <asp:TextBox ID="txtAccountExecutive" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                                 <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                               <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server">
+                               <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server" >
                                    <asp:ListItem Value="">--Select--</asp:ListItem>
                                    <asp:ListItem Value="Online">Online</asp:ListItem>
                                    <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
@@ -273,12 +274,13 @@
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;" OnTextChanged="txtPreviousEndDate_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime"  style="display:inline-block; width: auto; background-color:#fff !important;"
+                                    ></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Report Type</label>
-                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;">
+                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtPreviousEndDate_TextChanged">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
@@ -298,14 +300,14 @@
                         </tr>
 
                         <tr>
-                            <td><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRevenue" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevAdjust" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevWriteOff" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRefund" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRPT" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevRefund" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevRPT" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
                         </tr>
 
                         <tr style="background-color:rgb(0,148,144); color:#fff;">
@@ -316,12 +318,12 @@
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" OnTextChanged="txtCurrentEndDate_TextChanged" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime"   style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
-                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"  style="display:inline-block; width: auto; background-color:#fff !important;">
+                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"  style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtCurrentEndDate_TextChanged">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
@@ -341,14 +343,14 @@
                         </tr>
 
                         <tr>
-                            <td><asp:TextBox ID="txtCurrTransports" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrCharges" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRevenue" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrAdjust" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrWriteOff" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRefund" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrTransports" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrCharges" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrRefund" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
                         </tr>
 
                         <tr>
@@ -392,7 +394,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td >
-                                                      <asp:DropDownList ID="ddlAgingReview" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                      <asp:DropDownList ID="ddlAgingReview" runat="server" CssClass="form-control" AutoPostBack="true" style="display:inline-block; width: 100%; font-weight: bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -414,11 +416,12 @@
                                           <tbody>        
                                               <tr>
                                                   <td >
-                                                      <asp:DropDownList ID="ddlDiscussedwithARTeam" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold; ">
-                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                                        </asp:DropDownList>
+                                                     <asp:DropDownList ID="ddlDiscussedwithARTeam" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold; ">
+                                                      <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                      <asp:ListItem Value="Sue Siebenthaler" Text="Sue Siebenthaler"></asp:ListItem>
+                                                      <asp:ListItem Value="Arun Manoharan" Text="Arun Manoharan"></asp:ListItem>
+                                                      <asp:ListItem Value="Melissa Collins" Text="Melissa Collins"></asp:ListItem>
+                                                      </asp:DropDownList>
                                                   </td>
                                                   <td> <asp:TextBox ID="txtAgingReviewComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
                                                   </tr>
@@ -521,7 +524,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td>
-                                                   <asp:TextBox ID="txtLastRateChange" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
+                                                   <asp:TextBox ID="txtLastRateChange" runat="server" BackColor="#FFFF99" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
                                                   </td>
                                                   <td> <asp:TextBox ID="txtBillingRatesReviewedComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
                                                   </tr>
@@ -546,7 +549,7 @@
                                               <tbody>        
                                                   <tr>
                                                       <td >
-                                                          <asp:DropDownList ID="ddlCurrentBillingRates" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                          <asp:DropDownList ID="ddlCurrentBillingRates" runat="server" AutoPostBack="true" onchange="billingRatesChange()" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -575,26 +578,31 @@
                                         <tbody>          
                                           
                                              <tr  >
-                                                 <td colspan="2"><asp:TextBox ID="txtBLS" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                 <td colspan="2"><asp:TextBox ID="txtBLS" CssClass="form-control" runat="server" Text="" BackColor="#FFFF99" MaxLength="10" 
                                                                   onblur="isMoneyKey(this,'BLS');" disabled="true"></asp:TextBox></td>
-                                                 <td> <asp:TextBox ID="txtBLSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                 <td> <asp:TextBox ID="txtBLSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
                                                                    onblur="isMoneyKey(this,'BLS NE');" disabled="true"></asp:TextBox></td>
-                                                 <td><asp:TextBox ID="txtALS" CssClass="form-control" runat="server" Text="" MaxLength="10"
+                                                 <td><asp:TextBox ID="txtALS" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
                                                                    onblur="isMoneyKey(this,'ALS');" disabled="true"></asp:TextBox></td>
-                                                 <td><asp:TextBox ID="txtALSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                 <td><asp:TextBox ID="txtALSNE" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
                                                                    onblur="isMoneyKey(this,'ALS NE');" disabled="true"></asp:TextBox></td>
-                                                 <td><asp:TextBox ID="txtALS2" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                 <td><asp:TextBox ID="txtALS2" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
                                                                     onblur="isMoneyKey(this,'ALS2');" disabled="true"></asp:TextBox></td>                                          
                                                  <td style="padding: inherit !important; vertical-align:middle;">                                                   
-                                                       <asp:DropDownList ID="rdolstNonTransport" runat="server" CssClass="form-control" style="font-weight: bold; ">
+                                                       <asp:DropDownList ID="rdolstNonTransport" runat="server" CssClass="form-control" style="font-weight: bold;" BackColor="#FFFF99">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                      </asp:DropDownList>
                                                  </td>
-                                                 <td> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" 
+                                                 <td> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
                                                        onblur="isMoneyKey(this,'Mileage');" disabled="true"></asp:TextBox></td>                                     
                                              </tr>
+                                            <tr id="rateChangesMsg" style="display: none;">
+                                            <td colspan="8" style="padding: 15px; text-align: center; color: red; font-weight: bold;">
+                                                PLEASE NOTE THAT ALL CHANGES TO CHARGE RATES MUST BE SUBMITTED USING THE CHARGE RATE FORM AND UPLOADED EXCLUSIVELY THROUGH THE CUSTOMER PORTAL
+                                            </td>
+                                            </tr>
                                         </tbody>
     
                                     </table>
@@ -959,10 +967,10 @@
 
                                         <tbody>          
                                             <tr>
-                                                <td colspan="2"> <asp:TextBox ID="txtChief" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtFiscalOfficer" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial1" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial2" CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"> <asp:TextBox ID="txtChief" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtFiscalOfficer" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial1" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial2" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
                                             </tr>                                      
                                         </tbody>
                                     </table>
@@ -1495,10 +1503,10 @@
           
                                       <tr>
                                           <!--Billing Address Info-->
-                                          <td><asp:TextBox ID="txtBillingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtBillingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtBillingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtBillingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
                                          
                                           </tr>
                                   </tbody>
@@ -1520,10 +1528,10 @@
                                          <tbody>
                                              <tr>
            
-                                                <td><asp:TextBox ID="txtMailingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtMailingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtMailingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtMailingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
                                             </tr>
                                          </tbody>
                                      </table> 
@@ -1543,10 +1551,10 @@
                                          <tbody>
                                              <tr>
                                                
-                                                <td><asp:TextBox ID="txtPhysicalLocationStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtPhysicalLocationCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtPhysicalLocationState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtPhysicalLocationZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
                                             </tr>
                                          </tbody>
                                      </table>                
@@ -2068,7 +2076,7 @@
             console.log(fullHtml);
             return fullHtml;
         }
-
+        
         function getCurrentDate() {
             const today = new Date();
 
@@ -2128,14 +2136,25 @@
 
         }
 
+        
+        function billingRatesChange(){
+            const selectedValue = $('#cphMainContent_ddlCurrentBillingRates').val();
+            if (selectedValue === 'Yes') {
+                $('#rateChangesMsg').show();
+            } else {
+                $('#rateChangesMsg').hide();
+            }
+        }
+
     </script>
 
     <script type="text/javascript">
         $(document).ready(function () {
+            billingRatesChange();
             // Configure to save every 2 min  
             //window.setInterval(saveDraft, 120000);//calling saveDraft function for every 2 min  
             window.setInterval(() => saveDraft(false), 120000);
-
+            
             //  BillingRateReviewedEnable();
         });
 
