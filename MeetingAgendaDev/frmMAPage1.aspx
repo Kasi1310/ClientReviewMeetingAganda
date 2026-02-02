@@ -182,7 +182,7 @@
                                  <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                               <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server" >
+                               <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server" AutoPostBack="true" >
                                    <asp:ListItem Value="">--Select--</asp:ListItem>
                                    <asp:ListItem Value="Online">Online</asp:ListItem>
                                    <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
@@ -416,7 +416,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td >
-                                                     <asp:DropDownList ID="ddlDiscussedwithARTeam" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold; ">
+                                                     <asp:DropDownList ID="ddlDiscussedwithARTeam" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold; ">
                                                       <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                       <asp:ListItem Value="Sue Siebenthaler" Text="Sue Siebenthaler"></asp:ListItem>
                                                       <asp:ListItem Value="Arun Manoharan" Text="Arun Manoharan"></asp:ListItem>
@@ -447,7 +447,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td >
-                                                       <asp:DropDownList ID="ddlBillingPolicy" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
+                                                       <asp:DropDownList ID="ddlBillingPolicy" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="R1" Text="R1"></asp:ListItem>
                                                          <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
@@ -472,7 +472,7 @@
                                       <tbody>        
                                           <tr>
                                               <td >
-                                                   <asp:DropDownList ID="ddlCollections" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
+                                                   <asp:DropDownList ID="ddlCollections" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -502,7 +502,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td >
-                                                      <asp:DropDownList ID="ddlBillingRateReviewed" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                      <asp:DropDownList ID="ddlBillingRateReviewed" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -633,7 +633,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td>
-                                                    <asp:DropDownList ID="ddlUCR" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                    <asp:DropDownList ID="ddlUCR" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                      <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                      <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                      <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -668,7 +668,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td>
-                                                    <asp:DropDownList ID="ddlFacilityTransports" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                    <asp:DropDownList ID="ddlFacilityTransports" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                      <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                      <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                      <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -698,7 +698,7 @@
                                          <tbody>        
                                              <tr>
                                                  <td>
-                                                   <asp:DropDownList ID="ddlNonEmergenctTranports" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                   <asp:DropDownList ID="ddlNonEmergenctTranports" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -722,7 +722,7 @@
                                          <tbody>        
                                              <tr>
                                                  <td>
-                                                   <asp:DropDownList ID="ddlIsClientAwareofPriorAuthorizationRequirements" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                   <asp:DropDownList ID="ddlIsClientAwareofPriorAuthorizationRequirements" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -745,7 +745,7 @@
                                          <tbody>        
                                              <tr>
                                                  <td>
-                                                   <asp:DropDownList ID="ddlIsTraningNeeded" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                   <asp:DropDownList ID="ddlIsTraningNeeded" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -770,7 +770,7 @@
                                         <tbody>        
                                             <tr>
                                                 <td>
-                                                  <asp:DropDownList ID="ddlContractFacilityBilling" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                  <asp:DropDownList ID="ddlContractFacilityBilling" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                    <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                    <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -798,7 +798,7 @@
                                             <tbody>          
                                                 <tr>
                                                     <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >
-                                                         <asp:DropDownList ID="ddlSkilledNursingFacilities" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlSkilledNursingFacilities" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -807,7 +807,7 @@
                                                     </td>
                                                                    
                                                     <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >    
-                                                       <asp:DropDownList ID="ddlUpdatedContracts" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                       <asp:DropDownList ID="ddlUpdatedContracts" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Nursing Home" Text="Nursing Home"></asp:ListItem>
                                                         <asp:ListItem Value="Jail" Text="Jail"></asp:ListItem>
@@ -816,7 +816,7 @@
                                                     </asp:DropDownList>
                                                     </td>
                                                     <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >  
-                                                           <asp:DropDownList ID="ddlAttached" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                           <asp:DropDownList ID="ddlAttached" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -824,7 +824,7 @@
 
                                                     </td>
                                                     <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >   
-                                                           <asp:DropDownList ID="ddlFacilityCurrently" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                           <asp:DropDownList ID="ddlFacilityCurrently" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Nursing Home" Text="Nursing Home"></asp:ListItem>
                                                     <asp:ListItem Value="Jail" Text="Jail"></asp:ListItem>
@@ -834,7 +834,7 @@
 
                                                     </td>
                                                     <td style="padding: inherit !important;width: 10%;vertical-align:middle;" >  
-                                                           <asp:DropDownList ID="ddlToBeBilled" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                           <asp:DropDownList ID="ddlToBeBilled" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -842,7 +842,7 @@
 
                                                     </td>                                          
                                                     <td style="padding: inherit !important;width: 10%;vertical-align:middle;" >
-                                                           <asp:DropDownList ID="ddlWithTheFacility" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                           <asp:DropDownList ID="ddlWithTheFacility" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -869,7 +869,7 @@
                                      <tbody>        
                                          <tr>
                                              <td>
-                                               <asp:DropDownList ID="ddlContractStatus" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                               <asp:DropDownList ID="ddlContractStatus" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                 <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                 <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -897,7 +897,7 @@
 
                                                 </td> 
                                                 <td style="vertical-align:middle">  
-                                                 <asp:DropDownList ID="ddlContractCurrent" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                 <asp:DropDownList ID="ddlContractCurrent" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                 <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                 <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -941,7 +941,7 @@
                                          <tbody>        
                                              <tr>
                                                  <td>
-                                                   <asp:DropDownList ID="ddlPersonnelChanges" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                   <asp:DropDownList ID="ddlPersonnelChanges" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -996,14 +996,14 @@
                                          <tbody>        
                                              <tr>
                                                  <td>
-                                                       <asp:DropDownList ID="ddlClosedBusinesses" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                       <asp:DropDownList ID="ddlClosedBusinesses" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                     </asp:DropDownList>
                                                  </td>
                                                   <td>
-                                                   <asp:DropDownList ID="ddlNewBusiness" runat="server" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                   <asp:DropDownList ID="ddlNewBusiness" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1042,14 +1042,14 @@
                                          <tbody>          
                                              <tr>
                                                  <td style="width:15%; vertical-align:middle;"> 
-                                                          <asp:DropDownList ID="ddlUsage" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                          <asp:DropDownList ID="ddlUsage" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                         </asp:DropDownList>
                                                      </td>
                                                  <td style="width:15%; vertical-align:middle;">
-                                                         <asp:DropDownList ID="ddlAlertsReceived" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlAlertsReceived" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                                 <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                                 <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1057,7 +1057,7 @@
 
                                                  </td> 
                                                  <td style="width:15%; vertical-align:middle;"> 
-                                                          <asp:DropDownList ID="ddlOIG_Exclsuionary" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                          <asp:DropDownList ID="ddlOIG_Exclsuionary" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1065,7 +1065,7 @@
 
                                                  </td> 
                                                  <td style="width:15%; vertical-align:middle;"> 
-                                                           <asp:DropDownList ID="ddlReceiveMedicountReport" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                           <asp:DropDownList ID="ddlReceiveMedicountReport" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1100,7 +1100,7 @@
                                          <tbody>          
                                              <tr>
                                                  <td style="vertical-align:middle">
-                                                     <asp:DropDownList ID="ddlePCRName" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                     <asp:DropDownList ID="ddlePCRName" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="eso" Text="ESO"></asp:ListItem>
                                                      </asp:DropDownList>
@@ -1109,7 +1109,7 @@
                                                  <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off"></asp:TextBox>
                                                  <td><asp:TextBox ID="txtByWhen" CssClass="form-control form_datetime" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox>
                                                  <td style="vertical-align:middle">
-                                                     <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                     <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Monthly" Text="Monthly"></asp:ListItem>
                                                         <asp:ListItem Value="Quaterly" Text="Quaterly"></asp:ListItem>
@@ -1151,7 +1151,7 @@
                      
                                                  <td style="vertical-align:middle;"> 
 
-                                                          <asp:DropDownList ID="ddlStatementReconciliation" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                          <asp:DropDownList ID="ddlStatementReconciliation" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1165,7 +1165,7 @@
                                                                     
                                                  <td style="vertical-align:middle;">                                              
                                                      <div id="divIsTraningCompleted">                                                   
-                                                         <asp:DropDownList ID="ddlTraningCompleted" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlTraningCompleted" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="Completed" Text="Completed"></asp:ListItem>
                                                          <asp:ListItem Value="Pending" Text="Pending"></asp:ListItem>                                                         
@@ -1173,7 +1173,7 @@
                                                  </div> 
                                                  <td style="vertical-align:middle;">                                              
                                                      <div id="divIsTraningPending">                                          
-                                                         <asp:DropDownList ID="ddlIsTraningPending" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlIsTraningPending" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1206,14 +1206,14 @@
                                         <tbody>          
                                             <tr>
                                                  <td colspan="2" style="vertical-align:middle">                                                              
-                                                     <asp:DropDownList ID="ddlPatientSignature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                     <asp:DropDownList ID="ddlPatientSignature" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                     </asp:DropDownList>
                                                  </td>
                                                 <td colspan="2" style="vertical-align:middle">                                                             
-                                                    <asp:DropDownList ID="ddlPatientSignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                    <asp:DropDownList ID="ddlPatientSignatureEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
                                                     <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
@@ -1221,14 +1221,14 @@
                                                   </td>
                                                  <td colspan="2" style="vertical-align:middle">
                                                      
-                                                         <asp:DropDownList ID="ddlReceivingFacilitySignature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlReceivingFacilitySignature" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                         </asp:DropDownList>
                                                    </td>
                                                     <td colspan="2" style="vertical-align:middle">                                                        
-                                                         <asp:DropDownList ID="ddlReceivingFacilitySignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlReceivingFacilitySignatureEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
                                                             <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
@@ -1236,14 +1236,14 @@
                                                  </td>
                                                
                                                     <td colspan="2" style="vertical-align:middle">
-                                                         <asp:DropDownList ID="ddlCrewSignatureEPCR" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlCrewSignatureEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
                                                          <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
                                                     </asp:DropDownList>
                                                     </td>
                                                      <td colspan="2" style="vertical-align:middle">                                                          
-                                                         <asp:DropDownList ID="ddlCrewSignature" runat="server" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlCrewSignature" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>

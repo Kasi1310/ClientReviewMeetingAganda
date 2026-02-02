@@ -196,7 +196,8 @@ namespace ClientMeetingAgenda
                     lblMessage.Text = "Please complete the previous meeting agenda.";
                     ClientScript.RegisterStartupScript(GetType(), "myscript", "OpenMessagePopup();", true);
                 }
-            }            
+            }
+            Page.MaintainScrollPositionOnPostBack = true;
         }
 
         private void AssignTextBox()
