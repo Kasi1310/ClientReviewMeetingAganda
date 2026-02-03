@@ -261,13 +261,9 @@
             <!--Client Revenue Numbers-->
             <div class="col-lg-12 form-group">
                <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                     <thead>
-                        <tr>
-                            <th colspan="8" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT REVENUE NUMBERS</th>
-                        </tr>
-
-                        
-                    </thead>
+                    <tr>
+                        <th colspan="8" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT REVENUE NUMBERS</th>
+                    </tr>
 
                     <tbody>
                         <tr>
