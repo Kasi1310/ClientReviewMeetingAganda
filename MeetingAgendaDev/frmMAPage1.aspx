@@ -102,6 +102,7 @@
             <asp:HiddenField ID="hdnEditId" runat="server" Value="0" />
             <asp:HiddenField ID="hdnIsButtonClick" runat="server" Value="false" />
             <asp:HiddenField ID="hdnUserid" runat="server" Value="0" />
+            <asp:HiddenField ID="hdnAcctExecId" runat="server" Value="0" />
             <div class="col-lg-12 form-group text-lg-center">
                 <h3><b style="color: rgb(0,148,144) !important; font-size:50px !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
                 <h3 style="font-size:30px !important;  color:black;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
@@ -124,6 +125,7 @@
                                   <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" onchange="showLoader();"  OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
                                      <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                  </asp:DropDownList>
+                                
                              </td>
                              <td colspan="3">
                                  <asp:DropDownList ID="ddlClientName" runat="server"  AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
@@ -169,21 +171,24 @@
                                     <asp:ListItem Value="">--Select--</asp:ListItem>
                                 </asp:DropDownList>
                              </td>
+                              <td colspan="3">
+                                     <asp:TextBox ID="txtAcctExeId" CssClass="form-control"  runat="server" Text="" MaxLength="5"></asp:TextBox>
+                             </td>
    
                          </tr>     
                          <tr>
                             <td colspan="3">
-                                    <asp:TextBox ID="txtAccountExecutive" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                    <asp:TextBox ID="txtAccountExecutive" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                                 <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99" SSS runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
                                <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server" AutoPostBack="true" >
-                                   <asp:ListItem Value="">--Select--</asp:ListItem>
+                                   <asp:ListItem Value="0">--Select--</asp:ListItem>
                                    <asp:ListItem Value="Online">Online</asp:ListItem>
                                    <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
                                </asp:DropDownList>
@@ -245,7 +250,6 @@
                            <asp:BoundField DataField="Title" HeaderText="Title" />
                            <asp:BoundField DataField="Phone" HeaderText="Phone" />
                            <asp:BoundField DataField="Email" HeaderText="Email" />
-
                            <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
                        </Columns>
                    </asp:GridView>
@@ -300,14 +304,14 @@
                         </tr>
 
                         <tr>
-                            <td><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRefund" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRPT" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevRefund" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevRPT" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
                         </tr>
 
                         <tr style="background-color:rgb(0,148,144); color:#fff;">
@@ -343,14 +347,14 @@
                         </tr>
 
                         <tr>
-                            <td><asp:TextBox ID="txtCurrTransports" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrCharges" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRefund" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrTransports" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrCharges" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrRefund" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
                         </tr>
 
                         <tr>
@@ -524,7 +528,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td>
-                                                   <asp:TextBox ID="txtLastRateChange" runat="server" BackColor="#FFFF99" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
+                                                   <asp:TextBox ID="txtLastRateChange" runat="server" BackColor="#FFFF99" ReadOnly="true" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
                                                   </td>
                                                   <td> <asp:TextBox ID="txtBillingRatesReviewedComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
                                                   </tr>
@@ -967,10 +971,10 @@
 
                                         <tbody>          
                                             <tr>
-                                                <td colspan="2"> <asp:TextBox ID="txtChief" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtFiscalOfficer" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial1" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial2" CssClass="form-control" BackColor="#FFFF99" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"> <asp:TextBox ID="txtChief" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtFiscalOfficer" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial1" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"  runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial2" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
                                             </tr>                                      
                                         </tbody>
                                     </table>
@@ -1503,10 +1507,10 @@
           
                                       <tr>
                                           <!--Billing Address Info-->
-                                          <td><asp:TextBox ID="txtBillingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtBillingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtBillingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                          <td><asp:TextBox ID="txtBillingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                          <td><asp:TextBox ID="txtBillingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
                                          
                                           </tr>
                                   </tbody>
@@ -1528,10 +1532,10 @@
                                          <tbody>
                                              <tr>
            
-                                                <td><asp:TextBox ID="txtMailingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtMailingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtMailingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtMailingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtMailingZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
                                             </tr>
                                          </tbody>
                                      </table> 
@@ -1551,10 +1555,10 @@
                                          <tbody>
                                              <tr>
                                                
-                                                <td><asp:TextBox ID="txtPhysicalLocationStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtPhysicalLocationCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtPhysicalLocationState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
-                                                <td><asp:TextBox ID="txtPhysicalLocationZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationStreet" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationCity" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationState" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                                <td><asp:TextBox ID="txtPhysicalLocationZip" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
                                             </tr>
                                          </tbody>
                                      </table>                
@@ -1654,8 +1658,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" runat="server">
     <div id="divButton" class="col-lg-12 text-lg-right pdf-exclude">
-        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"  /> <!--OnClientClick="return Validation('false');"-->
-        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />
+       <%-- <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"/>--%> <!--OnClientClick="return Validation('false');"-->
+       <%-- <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />--%>
+        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print" onclick="return saveDraft('true');" />
+         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />
        <%-- onclick="return saveDraft('true');
         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" OnClick="btnSave_Click" /> "--%>
        <%-- onclick="return Validation('false');"--%>
@@ -1810,7 +1816,101 @@
         function Validation(isPDFGenerated) {
 
 
-            document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";   
+            document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";  
+
+            var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
+            var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
+            var txtMeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>");
+             var ddlAccountExecutive = document.getElementById("<%=ddlAccountExecutive.ClientID %>");
+             var ddlEmail = document.getElementById("<%=ddlEmail.ClientID %>");
+            var ddlPhone = document.getElementById("<%=ddlPhone.ClientID %>");
+
+            var gvAttendees = document.getElementById("<%=gvAttendees.ClientID %>");
+
+            var txtName = document.getElementById("<%=txtName.ClientID %>");
+            var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
+            var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
+            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");
+
+            var ddlMeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>");
+
+            var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>");
+            var txtNRScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>");
+
+            var lblErrorMsg = document.getElementById("lblErrorMsg");
+
+            lblErrorMsg.style.color = "red";
+
+            if (ddlClientNo.value == "0") {
+                //alert("Select Client#");
+                lblErrorMsg.innerHTML = "Select Client#";
+                OpenAlertPopup();
+                ddlClientNo.focus();
+                return false;
+            }
+            if (ddlClientName.value == "0") {
+                //alert("Select Client Name");
+                lblErrorMsg.innerHTML = "Select Client Name";
+                OpenAlertPopup();
+                ddlClientName.focus();
+                return false;
+            }
+            if (txtMeetingDate.value.trim() == "") {
+                //alert("Enter Meeting Date");
+                lblErrorMsg.innerHTML = "Enter Meeting Date";
+                OpenAlertPopup();
+                txtMeetingDate.focus();
+                return false;
+            }
+            if ( txtAccountExecute.value== "") { //txtAccountExecutive
+                //alert("Select Account Executive");
+                lblErrorMsg.innerHTML = "Select Account Executive";
+                OpenAlertPopup();
+                ddlAccountExecutive.focus();
+                return false;
+            }
+            if (txtAccExecEmailID.value == "") {
+                //alert("Select Email");
+                lblErrorMsg.innerHTML = "Select Email";
+                OpenAlertPopup();
+                ddlEmail.focus();
+                return false;
+            }
+            if (txtAccExecPhone.value == "") {
+                //alert("Select Phone");
+                lblErrorMsg.innerHTML = "Select Phone";
+                OpenAlertPopup();
+                ddlPhone.focus();
+                return false;
+            }
+            if (ddlMeetingType.value == "0") {
+                alert("Select Meeting Type");
+                ddlMeetingType.focus();
+                return false;
+            }
+            if (gvAttendees == null || gvAttendees.rows.length == 1 || (gvAttendees.rows.length == 2 && gvAttendees.rows[1].cells.length == 1)) {
+                //alert("Enter Attendees Invited");
+                lblErrorMsg.innerHTML = "Enter Attendees Invited";
+                OpenAlertPopup();
+                txtName.focus();
+                return false;
+            }
+
+            if (!RadioValidate(rdolstCRI)) {
+                //alert("Select Client Review Intervals");
+                lblErrorMsg.innerHTML = "Select Client Review Intervals";
+                OpenAlertPopup();
+                document.getElementById("divIsTraningPending").scrollIntoView();
+                return false;
+            }
+
+            if (txtNRScheduleDate.value.trim() == "") {
+                //alert("Select Next Review Schedule Date");
+                lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
+                OpenAlertPopup();
+                txtNRScheduleDate.focus();
+                return false;
+            }
 
             document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;
 
@@ -1843,22 +1943,27 @@
     <script type="text/javascript">
         function AddValidation() {
             var txtName = document.getElementById("<%=txtName.ClientID %>");
-            var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
-            var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
-            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");
+           var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
+           var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
 
-            if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtPhone.value.trim() == "" && txtEmail.value.trim() == "") {
-                return false;
-            }
-            if (!ValidateEmail(txtEmail, 'Invalid Email')) {
-                alert("Invalid Email");
-                txtEmail.focus();
-                return false;
-            }
+           if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtEmail.value.trim() == "") {
+               return false;
+           }
+           if (!ValidateEmail(txtEmail, 'Invalid Email')) {
+               alert("Invalid Email");
+               txtEmail.focus();
+               return false;
+           }
 
-            return true;
+           return true;
 
+       }
+
+        function ValidateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
         }
+        
 
     </script>
 
@@ -2164,7 +2269,7 @@
 
             var clsMeetingAgenda = {};
             if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
-            )) {
+                || document.getElementById("<%=txtAccountExecutive.ClientID %>").value.trim() == "0")) {
                 return;
             }
 
@@ -2173,6 +2278,7 @@
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
 
             // var ddlAccountExecutive = document.getElementById("<%=txtAccountExecutive.ClientID %>");
+            var AccountExecutiveID = document.getElementById('<%= txtAcctExeId.ClientID %>');
             var AccountExecutiveName = document.getElementById('<%= txtAccountExecutive.ClientID %>');
             var AccExecEmailID = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
             var AccExecPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
@@ -2187,6 +2293,7 @@
             clsMeetingAgenda.MeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim();
 
             //Account Executive Info
+            clsMeetingAgenda.AccExecID = parseInt(document.getElementById("<%=txtAcctExeId.ClientID %>").value.trim()); //.value.trim();
             clsMeetingAgenda.AccExecName = AccountExecutiveName.value.trim();
             clsMeetingAgenda.AccExecEmailID = AccExecEmailID.value.trim();
             clsMeetingAgenda.AccExecPhone = AccExecPhone.value.trim();
@@ -2224,9 +2331,9 @@
 
             //Aging Review
             var IsAgingReviewddl = document.getElementById("<%=ddlAgingReview.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsAgingReview = GetRadioListValue(IsAgingReviewddl);// IsAgingReviewddl.value; // GetRadioListValue(IsAgingReviewddl);
+            clsMeetingAgenda.IsAgingReview = IsAgingReviewddl.value;// GetRadioListValue(IsAgingReviewddl);// IsAgingReviewddl.value; // GetRadioListValue(IsAgingReviewddl);
             var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsDiscussedwithARTeam = GetRadioListValue(IsDiscussedwithARTeamdll);;// IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);
+            clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);;// IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);
             clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
 
 
@@ -2270,7 +2377,7 @@
             //Control Comments on Billing Rates
          
             var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsFacilityTransports = GetRadioListValue(IsFacilityTransportsddl);// IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
+            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl.value; //GetRadioListValue(IsFacilityTransportsddl);// IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
            <%--// var IsWithChargedddl = document.getElementById("<%=ddlWithCharge.ClientID %>").getElementsByTagName("input");
            // clsMeetingAgenda.IsWithCharged = IsWithChargedddl.value;// GetRadioListValue(IsWithChargedddl);
            // var IsClientProcessesOwnCreditcardsddl = document.getElementById("<%=ddlClientPorcessesOwnCreditcards.ClientID %>").getElementsByTagName("input");--%>
@@ -2356,7 +2463,7 @@
             clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
 
             var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsRunReconciliationDone = GetRadioListValue(IsRunReconciliationDoneddl);// IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
+            clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl);// IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
             
 
             //Signature Capture
@@ -2422,7 +2529,7 @@
             //OVERALL MEETING NOTES
             clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim(); 
             clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
-            clsMeetingAgenda.LastUpdatedBy = Session["UserName"].ToString().Trim();
+          
 
 
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
@@ -2547,7 +2654,8 @@
                         window.location.replace("frmMeetingAgendaMaster.aspx");
                     }
                     else if (isPrint) {
-                        window.open('frmDisplayPDF.aspx', '_blank');
+                        //window.open('frmDisplayPDF.aspx', '_blank');
+                        generatepdfBtnClick();
                     }
                     else {
                         if (response.d.length >= 10) {
@@ -2592,7 +2700,6 @@
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
 
- // var ddlAccountExecutive = document.getElementById("<%=txtAccountExecutive.ClientID %>");
             var AccountExecutiveName = document.getElementById('<%= txtAccountExecutive.ClientID %>');
             var AccExecEmailID = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
             var AccExecPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
@@ -2839,7 +2946,7 @@
              //OVERALL MEETING NOTES
              clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim(); 
              clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
-             //clsMeetingAgenda.LastUpdatedBy = Session["UserName"].ToString().Trim();
+             
 
 
              clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();

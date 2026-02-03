@@ -264,8 +264,9 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.CommandType = CommandType.StoredProcedure;
 
             objSqlCommand.Parameters.AddWithValue("@ClientID", ClientID);
-            objSqlCommand.Parameters.AddWithValue("@MeetingDate", MeetingDate);            
-            objSqlCommand.Parameters.AddWithValue("@AccExecName", AccExecName);
+            objSqlCommand.Parameters.AddWithValue("@MeetingDate", MeetingDate);
+            objSqlCommand.Parameters.AddWithValue("@AccExecID", AccExecID);
+            objSqlCommand.Parameters.AddWithValue("@AccExecName", AccExecName);           
             objSqlCommand.Parameters.AddWithValue("@AccExecEmailID", AccExecEmailID);
             objSqlCommand.Parameters.AddWithValue("@AccExecPhone", AccExecPhone);
             objSqlCommand.Parameters.AddWithValue("@MeetingType", MeetingType);

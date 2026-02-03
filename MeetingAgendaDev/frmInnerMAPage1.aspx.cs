@@ -33,13 +33,13 @@ namespace ClientMeetingAgenda
 
             if (clsMeetingAgenda.IsPrint)
             {
-               // string PDFPath = GeneratePDF(clsMeetingAgenda);
+                string PDFPath = NewGeneratePDF("","", ""); //GeneratePDF(clsMeetingAgenda);
 
                 clsOutput objclsOutput = new clsOutput();
                 objclsOutput.MeetingAgendaID = 0;
                 objclsOutput.SignatureID = 0;
 
-               // HttpContext.Current.Session["PrintDocument"] = PDFPath;
+               HttpContext.Current.Session["PrintDocument"] = PDFPath;
 
                 lstclsOutput.Add(objclsOutput);
             }

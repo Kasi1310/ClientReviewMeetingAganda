@@ -632,15 +632,17 @@ namespace ClientMeetingAgenda
                 hdnAttendeesConfirm.Value = "NO";
             }
         }
-
+        
         protected void btnSave_Click(object sender, EventArgs e)
         {
+           
             int intMAID = SaveMeetingAgenda();
             // SaveMeetingAgenda();
             //Response.Redirect(Request.Url.AbsoluteUri);
         }
         public int SaveMeetingAgenda()
         {
+            //bool validate = formValidate();
             objclsMeetingAgenda = new clsMeetingAgenda();
             // Client Info
             objclsMeetingAgenda.ClientID= ddlClientName.SelectedValue.Trim();
@@ -649,6 +651,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.ReportDate = txtReportDate.Text.Trim();
 
             // Account Executive Info
+            objclsMeetingAgenda.AccExecID = Convert.ToInt32(txtAcctExeId.Text);//.ToString();//.ToString().Trim();
             objclsMeetingAgenda.AccExecName = txtAccountExecutive.Text.Trim();
             objclsMeetingAgenda.AccExecEmailID = txtAccExecEmailID.Text.Trim();
             objclsMeetingAgenda.AccExecPhone = txtAccExecPhone.Text.Trim();
@@ -851,6 +854,7 @@ namespace ClientMeetingAgenda
                     objclsMeetingAgenda.AttendeesTitle = dtAttendeesInvited.Rows[i]["Title"].ToString().Trim();
                     objclsMeetingAgenda.AttendeesEmail = dtAttendeesInvited.Rows[i]["Email"].ToString().Trim();
                     objclsMeetingAgenda.AttendeesPhone = dtAttendeesInvited.Rows[i]["Phone"].ToString().Trim();
+                    objclsMeetingAgenda.AttendedMeeting = hdnAttendeesConfirm.Value.ToString();
                     objclsMeetingAgenda.InsertAttendes();
                 }
 
@@ -1163,13 +1167,16 @@ namespace ClientMeetingAgenda
                         //string expiryDate = match[6];
                         //string feeRate = $"{match[7]} %";
                         //break;
+                        
                         string companyName = match[1];
-                        txtAccountExecutive.Text = match[2];
-                        txtAccExecEmailID.Text = match[3];
-                        txtAccExecPhone.Text = match[4];
-                        string renewalDate = match[5];
-                        string expiryDate = match[6];
-                        string feeRate = $"{match[7]} %";
+                        txtAcctExeId.Text = Convert.ToInt32(match[2]).ToString();
+                        txtAccountExecutive.Text = match[3];
+                        txtAccExecEmailID.Text = match[4];
+                        txtAccExecPhone.Text = match[5];
+                        string renewalDate = match[6];
+                        string expiryDate = match[7];
+                        string feeRate = $"{match[8]} %";
+                        
                         break;
                     }
                 }              
