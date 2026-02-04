@@ -876,8 +876,8 @@
 
                                         <tbody>          
                                             <tr>
-                                                <td> <asp:TextBox ID="txtRenewalDate" CssClass="form-control form_datetime" runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
-                                                <td><asp:TextBox ID="txtCurrentRate" CssClass="form-control" runat="server" Text="" MaxLength="10"></asp:TextBox>
+                                                <td> <asp:TextBox ID="txtRenewalDate" CssClass="form-control form_datetime" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
+                                                <td><asp:TextBox ID="txtCurrentRate" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" MaxLength="10"></asp:TextBox>
 
                                                 </td> 
                                                 <td style="vertical-align:middle">  
