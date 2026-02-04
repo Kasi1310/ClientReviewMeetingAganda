@@ -1198,8 +1198,8 @@ namespace ClientMeetingAgenda
 
 
                     //[Company_Id,BLSE, BLSNE, ALSE, ALSNE, ALS2, Ground_Mileage, LastRateChange, NonTransport]
-                    // Medicount_InsPayTo_Address: [Street, City, State, Zip], //spCRF_GetDetailsForClientReviewForm
-                    // Medicount_Billing_Address: [Street, City, State, Zip], //spCRF_GetDetailsForClientReviewForm
+                    // Medicount_InsPayTo_Address: [Street, City, State, Zip], //spCMA_GetDetailsForClientReviewForm
+                    // Medicount_Billing_Address: [Street, City, State, Zip], //spCMA_GetDetailsForClientReviewForm
 
                     // Rates
                     txtBLS.Text = chargeRow[1];                        // BLSE
@@ -1751,7 +1751,7 @@ namespace ClientMeetingAgenda
             var results = new List<List<string>>();
 
             using (var conn = new SqlConnection(connectionString))
-            using (var cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCRF_GetClientInfoUsingClientIDs]", conn))
+            using (var cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetClientInfoUsingClientIDs]", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ClientIds", clientIds);

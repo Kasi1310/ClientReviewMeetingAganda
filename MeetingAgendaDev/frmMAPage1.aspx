@@ -133,7 +133,7 @@
                                 </asp:DropDownList>
                              </td>
                              <td colspan="3">
-                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" AutoPostBack="true" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off"></asp:TextBox>
                              </td>
                              <td colspan="3">
                                  <asp:TextBox ID="txtReportDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
@@ -253,12 +253,12 @@
                         <tr>
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
-                                <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true"  style="display:inline-block; width: auto; background-color:#fff !important;"
+                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true"  onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"
                                     ></asp:TextBox>
                             </th>
 
@@ -297,17 +297,17 @@
                         <tr style="background-color:rgb(0,148,144); color:#fff;">
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtCurrentStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Start Date</label>
-                                <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true"  style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()"  style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
-                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"  style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtCurrentEndDate_TextChanged">
+                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtCurrentEndDate_TextChanged">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
@@ -1090,8 +1090,8 @@
                                                      </asp:DropDownList>
                                                  </td> 
                                                  <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control form_datetime" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
-                                                 <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off"></asp:TextBox>
-                                                 <td><asp:TextBox ID="txtByWhen" CssClass="form-control form_datetime" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox>
+                                                 <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off" ></asp:TextBox>
+                                                 <td><asp:TextBox ID="txtByWhen" CssClass="form-control form_datetime" runat="server" Text="" onchange="showLoader()" MaxLength="10" autocomplete="off"></asp:TextBox>
                                                  <td style="vertical-align:middle">
                                                      <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
@@ -1141,7 +1141,7 @@
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                      </asp:DropDownList>
                                                      </td>
-                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control form_datetime" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
+                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                
                                                  <td> <asp:TextBox ID="txtMonthEndReportByWho" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                     
@@ -1448,7 +1448,7 @@
                                                          </asp:RadioButtonList>
                                                      </div>
                                                  </td>
-                                                 <td><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" runat="server" AutoPostBack="true" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
+                                                 <td><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" runat="server" onchange="showLoader()" AutoPostBack="true" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
                                                 <td>
                                                     <asp:TextBox ID="txtChangeInZOHO" TextMode="MultiLine" Rows="3" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
                                                      </asp:TextBox>
