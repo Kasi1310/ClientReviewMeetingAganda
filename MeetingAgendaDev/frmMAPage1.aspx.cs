@@ -176,7 +176,7 @@ namespace ClientMeetingAgenda
             if (!IsPostBack)
             {
                 objclsUsers = new clsUsers();
-                objclsUsers.LoadAccExecDDL(ddlAccountExecutive);
+               //objclsUsers.LoadAccExecDDL(txtAccountExecutive);
 
                 objclsClientMaster = new clsClientMaster();
                 objclsClientMaster.LoadClientDDL(ddlClientNo, ddlClientName);
@@ -228,76 +228,77 @@ namespace ClientMeetingAgenda
                         txtSignature1.Text = dtSignature.Rows[0]["Signature"].ToString().Trim();
                         txtFacility1.Text = dtSignature.Rows[0]["Facility"].ToString().Trim();
                     }
-                    if (dtSignature.Rows.Count >= 2)
-                    {
-                        hdnSignature2.Value = dtSignature.Rows[1]["ID"].ToString().Trim();
-                        txtPatient2.Text = dtSignature.Rows[1]["Patient"].ToString().Trim();
-                        txtSignature2.Text = dtSignature.Rows[1]["Signature"].ToString().Trim();
-                        txtFacility2.Text = dtSignature.Rows[1]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 3)
-                    {
-                        hdnSignature3.Value = dtSignature.Rows[2]["ID"].ToString().Trim();
-                        txtPatient3.Text = dtSignature.Rows[2]["Patient"].ToString().Trim();
-                        txtSignature3.Text = dtSignature.Rows[2]["Signature"].ToString().Trim();
-                        txtFacility3.Text = dtSignature.Rows[2]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 4)
-                    {
-                        hdnSignature4.Value = dtSignature.Rows[3]["ID"].ToString().Trim();
-                        txtPatient4.Text = dtSignature.Rows[3]["Patient"].ToString().Trim();
-                        txtSignature4.Text = dtSignature.Rows[3]["Signature"].ToString().Trim();
-                        txtFacility4.Text = dtSignature.Rows[3]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 5)
-                    {
-                        hdnSignature5.Value = dtSignature.Rows[4]["ID"].ToString().Trim();
-                        txtPatient5.Text = dtSignature.Rows[4]["Patient"].ToString().Trim();
-                        txtSignature5.Text = dtSignature.Rows[4]["Signature"].ToString().Trim();
-                        txtFacility5.Text = dtSignature.Rows[4]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 6)
-                    {
-                        hdnSignature6.Value = dtSignature.Rows[5]["ID"].ToString().Trim();
-                        txtPatient6.Text = dtSignature.Rows[5]["Patient"].ToString().Trim();
-                        txtSignature6.Text = dtSignature.Rows[5]["Signature"].ToString().Trim();
-                        txtFacility6.Text = dtSignature.Rows[5]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 7)
-                    {
-                        hdnSignature7.Value = dtSignature.Rows[6]["ID"].ToString().Trim();
-                        txtPatient7.Text = dtSignature.Rows[6]["Patient"].ToString().Trim();
-                        txtSignature7.Text = dtSignature.Rows[6]["Signature"].ToString().Trim();
-                        txtFacility7.Text = dtSignature.Rows[6]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 8)
-                    {
-                        hdnSignature8.Value = dtSignature.Rows[7]["ID"].ToString().Trim();
-                        txtPatient8.Text = dtSignature.Rows[7]["Patient"].ToString().Trim();
-                        txtSignature8.Text = dtSignature.Rows[7]["Signature"].ToString().Trim();
-                        txtFacility8.Text = dtSignature.Rows[7]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 9)
-                    {
-                        hdnSignature9.Value = dtSignature.Rows[8]["ID"].ToString().Trim();
-                        txtPatient9.Text = dtSignature.Rows[8]["Patient"].ToString().Trim();
-                        txtSignature9.Text = dtSignature.Rows[8]["Signature"].ToString().Trim();
-                        txtFacility9.Text = dtSignature.Rows[8]["Facility"].ToString().Trim();
-                    }
-                    if (dtSignature.Rows.Count >= 10)
-                    {
-                        hdnSignature10.Value = dtSignature.Rows[9]["ID"].ToString().Trim();
-                        txtPatient10.Text = dtSignature.Rows[9]["Patient"].ToString().Trim();
-                        txtSignature10.Text = dtSignature.Rows[9]["Signature"].ToString().Trim();
-                        txtFacility10.Text = dtSignature.Rows[9]["Facility"].ToString().Trim();
-                    }
+                    //if (dtSignature.Rows.Count >= 2)
+                    //{
+                    //    hdnSignature2.Value = dtSignature.Rows[1]["ID"].ToString().Trim();
+                    //    txtPatient2.Text = dtSignature.Rows[1]["Patient"].ToString().Trim();
+                    //    txtSignature2.Text = dtSignature.Rows[1]["Signature"].ToString().Trim();
+                    //    txtFacility2.Text = dtSignature.Rows[1]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 3)
+                    //{
+                    //    hdnSignature3.Value = dtSignature.Rows[2]["ID"].ToString().Trim();
+                    //    txtPatient3.Text = dtSignature.Rows[2]["Patient"].ToString().Trim();
+                    //    txtSignature3.Text = dtSignature.Rows[2]["Signature"].ToString().Trim();
+                    //    txtFacility3.Text = dtSignature.Rows[2]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 4)
+                    //{
+                    //    hdnSignature4.Value = dtSignature.Rows[3]["ID"].ToString().Trim();
+                    //    txtPatient4.Text = dtSignature.Rows[3]["Patient"].ToString().Trim();
+                    //    txtSignature4.Text = dtSignature.Rows[3]["Signature"].ToString().Trim();
+                    //    txtFacility4.Text = dtSignature.Rows[3]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 5)
+                    //{
+                    //    hdnSignature5.Value = dtSignature.Rows[4]["ID"].ToString().Trim();
+                    //    txtPatient5.Text = dtSignature.Rows[4]["Patient"].ToString().Trim();
+                    //    txtSignature5.Text = dtSignature.Rows[4]["Signature"].ToString().Trim();
+                    //    txtFacility5.Text = dtSignature.Rows[4]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 6)
+                    //{
+                    //    hdnSignature6.Value = dtSignature.Rows[5]["ID"].ToString().Trim();
+                    //    txtPatient6.Text = dtSignature.Rows[5]["Patient"].ToString().Trim();
+                    //    txtSignature6.Text = dtSignature.Rows[5]["Signature"].ToString().Trim();
+                    //    txtFacility6.Text = dtSignature.Rows[5]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 7)
+                    //{
+                    //    hdnSignature7.Value = dtSignature.Rows[6]["ID"].ToString().Trim();
+                    //    txtPatient7.Text = dtSignature.Rows[6]["Patient"].ToString().Trim();
+                    //    txtSignature7.Text = dtSignature.Rows[6]["Signature"].ToString().Trim();
+                    //    txtFacility7.Text = dtSignature.Rows[6]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 8)
+                    //{
+                    //    hdnSignature8.Value = dtSignature.Rows[7]["ID"].ToString().Trim();
+                    //    txtPatient8.Text = dtSignature.Rows[7]["Patient"].ToString().Trim();
+                    //    txtSignature8.Text = dtSignature.Rows[7]["Signature"].ToString().Trim();
+                    //    txtFacility8.Text = dtSignature.Rows[7]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 9)
+                    //{
+                    //    hdnSignature9.Value = dtSignature.Rows[8]["ID"].ToString().Trim();
+                    //    txtPatient9.Text = dtSignature.Rows[8]["Patient"].ToString().Trim();
+                    //    txtSignature9.Text = dtSignature.Rows[8]["Signature"].ToString().Trim();
+                    //    txtFacility9.Text = dtSignature.Rows[8]["Facility"].ToString().Trim();
+                    //}
+                    //if (dtSignature.Rows.Count >= 10)
+                    //{
+                    //    hdnSignature10.Value = dtSignature.Rows[9]["ID"].ToString().Trim();
+                    //    txtPatient10.Text = dtSignature.Rows[9]["Patient"].ToString().Trim();
+                    //    txtSignature10.Text = dtSignature.Rows[9]["Signature"].ToString().Trim();
+                    //    txtFacility10.Text = dtSignature.Rows[9]["Facility"].ToString().Trim();
+                    //}
 
                     hdnID.Value = dtMaster.Rows[0]["ID"].ToString().Trim().ToString().Trim();
                     ddlClientNo.SelectedValue = dtMaster.Rows[0]["ClientID"].ToString().Trim().ToString().Trim();
                     ddlClientName.SelectedValue = dtMaster.Rows[0]["ClientID"].ToString().Trim().ToString().Trim();
                     txtMeetingDate.Text = dtMaster.Rows[0]["MeetingDate"].ToString().Trim();
-                    ddlAccountExecutive.SelectedValue = dtMaster.Rows[0]["AccExecID"].ToString().Trim();
-                    objclsUsers.LoadEmailPhoneDDL(int.Parse(dtMaster.Rows[0]["AccExecID"].ToString().Trim()), ddlEmail, ddlPhone, ddlAccountExecutive);
+                    txtAcctExeId.Text = dtMaster.Rows[0]["AccExecID"].ToString().Trim();
+                    txtAccountExecutiveName.Text = dtMaster.Rows[0]["AccExecName"].ToString().Trim();
+                   // objclsUsers.LoadEmailPhoneDDL(int.Parse(dtMaster.Rows[0]["AccExecID"].ToString().Trim()), txtAccExecEmailID , txtAccExecPhone , txtAccountExecutive );
 
                     ddlMeetingType.SelectedValue = dtMaster.Rows[0]["MeetingType"].ToString().Trim();
                     //txtCallInNumber.Text = dtMaster.Rows[0]["CallInNumber"].ToString().Trim();
@@ -652,7 +653,7 @@ namespace ClientMeetingAgenda
 
             // Account Executive Info
             objclsMeetingAgenda.AccExecID = Convert.ToInt32(txtAcctExeId.Text);//.ToString();//.ToString().Trim();
-            objclsMeetingAgenda.AccExecName = txtAccountExecutive.Text.Trim();
+            objclsMeetingAgenda.AccExecName = txtAccountExecutiveName.Text.Trim();
             objclsMeetingAgenda.AccExecEmailID = txtAccExecEmailID.Text.Trim();
             objclsMeetingAgenda.AccExecPhone = txtAccExecPhone.Text.Trim();
             objclsMeetingAgenda.MeetingType = ddlMeetingType.SelectedValue.Trim();
@@ -1145,7 +1146,7 @@ namespace ClientMeetingAgenda
         {
             ddlClientName.SelectedValue = ddlClientNo.SelectedValue;
 
-            string companyId = ddlClientName.SelectedValue;
+            string companyId = ddlClientNo.SelectedItem.Text;// ddlClientName.SelectedValue;
 
             // Customer Portal (ESO) Accounts Data
             List<List<string>> EsoAccountsData = GetClientInfoList(companyId);
@@ -1170,12 +1171,14 @@ namespace ClientMeetingAgenda
                         
                         string companyName = match[1];
                         txtAcctExeId.Text = Convert.ToInt32(match[2]).ToString();
-                        txtAccountExecutive.Text = match[3];
+                        txtAccountExecutiveName.Text = match[3];
                         txtAccExecEmailID.Text = match[4];
-                        txtAccExecPhone.Text = match[5];
+                        txtAccExecPhone.Text = match[5];                        
                         string renewalDate = match[6];
+                        txtRenewalDate.Text = renewalDate.Replace('-','/');                        
                         string expiryDate = match[7];
-                        string feeRate = $"{match[8]} %";
+                        string feeRate = $"{match[8]}";
+                        txtCurrentRate.Text = feeRate;
                         
                         break;
                     }
@@ -1748,7 +1751,7 @@ namespace ClientMeetingAgenda
             var results = new List<List<string>>();
 
             using (var conn = new SqlConnection(connectionString))
-            using (var cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetClientInfoUsingClientIDs]", conn))
+            using (var cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCRF_GetClientInfoUsingClientIDs]", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ClientIds", clientIds);

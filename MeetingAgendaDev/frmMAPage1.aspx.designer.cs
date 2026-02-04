@@ -123,33 +123,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtReportDate;
 
         /// <summary>
-        /// ddlAccountExecutive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAccountExecutive;
-
-        /// <summary>
-        /// ddlEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEmail;
-
-        /// <summary>
-        /// ddlPhone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPhone;
-
-        /// <summary>
         /// txtAcctExeId control.
         /// </summary>
         /// <remarks>
@@ -159,13 +132,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtAcctExeId;
 
         /// <summary>
-        /// txtAccountExecutive control.
+        /// txtAccountExecutiveName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAccountExecutive;
+        protected global::System.Web.UI.WebControls.TextBox txtAccountExecutiveName;
 
         /// <summary>
         /// txtAccExecEmailID control.
@@ -1651,6 +1624,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMessage;
+
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
 
         /// <summary>
         /// ddlIsReferal control.

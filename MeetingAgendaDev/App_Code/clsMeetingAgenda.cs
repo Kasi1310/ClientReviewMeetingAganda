@@ -524,7 +524,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand = new SqlCommand();
             objclsConnection = new clsConnection();
 
-            objSqlCommand = new SqlCommand("USP_tblMeetingAgenda_Select");
+            objSqlCommand = new SqlCommand("USP_tblMeetingAgenda_Select_New");
             objSqlCommand.CommandType = CommandType.StoredProcedure;
 
             objSqlCommand.Parameters.AddWithValue("@ID", ID);

@@ -133,7 +133,7 @@
                                 </asp:DropDownList>
                              </td>
                              <td colspan="3">
-                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text=""  MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" AutoPostBack="true" MaxLength="50" autocomplete="off"></asp:TextBox>
                              </td>
                              <td colspan="3">
                                  <asp:TextBox ID="txtReportDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
@@ -154,23 +154,7 @@
                         </tr>
                      </thead>
                      <tbody>
-                         <tr hidden>
-                             <td colspan="3">
-                                    <asp:DropDownList ID="ddlAccountExecutive" CssClass="form-control" BackColor="#FFFF99" runat="server" >
-                                      <asp:ListItem Value="">--Select--</asp:ListItem>
-                                  </asp:DropDownList>
-       
-                             </td>
-                             <td colspan="3">
-                                 <asp:DropDownList ID="ddlEmail" CssClass="form-control" BackColor="#FFFF99" runat="server">
-                                    <asp:ListItem Value="">--Select--</asp:ListItem>
-                                </asp:DropDownList>
-                             </td>
-                             <td colspan="3">
-                                 <asp:DropDownList ID="ddlPhone" CssClass="form-control" BackColor="#FFFF99" runat="server">
-                                    <asp:ListItem Value="">--Select--</asp:ListItem>
-                                </asp:DropDownList>
-                             </td>
+                         <tr hidden>                             
                               <td colspan="3">
                                      <asp:TextBox ID="txtAcctExeId" CssClass="form-control"  runat="server" Text="" MaxLength="5"></asp:TextBox>
                              </td>
@@ -178,13 +162,13 @@
                          </tr>     
                          <tr>
                             <td colspan="3">
-                                    <asp:TextBox ID="txtAccountExecutive" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                    <asp:TextBox ID="txtAccountExecutiveName" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
                                  <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99" SSS runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
                             </td>
                             <td colspan="3">
                                <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server" AutoPostBack="true" >
@@ -218,7 +202,7 @@
                         <tr>
                              <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtTitle" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                             <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPhone" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                             <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPhone" CssClass="form-control" runat="server" Text="" MaxLength="15" oninput="FormatUSPhone(this)" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2" style="padding: inherit !important;"><asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                              <td colspan="2" style="padding: inherit !important;"><div class="form-group text-center">
                                 <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="return AddValidation()" OnClick="btnAdd_Click" CssClass="btn btn-info"  />
@@ -269,12 +253,12 @@
                         <tr>
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
-                                <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime"  style="display:inline-block; width: auto; background-color:#fff !important;"
+                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true"  style="display:inline-block; width: auto; background-color:#fff !important;"
                                     ></asp:TextBox>
                             </th>
 
@@ -313,12 +297,12 @@
                         <tr style="background-color:rgb(0,148,144); color:#fff;">
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtCurrentStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Start Date</label>
-                                <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime"   style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true"  style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
@@ -524,7 +508,7 @@
                                           <tbody>        
                                               <tr>
                                                   <td>
-                                                   <asp:TextBox ID="txtLastRateChange" runat="server" BackColor="#FFFF99" ReadOnly="true" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
+                                                   <asp:TextBox ID="txtLastRateChange" runat="server" BackColor="#FFFF99" AutoPostBack="true" ReadOnly="true" CssClass="form-control form_datetime" style="display:inline-block; width: auto;"></asp:TextBox>
                                                   </td>
                                                   <td> <asp:TextBox ID="txtBillingRatesReviewedComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
                                                   </tr>
@@ -1105,7 +1089,7 @@
                                                          <asp:ListItem Value="eso" Text="ESO"></asp:ListItem>
                                                      </asp:DropDownList>
                                                  </td> 
-                                                 <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control form_datetime" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
+                                                 <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control form_datetime" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                  <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off"></asp:TextBox>
                                                  <td><asp:TextBox ID="txtByWhen" CssClass="form-control form_datetime" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox>
                                                  <td style="vertical-align:middle">
@@ -1157,7 +1141,7 @@
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                      </asp:DropDownList>
                                                      </td>
-                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control form_datetime" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
+                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control form_datetime" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                
                                                  <td> <asp:TextBox ID="txtMonthEndReportByWho" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                     
@@ -1464,7 +1448,7 @@
                                                          </asp:RadioButtonList>
                                                      </div>
                                                  </td>
-                                                 <td><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
+                                                 <td><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" runat="server" AutoPostBack="true" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
                                                 <td>
                                                     <asp:TextBox ID="txtChangeInZOHO" TextMode="MultiLine" Rows="3" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
                                                      </asp:TextBox>
@@ -1656,14 +1640,15 @@
     <div id="divButton" class="col-lg-12 text-lg-right pdf-exclude">
        <%-- <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"/>--%> <!--OnClientClick="return Validation('false');"-->
        <%-- <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />--%>
-        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print" onclick="return saveDraft('true');" />
-         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />
+        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click" OnClientClick="return FormValidation('false');"/>
+        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  onclick="return saveDraft('true');" />
+         <%--<input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />--%>
        <%-- onclick="return saveDraft('true');
         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" OnClick="btnSave_Click" /> "--%>
        <%-- onclick="return Validation('false');"--%>
         <%--<asp:Button ID="btnComplete" runat="server" CssClass="btn btn-info custom" Text="Convert PDF" OnClick="btnComplete_Click" OnClientClick="return Validation('true');" />--%>
         <%--<input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatePDF()" />--%>
-        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatepdfBtnClick()" />
+        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Submit" onclick="generatepdfBtnClick()" />
       <%--    onclick="return Validation('true'); onclick="return Validation('true'); ""--%>
     </div>
     <div id="divLoading" class="spinner-border text-dark" role="status" style="float: right; display: none;">
@@ -1817,9 +1802,9 @@
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
             var txtMeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>");
-             var ddlAccountExecutive = document.getElementById("<%=ddlAccountExecutive.ClientID %>");
-             var ddlEmail = document.getElementById("<%=ddlEmail.ClientID %>");
-            var ddlPhone = document.getElementById("<%=ddlPhone.ClientID %>");
+            var txtAEName = document.getElementById("<%= txtAccountExecutiveName.ClientID %>");
+            var txtAEEmail = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
+            var txtAEPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
 
             var gvAttendees = document.getElementById("<%=gvAttendees.ClientID %>");
 
@@ -1858,29 +1843,36 @@
                 txtMeetingDate.focus();
                 return false;
             }
-            if ( txtAccountExecute.value== "") { //txtAccountExecutive
-                //alert("Select Account Executive");
-                lblErrorMsg.innerHTML = "Select Account Executive";
+            //if (AccountExecutiveName.value.trim() == "") { //txtAccountExecutive
+            //    //alert("Select Account Executive");
+            //    lblErrorMsg.innerHTML = "Select Account Executive";
+            //    OpenAlertPopup();
+            //    ddlAccountExecutive.focus();
+            //    return false;
+            //}
+            //if (txtAccExecEmailID.value == "") {
+            //    //alert("Select Email");
+            //    lblErrorMsg.innerHTML = "Select Email";
+            //    OpenAlertPopup();
+            //    ddlEmail.focus();
+            //    return false;
+            //}
+            //if (txtAccExecPhone.value == "") {
+            //    //alert("Select Phone");
+            //    lblErrorMsg.innerHTML = "Select Phone";
+            //    OpenAlertPopup();
+            //    ddlPhone.focus();
+            //    return false;
+            //}
+            if (txtMeetingDate.value == "") {
+                lblErrorMsg.innerHTML = "Select Meeting Date";
                 OpenAlertPopup();
-                ddlAccountExecutive.focus();
-                return false;
-            }
-            if (txtAccExecEmailID.value == "") {
-                //alert("Select Email");
-                lblErrorMsg.innerHTML = "Select Email";
-                OpenAlertPopup();
-                ddlEmail.focus();
-                return false;
-            }
-            if (txtAccExecPhone.value == "") {
-                //alert("Select Phone");
-                lblErrorMsg.innerHTML = "Select Phone";
-                OpenAlertPopup();
-                ddlPhone.focus();
+                txtMeetingDate.focus();
                 return false;
             }
             if (ddlMeetingType.value == "0") {
-                alert("Select Meeting Type");
+                lblErrorMsg.innerHTML = "Select Meeting Type";
+                OpenAlertPopup();
                 ddlMeetingType.focus();
                 return false;
             }
@@ -1936,31 +1928,162 @@
             //
         }
     </script>
+    <script>
+        function FormValidation(isPDFGenerated) {
+
+
+            document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";
+
+            var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
+            var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
+            var txtMeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>");
+            var txtAEName = document.getElementById("<%= txtAccountExecutiveName.ClientID %>");
+            var txtAEEmail = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
+            var txtAEPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
+
+            var gvAttendees = document.getElementById("<%=gvAttendees.ClientID %>");
+
+            var txtName = document.getElementById("<%=txtName.ClientID %>");
+            var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
+            var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
+            var txtPhone = document.getElementById("<%=txtPhone.ClientID %>");
+
+            var ddlMeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>");
+
+            var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>");
+            var txtNRScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>");
+
+            var lblErrorMsg = document.getElementById("lblErrorMsg");
+
+            lblErrorMsg.style.color = "red";
+
+            if (ddlClientNo.value == "0") {
+                //alert("Select Client#");
+                lblErrorMsg.innerHTML = "Select Client#";
+                OpenAlertPopup();
+                ddlClientNo.focus();
+                return false;
+            }
+            if (ddlClientName.value == "0") {
+                //alert("Select Client Name");
+                lblErrorMsg.innerHTML = "Select Client Name";
+                OpenAlertPopup();
+                ddlClientName.focus();
+                return false;
+            }
+            if (txtMeetingDate.value.trim() == "") {
+                //alert("Enter Meeting Date");
+                lblErrorMsg.innerHTML = "Enter Meeting Date";
+                OpenAlertPopup();
+                txtMeetingDate.focus();
+                return false;
+            }
+           
+            if (txtMeetingDate.value == "") {
+                lblErrorMsg.innerHTML = "Select Meeting Date";
+                OpenAlertPopup();
+                txtMeetingDate.focus();
+                return false;
+            }
+            if (ddlMeetingType.value == "0") {
+                lblErrorMsg.innerHTML = "Select Meeting Type";
+                OpenAlertPopup();
+                ddlMeetingType.focus();
+                return false;
+            }
+            if (gvAttendees == null || gvAttendees.rows.length == 1 || (gvAttendees.rows.length == 2 && gvAttendees.rows[1].cells.length == 1)) {
+                //alert("Enter Attendees Invited");
+                lblErrorMsg.innerHTML = "Enter Attendees Invited";
+                OpenAlertPopup();
+                txtName.focus();
+                return false;
+            }
+
+            if (!RadioValidate(rdolstCRI)) {
+                //alert("Select Client Review Intervals");
+                lblErrorMsg.innerHTML = "Select Client Review Intervals";
+                OpenAlertPopup();
+                document.getElementById("divIsTraningPending").scrollIntoView();
+                return false;
+            }
+
+            if (txtNRScheduleDate.value.trim() == "") {
+                //alert("Select Next Review Schedule Date");
+                lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
+                OpenAlertPopup();
+                txtNRScheduleDate.focus();
+                return false;
+            }
+
+            document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;
+            document.getElementById("divButton").style.display = "none";
+            document.getElementById("divLoading").style.display = "inline-block";
+        }
+    </script>
     <script type="text/javascript">
         function AddValidation() {
             var txtName = document.getElementById("<%=txtName.ClientID %>");
-           var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
+            var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
+            var txtPhone = document.getElementById("<%=txtPhone.ClientID%>");
            var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
 
-           if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtEmail.value.trim() == "") {
+           if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtPhone.value.trim() && txtEmail.value.trim() == "") {
                return false;
-           }
-           if (!ValidateEmail(txtEmail, 'Invalid Email')) {
-               alert("Invalid Email");
-               txtEmail.focus();
-               return false;
-           }
+            }
+            if (!ValidatePhone(txtPhone.value.trim())) {
+                lblErrorMsg.innerHTML = "Please enter a valid phone number";
+                OpenAlertPopup();
+                txtPhone.focus();
+                return false;
+            }
+            if (!ValidateEmail(txtEmail.value.trim())) {
+                lblErrorMsg.innerHTML = "Please enter the valid Email";
+                OpenAlertPopup();
+                txtEmail.focus();
+                return false;
+            }
+
+
 
            return true;
 
-       }
+        }
+        //function AllowOnlyNumberAndDash(input) {
+        //    input.value = input.value.replace(/[^0-9\-]/g, '');
+        //}
+        function FormatUSPhone(input) {
+
+            // Remove everything except numbers
+            let numbers = input.value.replace(/\D/g, '');
+
+            // Limit to 10 digits
+            numbers = numbers.substring(0, 10);
+
+            let formatted = '';
+
+            if (numbers.length > 0) {
+                formatted = numbers.substring(0, 3);
+            }
+            if (numbers.length >= 4) {
+                formatted += '-' + numbers.substring(3, 6);
+            }
+            if (numbers.length >= 7) {
+                formatted += '-' + numbers.substring(6, 10);
+            }
+
+            input.value = formatted;
+        }
+
 
         function ValidateEmail(email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
+        }       
+        function ValidatePhone(phone) {           
+            var re = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+            return re.test(phone);
         }
         
-
     </script>
 
     <script type="text/javascript">
@@ -2260,12 +2383,11 @@
         });
 
         // ajax method
-        //|| document.getElementById("<%=ddlAccountExecutive.ClientID %>").value.trim() == "0"
         function saveDraft(isPrint) {
 
             var clsMeetingAgenda = {};
             if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
-                || document.getElementById("<%=txtAccountExecutive.ClientID %>").value.trim() == "0")) {
+                || document.getElementById("<%=txtAccountExecutiveName.ClientID %>").value.trim() == "0")) {
                 return;
             }
 
@@ -2273,9 +2395,8 @@
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
 
-            // var ddlAccountExecutive = document.getElementById("<%=txtAccountExecutive.ClientID %>");
             var AccountExecutiveID = document.getElementById('<%= txtAcctExeId.ClientID %>');
-            var AccountExecutiveName = document.getElementById('<%= txtAccountExecutive.ClientID %>');
+            var AccountExecutiveName = document.getElementById('<%= txtAccountExecutiveName.ClientID %>');
             var AccExecEmailID = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
             var AccExecPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
 
@@ -2696,7 +2817,7 @@
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
 
-            var AccountExecutiveName = document.getElementById('<%= txtAccountExecutive.ClientID %>');
+            var AccountExecutiveName = document.getElementById('<%= txtAccountExecutiveName.ClientID %>');
             var AccExecEmailID = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
             var AccExecPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
 
