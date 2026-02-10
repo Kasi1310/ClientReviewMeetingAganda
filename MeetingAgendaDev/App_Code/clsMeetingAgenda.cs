@@ -258,25 +258,27 @@ namespace ClientMeetingAgenda.App_Code
             }
             else
             {
-                objSqlCommand = new SqlCommand("USP_tblMeetingAgenda_Update");
+                //objSqlCommand = new SqlCommand("USP_tblMeetingAgenda_Update");
+                objSqlCommand = new SqlCommand("USP_tblMeetingAgenda_Update_NEW");
                 objSqlCommand.Parameters.AddWithValue("@ID", ID);
             }
             objSqlCommand.CommandType = CommandType.StoredProcedure;
 
-            objSqlCommand.Parameters.AddWithValue("@ClientID", ClientID);
-            objSqlCommand.Parameters.AddWithValue("@MeetingDate", MeetingDate);
+            //objSqlCommand.Parameters.AddWithValue("@ClientID", ClientID);
+            objSqlCommand.Parameters.Add("@ClientID", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ClientID) ? "" : ClientID;
+            objSqlCommand.Parameters.AddWithValue("@MeetingDate", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MeetingDate) ? "" : MeetingDate;
             objSqlCommand.Parameters.AddWithValue("@AccExecID", AccExecID);
-            objSqlCommand.Parameters.AddWithValue("@AccExecName", AccExecName);           
-            objSqlCommand.Parameters.AddWithValue("@AccExecEmailID", AccExecEmailID);
-            objSqlCommand.Parameters.AddWithValue("@AccExecPhone", AccExecPhone);
-            objSqlCommand.Parameters.AddWithValue("@MeetingType", MeetingType);
+            objSqlCommand.Parameters.AddWithValue("@AccExecName", SqlDbType.VarChar).Value = string.IsNullOrEmpty(AccExecName) ? "" :  AccExecName;           
+            objSqlCommand.Parameters.AddWithValue("@AccExecEmailID", SqlDbType.VarChar).Value = string.IsNullOrEmpty(AccExecEmailID) ? "" : AccExecEmailID;
+            objSqlCommand.Parameters.AddWithValue("@AccExecPhone", SqlDbType.VarChar).Value = string.IsNullOrEmpty(AccExecPhone) ? "" : AccExecPhone;
+            objSqlCommand.Parameters.AddWithValue("@MeetingType", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MeetingType) ? "" : MeetingType;
             //objSqlCommand.Parameters.AddWithValue("@ReportDate", ReportDate);
 
-            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate1", PreviousStartDate); //new
-            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate1", PreviousEndDate); //new
-            objSqlCommand.Parameters.AddWithValue("@PreviousReportType", PreviousReportType); //new
-            objSqlCommand.Parameters.AddWithValue("@YTDTransports", PreviousTransport); //new '@YTDTransports
-            objSqlCommand.Parameters.AddWithValue("@PreviousCharges", PreviousCharges); //new
+            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate1", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PreviousStartDate) ? "" : PreviousStartDate;
+            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate1", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PreviousEndDate) ? "" : PreviousEndDate;
+            objSqlCommand.Parameters.AddWithValue("@PreviousReportType", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PreviousReportType) ? "" : PreviousReportType;
+            objSqlCommand.Parameters.AddWithValue("@YTDTransports", PreviousTransport);
+            objSqlCommand.Parameters.AddWithValue("@PreviousCharges", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PreviousCharges) ? "" : PreviousCharges;
             objSqlCommand.Parameters.AddWithValue("@YTDRevenue", PreviousRevenue); //new
             objSqlCommand.Parameters.AddWithValue("@PreviousAdjustments", PreviousAdjustments); //new
             objSqlCommand.Parameters.AddWithValue("@PreviousWrite_Off", PreviousWrite_Off); //new
@@ -284,15 +286,15 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@RevenuePerTransport", PreviousRPT); //new
             objSqlCommand.Parameters.AddWithValue("@PreviousCollRate", PreviousCollRate); //new
 
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate1", PreviousStartDate);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate1", PreviousEndDate);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate2", CurrentStartDate);
-            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate2", CurrentEndDate);
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate1", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PreviousStartDate) ? "" : PreviousStartDate; 
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate1", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PreviousEndDate) ? "" : PreviousEndDate;
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionStartDate2", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentStartDate) ? "" : CurrentStartDate;
+            objSqlCommand.Parameters.AddWithValue("@RPTCollectionEndDate2", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentEndDate) ? "" : CurrentEndDate;
 
-            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate2", CurrentStartDate); //new
-            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate2", CurrentEndDate); //new
-            objSqlCommand.Parameters.AddWithValue("@CurrentReportType", CurrentReportType); //new
-            objSqlCommand.Parameters.AddWithValue("@CurrentTransport", CurrentTransport); //new
+            objSqlCommand.Parameters.AddWithValue("@CPAWStartDate2", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentStartDate) ? "" : CurrentStartDate;
+            objSqlCommand.Parameters.AddWithValue("@CPAWEndDate2", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentEndDate) ? "" : CurrentEndDate;
+            objSqlCommand.Parameters.AddWithValue("@CurrentReportType", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentReportType) ? "" : CurrentReportType; 
+            objSqlCommand.Parameters.AddWithValue("@CurrentTransport", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentTransport) ? "" : CurrentTransport;
             objSqlCommand.Parameters.AddWithValue("@CurrentCharges", CurrentCharges); //new
             objSqlCommand.Parameters.AddWithValue("@CurrentRevenue", CurrentRevenue); //new
             objSqlCommand.Parameters.AddWithValue("@CurrentAdjustments", CurrentAdjustments); //new
@@ -303,126 +305,126 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@ClientReviewClientComment", ClientReviewClientComment);
             objSqlCommand.Parameters.AddWithValue("@ClientReviewAEComment", ClientReviewAEComments);
 
-            objSqlCommand.Parameters.AddWithValue("@ARActionTaken", IsAgingReview); //new
-            objSqlCommand.Parameters.AddWithValue("@IsDiscussedwithARTeam", IsDiscussedwithARTeam); //new
-            objSqlCommand.Parameters.AddWithValue("@AgingReviewComments", AgingReviewComments); //new   
-            objSqlCommand.Parameters.AddWithValue("@ARComments", ARComments); //new   
+            objSqlCommand.Parameters.AddWithValue("@ARActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsAgingReview) ? "" : IsAgingReview;
+            objSqlCommand.Parameters.AddWithValue("@IsDiscussedwithARTeam", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsDiscussedwithARTeam) ? "" : IsDiscussedwithARTeam;
+            objSqlCommand.Parameters.AddWithValue("@AgingReviewComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(AgingReviewComments) ? "" : AgingReviewComments; 
+            objSqlCommand.Parameters.AddWithValue("@ARComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ARComments) ? "" : ARComments;  
             
-            objSqlCommand.Parameters.AddWithValue("@BillingPolicy", BillingPolicy); //new
-            objSqlCommand.Parameters.AddWithValue("@Collections", Collections); //new
-            objSqlCommand.Parameters.AddWithValue("@BillingPolicyComments", BillingPolicyComments); //new            
-            objSqlCommand.Parameters.AddWithValue("@BillingPolicyMainIssueComments", BillingPolicyMainIssueComments); //new            
+            objSqlCommand.Parameters.AddWithValue("@BillingPolicy", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingPolicy) ? "" : BillingPolicy; 
+            objSqlCommand.Parameters.AddWithValue("@Collections", SqlDbType.VarChar).Value = string.IsNullOrEmpty(Collections) ? "" : Collections;
+            objSqlCommand.Parameters.AddWithValue("@BillingPolicyComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingPolicyComments) ? "" : BillingPolicyComments;            
+            objSqlCommand.Parameters.AddWithValue("@BillingPolicyMainIssueComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingPolicyMainIssueComments) ? "" : BillingPolicyMainIssueComments;           
 
-            objSqlCommand.Parameters.AddWithValue("@BRRActionTaken", IsBillingRateReviewed);
-            objSqlCommand.Parameters.AddWithValue("@LastRateChange", LastRateChanged);
-            objSqlCommand.Parameters.AddWithValue("@BRRComments", BillingRateReviewedComments);
-            objSqlCommand.Parameters.AddWithValue("@BRRMainIssueComments", BRRMainIssueComments);
+            objSqlCommand.Parameters.AddWithValue("@BRRActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsBillingRateReviewed) ? "" : IsBillingRateReviewed;
+            objSqlCommand.Parameters.AddWithValue("@LastRateChange", SqlDbType.VarChar).Value = string.IsNullOrEmpty(LastRateChanged) ? "" : LastRateChanged;
+            objSqlCommand.Parameters.AddWithValue("@BRRComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingRateReviewedComments) ? "" : BillingRateReviewedComments;
+            objSqlCommand.Parameters.AddWithValue("@BRRMainIssueComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BRRMainIssueComments) ? "" : BRRMainIssueComments;
 
-            objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", IsCurrentBillingRate);  //new
+            objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsCurrentBillingRate) ? "" : IsCurrentBillingRate;
             objSqlCommand.Parameters.AddWithValue("@BLS", BLS);
             objSqlCommand.Parameters.AddWithValue("@BLSNE", BLSNE);
             objSqlCommand.Parameters.AddWithValue("@ALS", ALS);
             objSqlCommand.Parameters.AddWithValue("@ALSNE", ALSNE);
             objSqlCommand.Parameters.AddWithValue("@ALS2", ALS2);
             objSqlCommand.Parameters.AddWithValue("@Mileage", Mileage);
-            objSqlCommand.Parameters.AddWithValue("@IsNonTransport", IsNonTransport);
+            objSqlCommand.Parameters.AddWithValue("@IsNonTransport", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsNonTransport) ? "" : IsNonTransport;
 
-            objSqlCommand.Parameters.AddWithValue("@CURActionTaken", UCR); //new
-            objSqlCommand.Parameters.AddWithValue("@CURComments", UCRComments); //new
-            objSqlCommand.Parameters.AddWithValue("@CURMainIssueComments", UCRMainIssueComments); //new
+            objSqlCommand.Parameters.AddWithValue("@CURActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(UCR) ? "" : UCR;
+            objSqlCommand.Parameters.AddWithValue("@CURComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(UCRComments) ? "" : UCRComments; 
+            objSqlCommand.Parameters.AddWithValue("@CURMainIssueComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(UCRMainIssueComments) ? "" : UCRMainIssueComments; 
            
-            objSqlCommand.Parameters.AddWithValue("@IsFacilityTransports", IsFacilityTransports); //new
-            objSqlCommand.Parameters.AddWithValue("@IsClientProcessesOwnCreditcards", FacilityTransportsComments); //new
-            objSqlCommand.Parameters.AddWithValue("@CommentsOnBillingRates", CommentsOnBillingRatesMainIssue); //new
+            objSqlCommand.Parameters.AddWithValue("@IsFacilityTransports", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsFacilityTransports) ? "" : IsFacilityTransports;
+            objSqlCommand.Parameters.AddWithValue("@IsClientProcessesOwnCreditcards", SqlDbType.VarChar).Value = string.IsNullOrEmpty(FacilityTransportsComments) ? "" : FacilityTransportsComments; 
+            objSqlCommand.Parameters.AddWithValue("@CommentsOnBillingRates", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CommentsOnBillingRatesMainIssue) ? "" : CommentsOnBillingRatesMainIssue; 
 
 
-            objSqlCommand.Parameters.AddWithValue("@IsNonEmergenctTranports", IsNonEmergenctTranports); //new
-            objSqlCommand.Parameters.AddWithValue("@IsClientAwareofPriorAuthorizationRequirements", IsClientAwareofPriorAuthorizationRequirements); //new
-            objSqlCommand.Parameters.AddWithValue("@IsTraningNeeded", IsTraningNeeded); //new
-            objSqlCommand.Parameters.AddWithValue("@NonEmergenctTranportsComments", NonEmergenctTranportsComments); //new
+            objSqlCommand.Parameters.AddWithValue("@IsNonEmergenctTranports", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsNonEmergenctTranports) ? "" : IsNonEmergenctTranports;
+            objSqlCommand.Parameters.AddWithValue("@IsClientAwareofPriorAuthorizationRequirements", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsClientAwareofPriorAuthorizationRequirements) ? "" : IsClientAwareofPriorAuthorizationRequirements;
+            objSqlCommand.Parameters.AddWithValue("@IsTraningNeeded", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsTraningNeeded) ? "" : IsTraningNeeded;
+            objSqlCommand.Parameters.AddWithValue("@NonEmergenctTranportsComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(NonEmergenctTranportsComments) ? "" : NonEmergenctTranportsComments; //new
 
 
-            objSqlCommand.Parameters.AddWithValue("@IsContractFacilityBilling", IsContractFacilityBilling); //new
-            objSqlCommand.Parameters.AddWithValue("@IsSkilledNursingFacilities", IsSkilledNursingFacilities); //new
-            objSqlCommand.Parameters.AddWithValue("@IsUpdatedContracts", IsUpdatedContracts); //new
-            objSqlCommand.Parameters.AddWithValue("@IsAttached", IsAttached); //new
-            objSqlCommand.Parameters.AddWithValue("@IsFacilityCurrently", IsFacilityCurrently); //new
-            objSqlCommand.Parameters.AddWithValue("@IsToBeBilled", IsToBeBilled); //new
-            objSqlCommand.Parameters.AddWithValue("@IsToWithTheFacility", IsToWithTheFacility); //new
-
-
-
-
-            objSqlCommand.Parameters.AddWithValue("@EnforceActionTaken", IsContractStatus);
-            objSqlCommand.Parameters.AddWithValue("@IsContractCurrent", IsContractCurrent);
-            objSqlCommand.Parameters.AddWithValue("@RenewalDate", RenewalDate);
-            objSqlCommand.Parameters.AddWithValue("@CurrentRate", CurrentRate);
-            objSqlCommand.Parameters.AddWithValue("@CurrentContractStatusComments", CurrentContractStatusComments);
-
-            objSqlCommand.Parameters.AddWithValue("@PCActionTaken", IsPersonnelChanges); //new
-            objSqlCommand.Parameters.AddWithValue("@PCChief", ChiefName); //new
-            objSqlCommand.Parameters.AddWithValue("@PCFiscalOfficer", FiscalOfficerName); //new
-            objSqlCommand.Parameters.AddWithValue("@PCAuthorizedOfficial", AuthorizedOfficialName1); //new
-            objSqlCommand.Parameters.AddWithValue("@AuthorizedOfficialName2", AuthorizedOfficialName2); //new
-
-
-            objSqlCommand.Parameters.AddWithValue("@DCComments", DCComments); //new            
-            objSqlCommand.Parameters.AddWithValue("@DCNewBusiness", IsNewBusiness);
-            objSqlCommand.Parameters.AddWithValue("@DCClosedBusinesses", IsClosedBusinesses);
-            objSqlCommand.Parameters.AddWithValue("@DCMainIssueComments", DCMainIssueComments); //new
+            objSqlCommand.Parameters.AddWithValue("@IsContractFacilityBilling", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsContractFacilityBilling) ? "" : IsContractFacilityBilling; 
+            objSqlCommand.Parameters.AddWithValue("@IsSkilledNursingFacilities", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsSkilledNursingFacilities) ? "" : IsSkilledNursingFacilities; 
+            objSqlCommand.Parameters.AddWithValue("@IsUpdatedContracts", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsUpdatedContracts) ? "" : IsUpdatedContracts; 
+            objSqlCommand.Parameters.AddWithValue("@IsAttached", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsAttached) ? "" : IsAttached;  
+            objSqlCommand.Parameters.AddWithValue("@IsFacilityCurrently", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsFacilityCurrently) ? "" : IsFacilityCurrently; 
+            objSqlCommand.Parameters.AddWithValue("@IsToBeBilled", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsToBeBilled) ? "" : IsToBeBilled; 
+            objSqlCommand.Parameters.AddWithValue("@IsToWithTheFacility", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsToWithTheFacility) ? "" : IsToWithTheFacility;
 
 
 
 
-            objSqlCommand.Parameters.AddWithValue("@IsCPUsage", IsUsage);
-            objSqlCommand.Parameters.AddWithValue("@IsRAAlertsReceived", IsAlertsReceived);
-            objSqlCommand.Parameters.AddWithValue("@IsMGDiscussed", IsOIG_Exclsuionary);
-            
-            objSqlCommand.Parameters.AddWithValue("@ePCRID", ePCRID); //new
-            objSqlCommand.Parameters.AddWithValue("@ePCRName", ePCRName); //new
-            objSqlCommand.Parameters.AddWithValue("@ePCRDate", ePCRDate); //new
-            objSqlCommand.Parameters.AddWithValue("@ePCRByWhom", ePCRByWhom); //new
-            objSqlCommand.Parameters.AddWithValue("@ePCRByWhen", ePCRByWhen); //new
-            objSqlCommand.Parameters.AddWithValue("@IsRunReconciliationDone", IsRunReconciliationDone); //new
+            objSqlCommand.Parameters.AddWithValue("@EnforceActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsContractStatus) ? "" : IsContractStatus;
+            objSqlCommand.Parameters.AddWithValue("@IsContractCurrent", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsContractCurrent) ? "" : IsContractCurrent;
+            objSqlCommand.Parameters.AddWithValue("@RenewalDate", SqlDbType.VarChar).Value = string.IsNullOrEmpty(RenewalDate) ? "" : RenewalDate;
+            objSqlCommand.Parameters.AddWithValue("@CurrentRate", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentRate) ? "" : CurrentRate;
+            objSqlCommand.Parameters.AddWithValue("@CurrentContractStatusComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CurrentContractStatusComments) ? "" : CurrentContractStatusComments; 
 
-            objSqlCommand.Parameters.AddWithValue("@IsPatientSignature", IsPatientSignature);
-            objSqlCommand.Parameters.AddWithValue("@IsPatientSignatureEPCR", IsPatientSignatureEPCR);
-            objSqlCommand.Parameters.AddWithValue("@IsReceivingFacilitySignature", IsReceivingFacilitySignature);
-            objSqlCommand.Parameters.AddWithValue("@IsReceivingFacilitySignatureEPCR", IsReceivingFacilitySignatureEPCR);
-            objSqlCommand.Parameters.AddWithValue("@IsCrewSignature", IsCrewSignature);
-            objSqlCommand.Parameters.AddWithValue("@IsCrewSignatureEPCR", IsCrewSignatureEPCR);
-            objSqlCommand.Parameters.AddWithValue("@SignatureCaptureComments", SignatureCaptureComments); //New
+            objSqlCommand.Parameters.AddWithValue("@PCActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsPersonnelChanges) ? "" : IsPersonnelChanges; 
+            objSqlCommand.Parameters.AddWithValue("@PCChief", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ChiefName) ? "" : ChiefName;
+            objSqlCommand.Parameters.AddWithValue("@PCFiscalOfficer", SqlDbType.VarChar).Value = string.IsNullOrEmpty(FiscalOfficerName) ? "" : FiscalOfficerName; //new
+            objSqlCommand.Parameters.AddWithValue("@PCAuthorizedOfficial", SqlDbType.VarChar).Value = string.IsNullOrEmpty(AuthorizedOfficialName1) ? "" : AuthorizedOfficialName1; //new
+            objSqlCommand.Parameters.AddWithValue("@AuthorizedOfficialName2", SqlDbType.VarChar).Value = string.IsNullOrEmpty(AuthorizedOfficialName2) ? "" : AuthorizedOfficialName2; //new
 
-            objSqlCommand.Parameters.AddWithValue("@IsStatementReconciliation", IsStatementReconciliation); //New
-            objSqlCommand.Parameters.AddWithValue("@MonthEndReportByWho", MonthEndReportByWho); //New
-            objSqlCommand.Parameters.AddWithValue("@MonthEndReportHowOften", MonthEndReportHowOften); //New           
-            objSqlCommand.Parameters.AddWithValue("@IsTrainingCompleted", IsTraningCompleted); //new
-            objSqlCommand.Parameters.AddWithValue("@IsTrainingPending", IsTraningPending);
-            objSqlCommand.Parameters.AddWithValue("@DateofMonthEndReconilations", DateofMonthEndReconilations);
 
-            objSqlCommand.Parameters.AddWithValue("@CRI", IsReviewIntervalCRI);
+            objSqlCommand.Parameters.AddWithValue("@DCComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(DCComments) ? "" : DCComments;         
+            objSqlCommand.Parameters.AddWithValue("@DCNewBusiness", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsNewBusiness) ? "" : IsNewBusiness;
+            objSqlCommand.Parameters.AddWithValue("@DCClosedBusinesses", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsClosedBusinesses) ? "" : IsClosedBusinesses;
+            objSqlCommand.Parameters.AddWithValue("@DCMainIssueComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(DCMainIssueComments) ? "" : DCMainIssueComments; //new
+
+
+
+
+            objSqlCommand.Parameters.AddWithValue("@IsCPUsage", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsUsage) ? "" : IsUsage;
+            objSqlCommand.Parameters.AddWithValue("@IsRAAlertsReceived", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsAlertsReceived) ? "" : IsAlertsReceived;
+            objSqlCommand.Parameters.AddWithValue("@IsMGDiscussed", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsOIG_Exclsuionary) ? "" : IsOIG_Exclsuionary;
+
+            objSqlCommand.Parameters.AddWithValue("@ePCRID", ePCRID);
+            objSqlCommand.Parameters.AddWithValue("@ePCRName", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ePCRName) ? "" : ePCRName; //new
+            objSqlCommand.Parameters.AddWithValue("@ePCRDate", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ePCRDate) ? "" : ePCRDate;
+            objSqlCommand.Parameters.AddWithValue("@ePCRByWhom", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ePCRByWhom) ? "" : ePCRByWhom; //new
+            objSqlCommand.Parameters.AddWithValue("@ePCRByWhen", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ePCRByWhen) ? "" : ePCRByWhen; //new
+            objSqlCommand.Parameters.AddWithValue("@IsRunReconciliationDone", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsRunReconciliationDone) ? "" : IsRunReconciliationDone;
+
+            objSqlCommand.Parameters.AddWithValue("@IsPatientSignature", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsPatientSignature) ? "" : IsPatientSignature; 
+            objSqlCommand.Parameters.AddWithValue("@IsPatientSignatureEPCR", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsPatientSignatureEPCR) ? "" : IsPatientSignatureEPCR;
+            objSqlCommand.Parameters.AddWithValue("@IsReceivingFacilitySignature", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsReceivingFacilitySignature) ? "" : IsReceivingFacilitySignature;
+            objSqlCommand.Parameters.AddWithValue("@IsReceivingFacilitySignatureEPCR", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsReceivingFacilitySignatureEPCR) ? "" : IsReceivingFacilitySignatureEPCR; 
+            objSqlCommand.Parameters.AddWithValue("@IsCrewSignature", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsCrewSignature) ? "" : IsCrewSignature;
+            objSqlCommand.Parameters.AddWithValue("@IsCrewSignatureEPCR", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsCrewSignatureEPCR) ? "" : IsCrewSignatureEPCR;
+            objSqlCommand.Parameters.AddWithValue("@SignatureCaptureComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(SignatureCaptureComments) ? "" : SignatureCaptureComments;
+
+            objSqlCommand.Parameters.AddWithValue("@IsStatementReconciliation", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsStatementReconciliation) ? "" : IsStatementReconciliation; //New
+            objSqlCommand.Parameters.AddWithValue("@MonthEndReportByWho", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MonthEndReportByWho) ? "" : MonthEndReportByWho; //New
+            objSqlCommand.Parameters.AddWithValue("@MonthEndReportHowOften", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MonthEndReportHowOften) ? "" : MonthEndReportHowOften; //New           
+            objSqlCommand.Parameters.AddWithValue("@IsTrainingCompleted", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsTraningCompleted) ? "" : IsTraningCompleted; //new
+            objSqlCommand.Parameters.AddWithValue("@IsTrainingPending", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsTraningPending) ? "" : IsTraningPending;
+            objSqlCommand.Parameters.AddWithValue("@DateofMonthEndReconilations", SqlDbType.VarChar).Value = string.IsNullOrEmpty(DateofMonthEndReconilations) ? "" : DateofMonthEndReconilations;
+
+            objSqlCommand.Parameters.AddWithValue("@CRI", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsReviewIntervalCRI) ? "" : IsReviewIntervalCRI;
             //objSqlCommand.Parameters.AddWithValue("@MERComments", MERComments);
-            objSqlCommand.Parameters.AddWithValue("@NRScheduleDate", NextReviewScheduleDate);
-            objSqlCommand.Parameters.AddWithValue("@ChangeInZOHO", ChangeInZOHO);
+            objSqlCommand.Parameters.AddWithValue("@NRScheduleDate", SqlDbType.VarChar).Value = string.IsNullOrEmpty(NextReviewScheduleDate) ? "" : NextReviewScheduleDate;
+            objSqlCommand.Parameters.AddWithValue("@ChangeInZOHO", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ChangeInZOHO) ? "" : ChangeInZOHO;
             
-            objSqlCommand.Parameters.AddWithValue("@BillingStreet", BillingStreet);
-            objSqlCommand.Parameters.AddWithValue("@BillingState", BillingState);
-            objSqlCommand.Parameters.AddWithValue("@BillingCity", BillingCity);
-            objSqlCommand.Parameters.AddWithValue("@BillingZip", BillingZip);
+            objSqlCommand.Parameters.AddWithValue("@BillingStreet", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingStreet) ? "" : BillingStreet;
+            objSqlCommand.Parameters.AddWithValue("@BillingState", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingState) ? "" : BillingState;
+            objSqlCommand.Parameters.AddWithValue("@BillingCity", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingCity) ? "" : BillingCity;
+            objSqlCommand.Parameters.AddWithValue("@BillingZip", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingZip) ? "" : BillingZip;
 
-            objSqlCommand.Parameters.AddWithValue("@MailingStreet", MailingStreet);
-            objSqlCommand.Parameters.AddWithValue("@MailingState", MailingState);
-            objSqlCommand.Parameters.AddWithValue("@MailingCity", MailingCity);
-            objSqlCommand.Parameters.AddWithValue("@MailingZip", MailingZip);
+            objSqlCommand.Parameters.AddWithValue("@MailingStreet", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MailingStreet) ? "" : MailingStreet;
+            objSqlCommand.Parameters.AddWithValue("@MailingState", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MailingState) ? "" : MailingState;
+            objSqlCommand.Parameters.AddWithValue("@MailingCity", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MailingCity) ? "" : MailingCity;
+            objSqlCommand.Parameters.AddWithValue("@MailingZip", SqlDbType.VarChar).Value = string.IsNullOrEmpty(MailingZip) ? "" : MailingZip;
 
-            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationStreet", PhysicalLocationStreet);
-            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationState", PhysicalLocationState);
-            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationCity", PhysicalLocationCity);
-            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationZip", PhysicalLocationZip);
+            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationStreet", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PhysicalLocationStreet) ? "" : PhysicalLocationStreet;
+            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationState", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PhysicalLocationState) ? "" : PhysicalLocationState;
+            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationCity", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PhysicalLocationCity) ? "" : PhysicalLocationCity;
+            objSqlCommand.Parameters.AddWithValue("@PhysicalLocationZip", SqlDbType.VarChar).Value = string.IsNullOrEmpty(PhysicalLocationZip) ? "" : PhysicalLocationZip;
 
             objSqlCommand.Parameters.AddWithValue("@OverAllMeetingNotes", OverAllMeetingNotes);
             objSqlCommand.Parameters.AddWithValue("@FollowUpAction", FollowUpAction);
-            //objSqlCommand.Parameters.AddWithValue("@LastUpdatedBy", "vanithac@medicount.com" ); //LastUpdatedBy
+            objSqlCommand.Parameters.AddWithValue("@LastUpdatedBy", LastUpdatedBy); //LastUpdatedBy
             objSqlCommand.Parameters.AddWithValue("@FileName", FileName);
             objSqlCommand.Parameters.AddWithValue("@IsPDFGenerated", IsPDFGenerated);
 
@@ -531,9 +533,12 @@ namespace ClientMeetingAgenda.App_Code
 
             return objclsConnection.ExecuteDataSet(objSqlCommand);
         }
-
-        public DataTable SelectMeetingAgendaStatus(string Mode, int ClientID, int AEsID, string PDFStatus, string MeetingType, string MeetingFromDate, string MeetingToDate)
+        //int AEsID
+        public DataTable SelectMeetingAgendaStatus(string Mode, int ClientID, string AE_Names , string PDFStatus, string MeetingType, string MeetingFromDate, string MeetingToDate)
         {
+            string aeName =
+            string.IsNullOrWhiteSpace(AE_Names) || AE_Names == "--Select--"
+            ? "":   AE_Names.Trim();
             objSqlCommand = new SqlCommand();
             objclsConnection = new clsConnection();
 
@@ -542,7 +547,7 @@ namespace ClientMeetingAgenda.App_Code
 
             objSqlCommand.Parameters.AddWithValue("@Mode", Mode);
             objSqlCommand.Parameters.AddWithValue("@ClientID", ClientID);
-            objSqlCommand.Parameters.AddWithValue("@AEsID", AEsID);
+            objSqlCommand.Parameters.AddWithValue("@AEName", aeName);
             objSqlCommand.Parameters.AddWithValue("@PDFStatus", PDFStatus);
             objSqlCommand.Parameters.AddWithValue("@MeetingType", MeetingType);
             objSqlCommand.Parameters.AddWithValue("@MeetingFromDate", MeetingFromDate);

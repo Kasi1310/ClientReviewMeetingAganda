@@ -20,6 +20,7 @@ namespace ClientMeetingAgenda
 		clsClientMaster objclsClientMaster;
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			
 			if (Session["UserName"] == null || Session["Role"] == null)
 			{
 				ClientScript.RegisterStartupScript(GetType(), "myscript", "alert('Session expired');", true);
@@ -49,11 +50,13 @@ namespace ClientMeetingAgenda
 
 		private void LoadGridview()
 		{
-			objclsMeetingAgenda = new clsMeetingAgenda();
+            
+            objclsMeetingAgenda = new clsMeetingAgenda();
 			DataTable dt = new DataTable();
 
-			dt = objclsMeetingAgenda.SelectMeetingAgendaStatus("Grid", int.Parse(ddlClientName.SelectedValue.Trim()), int.Parse(ddlAccountExecutive.SelectedValue.Trim())
-				, ddlPDFStatus.SelectedValue.Trim(), ddlMeetingType.SelectedValue.Trim(), txtMeetingFromDate.Text.Trim(), txtMeetingToDate.Text.Trim());
+			dt = objclsMeetingAgenda.SelectMeetingAgendaStatus("Grid", int.Parse(ddlClientName.SelectedValue.Trim()),
+                ddlAccountExecutive.SelectedItem.Text.ToString().Trim()
+                , ddlPDFStatus.SelectedValue.Trim(), ddlMeetingType.SelectedValue.Trim(), txtMeetingFromDate.Text.Trim(), txtMeetingToDate.Text.Trim());
 
 
 			gvMAMaster.DataSource = dt;
@@ -243,8 +246,9 @@ namespace ClientMeetingAgenda
 			objclsMeetingAgenda = new clsMeetingAgenda();
 			DataTable dt = new DataTable();
 
-			dt = objclsMeetingAgenda.SelectMeetingAgendaStatus("Export", int.Parse(ddlClientName.SelectedValue.Trim()), int.Parse(ddlAccountExecutive.SelectedValue.Trim())
-				, ddlPDFStatus.SelectedValue.Trim(), ddlMeetingType.SelectedValue.Trim(), txtMeetingFromDate.Text.Trim(), txtMeetingToDate.Text.Trim());
+			dt = objclsMeetingAgenda.SelectMeetingAgendaStatus("Export", int.Parse(ddlClientName.SelectedValue.Trim()),
+                ddlAccountExecutive.SelectedItem.Text.ToString().Trim()
+                , ddlPDFStatus.SelectedValue.Trim(), ddlMeetingType.SelectedValue.Trim(), txtMeetingFromDate.Text.Trim(), txtMeetingToDate.Text.Trim());
 			using (XLWorkbook wb = new XLWorkbook())
 			{
 				wb.Worksheets.Add(dt, "Meeting Agenda");

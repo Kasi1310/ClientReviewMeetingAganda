@@ -770,7 +770,7 @@
                                              
                                   
                                                 <tr>
-                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Do they transport to Skilled Nursing Facilities / Correctional Facilities? </th>
+                                                    <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Do they transport from Skilled Nursing Facilities / Correctional Facilities? </th>
                                                     <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">What type of contracts?</th>
                                                     <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Attached?</th>
                                                     <th style="text-align: center;vertical-align: middle; background-color:rgb(0,148,144) !important; color:#fff !important;">If no, does the client transport from a Nursing Home,Jail,Correctional Facilities, Others?</th>
@@ -1019,7 +1019,7 @@
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Client Portal Usage</th>
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Receiving alerts from Medicount's Portal</th> 
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Current Uses OIG Exclusionary List</th> 
-                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Who receives the mendicount reports?</th>                                                   
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Who receives the medicount reports?</th>                                                   
                                              </tr>
                                          
 
@@ -1091,7 +1091,7 @@
                                                  </td> 
                                                  <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control form_datetime" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                  <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off" ></asp:TextBox>
-                                                 <td><asp:TextBox ID="txtByWhen" CssClass="form-control form_datetime" runat="server" Text="" onchange="showLoader()" MaxLength="10" autocomplete="off"></asp:TextBox>
+                                                 <td><asp:TextBox ID="txtByWhen" CssClass="form-control form_datetime" runat="server" Text=""  MaxLength="10" autocomplete="off"></asp:TextBox>
                                                  <td style="vertical-align:middle">
                                                      <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
@@ -1266,158 +1266,63 @@
                                  </td>
 
                                  <td colspan="2">
-                                     <table class="col-lg-12" border="1">
-                                         <tr>
-                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Run
-                                             </td>
-                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Patient
-                                             </td>
-                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Signature
-                                             </td>
-                                             <td style="background-color: #5D6770 !important; color: #fff !important; font-weight: bold; text-align: center;">Facility
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td style="text-align: center;">1
-                                                 <asp:HiddenField ID="hdnSignature1" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility1" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">2                                        
-                                                 <asp:HiddenField ID="hdnSignature2" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility2" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">3
-                                                 <asp:HiddenField ID="hdnSignature3" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility3" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">4
-                                                 <asp:HiddenField ID="hdnSignature4" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility4" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">5
-                                                 <asp:HiddenField ID="hdnSignature5" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility5" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">6
-                                                 <asp:HiddenField ID="hdnSignature6" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility6" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">7
-                                                 <asp:HiddenField ID="hdnSignature7" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility7" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">8
-                                                 <asp:HiddenField ID="hdnSignature8" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility8" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">9
-                                                 <asp:HiddenField ID="hdnSignature9" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility9" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
-                                         <tr hidden>
-                                             <td style="text-align: center;">10
-                                                 <asp:HiddenField ID="hdnSignature10" runat="server" Value="0" />
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtPatient10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtSignature10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                             <td>
-                                                 <asp:TextBox ID="txtFacility10" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                                             </td>
-                                         </tr>
+                                     <div class="col-lg-12">
+                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                         <thead>
+                                             <tr>
+                                                 <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Signature </th>
+                                             </tr>
+                                         </thead>
+                                         <tbody class="pdf-exclude">
+                                             <tr>
+                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Run </th>
+                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Patient </th>
+                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Signature </th>
+                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Facility </th>
+                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Action</th>
+                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;"></th>                         
+                                             </tr>
+                                             <tr>
+                                                  <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtRun" ReadOnly="true" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                  <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPatient" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                  <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtSignature" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                  <td colspan="2" style="padding: inherit !important;"><asp:TextBox  ID="txtFacility" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                  <td colspan="2" style="padding: inherit !important;"><div class="form-group text-center">
+                                                     <asp:Button ID="Button1" runat="server" Text="Add" OnClick="btnAddSignature_Click"  CssClass="btn btn-info"  />
+                   
+                                                 </div></td>
+                                                  <td colspan="2"  style="padding: inherit !important;"><div class="form-group text-center" >
+                                                 <span class="text-danger" style="font-size: 12px;">Click Add to save the Signature entered</span>
+                                             </div></td>
+                                             </tr>
+                                         </tbody>
                                      </table>
+     
+                                 </div>
+          
+
+                                 <div class="col-lg-12 form-group">
+   
+                                             <asp:GridView ID="gvSignature" runat="server"
+                                            AutoGenerateColumns="false"
+                                            CssClass="table table-striped table-bordered"
+                                            DataKeyNames="ID"
+                                            OnRowEditing="gvSignature_RowEditing"
+                                            OnRowUpdating="gvSignature_RowUpdating"
+                                            OnRowCancelingEdit="gvSignature_RowCancelingEdit"
+                                            OnRowDeleting="gvSignature_RowDeleting">
+
+                                            <Columns>
+                                                <asp:BoundField DataField="ID" HeaderText="Run" />
+                                                <asp:BoundField DataField="Patient" HeaderText="Patient" />
+                                                <asp:BoundField DataField="Signature" HeaderText="Signature" />
+                                                <asp:BoundField DataField="Facility" HeaderText="Facility" />
+                                                <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
+                                            </Columns>
+                                        </asp:GridView>
+
+                                 </div>
+
                                  </td>
                              </tr>
 
@@ -1640,8 +1545,9 @@
     <div id="divButton" class="col-lg-12 text-lg-right pdf-exclude">
        <%-- <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"/>--%> <!--OnClientClick="return Validation('false');"-->
        <%-- <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />--%>
-        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click" OnClientClick="return FormValidation('false');"/>
+      <%--  <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click" OnClientClick="return FormValidation('false');"/>--%>
         <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  onclick="return saveDraft('true');" />
+         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />
          <%--<input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />--%>
        <%-- onclick="return saveDraft('true');
         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" OnClick="btnSave_Click" /> "--%>
@@ -1843,27 +1749,7 @@
                 txtMeetingDate.focus();
                 return false;
             }
-            //if (AccountExecutiveName.value.trim() == "") { //txtAccountExecutive
-            //    //alert("Select Account Executive");
-            //    lblErrorMsg.innerHTML = "Select Account Executive";
-            //    OpenAlertPopup();
-            //    ddlAccountExecutive.focus();
-            //    return false;
-            //}
-            //if (txtAccExecEmailID.value == "") {
-            //    //alert("Select Email");
-            //    lblErrorMsg.innerHTML = "Select Email";
-            //    OpenAlertPopup();
-            //    ddlEmail.focus();
-            //    return false;
-            //}
-            //if (txtAccExecPhone.value == "") {
-            //    //alert("Select Phone");
-            //    lblErrorMsg.innerHTML = "Select Phone";
-            //    OpenAlertPopup();
-            //    ddlPhone.focus();
-            //    return false;
-            //}
+           
             if (txtMeetingDate.value == "") {
                 lblErrorMsg.innerHTML = "Select Meeting Date";
                 OpenAlertPopup();
@@ -1924,7 +1810,7 @@
                 saveDraft('false');
             }
 
-            //
+            //IsContractFacilityBilling
             //
         }
     </script>
@@ -2043,8 +1929,6 @@
                 return false;
             }
 
-
-
            return true;
 
         }
@@ -2156,50 +2040,17 @@
             //$clonedDoc.find('body').css('padding', '5px');
             $clonedDoc.find('.meeting-agenda-form');
             $clonedDoc.find('.pdf-exclude').remove();
-            //$clonedDoc.find('.swal2-container').remove();
             $clonedDoc.find('script').remove();
 
             $clonedDoc.find('.col-lg-12').each(function () {
                 this.style.setProperty('padding-right', '1px', 'important');
                 this.style.setProperty('padding-left', '1px', 'important');
             });
-            //$clonedDoc.find('input.flatpickr-input:disabled').each(function () {
-            //    this.style.setProperty('background-color', 'rgba(255, 255, 255, 0.8)', 'important');
-            //});
+            
             $clonedDoc.find('[disabled]').removeAttr('disabled');     
             
 
-            // --- Handle other form fields ---
-            //$('input, textarea, select').each(function () {
-            //    const $original = $(this);
-            //    const name = $original.attr('name') || $original.attr('id');
-            //    if (!name || ['recipientReceivingName', 'recipientReceivingTitle', 'recipientReceivingEmail'].includes(name)) return;
-
-            //    const type = $original.attr('type');
-            //    const value = $original.val();
-            //    const $clonedElements = $clonedDoc.find(`[name="${name}"], #${name}`);
-
-            //    if ($original.is('textarea') || type === 'text' || type === 'number' || type === 'date' || type === 'email') {
-            //        $clonedElements.val(value).attr('value', value);
-            //    } else if (type === 'radio') {
-            //        if ($original.is(':checked')) {
-            //            $clonedDoc.find(`input[type="radio"][name="${name}"][value="${value}"]`).prop('checked', true).attr('checked', 'checked');
-            //        }
-            //    } else if (type === 'checkbox') {
-            //        const checked = $original.is(':checked');
-            //        $clonedElements.prop('checked', checked);
-            //        if (checked) $clonedElements.attr('checked', 'checked');
-            //        else $clonedElements.removeAttr('checked');
-            //    } else if ($original.is('select')) {
-            //        $clonedElements.find('option').each(function () {
-            //            if ($(this).val() === value) {
-            //                $(this).attr('selected', 'selected');
-            //            } else {
-            //                $(this).removeAttr('selected');
-            //            }
-            //        });
-            //    }
-            //});
+           
 
             adjustDynamicFieldHeights($clonedDoc);
 
@@ -2312,6 +2163,8 @@
         }
 
         function generatepdfBtnClick() {
+            if (!FormValidation(false))
+                return true;
             showLoader();
             var fullHtml = generatePdfButton();
             //var clientName = "test";
@@ -2351,6 +2204,7 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                     hideLoader();
+                    saveDraft(true);
                 },
                 error: function (xhr, status, error) {
                     alert('PDF generation failed: ' + xhr.responseText);
@@ -2374,7 +2228,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            billingRatesChange();
+           // billingRatesChange();
             // Configure to save every 2 min  
             //window.setInterval(saveDraft, 120000);//calling saveDraft function for every 2 min  
             window.setInterval(() => saveDraft(false), 120000);
@@ -2652,112 +2506,7 @@
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             clsMeetingAgenda.isPrint = isPrint;
 
-            var clsSignature = {};
-            var lstclsSignature = [];
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature1.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient1.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature1.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility1.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature2.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient2.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature2.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility2.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature3.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient3.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature3.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility3.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature4.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient4.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature4.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility4.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature5.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient5.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature5.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility5.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature6.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient6.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature6.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility6.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature7.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient7.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature7.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility7.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature8.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient8.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature8.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility8.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature9.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient9.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature9.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility9.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-            clsSignature = {
-                MeetingAgendaID: document.getElementById("<%=hdnID.ClientID %>").value.trim(),
-                SignatureID: document.getElementById("<%=hdnSignature10.ClientID %>").value.trim(),
-                Patient: document.getElementById("<%=txtPatient10.ClientID %>").value.trim(),
-                Signature: document.getElementById("<%=txtSignature10.ClientID %>").value.trim(),
-                Facility: document.getElementById("<%=txtFacility10.ClientID %>").value.trim()
-            };
-
-            lstclsSignature.push(clsSignature);
-
-
-            clsMeetingAgenda.lstclsSignature = lstclsSignature;
-
+          
 
 
             $.ajax({
@@ -2771,23 +2520,14 @@
                         window.location.replace("frmMeetingAgendaMaster.aspx");
                     }
                     else if (isPrint) {
-                        //window.open('frmDisplayPDF.aspx', '_blank');
+                       // window.open('frmDisplayPDF.aspx', '_blank');
                         generatepdfBtnClick();
                     }
                     else {
-                        if (response.d.length >= 10) {
+                       <%-- if (response.d.length >= 10) {
                             document.getElementById("<%=hdnID.ClientID %>").value = response.d[0].MeetingAgendaID;
-                            document.getElementById("<%=hdnSignature1.ClientID %>").value = response.d[0].SignatureID;
-                            document.getElementById("<%=hdnSignature2.ClientID %>").value = response.d[1].SignatureID;
-                            document.getElementById("<%=hdnSignature3.ClientID %>").value = response.d[2].SignatureID;
-                            document.getElementById("<%=hdnSignature4.ClientID %>").value = response.d[3].SignatureID;
-                            document.getElementById("<%=hdnSignature5.ClientID %>").value = response.d[4].SignatureID;
-                            document.getElementById("<%=hdnSignature6.ClientID %>").value = response.d[5].SignatureID;
-                            document.getElementById("<%=hdnSignature7.ClientID %>").value = response.d[6].SignatureID;
-                            document.getElementById("<%=hdnSignature8.ClientID %>").value = response.d[7].SignatureID;
-                            document.getElementById("<%=hdnSignature9.ClientID %>").value = response.d[8].SignatureID;
-                            document.getElementById("<%=hdnSignature10.ClientID %>").value = response.d[9].SignatureID;
-                        }
+                            
+                        }--%>
 
                         var lblMessage = document.getElementById("<%=lblMessage.ClientID%>");
 
@@ -3087,7 +2827,7 @@
         }
 
         function btnOkMessage() {
-            //document.getElementById("<%=ddlClientNo.ClientID%>").focus();
+            document.getElementById("<%=ddlClientNo.ClientID%>").focus();
             document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "false";
 
             document.getElementById("divButton").style.display = "block";
