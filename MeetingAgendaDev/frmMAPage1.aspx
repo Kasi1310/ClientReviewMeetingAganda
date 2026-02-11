@@ -258,7 +258,7 @@
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true"  onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"
+                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validatePreviousDates()) return false;  showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"
                                     ></asp:TextBox>
                             </th>
 
@@ -302,7 +302,7 @@
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()"  style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validateCurrentDates()) return false;  showLoader()"  style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
@@ -2848,6 +2848,59 @@
 
      
     </script>
+    <script type="text/javascript">
+        function validatePreviousDates() {
+
+            var startDate = document.getElementById('<%= txtPreviousStartDate.ClientID %>').value;
+            var endDate = document.getElementById('<%= txtPreviousEndDate.ClientID %>').value;
+            var lblMessage = document.getElementById("<%=lblMessage.ClientID%>");
+            if (startDate === "" || endDate === "") {
+                alert("Both Start Date and End Date are required.");
+                return false;
+            }
+
+            var start = new Date(startDate);
+            var end = new Date(endDate);
+
+            if (end < start) {
+                lblMessage.innerHTML = "End Date cannot be earlier than Start Date.";
+                lblErrorMsg.style.color = "red";
+                OpenMessagePopup();
+                //alert("");
+                $("#<%= txtPreviousEndDate.ClientID %>").val('');   // Clear textbox
+                $("#<%= txtPreviousEndDate.ClientID %>").focus();   // Focus textbox
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateCurrentDates() {
+
+            var startDate = document.getElementById('<%= txtCurrentStartDate.ClientID %>').value;
+             var endDate = document.getElementById('<%= txtCurrentEndDate.ClientID %>').value;
+             var lblMessage = document.getElementById("<%=lblMessage.ClientID%>");
+             if (startDate === "" || endDate === "") {
+                 alert("Both Start Date and End Date are required.");
+                 return false;
+             }
+
+             var start = new Date(startDate);
+             var end = new Date(endDate);
+
+             if (end < start) {
+                 lblMessage.innerHTML = "End Date cannot be earlier than Start Date.";
+                 lblErrorMsg.style.color = "red";
+                 OpenMessagePopup();
+                 $("#<%= txtCurrentEndDate.ClientID %>").val('');   // Clear textbox
+                 $("#<%= txtCurrentEndDate.ClientID %>").focus(); 
+                 return false;
+             }
+
+             return true;
+         }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphReferal" runat="server">
  
