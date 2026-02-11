@@ -144,25 +144,7 @@ namespace ClientMeetingAgenda
         [WebMethod]
         public static bool GeneratePDF(clsMeetingAgenda objclsMeetingAgenda)
         {
-            //clsMeetingAgenda objclsMeetingAgenda;
-            //DataSet dsMeetingAgenda;
-            //DataTable dtMeetingAgenda;
-            //DataTable dtAttendeesInvited;
-            //DataTable dtSignature;
-
-            //objclsMeetingAgenda = new clsMeetingAgenda();
-            //dsMeetingAgenda = new DataSet();
-
-            //dtMeetingAgenda = new DataTable();
-            //dtAttendeesInvited = new DataTable();
-            //dtSignature = new DataTable();
-
-            //objclsMeetingAgenda.ID = MAID;
-            //dsMeetingAgenda = objclsMeetingAgenda.SelectMeetingAgenda();
-            //dtMeetingAgenda = dsMeetingAgenda.Tables[0];
-            //dtAttendeesInvited = dsMeetingAgenda.Tables[1];
-            //dtSignature = dsMeetingAgenda.Tables[2];
-
+            
             string FileName = objclsMeetingAgenda.ClientNo + "_" + DateTime.Now.ToString("MMddyyyyHHmm") + ".pdf";
             string designationFilePath = ConfigurationManager.AppSettings["upload.file.path"].ToString() + FileName;
 
@@ -1354,7 +1336,7 @@ namespace ClientMeetingAgenda
             cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             childTableCTD.AddCell(cell);
 
-            cell = new PdfPCell(new Phrase(objclsMeetingAgenda.CBRActionTaken, fontContent));
+            cell = new PdfPCell(new Phrase(objclsMeetingAgenda.CBRComments, fontContent));
             cell.PaddingBottom = 5f;
             cell.Colspan = 1;
             cell.Border = Rectangle.RIGHT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.TOP_BORDER | Rectangle.LEFT_BORDER;

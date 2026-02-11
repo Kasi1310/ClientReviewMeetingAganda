@@ -594,7 +594,7 @@
 
                                 <!-- Right side large textbox -->
                                 <td  style="height:100px;width:100%;">
-                                    <asp:TextBox ID="txtCBRActionTaken" runat="server"
+                                    <asp:TextBox ID="txtCBRComments" runat="server"
                                         TextMode="MultiLine" CssClass="cbraction" autocomplete="off"></asp:TextBox>
                                 </td>
                             </tr>
@@ -2335,7 +2335,7 @@
             clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
             var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsNonTransport = IsNonTransportddl.value;// GetRadioListValue(IsNonTransportddl);
-            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRActionTaken.ClientID %>").value.trim();
+            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
 
 
             //UCR (Usual & Customary Rates)
@@ -2641,7 +2641,7 @@
             clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
             var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
             clsMeetingAgenda.IsNonTransport = IsNonTransportddl.value;// GetRadioListValue(IsNonTransportddl);
-            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRActionTaken.ClientID %>").value.trim();
+            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
 
 
             //UCR (Usual & Customary Rates)
@@ -2660,7 +2660,7 @@
 
 
                         //Non-Emergency Tranports
-                        var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").getElementsByTagName("input");
+             var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").getElementsByTagName("input");
              clsMeetingAgenda.IsNonEmergenctTranports = IsNonEmergenctTranportsddl.value;// GetRadioListValue(IsNonEmergenctTranportsddl);
              var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").getElementsByTagName("input");
              clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl.value;// GetRadioListValue(IsClientAwareofPriorAuthorizationRequirementsddl);
@@ -2698,7 +2698,7 @@
              clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
              var IsContractCurrentddl = document.getElementById("<%=ddlContractCurrent.ClientID %>").getElementsByTagName("input");
              clsMeetingAgenda.IsContractCurrent = IsContractCurrentddl.value;// GetRadioListValue(IsContractCurrentddl);
-
+             clsMeetingAgenda.CurrentContractStatusComments = document.getElementById("<%=txtCurrentContractStatusComments.ClientID%>").value.trim();
 
              //10. Personnel Changes
              var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").getElementsByTagName("input");

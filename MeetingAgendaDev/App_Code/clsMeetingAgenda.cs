@@ -53,7 +53,7 @@ namespace ClientMeetingAgenda.App_Code
         public string ALS2Reviewed { get; set; }
         public string MileageReviewed { get; set; }
         public string IsNonTransportReviewed { get; set; }
-        public string CBRActionTaken { get; set; }
+        public string CBRActionTacken { get; set; }
         public string CURReviewed { get; set; }
         public string CURComments { get; set; }
         public string LastRateChange { get; set; }
@@ -165,6 +165,7 @@ namespace ClientMeetingAgenda.App_Code
         public string ALS2 { get; set; }
         public string Mileage { get; set; }
         public string IsNonTransport { get; set; }
+        public string CBRComments { get; set; }
         
         public string UCR { get; set; }
         public string UCRComments { get; set; }
@@ -328,6 +329,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@ALS2", ALS2);
             objSqlCommand.Parameters.AddWithValue("@Mileage", Mileage);
             objSqlCommand.Parameters.AddWithValue("@IsNonTransport", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsNonTransport) ? "" : IsNonTransport;
+            objSqlCommand.Parameters.AddWithValue("@CBRComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CBRComments) ? "" : CBRComments;
 
             objSqlCommand.Parameters.AddWithValue("@CURActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(UCR) ? "" : UCR;
             objSqlCommand.Parameters.AddWithValue("@CURComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(UCRComments) ? "" : UCRComments; 
@@ -379,6 +381,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@IsCPUsage", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsUsage) ? "" : IsUsage;
             objSqlCommand.Parameters.AddWithValue("@IsRAAlertsReceived", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsAlertsReceived) ? "" : IsAlertsReceived;
             objSqlCommand.Parameters.AddWithValue("@IsMGDiscussed", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsOIG_Exclsuionary) ? "" : IsOIG_Exclsuionary;
+            objSqlCommand.Parameters.AddWithValue("@IsDiscussed", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsDiscussed) ? "" : IsDiscussed;
 
             objSqlCommand.Parameters.AddWithValue("@ePCRID", ePCRID);
             objSqlCommand.Parameters.AddWithValue("@ePCRName", SqlDbType.VarChar).Value = string.IsNullOrEmpty(ePCRName) ? "" : ePCRName; //new

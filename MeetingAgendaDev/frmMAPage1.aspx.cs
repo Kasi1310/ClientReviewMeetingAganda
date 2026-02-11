@@ -282,7 +282,7 @@ namespace ClientMeetingAgenda
                     txtBillingRatesReviewedMainIssueComments.Text = dtMaster.Rows[0]["BRRMainIssueComments"].ToString().Trim();
 
                     
-                    ddlCurrentBillingRates.Text = dtMaster.Rows[0]["CBRActionTaken"].ToString().Trim();
+                    ddlCurrentBillingRates.Text = dtMaster.Rows[0]["CBRComments"].ToString().Trim();
                     txtBLS.Text = dtMaster.Rows[0]["BLS"].ToString().Trim();
                     txtBLSNE.Text = dtMaster.Rows[0]["BLSNE"].ToString().Trim();
                     txtALS.Text = dtMaster.Rows[0]["ALS"].ToString().Trim();
@@ -290,7 +290,8 @@ namespace ClientMeetingAgenda
                     txtALS2.Text = dtMaster.Rows[0]["ALS2"].ToString().Trim();
                     txtMileage.Text = dtMaster.Rows[0]["Mileage"].ToString().Trim();
                     rdolstNonTransport.Text = dtMaster.Rows[0]["IsNonTransport"].ToString().Trim();
-                   // txtCBRActionTaken.Text
+                    txtCBRComments.Text = dtMaster.Rows[0]["CBRComments"].ToString().Trim();
+                   // txtCBRComments.Text
 
                     ddlUCR.Text= dtMaster.Rows[0]["CURActionTaken"].ToString().Trim();
                     txtUCRComments.Text= dtMaster.Rows[0]["CURComments"].ToString().Trim();
@@ -339,7 +340,7 @@ namespace ClientMeetingAgenda
                     ddlUsage.Text = dtMaster.Rows[0]["IsCPUsage"].ToString().Trim();
                     ddlAlertsReceived.Text = dtMaster.Rows[0]["IsRAAlertsReceived"].ToString().Trim();
                     ddlOIG_Exclsuionary.Text = dtMaster.Rows[0]["IsMGDiscussed"].ToString().Trim();
-                    //ddlReceiveMedicountReport.Text = dtMaster.Rows[0]["IsCPUsage"].ToString().Trim();
+                    ddlReceiveMedicountReport.Text = dtMaster.Rows[0]["IsCPSDiscussed"].ToString().Trim();
 
                     ddlePCRName.Text= dtMaster.Rows[0]["ePCRName"].ToString().Trim();
                     txtLastReconciliationDate.Text= dtMaster.Rows[0]["ePCRDate"].ToString().Trim();
@@ -720,7 +721,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.ALS2 = txtALS2.Text.Trim();
             objclsMeetingAgenda.Mileage = txtMileage.Text.Trim();
             objclsMeetingAgenda.IsNonTransport = rdolstNonTransport.SelectedValue.Trim();
-            objclsMeetingAgenda.CBRActionTaken = txtCBRActionTaken.Text.Trim();
+            objclsMeetingAgenda.CBRComments = txtCBRComments.Text.Trim();
 
             //UCR (Usual & Customary Rates)
             objclsMeetingAgenda.UCR = ddlUCR.SelectedValue.Trim();
@@ -1782,7 +1783,7 @@ namespace ClientMeetingAgenda
         //    txtALS2.Text = "";
         //    txtMileage.Text = "";
         //    rdolstNonTransport.SelectedValue = "";
-        //    txtCBRActionTaken.Text = "";
+        //    txtCBRComments.Text = "";
         //    txtCURComments.Text = "";
         //    txtLastRateChange.Text = "";
         //    txtCSComments.Text = "";

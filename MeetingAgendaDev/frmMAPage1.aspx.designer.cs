@@ -618,13 +618,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtMileage;
 
         /// <summary>
-        /// txtCBRActionTaken control.
+        /// txtCBRComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCBRActionTaken;
+        protected global::System.Web.UI.WebControls.TextBox txtCBRComments;
 
         /// <summary>
         /// ddlUCR control.
