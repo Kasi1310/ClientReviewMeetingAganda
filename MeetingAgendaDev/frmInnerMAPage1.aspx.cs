@@ -177,14 +177,16 @@ namespace ClientMeetingAgenda
                 if (!string.IsNullOrEmpty(htmlPath) && System.IO.File.Exists(htmlPath))
                     System.IO.File.Delete(htmlPath);
 
-                if (!string.IsNullOrEmpty(pdfPath) && System.IO.File.Exists(pdfPath))
-                    System.IO.File.Delete(pdfPath);
+                //if (!string.IsNullOrEmpty(pdfPath) && System.IO.File.Exists(pdfPath))
+                //    System.IO.File.Delete(pdfPath);
             }
         }
 
         private static string SaveHtmlToTempFile(string html, string clientName, string clientNumber)
         {
-            string folder = HttpContext.Current.Server.MapPath("~/Temp/");
+
+            //HttpContext.Current.Server.MapPath("~/Temp/");
+            string folder = ConfigurationManager.AppSettings["upload.file.path"].ToString();// "E:\\CMS_DATA\\Contracts\\MeetingAgenda\\Test\\";
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 

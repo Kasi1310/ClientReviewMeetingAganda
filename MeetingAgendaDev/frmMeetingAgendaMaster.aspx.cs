@@ -124,7 +124,8 @@ namespace ClientMeetingAgenda
 			}
 			if (e.CommandName == "cmdView")
 			{
-				string designationFilePath = ConfigurationManager.AppSettings["upload.file.path"].ToString() + e.CommandArgument.ToString();
+				//string designationFilePath = ConfigurationManager.AppSettings["upload.file.path"].ToString() + e.CommandArgument.ToString();
+				string designationFilePath =  e.CommandArgument.ToString();
 
 				Response.ContentType = "application/pdf";
 				Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(designationFilePath));
