@@ -25,7 +25,7 @@ namespace ClientMeetingAgenda
         }
 
         [WebMethod]
-        public static List<clsOutput> SaveMeetingAgenda(clsMeetingAgenda clsMeetingAgenda)
+        public static List<clsOutput> SaveMeetingAgenda(clsMeetingAgenda clsMeetingAgenda, string formHtml, string clientName, string clientNumber, string buttonType)
         {
             DataTable dtAttendeesInvited;
             clsMeetingAgenda objclsMeetingAgenda = new clsMeetingAgenda();
@@ -33,6 +33,12 @@ namespace ClientMeetingAgenda
             //var pdf_FileName = HttpContext.Current.Session["PDFFileName"].ToString();
             var pdf_FileName = HttpContext.Current.Session["PDFFileName"]?.ToString();
             bool IsPDFGenerated = !string.IsNullOrWhiteSpace(pdf_FileName);
+            if (buttonType == "submit")
+            {
+                Dictionary<string, object> submitPdfPath = NewGeneratePDF(formHtml, clientName, clientNumber, buttonType);
+                pdf_FileName = submitPdfPath["PdfPath"].ToString();
+                IsPDFGenerated = true;
+            }
             objclsMeetingAgenda.IsPDFGenerated = IsPDFGenerated;
             //clsMeetingAgenda.IsPDFGenerated
 
@@ -46,13 +52,13 @@ namespace ClientMeetingAgenda
             //}
             if (clsMeetingAgenda.IsPrint)
             {
-                //string PDFPath = NewGeneratePDF("","", ""); //GeneratePDF(clsMeetingAgenda);
+                //string PDFPath = NewGeneratePDF(formHtml, clientName, clientNumber, buttonType); //GeneratePDF(clsMeetingAgenda);
 
                 clsOutput objclsOutput = new clsOutput();
                 objclsOutput.MeetingAgendaID = 0;
                 objclsOutput.SignatureID = 0;
 
-               //HttpContext.Current.Session["PrintDocument"] = PDFPath;
+               HttpContext.Current.Session["PrintDocument"] = pdf_FileName;
 
                 lstclsOutput.Add(objclsOutput);
             }
@@ -141,7 +147,7 @@ namespace ClientMeetingAgenda
 
                 //if (objclsMeetingAgenda.IsPDFGenerated)
                 //{
-                //    HttpContext.Current.Session["FileDownload"] = GeneratePDF(objclsMeetingAgenda);
+                //    HttpContext.Current.Session["FileDownload"] = pdf_FileName; //GeneratePDF(objclsMeetingAgenda);
 
                 //    objclsMeetingAgenda = new clsMeetingAgenda();
                 //    objclsMeetingAgenda.ID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0]["ID"].ToString());
@@ -151,12 +157,16 @@ namespace ClientMeetingAgenda
                 //}
             }
 
-
+            if (buttonType == "submit") 
+            {
+                HttpContext.Current.Session["PDFFileName"] = null;
+            }
+                
             return lstclsOutput;
         }
 
         [WebMethod]
-        public static string NewGeneratePDF(string formHtml, string clientName, string clientNumber)
+        public static Dictionary<string, object> NewGeneratePDF(string formHtml, string clientName, string clientNumber, string buttonType)
         {
             string htmlPath = null;
             string pdfPath = null;
@@ -168,17 +178,30 @@ namespace ClientMeetingAgenda
                 byte[] pdfBytes = ConvertHtmlToPdf(htmlPath);
                 pdfPath = System.IO.Path.ChangeExtension(htmlPath, ".pdf");
                 hdnFileName = pdfPath;
-               HttpContext.Current.Session["PDFFileName"] = pdfPath;
-
-                return Convert.ToBase64String(pdfBytes);
+                if (buttonType == "submit")
+                {
+                    HttpContext.Current.Session["PDFFileName"] = pdfPath;
+                }
+                else
+                {
+                    HttpContext.Current.Session["PDFFileName"] = null;
+                }
+                return new Dictionary<string, object>
+                {
+                    { "Base64Pdf", Convert.ToBase64String(pdfBytes) },
+                    { "PdfPath", pdfPath }
+                };
             }
             finally
             {
                 if (!string.IsNullOrEmpty(htmlPath) && System.IO.File.Exists(htmlPath))
                     System.IO.File.Delete(htmlPath);
 
-                //if (!string.IsNullOrEmpty(pdfPath) && System.IO.File.Exists(pdfPath))
-                //    System.IO.File.Delete(pdfPath);
+                if (buttonType != "submit")
+                {
+                    if (!string.IsNullOrEmpty(pdfPath) && System.IO.File.Exists(pdfPath))
+                        System.IO.File.Delete(pdfPath);
+                }
             }
         }
 

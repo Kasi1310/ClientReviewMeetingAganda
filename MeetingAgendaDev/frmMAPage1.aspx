@@ -1806,7 +1806,7 @@
                     isPDFGenerated = false;
                     return false;
                 }--%>
-                saveDraft('false', true);
+                saveDraft('false', true, 'submit');
             }
             else {
                 saveDraft('false');
@@ -2163,7 +2163,7 @@
             return `${month}-${day}-${year}`;
         }
 
-        function generatepdfBtnClick() {
+        function generatepdfBtnClick(buttonType) {
            
             showLoader();
             var fullHtml = generatePdfButton();
@@ -2183,11 +2183,10 @@
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                data: JSON.stringify({ formHtml: fullHtml, clientName: clientName, clientNumber: clientNumber }),
+                data: JSON.stringify({ formHtml: fullHtml, clientName: clientName, clientNumber: clientNumber, buttonType: buttonType }),
                 success: function (response) {
-                   
                     //hdnPDFFilepath.value = response.d;
-                    var base64Pdf = response.d;
+                    var base64Pdf = response.d.Base64Pdf;
                     var binary = atob(base64Pdf);
                     var len = binary.length;
                     var buffer = new ArrayBuffer(len);
@@ -2238,7 +2237,7 @@
         });
 
         // ajax method
-        function saveDraft(isPrint, isPDFDownload=false) {
+        function saveDraft(isPrint, isPDFDownload=false, buttonType='save') {
 
             var clsMeetingAgenda = {};
             if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
@@ -2504,10 +2503,23 @@
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             clsMeetingAgenda.isPrint = isPrint;
 
+            var fullHtml = generatePdfButton();
+            var clientNumber = $("#cphMainContent_ddlClientNo").val();
+            var clientName = "";
+            if (clientNumber == '0') {
+                clientName = "CLIENT"
+            } else {
+                clientName = $('#cphMainContent_ddlClientName option[value="' + clientNumber + '"]').text();
+            }
+
+            if (isPrint == 'true'){
+                buttonType = 'print';
+            }
+
             $.ajax({
                 type: "POST",
                 url: "frmInnerMAPage1.aspx/SaveMeetingAgenda",
-                data: JSON.stringify({ clsMeetingAgenda: clsMeetingAgenda }),
+                data: JSON.stringify({ clsMeetingAgenda: clsMeetingAgenda, formHtml: fullHtml, clientName: clientName, clientNumber: clientNumber, buttonType: buttonType }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
 
@@ -2523,9 +2535,6 @@
 
                     // ✅ Case 1: PDF already generated → Redirect
                     if (isPDFGenerated === "true") {
-                        if (isPDFDownload) {
-                            generatepdfBtnClick();
-                        }
                         window.location.replace("frmMeetingAgendaMaster.aspx");
                         return;
                     }
@@ -2533,7 +2542,7 @@
                     // ✅ Case 2: Print mode
                     if (isPrint == 'true') {
                         if (isPDFDownload) {
-                            generatepdfBtnClick();
+                            generatepdfBtnClick('print');
                         }
                         return;
                     }
