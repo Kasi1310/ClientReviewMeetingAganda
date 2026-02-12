@@ -1555,7 +1555,7 @@
        <%-- onclick="return Validation('false');"--%>
         <%--<asp:Button ID="btnComplete" runat="server" CssClass="btn btn-info custom" Text="Convert PDF" OnClick="btnComplete_Click" OnClientClick="return Validation('true');" />--%>
         <%--<input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatePDF()" />--%>
-        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Submit" onclick="generatepdfBtnClick()" />
+        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Submit" onclick="return Validation('true');" />
       <%--    onclick="return Validation('true'); onclick="return Validation('true'); ""--%>
     </div>
     <div id="divLoading" class="spinner-border text-dark" role="status" style="float: right; display: none;">
@@ -1791,8 +1791,8 @@
 
 
 
-            document.getElementById("divButton").style.display = "none";
-            document.getElementById("divLoading").style.display = "inline-block";
+            //document.getElementById("divButton").style.display = "none";
+            //document.getElementById("divLoading").style.display = "inline-block";
 
             if (isPDFGenerated == "true") {
                <%-- if (document.getElementById("<%=hdnAttendeesConfirm.ClientID %>").value.trim() == "NO") {
@@ -1806,7 +1806,7 @@
                     isPDFGenerated = false;
                     return false;
                 }--%>
-                saveDraft(true);
+                saveDraft('false', true);
             }
             else {
                 saveDraft('false');
@@ -2206,7 +2206,6 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                     hideLoader();
-                    saveDraft('false');
                 },
                 error: function (xhr, status, error) {
                     alert('PDF generation failed: ' + xhr.responseText);
@@ -2505,53 +2504,59 @@
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             clsMeetingAgenda.isPrint = isPrint;
 
-          
-
-
             $.ajax({
                 type: "POST",
                 url: "frmInnerMAPage1.aspx/SaveMeetingAgenda",
-                data: '{clsMeetingAgenda: ' + JSON.stringify(clsMeetingAgenda) + '}',
+                data: JSON.stringify({ clsMeetingAgenda: clsMeetingAgenda }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
+
                 beforeSend: function () {
-                    showLoader();   // ✅ Show loader before request starts
+                    showLoader();
                 },
+
                 success: function (response) {
-                    if (document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value == "true") {
-                        window.location.replace("frmMeetingAgendaMaster.aspx");
-                    }
-                    else if (isPrint) {
-                        // window.open('frmDisplayPDF.aspx', '_blank');
+
+                    const isPDFGenerated = document.getElementById("cphMainContent_hdnIsPDFGenerated")?.value;
+                    const isButtonClick = document.getElementById("cphMainContent_hdnIsButtonClick")?.value;
+                    const lblMessage = document.getElementById("cphMainContent_lblMessage");
+
+                    // ✅ Case 1: PDF already generated → Redirect
+                    if (isPDFGenerated === "true") {
                         if (isPDFDownload) {
                             generatepdfBtnClick();
                         }
-                        
+                        window.location.replace("frmMeetingAgendaMaster.aspx");
+                        return;
                     }
-                    else {
 
-                        showLoader();
-                        var lblMessage = document.getElementById("<%=lblMessage.ClientID%>");
+                    // ✅ Case 2: Print mode
+                    if (isPrint == 'true') {
+                        if (isPDFDownload) {
+                            generatepdfBtnClick();
+                        }
+                        return;
+                    }
 
-                        if (document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value == "false"
-                            && document.getElementById("<%=hdnIsButtonClick.ClientID %>").value == "true") {
+                    // ✅ Case 3: Normal save
+                    if (isPDFGenerated === "false" && isButtonClick === "true") {
+                        if (lblMessage) {
                             lblMessage.innerHTML = "This document is saved. Please check the Meeting Agenda files tab to edit the document.";
-                            lblErrorMsg.style.color = "green";
-                            OpenMessagePopup();
+                            lblMessage.style.color = "green";
                         }
-                        else {
-                            btnOkMessage();
-                        }
+                        OpenMessagePopup();
+                    } else {
+                        btnOkMessage();
                     }
-
                 },
+
                 error: function (xhr, status, error) {
-                    console.log(error);
-                    alert("Something went wrong.");
+                    console.error("AJAX Error:", error);
+                    alert("Something went wrong. Please try again.");
                 },
 
                 complete: function () {
-                    hideLoader();   // ✅ Always runs (success or error)
+                    hideLoader();
                 }
             });
         }
