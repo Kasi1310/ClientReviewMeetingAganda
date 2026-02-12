@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -243,12 +244,13 @@ namespace ClientMeetingAgenda.App_Code
         public string FollowUpAction { get; set; }
 
         public string LastUpdatedBy { get; set; }
-
+        public string PDFFilePath { get; set; } 
 
         public List<clsSignature> lstclsSignature { get; set; }
 
         public DataSet InsertUpdateMeetingAgenda()
         {
+            var pdf_FileName = HttpContext.Current.Session["PDFFileName"];
             
             objSqlCommand = new SqlCommand();
             objclsConnection = new clsConnection();
@@ -428,7 +430,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@OverAllMeetingNotes", OverAllMeetingNotes);
             objSqlCommand.Parameters.AddWithValue("@FollowUpAction", FollowUpAction);
             objSqlCommand.Parameters.AddWithValue("@LastUpdatedBy", LastUpdatedBy); //LastUpdatedBy
-            objSqlCommand.Parameters.AddWithValue("@FileName", FileName);
+            objSqlCommand.Parameters.AddWithValue("@FileName", pdf_FileName != null ? pdf_FileName.ToString() : "");
             objSqlCommand.Parameters.AddWithValue("@IsPDFGenerated", IsPDFGenerated);
 
             return objclsConnection.ExecuteDataSet(objSqlCommand);

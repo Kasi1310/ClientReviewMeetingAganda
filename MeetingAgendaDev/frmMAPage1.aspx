@@ -103,6 +103,7 @@
             <asp:HiddenField ID="hdnIsButtonClick" runat="server" Value="false" />
             <asp:HiddenField ID="hdnUserid" runat="server" Value="0" />
             <asp:HiddenField ID="hdnAcctExecId" runat="server" Value="0" />
+            <asp:HiddenField ID="hdnPDFFilepath" runat="server" Value="" />
             <div class="col-lg-12 form-group text-lg-center">
                 <h3><b style="color: rgb(0,148,144) !important; font-size:50px !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
                 <h3 style="font-size:30px !important;  color:black;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
@@ -266,8 +267,8 @@
                                 <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Report Type</label>
                                 <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtPreviousEndDate_TextChanged">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                    <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
-                                    <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
+                                    <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
+                                    <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
                                 </asp:DropDownList>
                             </th>
                         </tr>
@@ -309,8 +310,8 @@
                                 <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
                                 <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtCurrentEndDate_TextChanged">
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                    <asp:ListItem Value="dos" Text="Date of Service"></asp:ListItem>
-                                    <asp:ListItem Value="doe" Text="Date of Entry"></asp:ListItem>
+                                    <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
+                                    <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
                                 </asp:DropDownList>
                             </th>
                         </tr>
@@ -1546,7 +1547,7 @@
        <%-- <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"/>--%> <!--OnClientClick="return Validation('false');"-->
        <%-- <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />--%>
       <%--  <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click" OnClientClick="return FormValidation('false');"/>--%>
-        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  onclick="return saveDraft('true');" />
+        <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  onclick="return saveDraft('true',true);" />
          <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />
          <%--<input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />--%>
        <%-- onclick="return saveDraft('true');
@@ -1794,7 +1795,7 @@
             document.getElementById("divLoading").style.display = "inline-block";
 
             if (isPDFGenerated == "true") {
-                if (document.getElementById("<%=hdnAttendeesConfirm.ClientID %>").value.trim() == "NO") {
+               <%-- if (document.getElementById("<%=hdnAttendeesConfirm.ClientID %>").value.trim() == "NO") {
                     lblErrorMsg.innerHTML = "Confirm who attended meeting(under attendees invited section).";
                     OpenAlertPopup();
                     isPDFGenerated = false;
@@ -1804,14 +1805,14 @@
                     OpenConfirmPopup();
                     isPDFGenerated = false;
                     return false;
-                }
+                }--%>
+                saveDraft(true);
             }
             else {
                 saveDraft('false');
+                //saveDraft(isPDFGenerated);
             }
 
-            //IsContractFacilityBilling
-            //
         }
     </script>
     <script>
@@ -1901,9 +1902,8 @@
                 return false;
             }
 
-            document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;
-            document.getElementById("divButton").style.display = "none";
-            document.getElementById("divLoading").style.display = "inline-block";
+            document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;            
+            
         }
     </script>
     <script type="text/javascript">
@@ -2034,6 +2034,7 @@
 
 
         function generatePdfButton() {
+            
             var $clonedDoc = $(document.documentElement).clone();
             
             $clonedDoc.find('.w-100.p-3').removeClass('w-100 p-3')
@@ -2163,8 +2164,7 @@
         }
 
         function generatepdfBtnClick() {
-            if (!FormValidation(false))
-                return true;
+           
             showLoader();
             var fullHtml = generatePdfButton();
             //var clientName = "test";
@@ -2185,6 +2185,8 @@
                 dataType: 'json',
                 data: JSON.stringify({ formHtml: fullHtml, clientName: clientName, clientNumber: clientNumber }),
                 success: function (response) {
+                   
+                    //hdnPDFFilepath.value = response.d;
                     var base64Pdf = response.d;
                     var binary = atob(base64Pdf);
                     var len = binary.length;
@@ -2204,7 +2206,7 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                     hideLoader();
-                    saveDraft(true);
+                    saveDraft('false');
                 },
                 error: function (xhr, status, error) {
                     alert('PDF generation failed: ' + xhr.responseText);
@@ -2237,7 +2239,7 @@
         });
 
         // ajax method
-        function saveDraft(isPrint) {
+        function saveDraft(isPrint, isPDFDownload=false) {
 
             var clsMeetingAgenda = {};
             if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
@@ -2301,169 +2303,166 @@
             clsMeetingAgenda.ClientReviewAEComments = document.getElementById("<%=txtAccountExecutiveComments.ClientID %>").value.trim();
 
             //Aging Review
-            var IsAgingReviewddl = document.getElementById("<%=ddlAgingReview.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsAgingReview = IsAgingReviewddl.value;// GetRadioListValue(IsAgingReviewddl);// IsAgingReviewddl.value; // GetRadioListValue(IsAgingReviewddl);
-            var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);;// IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);
+            var IsAgingReviewddl = document.getElementById("<%=ddlAgingReview.ClientID %>").value.trim();
+            console.log(IsAgingReviewddl);
+            clsMeetingAgenda.IsAgingReview = IsAgingReviewddl;
+            var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").value.trim();
+            clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll;
             clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
 
 
             //Billing Policy
-            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl.value;// GetRadioListValue(IsBillingPolicyddl);
-            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.Collections = IsCollectionddl.value;// GetRadioListValue(IsCollectionddl);          
+            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").value.trim();
+            clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl;
+            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").value.trim();
+            clsMeetingAgenda.Collections = IsCollectionddl;        
             clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();
 
 
             //Billing Rates Reviewed
-            var IsBillingRateReviewedddl = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);                      
+            var IsBillingRateReviewedddl = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").value.trim();
+            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl;                      
             clsMeetingAgenda.LastRateChanged = document.getElementById("<%=txtLastRateChange.ClientID %>").value.trim();
             clsMeetingAgenda.BillingRateReviewedComments = document.getElementById("<%=txtBillingRatesReviewedComments.ClientID %>").value.trim();
 
 
             //Current Billing Rate
-            var IsCurrentBillingRateddl = document.getElementById("<%=ddlCurrentBillingRates.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCurrentBillingRate = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);
-            // clsMeetingAgenda.IsCurrentBillingRate = ddlCurrentBillingRates.SelectedValue.Trim();
+            var IsCurrentBillingRateddl = document.getElementById("<%=ddlCurrentBillingRates.ClientID %>").value.trim();
+            clsMeetingAgenda.IsCurrentBillingRate = IsBillingRateReviewedddl;
             clsMeetingAgenda.BLS = document.getElementById("<%=txtBLS.ClientID %>").value.trim();
             clsMeetingAgenda.BLSNE = document.getElementById("<%=txtBLSNE.ClientID %>").value.trim();
             clsMeetingAgenda.ALS = document.getElementById("<%=txtALS.ClientID %>").value.trim();
             clsMeetingAgenda.ALSNE = document.getElementById("<%=txtALSNE.ClientID %>").value.trim();
             clsMeetingAgenda.ALS2 = document.getElementById("<%=txtALS2.ClientID %>").value.trim();
             clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
-            var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsNonTransport = IsNonTransportddl.value;// GetRadioListValue(IsNonTransportddl);
+            var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").value.trim();
+            clsMeetingAgenda.IsNonTransport = IsNonTransportddl;
             clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
 
 
             //UCR (Usual & Customary Rates)
-            var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.UCR = IsUCRddl.value;// GetRadioListValue(IsUCRddl);            
+            var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").value.trim();
+            clsMeetingAgenda.UCR = IsUCRddl;            
             clsMeetingAgenda.UCRComments = document.getElementById("<%=txtUCRComments.ClientID %>").value.trim();
 
 
 
             //Control Comments on Billing Rates
          
-            var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl.value; //GetRadioListValue(IsFacilityTransportsddl);// IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
-           <%--// var IsWithChargedddl = document.getElementById("<%=ddlWithCharge.ClientID %>").getElementsByTagName("input");
-           // clsMeetingAgenda.IsWithCharged = IsWithChargedddl.value;// GetRadioListValue(IsWithChargedddl);
-           // var IsClientProcessesOwnCreditcardsddl = document.getElementById("<%=ddlClientPorcessesOwnCreditcards.ClientID %>").getElementsByTagName("input");--%>
+            var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").value.trim();
+            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl;           
             clsMeetingAgenda.FacilityTransportsComments =  document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
             clsMeetingAgenda.IsClientProcessesOwnCreditcards =  document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
 
 
             //Non-Emergency Tranports
-            var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsNonEmergenctTranports = IsNonEmergenctTranportsddl.value;// GetRadioListValue(IsNonEmergenctTranportsddl);
-            var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl.value;// GetRadioListValue(IsClientAwareofPriorAuthorizationRequirementsddl);
-            var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl.value;// GetRadioListValue(IsTraningNeededddl);
+            var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").value.trim();
+            clsMeetingAgenda.IsNonEmergenctTranports = IsNonEmergenctTranportsddl;
+            var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").value.trim();
+            clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl;
+            var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").value.trim();
+            clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl;
 
 
             //Contract Facility Billing or Correctional/Jail
-            var IsContractFacilityBillingddl = document.getElementById("<%=ddlContractFacilityBilling.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsContractFacilityBilling = IsContractFacilityBillingddl.value;// GetRadioListValue(IsContractFacilityBillingddl);
+            var IsContractFacilityBillingddl = document.getElementById("<%=ddlContractFacilityBilling.ClientID %>").value.trim();
+            clsMeetingAgenda.IsContractFacilityBilling = IsContractFacilityBillingddl;
 
-            var IsSkilledNursingFacilitiesddl = document.getElementById("<%=ddlSkilledNursingFacilities.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsTranIsSkilledNursingFacilitiesingNeeded = IsSkilledNursingFacilitiesddl.value;// GetRadioListValue(IsSkilledNursingFacilitiesddl);
+            var IsSkilledNursingFacilitiesddl = document.getElementById("<%=ddlSkilledNursingFacilities.ClientID %>").value.trim();
+            clsMeetingAgenda.IsTranIsSkilledNursingFacilitiesingNeeded = IsSkilledNursingFacilitiesddl;
 
-            var IsUpdatedContractsddl = document.getElementById("<%=ddlUpdatedContracts.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsUpdatedContracts = IsUpdatedContractsddl.value;// GetRadioListValue(IsUpdatedContractsddl);
+            var IsUpdatedContractsddl = document.getElementById("<%=ddlUpdatedContracts.ClientID %>").value.trim();
+            clsMeetingAgenda.IsUpdatedContracts = IsUpdatedContractsddl;
 
-            var IsAttachedddl = document.getElementById("<%=ddlAttached.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsAttached = IsAttachedddl.value;// GetRadioListValue(IsAttachedddl);
+            var IsAttachedddl = document.getElementById("<%=ddlAttached.ClientID %>").value.trim();
+            clsMeetingAgenda.IsAttached = IsAttachedddl;
 
-            var IsFacilityCurrentlyddl = document.getElementById("<%=ddlFacilityCurrently.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsFacilityCurrently = IsFacilityCurrentlyddl.value;// GetRadioListValue(IsFacilityCurrentlyddl);
+            var IsFacilityCurrentlyddl = document.getElementById("<%=ddlFacilityCurrently.ClientID %>").value.trim();
+            clsMeetingAgenda.IsFacilityCurrently = IsFacilityCurrentlyddl;
 
-            var IsToBeBilledddl = document.getElementById("<%=ddlToBeBilled.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsToBeBilled = IsToBeBilledddl.value;// GetRadioListValue(IsToBeBilledddl);
+            var IsToBeBilledddl = document.getElementById("<%=ddlToBeBilled.ClientID %>").value.trim();
+            clsMeetingAgenda.IsToBeBilled = IsToBeBilledddl;
 
-            var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl.value;// GetRadioListValue(IsToWithTheFacilityddl);
+            var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").value.trim();
+            clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl;
 
 
             //9. Contract Status
-            var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsContractStatus = IsContractStatusddl.value;// GetRadioListValue(IsContractStatusddl);
+            var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").value.trim();
+            clsMeetingAgenda.IsContractStatus = IsContractStatusddl;
             clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim();
             clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
-            var IsContractCurrentddl = document.getElementById("<%=ddlContractCurrent.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsContractCurrent = IsContractCurrentddl.value;// GetRadioListValue(IsContractCurrentddl);
+            var IsContractCurrentddl = document.getElementById("<%=ddlContractCurrent.ClientID %>").value.trim();
+            clsMeetingAgenda.IsContractCurrent = IsContractCurrentddl;
 
 
             //10. Personnel Changes
-            var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl.value;// GetRadioListValue(IsPersonnelChangesddl);          
+            var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").value.trim();
+            clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl;          
             clsMeetingAgenda.ChiefName = document.getElementById("<%=txtChief.ClientID %>").value.trim();
             clsMeetingAgenda.FiscalOfficerName = document.getElementById("<%=txtFiscalOfficer.ClientID %>").value.trim();
             clsMeetingAgenda.AuthorizedOfficialName1 = document.getElementById("<%=txtAuthorizedOfficial1.ClientID %>").value.trim();
             clsMeetingAgenda.AuthorizedOfficialName2 = document.getElementById("<%=txtAuthorizedOfficial2.ClientID %>").value.trim();
 
             //Demographic Changes
-            var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl); 
-            var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl.value;// GetRadioListValue(IsNewBusinessddl); 
+            var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
+            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl; 
+            var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").value.trim();
+            clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl; 
 
 
             //Client Data Status
-            var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsUsage = IsUsageddl.value;// GetRadioListValue(IsUsageddl); 
-            var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl.value;// GetRadioListValue(IsAlertsReceivedddl); 
-            var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl.value;// GetRadioListValue(IsOIG_Exclsuionaryddl); 
-            var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl);
-            var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsDiscussed = IsDiscussedddl.value;// GetRadioListValue(IsDiscussedddl); 
+            var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").value.trim();
+            clsMeetingAgenda.IsUsage = IsUsageddl; 
+            var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").value.trim();
+            clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl;
+            var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").value.trim();
+            clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl;
+            var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
+            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl;
+            var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").value.trim();
+            clsMeetingAgenda.IsDiscussed = IsDiscussedddl; 
 
 
             // ePCR 
-            var ePCRNameddl = document.getElementById("<%=ddlePCRName.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IePCRNamesUsage = ePCRNameddl.value;// GetRadioListValue(ePCRNameddl);
+            var ePCRNameddl = document.getElementById("<%=ddlePCRName.ClientID %>").value.trim();
+            clsMeetingAgenda.IePCRNamesUsage = ePCRNameddl;
 
             clsMeetingAgenda.ePCRDate = document.getElementById("<%=txtLastReconciliationDate.ClientID %>").value.trim();
             clsMeetingAgenda.ePCRByWhom = document.getElementById("<%=txtByWhom.ClientID %>").value.trim();
             clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
 
-            var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl);// IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
+            var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").value.trim();
+            clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl;
             
 
             //Signature Capture
-            var IsPatientSignatureddl = document.getElementById("<%=ddlPatientSignature.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsPatientSignature = IsPatientSignatureddl.value;// GetRadioListValue(IsPatientSignatureddl); 
-            var IsPatientSignatureEPCRddl = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl.value;// GetRadioListValue(IsPatientSignatureEPCRddl); 
-            var IsReceivingFacilitySignatureddl = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsReceivingFacilitySignature = IsReceivingFacilitySignatureddl.value;// GetRadioListValue(IsReceivingFacilitySignatureddl); 
-            var IsReceivingFacilitySignatureEPCRddl = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = IsReceivingFacilitySignatureEPCRddl.value;// GetRadioListValue(IsReceivingFacilitySignatureEPCRddl); 
-            var IsCrewSignatureddl = document.getElementById("<%=ddlCrewSignature.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCrewSignature = IsCrewSignatureddl.value;// GetRadioListValue(IsCrewSignatureddl); 
-            var IsCrewSignatureEPCRddl = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl.value;// GetRadioListValue(IsCrewSignatureEPCRddl);           
+            var IsPatientSignatureddl = document.getElementById("<%=ddlPatientSignature.ClientID %>").value.trim();
+            clsMeetingAgenda.IsPatientSignature = IsPatientSignatureddl;
+            var IsPatientSignatureEPCRddl = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").value.trim();
+            clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl; 
+            var IsReceivingFacilitySignatureddl = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").value.trim();
+            clsMeetingAgenda.IsReceivingFacilitySignature = IsReceivingFacilitySignatureddl;
+            var IsReceivingFacilitySignatureEPCRddl = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").value.trim();
+            clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = IsReceivingFacilitySignatureEPCRddl;
+            var IsCrewSignatureddl = document.getElementById("<%=ddlCrewSignature.ClientID %>").value.trim();
+            clsMeetingAgenda.IsCrewSignature = IsCrewSignatureddl;
+            var IsCrewSignatureEPCRddl = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").value.trim();
+            clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl;        
             clsMeetingAgenda.SignatureCaptureComments = document.getElementById("<%=txtSignatureCaptureComments.ClientID %>").value.trim();
 
             //15. Month End Report
-            var IsStatementReconciliationddl = document.getElementById("<%=ddlStatementReconciliation.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl.value;// GetRadioListValue(IsStatementReconciliationddl);          
+            var IsStatementReconciliationddl = document.getElementById("<%=ddlStatementReconciliation.ClientID %>").value.trim();
+            clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl;         
             clsMeetingAgenda.MonthEndReportByWho = document.getElementById("<%=txtMonthEndReportByWho.ClientID %>").value.trim(); 
             clsMeetingAgenda.MonthEndReportHowOften = document.getElementById("<%=txtMonthEndReportHowOften.ClientID %>").value.trim();
-            var IsTraningCompletedddl = document.getElementById("<%=ddlTraningCompleted.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl.value;// GetRadioListValue(IsTraningCompletedddl);   
-            var IsTraningPendingddl = document.getElementById("<%=ddlIsTraningPending.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsTraningPending = IsTraningPendingddl.value;// GetRadioListValue(IsTraningPendingddl); 
+            var IsTraningCompletedddl = document.getElementById("<%=ddlTraningCompleted.ClientID %>").value.trim();
+            clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl;  
+            var IsTraningPendingddl = document.getElementById("<%=ddlIsTraningPending.ClientID %>").value.trim();
+            clsMeetingAgenda.IsTraningPending = IsTraningPendingddl; 
            
             //Client Review Intervals
-            var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");           
+           // var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>")IsReviewIntervalCRIddl           
             var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
              if (rdolstCRI[0].checked) {
                 clsMeetingAgenda.IsReviewIntervalCRI = "Quarterly";
@@ -2490,7 +2489,7 @@
             clsMeetingAgenda.MailingStreet = document.getElementById("<%=txtMailingStreet.ClientID %>").value.trim(); 
             clsMeetingAgenda.MailingCity = document.getElementById("<%=txtMailingCity.ClientID %>").value.trim(); 
             clsMeetingAgenda.MailingState = document.getElementById("<%=txtMailingState.ClientID %>").value.trim();  
-            clsMeetingAgenda.MailingZip = document.getElementById("<%=txtMailingZip.ClientID %>").value.trim();;
+            clsMeetingAgenda.MailingZip = document.getElementById("<%=txtMailingZip.ClientID %>").value.trim();
 
             clsMeetingAgenda.PhysicalLocationStreet = document.getElementById("<%=txtPhysicalLocationStreet.ClientID %>").value.trim();
             clsMeetingAgenda.PhysicalLocationCity = document.getElementById("<%=txtPhysicalLocationCity.ClientID %>").value.trim(); 
@@ -2500,7 +2499,7 @@
             //OVERALL MEETING NOTES
             clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim(); 
             clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
-          
+            //clsMeetingAgenda.PDFFilePath = document.getElementById("<%=hdnPDFFilepath.ClientID %>").value.trim();
 
 
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
@@ -2515,20 +2514,23 @@
                 data: '{clsMeetingAgenda: ' + JSON.stringify(clsMeetingAgenda) + '}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                beforeSend: function () {
+                    showLoader();   // ✅ Show loader before request starts
+                },
                 success: function (response) {
                     if (document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value == "true") {
                         window.location.replace("frmMeetingAgendaMaster.aspx");
                     }
                     else if (isPrint) {
-                       // window.open('frmDisplayPDF.aspx', '_blank');
-                        generatepdfBtnClick();
+                        // window.open('frmDisplayPDF.aspx', '_blank');
+                        if (isPDFDownload) {
+                            generatepdfBtnClick();
+                        }
+                        
                     }
                     else {
-                       <%-- if (response.d.length >= 10) {
-                            document.getElementById("<%=hdnID.ClientID %>").value = response.d[0].MeetingAgendaID;
-                            
-                        }--%>
 
+                        showLoader();
                         var lblMessage = document.getElementById("<%=lblMessage.ClientID%>");
 
                         if (document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value == "false"
@@ -2542,6 +2544,14 @@
                         }
                     }
 
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                    alert("Something went wrong.");
+                },
+
+                complete: function () {
+                    hideLoader();   // ✅ Always runs (success or error)
                 }
             });
         }
@@ -2557,6 +2567,7 @@
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
 
+            var AccountExecutiveID = document.getElementById('<%= txtAcctExeId.ClientID %>');
             var AccountExecutiveName = document.getElementById('<%= txtAccountExecutiveName.ClientID %>');
             var AccExecEmailID = document.getElementById("<%=txtAccExecEmailID.ClientID %>");
             var AccExecPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
@@ -2571,6 +2582,7 @@
             clsMeetingAgenda.MeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim();
 
             //Account Executive Info
+            clsMeetingAgenda.AccExecID = parseInt(document.getElementById("<%=txtAcctExeId.ClientID %>").value.trim()); //.value.trim();
             clsMeetingAgenda.AccExecName = AccountExecutiveName.value.trim();
             clsMeetingAgenda.AccExecEmailID = AccExecEmailID.value.trim();
             clsMeetingAgenda.AccExecPhone = AccExecPhone.value.trim();
@@ -2607,167 +2619,167 @@
             clsMeetingAgenda.ClientReviewAEComments = document.getElementById("<%=txtAccountExecutiveComments.ClientID %>").value.trim();
 
             //Aging Review
-            var IsAgingReviewddl = document.getElementById("<%=ddlAgingReview.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsAgingReview = IsAgingReviewddl.value;// GetRadioListValue(IsAgingReviewddl);// IsAgingReviewddl.value; // GetRadioListValue(IsAgingReviewddl);
-            var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);;// IsDiscussedwithARTeamdll.value;// GetRadioListValue(IsDiscussedwithARTeamdll);
+            var IsAgingReviewddl = document.getElementById("<%=ddlAgingReview.ClientID %>").value.trim();
+            console.log(IsAgingReviewddl);
+            clsMeetingAgenda.IsAgingReview = IsAgingReviewddl;
+            var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").value.trim();
+            clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll;
             clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
 
 
             //Billing Policy
-            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl.value;// GetRadioListValue(IsBillingPolicyddl);
-            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.Collections = IsCollectionddl.value;// GetRadioListValue(IsCollectionddl);          
+            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").value.trim();
+            clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl;
+            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").value.trim();
+            clsMeetingAgenda.Collections = IsCollectionddl;
             clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();
 
 
             //Billing Rates Reviewed
-            var IsBillingRateReviewedddl = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);                      
+            var IsBillingRateReviewedddl = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").value.trim();
+            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl;
             clsMeetingAgenda.LastRateChanged = document.getElementById("<%=txtLastRateChange.ClientID %>").value.trim();
             clsMeetingAgenda.BillingRateReviewedComments = document.getElementById("<%=txtBillingRatesReviewedComments.ClientID %>").value.trim();
 
 
             //Current Billing Rate
-            var IsCurrentBillingRateddl = document.getElementById("<%=ddlCurrentBillingRates.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsCurrentBillingRate = IsBillingRateReviewedddl.value;// GetRadioListValue(IsBillingRateReviewedddl);
-            // clsMeetingAgenda.IsCurrentBillingRate = ddlCurrentBillingRates.SelectedValue.Trim();
+            var IsCurrentBillingRateddl = document.getElementById("<%=ddlCurrentBillingRates.ClientID %>").value.trim();
+            clsMeetingAgenda.IsCurrentBillingRate = IsBillingRateReviewedddl;
             clsMeetingAgenda.BLS = document.getElementById("<%=txtBLS.ClientID %>").value.trim();
             clsMeetingAgenda.BLSNE = document.getElementById("<%=txtBLSNE.ClientID %>").value.trim();
             clsMeetingAgenda.ALS = document.getElementById("<%=txtALS.ClientID %>").value.trim();
             clsMeetingAgenda.ALSNE = document.getElementById("<%=txtALSNE.ClientID %>").value.trim();
             clsMeetingAgenda.ALS2 = document.getElementById("<%=txtALS2.ClientID %>").value.trim();
             clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
-            var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsNonTransport = IsNonTransportddl.value;// GetRadioListValue(IsNonTransportddl);
+            var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").value.trim();
+            clsMeetingAgenda.IsNonTransport = IsNonTransportddl;
             clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
 
 
             //UCR (Usual & Customary Rates)
-            var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.UCR = IsUCRddl.value;// GetRadioListValue(IsUCRddl);            
+            var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").value.trim();
+            clsMeetingAgenda.UCR = IsUCRddl;
             clsMeetingAgenda.UCRComments = document.getElementById("<%=txtUCRComments.ClientID %>").value.trim();
 
 
 
             //Control Comments on Billing Rates
-          
-            var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);// IsFacilityTransportsddl.value;// GetRadioListValue(IsFacilityTransportsddl);
+
+            var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").value.trim();
+            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl;
             clsMeetingAgenda.FacilityTransportsComments = document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
             clsMeetingAgenda.IsClientProcessesOwnCreditcards = document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
 
 
-                        //Non-Emergency Tranports
-             var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsNonEmergenctTranports = IsNonEmergenctTranportsddl.value;// GetRadioListValue(IsNonEmergenctTranportsddl);
-             var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl.value;// GetRadioListValue(IsClientAwareofPriorAuthorizationRequirementsddl);
-             var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl.value;// GetRadioListValue(IsTraningNeededddl);
+            //Non-Emergency Tranports
+            var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").value.trim();
+            clsMeetingAgenda.IsNonEmergenctTranports = IsNonEmergenctTranportsddl;
+            var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").value.trim();
+             clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl;
+             var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").value.trim();
+             clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl;
 
 
              //Contract Facility Billing or Correctional/Jail
-             var IsContractFacilityBillingddl = document.getElementById("<%=ddlContractFacilityBilling.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsContractFacilityBilling = IsContractFacilityBillingddl.value;// GetRadioListValue(IsContractFacilityBillingddl);
+             var IsContractFacilityBillingddl = document.getElementById("<%=ddlContractFacilityBilling.ClientID %>").value.trim();
+             clsMeetingAgenda.IsContractFacilityBilling = IsContractFacilityBillingddl;
 
-             var IsSkilledNursingFacilitiesddl = document.getElementById("<%=ddlSkilledNursingFacilities.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsTranIsSkilledNursingFacilitiesingNeeded = IsSkilledNursingFacilitiesddl.value;// GetRadioListValue(IsSkilledNursingFacilitiesddl);
+             var IsSkilledNursingFacilitiesddl = document.getElementById("<%=ddlSkilledNursingFacilities.ClientID %>").value.trim();
+             clsMeetingAgenda.IsTranIsSkilledNursingFacilitiesingNeeded = IsSkilledNursingFacilitiesddl;
 
-             var IsUpdatedContractsddl = document.getElementById("<%=ddlUpdatedContracts.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsUpdatedContracts = IsUpdatedContractsddl.value;// GetRadioListValue(IsUpdatedContractsddl);
+             var IsUpdatedContractsddl = document.getElementById("<%=ddlUpdatedContracts.ClientID %>").value.trim();
+             clsMeetingAgenda.IsUpdatedContracts = IsUpdatedContractsddl;
 
-             var IsAttachedddl = document.getElementById("<%=ddlAttached.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsAttached = IsAttachedddl.value;// GetRadioListValue(IsAttachedddl);
+             var IsAttachedddl = document.getElementById("<%=ddlAttached.ClientID %>").value.trim();
+             clsMeetingAgenda.IsAttached = IsAttachedddl;
 
-             var IsFacilityCurrentlyddl = document.getElementById("<%=ddlFacilityCurrently.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsFacilityCurrently = IsFacilityCurrentlyddl.value;// GetRadioListValue(IsFacilityCurrentlyddl);
+             var IsFacilityCurrentlyddl = document.getElementById("<%=ddlFacilityCurrently.ClientID %>").value.trim();
+             clsMeetingAgenda.IsFacilityCurrently = IsFacilityCurrentlyddl;
 
-             var IsToBeBilledddl = document.getElementById("<%=ddlToBeBilled.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsToBeBilled = IsToBeBilledddl.value;// GetRadioListValue(IsToBeBilledddl);
+             var IsToBeBilledddl = document.getElementById("<%=ddlToBeBilled.ClientID %>").value.trim();
+             clsMeetingAgenda.IsToBeBilled = IsToBeBilledddl;
 
-             var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl.value;// GetRadioListValue(IsToWithTheFacilityddl);
+             var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").value.trim();
+             clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl;
 
 
              //9. Contract Status
-             var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsContractStatus = IsContractStatusddl.value;// GetRadioListValue(IsContractStatusddl);
+             var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").value.trim();
+             clsMeetingAgenda.IsContractStatus = IsContractStatusddl;
              clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim();
              clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
-             var IsContractCurrentddl = document.getElementById("<%=ddlContractCurrent.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsContractCurrent = IsContractCurrentddl.value;// GetRadioListValue(IsContractCurrentddl);
-             clsMeetingAgenda.CurrentContractStatusComments = document.getElementById("<%=txtCurrentContractStatusComments.ClientID%>").value.trim();
+             var IsContractCurrentddl = document.getElementById("<%=ddlContractCurrent.ClientID %>").value.trim();
+             clsMeetingAgenda.IsContractCurrent = IsContractCurrentddl;
+
 
              //10. Personnel Changes
-             var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl.value;// GetRadioListValue(IsPersonnelChangesddl);          
+             var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").value.trim();
+             clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl;          
              clsMeetingAgenda.ChiefName = document.getElementById("<%=txtChief.ClientID %>").value.trim();
              clsMeetingAgenda.FiscalOfficerName = document.getElementById("<%=txtFiscalOfficer.ClientID %>").value.trim();
              clsMeetingAgenda.AuthorizedOfficialName1 = document.getElementById("<%=txtAuthorizedOfficial1.ClientID %>").value.trim();
              clsMeetingAgenda.AuthorizedOfficialName2 = document.getElementById("<%=txtAuthorizedOfficial2.ClientID %>").value.trim();
 
              //Demographic Changes
-             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl); 
-             var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl.value;// GetRadioListValue(IsNewBusinessddl); 
+             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
+             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl; 
+             var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").value.trim();
+             clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl; 
 
 
              //Client Data Status
-             var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsUsage = IsUsageddl.value;// GetRadioListValue(IsUsageddl); 
-             var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl.value;// GetRadioListValue(IsAlertsReceivedddl); 
-             var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl.value;// GetRadioListValue(IsOIG_Exclsuionaryddl); 
-             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl.value;// GetRadioListValue(IsClosedBusinessesddl);
-             var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsDiscussed = IsDiscussedddl.value;// GetRadioListValue(IsDiscussedddl); 
+            var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").value.trim();
+             clsMeetingAgenda.IsUsage = IsUsageddl; 
+             var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").value.trim();
+             clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl;
+             var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").value.trim();
+             clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl;
+             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
+             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl;
+             var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").value.trim();
+             clsMeetingAgenda.IsDiscussed = IsDiscussedddl; 
 
 
              // ePCR 
-             var ePCRNameddl = document.getElementById("<%=ddlePCRName.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IePCRNamesUsage = ePCRNameddl.value;// GetRadioListValue(ePCRNameddl);
+             var ePCRNameddl = document.getElementById("<%=ddlePCRName.ClientID %>").value.trim();
+             clsMeetingAgenda.IePCRNamesUsage = ePCRNameddl;
 
              clsMeetingAgenda.ePCRDate = document.getElementById("<%=txtLastReconciliationDate.ClientID %>").value.trim();
              clsMeetingAgenda.ePCRByWhom = document.getElementById("<%=txtByWhom.ClientID %>").value.trim();
              clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
 
-             var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").getElementsByTagName("input");
-            clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl);// IsRunReconciliationDoneddl.value;// GetRadioListValue(IsRunReconciliationDoneddl); 
+             var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").value.trim();
+             clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl;
  
 
              //Signature Capture
-             var IsPatientSignatureddl = document.getElementById("<%=ddlPatientSignature.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsPatientSignature = IsPatientSignatureddl.value;// GetRadioListValue(IsPatientSignatureddl); 
-             var IsPatientSignatureEPCRddl = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl.value;// GetRadioListValue(IsPatientSignatureEPCRddl); 
-             var IsReceivingFacilitySignatureddl = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsReceivingFacilitySignature = IsReceivingFacilitySignatureddl.value;// GetRadioListValue(IsReceivingFacilitySignatureddl); 
-             var IsReceivingFacilitySignatureEPCRddl = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = IsReceivingFacilitySignatureEPCRddl.value;// GetRadioListValue(IsReceivingFacilitySignatureEPCRddl); 
-             var IsCrewSignatureddl = document.getElementById("<%=ddlCrewSignature.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsCrewSignature = IsCrewSignatureddl.value;// GetRadioListValue(IsCrewSignatureddl); 
-             var IsCrewSignatureEPCRddl = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl.value;// GetRadioListValue(IsCrewSignatureEPCRddl);           
+             var IsPatientSignatureddl = document.getElementById("<%=ddlPatientSignature.ClientID %>").value.trim();
+             clsMeetingAgenda.IsPatientSignature = IsPatientSignatureddl;
+             var IsPatientSignatureEPCRddl = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").value.trim();
+             clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl; 
+             var IsReceivingFacilitySignatureddl = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").value.trim();
+             clsMeetingAgenda.IsReceivingFacilitySignature = IsReceivingFacilitySignatureddl;
+             var IsReceivingFacilitySignatureEPCRddl = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").value.trim();
+             clsMeetingAgenda.IsReceivingFacilitySignatureEPCR = IsReceivingFacilitySignatureEPCRddl;
+             var IsCrewSignatureddl = document.getElementById("<%=ddlCrewSignature.ClientID %>").value.trim();
+             clsMeetingAgenda.IsCrewSignature = IsCrewSignatureddl;
+             var IsCrewSignatureEPCRddl = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").value.trim();
+             clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl;        
              clsMeetingAgenda.SignatureCaptureComments = document.getElementById("<%=txtSignatureCaptureComments.ClientID %>").value.trim();
 
              //15. Month End Report
-             var IsStatementReconciliationddl = document.getElementById("<%=ddlStatementReconciliation.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl.value;// GetRadioListValue(IsStatementReconciliationddl);          
+             var IsStatementReconciliationddl = document.getElementById("<%=ddlStatementReconciliation.ClientID %>").value.trim();
+             clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl;         
              clsMeetingAgenda.MonthEndReportByWho = document.getElementById("<%=txtMonthEndReportByWho.ClientID %>").value.trim(); 
              clsMeetingAgenda.MonthEndReportHowOften = document.getElementById("<%=txtMonthEndReportHowOften.ClientID %>").value.trim();
-             var IsTraningCompletedddl = document.getElementById("<%=ddlTraningCompleted.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl.value;// GetRadioListValue(IsTraningCompletedddl);   
-             var IsTraningPendingddl = document.getElementById("<%=ddlIsTraningPending.ClientID %>").getElementsByTagName("input");
-             clsMeetingAgenda.IsTraningPending = IsTraningPendingddl.value;// GetRadioListValue(IsTraningPendingddl); 
+             var IsTraningCompletedddl = document.getElementById("<%=ddlTraningCompleted.ClientID %>").value.trim();
+             clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl;  
+             var IsTraningPendingddl = document.getElementById("<%=ddlIsTraningPending.ClientID %>").value.trim();
+             clsMeetingAgenda.IsTraningPending = IsTraningPendingddl; 
 
              //Client Review Intervals
-             var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");           
-             var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
+            // var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>").value.trim();           
+            var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
               if (rdolstCRI[0].checked) {
                  clsMeetingAgenda.IsReviewIntervalCRI = "Quarterly";
              }
@@ -2793,7 +2805,7 @@
              clsMeetingAgenda.MailingStreet = document.getElementById("<%=txtMailingStreet.ClientID %>").value.trim(); 
              clsMeetingAgenda.MailingCity = document.getElementById("<%=txtMailingCity.ClientID %>").value.trim(); 
              clsMeetingAgenda.MailingState = document.getElementById("<%=txtMailingState.ClientID %>").value.trim();  
-             clsMeetingAgenda.MailingZip = document.getElementById("<%=txtMailingZip.ClientID %>").value.trim();;
+             clsMeetingAgenda.MailingZip = document.getElementById("<%=txtMailingZip.ClientID %>").value.trim();
 
              clsMeetingAgenda.PhysicalLocationStreet = document.getElementById("<%=txtPhysicalLocationStreet.ClientID %>").value.trim();
              clsMeetingAgenda.PhysicalLocationCity = document.getElementById("<%=txtPhysicalLocationCity.ClientID %>").value.trim(); 
@@ -2802,7 +2814,7 @@
 
              //OVERALL MEETING NOTES
              clsMeetingAgenda.OverAllMeetingNotes = document.getElementById("<%=txtOverAllMeetingNotes.ClientID %>").value.trim(); 
-             clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
+            clsMeetingAgenda.FollowUpAction = document.getElementById("<%=txtFollowUpAction.ClientID %>").value.trim();
              
 
 

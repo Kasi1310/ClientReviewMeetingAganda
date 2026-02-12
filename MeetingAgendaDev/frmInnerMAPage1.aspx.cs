@@ -30,7 +30,20 @@ namespace ClientMeetingAgenda
             DataTable dtAttendeesInvited;
             clsMeetingAgenda objclsMeetingAgenda = new clsMeetingAgenda();
             List<clsOutput> lstclsOutput = new List<clsOutput>();
+            //var pdf_FileName = HttpContext.Current.Session["PDFFileName"].ToString();
+            var pdf_FileName = HttpContext.Current.Session["PDFFileName"]?.ToString();
+            bool IsPDFGenerated = !string.IsNullOrWhiteSpace(pdf_FileName);
+            objclsMeetingAgenda.IsPDFGenerated = IsPDFGenerated;
+            //clsMeetingAgenda.IsPDFGenerated
 
+            //if (!string.IsNullOrEmpty(pdf_FileName))
+            //{
+            //    clsMeetingAgenda.IsPDFGenerated = true;
+            //}
+            //else
+            //{
+            //    clsMeetingAgenda.IsPDFGenerated = false;
+            //}
             if (clsMeetingAgenda.IsPrint)
             {
                 string PDFPath = NewGeneratePDF("","", ""); //GeneratePDF(clsMeetingAgenda);
@@ -47,8 +60,9 @@ namespace ClientMeetingAgenda
             {
 
                 objclsMeetingAgenda = clsMeetingAgenda;
-                objclsMeetingAgenda.LastUpdatedBy = HttpContext.Current.Session["UserName"].ToString().Trim();
-                objclsMeetingAgenda.FileName = "";
+                objclsMeetingAgenda.LastUpdatedBy = HttpContext.Current.Session["UserName"]?.ToString().Trim();
+                objclsMeetingAgenda.FileName = pdf_FileName;
+                objclsMeetingAgenda.IsPDFGenerated = IsPDFGenerated;
 
                 DataSet dsMeetingAgenda = new DataSet();
                 dsMeetingAgenda = objclsMeetingAgenda.InsertUpdateMeetingAgenda();
@@ -3114,12 +3128,15 @@ namespace ClientMeetingAgenda
         {
             string htmlPath = null;
             string pdfPath = null;
+            string hdnFileName = null;
 
             try
             {
                 htmlPath = SaveHtmlToTempFile(formHtml, clientName, clientNumber);
                 byte[] pdfBytes = ConvertHtmlToPdf(htmlPath);
                 pdfPath = System.IO.Path.ChangeExtension(htmlPath, ".pdf");
+                hdnFileName = pdfPath;
+               HttpContext.Current.Session["PDFFileName"] = pdfPath;
 
                 return Convert.ToBase64String(pdfBytes);
             }

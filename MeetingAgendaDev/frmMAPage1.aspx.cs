@@ -644,6 +644,7 @@ namespace ClientMeetingAgenda
         }
         public int SaveMeetingAgenda()
         {
+            var pdf_FileName = HttpContext.Current.Session["PDFFileName"];
             //bool validate = formValidate();
             objclsMeetingAgenda = new clsMeetingAgenda();
             // Client Info
@@ -825,6 +826,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.OverAllMeetingNotes = txtOverAllMeetingNotes.Text.Trim();
             objclsMeetingAgenda.FollowUpAction = txtFollowUpAction.Text.Trim();
             objclsMeetingAgenda.LastUpdatedBy = hdnUserid.Value.Trim();
+            objclsMeetingAgenda.PDFFilePath = pdf_FileName != null ? pdf_FileName.ToString() : string.Empty;
 
             dsMeetingAgenda = new DataSet();
             dsMeetingAgenda = objclsMeetingAgenda.InsertUpdateMeetingAgenda();
