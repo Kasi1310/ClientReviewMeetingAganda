@@ -1179,8 +1179,15 @@ namespace ClientMeetingAgenda
                     txtMailingState.Text = contact["Mailing_State"]?.ToString().ToUpper() ?? "";      // MailingState
                     txtMailingZip.Text = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";          // MailingZip
                     result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";                           
+                    
+                    string reviewInterval = contact["Review_Interval"]?.ToString()?.ToLower() ?? string.Empty;
+
+                    if (reviewInterval == "annual" || reviewInterval == "yearly")
+                    {
+                        reviewInterval = "yearly";
+                    }
                     TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-                    rdolstCRI.SelectedValue = textInfo.ToTitleCase(contact["Review_Interval"]?.ToString() ?? "".ToLower());  // Review Interval
+                    rdolstCRI.SelectedValue = textInfo.ToTitleCase(reviewInterval.ToLower());  // Review Interval
                     
                 }
             }
