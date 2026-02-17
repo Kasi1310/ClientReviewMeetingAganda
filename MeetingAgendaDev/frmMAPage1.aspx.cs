@@ -443,6 +443,7 @@ namespace ClientMeetingAgenda
             ClearFields();
             int intMAID = SaveMeetingAgenda();
             hdnID.Value = intMAID.ToString();
+            HttpContext.Current.Session["ssnMAID"] = intMAID.ToString();
         }
 
         private void ClearFields()
@@ -830,6 +831,8 @@ namespace ClientMeetingAgenda
 
             dsMeetingAgenda = new DataSet();
             dsMeetingAgenda = objclsMeetingAgenda.InsertUpdateMeetingAgenda();
+            //intMAID
+            //dsMeetingAgenda.Ta
 
             Session["dsMeetingAgenda"] = dsMeetingAgenda;
 

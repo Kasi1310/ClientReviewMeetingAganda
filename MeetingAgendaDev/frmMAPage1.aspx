@@ -2307,7 +2307,7 @@
             var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").value.trim();
             clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll;
             clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
-
+            clsMeetingAgenda.AgingReviewComments = document.getElementById("<%=txtAgingReviewComments.ClientID %>").value.trim();
 
             //Billing Policy
             var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").value.trim();
@@ -2571,11 +2571,7 @@
         }
         function generatePDF() {
 
-            var clsMeetingAgenda = {};
-          <%--  if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
-            )) {
-                return;
-            }--%>
+            var clsMeetingAgenda = {};         
 
             //Client Info
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
@@ -2639,6 +2635,7 @@
             var IsDiscussedwithARTeamdll = document.getElementById("<%=ddlDiscussedwithARTeam.ClientID %>").value.trim();
             clsMeetingAgenda.IsDiscussedwithARTeam = IsDiscussedwithARTeamdll;
             clsMeetingAgenda.ARComments = document.getElementById("<%=txtARComments.ClientID %>").value.trim();
+            clsMeetingAgenda.AgingReviewComments = document.getElementById("<%=txtAgingReviewComments.ClientID %>").value.trim();
 
 
             //Billing Policy
@@ -2792,8 +2789,7 @@
              clsMeetingAgenda.IsTraningPending = IsTraningPendingddl; 
 
              //Client Review Intervals
-            // var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>").value.trim();           
-            var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
+             var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
               if (rdolstCRI[0].checked) {
                  clsMeetingAgenda.IsReviewIntervalCRI = "Quarterly";
              }

@@ -254,6 +254,11 @@ namespace ClientMeetingAgenda.App_Code
             
             objSqlCommand = new SqlCommand();
             objclsConnection = new clsConnection();
+            if (HttpContext.Current.Session["ssnMAID"] != null)
+            {
+                ID = Convert.ToInt32(HttpContext.Current.Session["ssnMAID"]);
+            }
+            //ID = Convert.ToInt32(HttpContext.Current.Session["ssnMAID"].ToString());
             if (ID == 0)
             {
                 //objSqlCommand = new SqlCommand("USP_tblMeetingAgenda_Insert");
