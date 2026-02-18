@@ -2315,6 +2315,8 @@
             var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").value.trim();
             clsMeetingAgenda.Collections = IsCollectionddl;        
             clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();
+            clsMeetingAgenda.BillingPolicyMainIssueComments = document.getElementById("cphMainContent_txtBillingPolicyMainIssueComments").value.trim();
+
 
 
             //Billing Rates Reviewed
@@ -2322,6 +2324,8 @@
             clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl;                      
             clsMeetingAgenda.LastRateChanged = document.getElementById("<%=txtLastRateChange.ClientID %>").value.trim();
             clsMeetingAgenda.BillingRateReviewedComments = document.getElementById("<%=txtBillingRatesReviewedComments.ClientID %>").value.trim();
+            clsMeetingAgenda.BRRMainIssueComments = document.getElementById("cphMainContent_txtBillingRatesReviewedMainIssueComments").value.trim();
+            
 
 
             //Current Billing Rate
@@ -2335,14 +2339,15 @@
             clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
             var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").value.trim();
             clsMeetingAgenda.IsNonTransport = IsNonTransportddl;
-            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
+            clsMeetingAgenda.CBRActionTacken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
 
 
             //UCR (Usual & Customary Rates)
             var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").value.trim();
             clsMeetingAgenda.UCR = IsUCRddl;            
             clsMeetingAgenda.UCRComments = document.getElementById("<%=txtUCRComments.ClientID %>").value.trim();
-
+            clsMeetingAgenda.UCRMainIssueComments = document.getElementById("cphMainContent_txtUCRMainIssueComments").value.trim();
+          
 
 
             //Control Comments on Billing Rates
@@ -2350,8 +2355,8 @@
             var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").value.trim();
             clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl;           
             clsMeetingAgenda.FacilityTransportsComments =  document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
-            clsMeetingAgenda.IsClientProcessesOwnCreditcards =  document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
-
+           // clsMeetingAgenda.IsClientProcessesOwnCreditcards =  document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+            clsMeetingAgenda.CommentsOnBillingRatesMainIssue = document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim();
 
             //Non-Emergency Tranports
             var IsNonEmergenctTranportsddl = document.getElementById("<%=ddlNonEmergenctTranports.ClientID %>").value.trim();
@@ -2360,6 +2365,8 @@
             clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl;
             var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").value.trim();
             clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl;
+            clsMeetingAgenda.NonEmergenctTranportsComments = document.getElementById("cphMainContent_txtClientAwareComments").value.trim();
+
 
 
             //Contract Facility Billing or Correctional/Jail
@@ -2383,6 +2390,8 @@
 
             var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").value.trim();
             clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl;
+            clsMeetingAgenda.CurrentContractStatusComments = document.getElementById("cphMainContent_txtCurrentContractStatusComments").value.trim();
+        
 
 
             //9. Contract Status
@@ -2407,6 +2416,9 @@
             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl; 
             var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").value.trim();
             clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl; 
+            clsMeetingAgenda.DCComments = document.getElementById("cphMainContent_txtDemographicChangesComments").value.trim();
+            clsMeetingAgenda.DCMainIssueComments = document.getElementById("cphMainContent_txtDemographicChangesMainIssueComments").value.trim();
+            
 
 
             //Client Data Status
@@ -2664,7 +2676,7 @@
             clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
             var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").value.trim();
             clsMeetingAgenda.IsNonTransport = IsNonTransportddl;
-            clsMeetingAgenda.CBRActionTaken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
+            clsMeetingAgenda.CBRActionTacken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
 
 
             //UCR (Usual & Customary Rates)
@@ -2672,6 +2684,9 @@
             clsMeetingAgenda.UCR = IsUCRddl;
             clsMeetingAgenda.UCRComments = document.getElementById("<%=txtUCRComments.ClientID %>").value.trim();
 
+
+            //Non-Emergency Tranports
+            clsMeetingAgenda.NonEmergenctTranportsComments = document.getElementById("cphMainContent_txtClientAwareComments").value.trim();
 
 
             //Control Comments on Billing Rates
@@ -2688,7 +2703,8 @@
             var IsClientAwareofPriorAuthorizationRequirementsddl = document.getElementById("<%=ddlIsClientAwareofPriorAuthorizationRequirements.ClientID %>").value.trim();
              clsMeetingAgenda.IsClientAwareofPriorAuthorizationRequirements = IsClientAwareofPriorAuthorizationRequirementsddl;
              var IsTraningNeededddl = document.getElementById("<%=ddlIsTraningNeeded.ClientID %>").value.trim();
-             clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl;
+            clsMeetingAgenda.IsTraningNeeded = IsTraningNeededddl;
+          //  clsMeetingAgenda.NonEmergenctTranportsComments = document.getElementById("cphMainContent_txtClientAwareComments").value.trim();
 
 
              //Contract Facility Billing or Correctional/Jail

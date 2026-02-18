@@ -328,7 +328,9 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@BRRComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BillingRateReviewedComments) ? "" : BillingRateReviewedComments;
             objSqlCommand.Parameters.AddWithValue("@BRRMainIssueComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(BRRMainIssueComments) ? "" : BRRMainIssueComments;
 
-            objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsCurrentBillingRate) ? "" : IsCurrentBillingRate;
+            //objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsCurrentBillingRate) ? "" : IsCurrentBillingRate;
+            objSqlCommand.Parameters.AddWithValue("@CBRActionTaken", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CBRActionTacken) ? "" : CBRActionTacken;
+
             objSqlCommand.Parameters.AddWithValue("@BLS", BLS);
             objSqlCommand.Parameters.AddWithValue("@BLSNE", BLSNE);
             objSqlCommand.Parameters.AddWithValue("@ALS", ALS);
@@ -343,9 +345,9 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@CURMainIssueComments", SqlDbType.VarChar).Value = string.IsNullOrEmpty(UCRMainIssueComments) ? "" : UCRMainIssueComments; 
            
             objSqlCommand.Parameters.AddWithValue("@IsFacilityTransports", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsFacilityTransports) ? "" : IsFacilityTransports;
-            objSqlCommand.Parameters.AddWithValue("@IsClientProcessesOwnCreditcards", SqlDbType.VarChar).Value = string.IsNullOrEmpty(FacilityTransportsComments) ? "" : FacilityTransportsComments; 
-            objSqlCommand.Parameters.AddWithValue("@CommentsOnBillingRates", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CommentsOnBillingRatesMainIssue) ? "" : CommentsOnBillingRatesMainIssue; 
-
+            objSqlCommand.Parameters.AddWithValue("@IsClientProcessesOwnCreditcards", SqlDbType.VarChar).Value = string.IsNullOrEmpty(CommentsOnBillingRatesMainIssue) ? "" : CommentsOnBillingRatesMainIssue; 
+            objSqlCommand.Parameters.AddWithValue("@CommentsOnBillingRates", SqlDbType.VarChar).Value = string.IsNullOrEmpty(FacilityTransportsComments) ? "" : FacilityTransportsComments;
+            
 
             objSqlCommand.Parameters.AddWithValue("@IsNonEmergenctTranports", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsNonEmergenctTranports) ? "" : IsNonEmergenctTranports;
             objSqlCommand.Parameters.AddWithValue("@IsClientAwareofPriorAuthorizationRequirements", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsClientAwareofPriorAuthorizationRequirements) ? "" : IsClientAwareofPriorAuthorizationRequirements;

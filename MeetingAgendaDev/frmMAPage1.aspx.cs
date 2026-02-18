@@ -290,14 +290,15 @@ namespace ClientMeetingAgenda
                     txtALS2.Text = dtMaster.Rows[0]["ALS2"].ToString().Trim();
                     txtMileage.Text = dtMaster.Rows[0]["Mileage"].ToString().Trim();
                     rdolstNonTransport.Text = dtMaster.Rows[0]["IsNonTransport"].ToString().Trim();
-                    txtCBRComments.Text = dtMaster.Rows[0]["CBRComments"].ToString().Trim();
-                   // txtCBRComments.Text
+                    txtCBRComments.Text = dtMaster.Rows[0]["CBRActionTaken"].ToString().Trim();
+                    //txtCBRComments.Text = dtMaster.Rows[0]["CBRComments"].ToString().Trim();
+                    // txtCBRComments.Text
 
                     ddlUCR.Text= dtMaster.Rows[0]["CURActionTaken"].ToString().Trim();
                     txtUCRComments.Text= dtMaster.Rows[0]["CURComments"].ToString().Trim();
                     txtUCRMainIssueComments.Text= dtMaster.Rows[0]["CURMainIssueComments"].ToString().Trim();
 
-                    
+
                     ddlFacilityTransports.Text= dtMaster.Rows[0]["IsFacilityTransports"].ToString().Trim();
                     txtFacilityTransportsComments.Text= dtMaster.Rows[0]["CommentsOnBillingRates"].ToString().Trim();
                     txtCommentsOnBillingRateMainIssue.Text= dtMaster.Rows[0]["IsClientProcessesOwnCreditcards"].ToString().Trim();
