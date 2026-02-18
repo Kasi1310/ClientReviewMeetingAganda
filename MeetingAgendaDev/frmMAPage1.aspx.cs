@@ -182,7 +182,7 @@ namespace ClientMeetingAgenda
                 objclsClientMaster.LoadClientDDL(ddlClientNo, ddlClientName);
 
                 objclsEPCRMaster = new clsEPCRMaster();
-               // objclsEPCRMaster.LoadEPCRDDL(ddlEPCR);
+                objclsEPCRMaster.LoadEPCRDDL(ddlEPCR);
 
                 objclsMeetingAgenda = new clsMeetingAgenda();
                 //objclsMeetingAgenda.LoadStateDDL(ddlBillingState);
@@ -341,12 +341,12 @@ namespace ClientMeetingAgenda
                     ddlUsage.Text = dtMaster.Rows[0]["IsCPUsage"].ToString().Trim();
                     ddlAlertsReceived.Text = dtMaster.Rows[0]["IsRAAlertsReceived"].ToString().Trim();
                     ddlOIG_Exclsuionary.Text = dtMaster.Rows[0]["IsMGDiscussed"].ToString().Trim();
-                    ddlReceiveMedicountReport.Text = dtMaster.Rows[0]["IsCPSDiscussed"].ToString().Trim();
+                    txtReceiveMedicountReport.Text = dtMaster.Rows[0]["IsCPSDiscussed"].ToString().Trim();
 
                     ddlePCRName.Text= dtMaster.Rows[0]["ePCRName"].ToString().Trim();
+                    ddlEPCR.SelectedValue = dtMaster.Rows[0]["ePCRID"].ToString().Trim();
                     txtLastReconciliationDate.Text= dtMaster.Rows[0]["ePCRDate"].ToString().Trim();
                     txtByWhom.Text= dtMaster.Rows[0]["ePCRByWhom"].ToString().Trim();
-                    txtByWhen.Text= dtMaster.Rows[0]["ePCRByWhen"].ToString().Trim();
                     ddlRunReconciliationDone.Text= dtMaster.Rows[0]["IsRunReconciliationDone"].ToString().Trim();
 
                     ddlStatementReconciliation.Text= dtMaster.Rows[0]["IsStatementReconciliation"].ToString().Trim();
@@ -776,13 +776,12 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.IsUsage = ddlUsage.SelectedValue.Trim();
             objclsMeetingAgenda.IsAlertsReceived = ddlAlertsReceived.SelectedValue.Trim();
             objclsMeetingAgenda.IsOIG_Exclsuionary = ddlOIG_Exclsuionary.SelectedValue.Trim();
-            objclsMeetingAgenda.IsDiscussed = ddlReceiveMedicountReport.SelectedValue.Trim();
+            objclsMeetingAgenda.IsDiscussed = txtReceiveMedicountReport.Text.Trim();
 
             // ePCR 
             objclsMeetingAgenda.ePCRName = ddlePCRName.SelectedValue.Trim();
             objclsMeetingAgenda.ePCRDate = txtLastReconciliationDate.Text.Trim();
             objclsMeetingAgenda.ePCRByWhom = txtByWhom.Text.Trim();
-            objclsMeetingAgenda.ePCRByWhen = txtByWhen.Text.Trim();
             objclsMeetingAgenda.IsRunReconciliationDone = ddlRunReconciliationDone.Text.Trim();
            
 
@@ -871,7 +870,7 @@ namespace ClientMeetingAgenda
                 for (int j=0; j< dtSignatureInvited.Rows.Count; j++)
                 {
                     objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-                    // objclsMeetingAgenda.SignatureID=int.Parse(hdnSignature)
+                    //objclsMeetingAgenda.SignatureID = int.Parse(hdnSignature);
                     objclsMeetingAgenda.Patient = dtSignatureInvited.Rows[j]["Patient"].ToString().Trim();
                     objclsMeetingAgenda.Signature = dtSignatureInvited.Rows[j]["Signature"].ToString().Trim();
                     objclsMeetingAgenda.Facility = dtSignatureInvited.Rows[j]["Facility"].ToString().Trim();

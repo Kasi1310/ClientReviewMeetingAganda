@@ -856,8 +856,8 @@
                                              <td>
                                                <asp:DropDownList ID="ddlContractStatus" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                <asp:ListItem Value="Active" Text="Active"></asp:ListItem>
+                                                <asp:ListItem Value="InActive" Text="InActive"></asp:ListItem>
                                             </asp:DropDownList>
                                              </td>
                                              </tr>
@@ -1049,13 +1049,17 @@
                                                         </asp:DropDownList>
 
                                                  </td> 
-                                                 <td style="width:15%; vertical-align:middle;"> 
+                                                 <%--<td style="width:15%; vertical-align:middle;"> 
                                                            <asp:DropDownList ID="ddlReceiveMedicountReport" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                         </asp:DropDownList>
-                                                 </td> 
+                                                 </td> --%>
+                                                 <td style="width:15%;">
+                                                     <asp:TextBox ID="txtReceiveMedicountReport"  runat="server" CssClass="form-control" style="float: right;">
+                                                     </asp:TextBox>
+                                                 </td>
                                                  
                                               </tr>                                      
                                          </tbody>
@@ -1077,22 +1081,22 @@
                                                  <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ePCR Vendor</th>
                                                  <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Date of Last Run Reconciliation</th>
                                                  <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">By Whom</th> 
-                                                 <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">By When</th> 
                                                  <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Run Reconciliation done on Regular Basis</th> 
                                              </tr>
                                          
 
                                          <tbody>          
                                              <tr>
+                                                  <td class="hidden" style="vertical-align:middle">
+                                                     <asp:DropDownList ID="ddlePCRName" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">                                                         
+                                                     </asp:DropDownList>
+                                                 </td> 
                                                  <td style="vertical-align:middle">
-                                                     <asp:DropDownList ID="ddlePCRName" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
-                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                         <asp:ListItem Value="eso" Text="ESO"></asp:ListItem>
+                                                     <asp:DropDownList ID="ddlEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">                                                         
                                                      </asp:DropDownList>
                                                  </td> 
                                                  <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control form_datetime" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                  <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off" ></asp:TextBox>
-                                                 <td><asp:TextBox ID="txtByWhen" CssClass="form-control form_datetime" runat="server" Text=""  MaxLength="10" autocomplete="off"></asp:TextBox>
                                                  <td style="vertical-align:middle">
                                                      <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
@@ -1278,7 +1282,7 @@
                                              <tr>
                                                  <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Run </th>
                                                  <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Patient </th>
-                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Signature </th>
+                                                 <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Crew </th>
                                                  <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Facility </th>
                                                  <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Action</th>
                                                  <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;"></th>                         
@@ -1316,7 +1320,7 @@
                                             <Columns>
                                                 <asp:BoundField DataField="ID" HeaderText="Run" />
                                                 <asp:BoundField DataField="Patient" HeaderText="Patient" />
-                                                <asp:BoundField DataField="Signature" HeaderText="Signature" />
+                                                <asp:BoundField DataField="Signature" HeaderText="Crew" />
                                                 <asp:BoundField DataField="Facility" HeaderText="Facility" />
                                                 <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
                                             </Columns>
@@ -1338,7 +1342,7 @@
                                                                             
                                              <tr>
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;"><span class="text-danger">*</span> Review Interval</th> 
-                                                 <th style="background-color:rgb(0,148,144) !important; color:#fff !important;"><span class="text-danger">*</span>Next Review Schedule Date:</th> 
+                                                 <th style="background-color:rgb(0,148,144) !important; color:#fff !important;">Next Review Schedule Date:</th> 
                                                  <th style="background-color:rgb(0,148,144) !important; color:#fff !important;">Change in ZOHO</th> 
                                              </tr>
                                          
@@ -1354,7 +1358,7 @@
                                                          </asp:RadioButtonList>
                                                      </div>
                                                  </td>
-                                                 <td><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" runat="server" onchange="showLoader()" AutoPostBack="true" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
+                                                 <td><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" ReadOnly="true" runat="server" onchange="showLoader()" AutoPostBack="true" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
                                                 <td>
                                                     <asp:TextBox ID="txtChangeInZOHO" TextMode="MultiLine" Rows="3" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
                                                      </asp:TextBox>
@@ -1779,13 +1783,13 @@
                 return false;
             }
 
-            if (txtNRScheduleDate.value.trim() == "") {
-                //alert("Select Next Review Schedule Date");
-                lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
-                OpenAlertPopup();
-                txtNRScheduleDate.focus();
-                return false;
-            }
+            //if (txtNRScheduleDate.value.trim() == "") {
+            //    //alert("Select Next Review Schedule Date");
+            //    lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
+            //    OpenAlertPopup();
+            //    txtNRScheduleDate.focus();
+            //    return false;
+            //}
 
             document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;
 
@@ -1894,13 +1898,13 @@
                 return false;
             }
 
-            if (txtNRScheduleDate.value.trim() == "") {
-                //alert("Select Next Review Schedule Date");
-                lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
-                OpenAlertPopup();
-                txtNRScheduleDate.focus();
-                return false;
-            }
+            //if (txtNRScheduleDate.value.trim() == "") {
+            //    //alert("Select Next Review Schedule Date");
+            //    lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
+            //    OpenAlertPopup();
+            //    txtNRScheduleDate.focus();
+            //    return false;
+            //}
 
             document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;            
             
@@ -2430,17 +2434,16 @@
             clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl;
             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl;
-            var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").value.trim();
+            var IsDiscussedddl = document.getElementById("<%=txtReceiveMedicountReport.ClientID %>").value.trim();
             clsMeetingAgenda.IsDiscussed = IsDiscussedddl; 
 
 
             // ePCR 
             var ePCRNameddl = document.getElementById("<%=ddlePCRName.ClientID %>").value.trim();
             clsMeetingAgenda.IePCRNamesUsage = ePCRNameddl;
-
+            clsMeetingAgenda.ePCRID = parseInt(document.getElementById("<%=ddlEPCR.ClientID %>").value.trim());
             clsMeetingAgenda.ePCRDate = document.getElementById("<%=txtLastReconciliationDate.ClientID %>").value.trim();
             clsMeetingAgenda.ePCRByWhom = document.getElementById("<%=txtByWhom.ClientID %>").value.trim();
-            clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
 
             var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").value.trim();
             clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl;
@@ -2763,7 +2766,7 @@
              clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl;
              var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
              clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl;
-             var IsDiscussedddl = document.getElementById("<%=ddlReceiveMedicountReport.ClientID %>").value.trim();
+             var IsDiscussedddl = document.getElementById("<%=txtReceiveMedicountReport.ClientID %>").value.trim();
              clsMeetingAgenda.IsDiscussed = IsDiscussedddl; 
 
 
@@ -2773,7 +2776,6 @@
 
              clsMeetingAgenda.ePCRDate = document.getElementById("<%=txtLastReconciliationDate.ClientID %>").value.trim();
              clsMeetingAgenda.ePCRByWhom = document.getElementById("<%=txtByWhom.ClientID %>").value.trim();
-             clsMeetingAgenda.ePCRByWhen = document.getElementById("<%=txtByWhen.ClientID %>").value.trim(); 
 
              var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").value.trim();
              clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl;

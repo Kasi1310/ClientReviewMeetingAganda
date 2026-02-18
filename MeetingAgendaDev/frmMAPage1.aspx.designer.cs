@@ -942,13 +942,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlOIG_Exclsuionary;
 
         /// <summary>
-        /// ddlReceiveMedicountReport control.
+        /// txtReceiveMedicountReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlReceiveMedicountReport;
+        protected global::System.Web.UI.WebControls.TextBox txtReceiveMedicountReport;
 
         /// <summary>
         /// ddlePCRName control.
@@ -958,6 +958,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlePCRName;
+
+        /// <summary>
+        /// ddlEPCR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEPCR;
 
         /// <summary>
         /// txtLastReconciliationDate control.
@@ -976,15 +985,6 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtByWhom;
-
-        /// <summary>
-        /// txtByWhen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtByWhen;
 
         /// <summary>
         /// ddlRunReconciliationDone control.

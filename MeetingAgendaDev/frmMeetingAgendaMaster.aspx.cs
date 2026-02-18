@@ -35,6 +35,7 @@ namespace ClientMeetingAgenda
 				objclsClientMaster.LoadClientDDL(ddlClientNo, ddlClientName);
 
 				LoadGridview();
+				//LoadSignatureridview();
 			}
 			if (Session["FileDownload"] != null)
 			{
@@ -66,6 +67,24 @@ namespace ClientMeetingAgenda
 			ViewState["sortdr"] = "Desc";
 
 		}
+		//private void LoadSignatureridview()
+		//{
+            
+  //          objclsMeetingAgenda = new clsMeetingAgenda();
+		//	DataTable dt = new DataTable();
+
+		//	dt = objclsMeetingAgenda.SelectMeetingAgendaStatus("Grid", int.Parse(ddlClientName.SelectedValue.Trim()),
+  //              ddlAccountExecutive.SelectedItem.Text.ToString().Trim()
+  //              , ddlPDFStatus.SelectedValue.Trim(), ddlMeetingType.SelectedValue.Trim(), txtMeetingFromDate.Text.Trim(), txtMeetingToDate.Text.Trim());
+
+
+		//	gvMAMaster.DataSource = dt;
+		//	gvMAMaster.DataBind();
+
+		//	ViewState["dtMAMaster"] = dt;
+		//	ViewState["sortdr"] = "Desc";
+
+		//}
 
 		private void LoadHistoryGridView()
 		{
