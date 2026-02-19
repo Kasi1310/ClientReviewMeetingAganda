@@ -533,6 +533,31 @@ namespace ClientMeetingAgenda.App_Code
             return int.Parse(ds.Tables[0].Rows[0][0].ToString());
         }
 
+        public DataTable SelectSignature()
+        {
+            objSqlCommand = new SqlCommand();
+            objclsConnection = new clsConnection();
+
+            objSqlCommand = new SqlCommand("USP_tblSignature_Select");
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+
+            objSqlCommand.Parameters.AddWithValue("@MeetingAgendaID", MeetingAgendaID);
+
+            return objclsConnection.ExecuteDataTable(objSqlCommand);
+        }
+
+        public void DeleteSignature()
+        {
+            objSqlCommand = new SqlCommand();
+            objclsConnection = new clsConnection();
+
+            objSqlCommand = new SqlCommand("USP_tblSignature_Delete");
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+
+            objSqlCommand.Parameters.AddWithValue("@MeetingAgendaID", MeetingAgendaID);
+
+            objclsConnection.ExecuteNonQuery(objSqlCommand);
+        }
         public DataSet SelectMeetingAgenda()
         {
             objSqlCommand = new SqlCommand();

@@ -27,7 +27,7 @@ namespace ClientMeetingAgenda
         [WebMethod]
         public static List<clsOutput> SaveMeetingAgenda(clsMeetingAgenda clsMeetingAgenda, string formHtml, string clientName, string clientNumber, string buttonType)
         {
-            DataTable dtAttendeesInvited;
+            DataTable dtAttendeesInvited, dtSignature;
             clsMeetingAgenda objclsMeetingAgenda = new clsMeetingAgenda();
             List<clsOutput> lstclsOutput = new List<clsOutput>();
             //var pdf_FileName = HttpContext.Current.Session["PDFFileName"].ToString();
@@ -77,12 +77,12 @@ namespace ClientMeetingAgenda
 
                 HttpContext.Current.Session["ssnMAID"] = null;
 
-                if (dsMeetingAgenda != null && dsMeetingAgenda.Tables.Count == 3 && dsMeetingAgenda.Tables[0] != null && HttpContext.Current.Session["dtAttendeesInvited"] != null)
+                if (dsMeetingAgenda != null && dsMeetingAgenda.Tables.Count == 3 && dsMeetingAgenda.Tables[0] != null && HttpContext.Current.Session["dtAttendeesInvited"] != null && HttpContext.Current.Session["dtSignature"] != null)
                 {
                     HttpContext.Current.Session["ssnMAID"] = dsMeetingAgenda.Tables[0].Rows[0]["ID"].ToString();
 
                     dtAttendeesInvited = new DataTable();
-                    dtAttendeesInvited = (DataTable)HttpContext.Current.Session["dtAttendeesInvited"];
+                    dtAttendeesInvited = (DataTable)HttpContext.Current.Session["dtAttendeesInvited"];                    
 
                     DataTable dtAttendeesFromDB = new DataTable();
                     objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
@@ -90,6 +90,17 @@ namespace ClientMeetingAgenda
 
                     objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
                     objclsMeetingAgenda.DeleteAttendes();
+
+                    //****** Gridview Signature details***********//
+                    dtSignature = new DataTable();
+                    dtSignature = (DataTable)HttpContext.Current.Session["dtSignature"];
+
+                    DataTable dtSignatureFromDB = new DataTable();
+                    objclsMeetingAgenda.MeetingAgendaID= int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                    dtSignatureFromDB = objclsMeetingAgenda.SelectSignature();
+
+                    objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
+                    objclsMeetingAgenda.DeleteSignature();
 
                     bool IsSurveyMailSend;
                     int intAttendeesID;
@@ -122,18 +133,20 @@ namespace ClientMeetingAgenda
                     }
 
                     HttpContext.Current.Session["dtAttendeesInvited"] = dtAttendeesInvited;
+                    HttpContext.Current.Session["dtSignature"] = dtSignature;
 
-                    if (objclsMeetingAgenda.lstclsSignature != null)
-                    {
+                    //if (objclsMeetingAgenda.lstclsSignature != null)
+                    //{
 
                         int output = 0;
-                        for (int i = 0; i < objclsMeetingAgenda.lstclsSignature.Count; i++)
+                        for (int i = 0; i < dtSignature.Rows.Count; i++)
                         {
+                            
+                            //objclsMeetingAgenda.SignatureID = int.Parse(dtSignature.Rows[i]["ID"].ToString().Trim());
                             objclsMeetingAgenda.MeetingAgendaID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0][0].ToString().Trim());
-                            objclsMeetingAgenda.SignatureID = int.Parse(objclsMeetingAgenda.lstclsSignature[i].SignatureID.ToString().Trim());
-                            objclsMeetingAgenda.Patient = objclsMeetingAgenda.lstclsSignature[i].Patient.ToString().Trim();
-                            objclsMeetingAgenda.Signature = objclsMeetingAgenda.lstclsSignature[i].Signature.ToString().Trim();
-                            objclsMeetingAgenda.Facility = objclsMeetingAgenda.lstclsSignature[i].Facility.ToString().Trim();
+                            objclsMeetingAgenda.Patient = dtSignature.Rows[i]["Patient"].ToString().Trim();
+                            objclsMeetingAgenda.Signature = dtSignature.Rows[i]["Signature"].ToString().Trim();
+                            objclsMeetingAgenda.Facility = dtSignature.Rows[i]["Facility"].ToString().Trim();
                             output = objclsMeetingAgenda.InsertSignature();
 
                             clsOutput objclsOutput = new clsOutput();
@@ -142,7 +155,7 @@ namespace ClientMeetingAgenda
 
                             lstclsOutput.Add(objclsOutput);
                         }
-                    }
+                    //}
                 }
 
                 //if (objclsMeetingAgenda.IsPDFGenerated)

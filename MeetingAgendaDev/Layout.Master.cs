@@ -45,6 +45,7 @@ namespace ClientMeetingAgenda
         {
             Session["ssnMAID"] = null;
             Session["dtAttendeesInvited"] = null;
+            Session["dtSignature"] = null;
             Response.Redirect("frmMAPage1.aspx");
         }
     }

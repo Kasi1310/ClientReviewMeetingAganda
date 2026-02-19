@@ -1718,6 +1718,7 @@
             var txtAEPhone = document.getElementById("<%=txtAccExecPhone.ClientID %>");
 
             var gvAttendees = document.getElementById("<%=gvAttendees.ClientID %>");
+            var gvSignature = document.getElementById("<%=gvSignature.ClientID %>");
 
             var txtName = document.getElementById("<%=txtName.ClientID %>");
             var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
@@ -1783,33 +1784,12 @@
                 return false;
             }
 
-            //if (txtNRScheduleDate.value.trim() == "") {
-            //    //alert("Select Next Review Schedule Date");
-            //    lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
-            //    OpenAlertPopup();
-            //    txtNRScheduleDate.focus();
-            //    return false;
-            //}
 
             document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;
 
 
-
-            //document.getElementById("divButton").style.display = "none";
-            //document.getElementById("divLoading").style.display = "inline-block";
-
             if (isPDFGenerated == "true") {
-               <%-- if (document.getElementById("<%=hdnAttendeesConfirm.ClientID %>").value.trim() == "NO") {
-                    lblErrorMsg.innerHTML = "Confirm who attended meeting(under attendees invited section).";
-                    OpenAlertPopup();
-                    isPDFGenerated = false;
-                    return false;
-                }
-                else {
-                    OpenConfirmPopup();
-                    isPDFGenerated = false;
-                    return false;
-                }--%>
+              
                 saveDraft('false', true, 'submit');
             }
             else {
@@ -1898,14 +1878,7 @@
                 return false;
             }
 
-            //if (txtNRScheduleDate.value.trim() == "") {
-            //    //alert("Select Next Review Schedule Date");
-            //    lblErrorMsg.innerHTML = "Select Next Review Schedule Date";
-            //    OpenAlertPopup();
-            //    txtNRScheduleDate.focus();
-            //    return false;
-            //}
-
+           
             document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;            
             
         }
@@ -1936,9 +1909,7 @@
            return true;
 
         }
-        //function AllowOnlyNumberAndDash(input) {
-        //    input.value = input.value.replace(/[^0-9\-]/g, '');
-        //}
+       
         function FormatUSPhone(input) {
 
             // Remove everything except numbers
