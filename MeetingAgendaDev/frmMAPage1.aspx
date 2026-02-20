@@ -259,13 +259,13 @@
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validatePreviousDates()) return false;  showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"
+                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validatePreviousDates()) return false;  showLoader()" OnTextChanged="txtPreviousEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"
                                     ></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Report Type</label>
-                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtPreviousEndDate_TextChanged">
+                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
@@ -303,12 +303,12 @@
 
                             <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validateCurrentDates()) return false;  showLoader()"  style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validateCurrentDates()) return false;  showLoader()" OnTextChanged="txtCurrentEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
                             </th>
 
                             <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                 <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
-                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtCurrentEndDate_TextChanged">
+                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
                                     <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
@@ -432,13 +432,14 @@
                                           <tbody>        
                                               <tr>
                                                   <td >
-                                                       <asp:DropDownList ID="ddlBillingPolicy" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
+                                                       <%--<asp:DropDownList ID="ddlBillingPolicy" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="R1" Text="R1"></asp:ListItem>
                                                          <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
                                                          <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
                                                          <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
-                                                     </asp:DropDownList>
+                                                     </asp:DropDownList> --%>
+                                                      <asp:TextBox ID="txtBillingPolicy" TextMode="MultiLine" Rows="2" BackColor="#FFFF99" runat="server" CssClass="form-control"></asp:TextBox>
                                                   </td>
                                                    
                                                 </tr>
@@ -456,12 +457,13 @@
                                     
                                       <tbody>        
                                           <tr>
-                                              <td >
-                                                   <asp:DropDownList ID="ddlCollections" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
+                                              <td>
+                                                  <%-- <asp:DropDownList ID="ddlCollections" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                                 </asp:DropDownList>
+                                                 </asp:DropDownList>--%>
+                                                  <asp:TextBox ID="txtCollections" TextMode="MultiLine" Rows="2" BackColor="#FFFF99" runat="server" CssClass="form-control"></asp:TextBox>
                                               </td>
                                                <td> <asp:TextBox ID="txtBillingPolicyComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
                                             </tr>
@@ -854,11 +856,12 @@
                                      <tbody>        
                                          <tr>
                                              <td>
-                                               <asp:DropDownList ID="ddlContractStatus" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                              <%-- <asp:DropDownList ID="ddlContractStatus" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                 <asp:ListItem Value="Active" Text="Active"></asp:ListItem>
                                                 <asp:ListItem Value="InActive" Text="InActive"></asp:ListItem>
-                                            </asp:DropDownList>
+                                            </asp:DropDownList>--%>
+                                                 <asp:TextBox ID="txtContractStatus" CssClass="form-control form_datetime" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" autocomplete="off"></asp:TextBox>
                                              </td>
                                              </tr>
                                     </tbody>
@@ -1018,6 +1021,7 @@
                                                                             
                                              <tr>
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Client Portal Usage</th>
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Last Login Date</th>
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Receiving alerts from Medicount's Portal</th> 
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Current Uses OIG Exclusionary List</th> 
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Who receives the medicount reports?</th>                                                   
@@ -1033,6 +1037,10 @@
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                         </asp:DropDownList>
                                                      </td>
+                                                 <td style="width:15%; vertical-align:middle;"> 
+                                                          <asp:TextBox ID="txtLastLoginDate"  runat="server" BackColor="#FFFF99" CssClass="form-control" style="float: right;">
+                                                            </asp:TextBox>
+                                                </td> 
                                                  <td style="width:15%; vertical-align:middle;">
                                                          <asp:DropDownList ID="ddlAlertsReceived" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
@@ -1049,13 +1057,7 @@
                                                         </asp:DropDownList>
 
                                                  </td> 
-                                                 <%--<td style="width:15%; vertical-align:middle;"> 
-                                                           <asp:DropDownList ID="ddlReceiveMedicountReport" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
-                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                                        </asp:DropDownList>
-                                                 </td> --%>
+                                                 
                                                  <td style="width:15%;">
                                                      <asp:TextBox ID="txtReceiveMedicountReport"  runat="server" CssClass="form-control" style="float: right;">
                                                      </asp:TextBox>
@@ -2285,9 +2287,9 @@
             clsMeetingAgenda.AgingReviewComments = document.getElementById("<%=txtAgingReviewComments.ClientID %>").value.trim();
 
             //Billing Policy
-            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").value.trim();
+            var IsBillingPolicyddl = document.getElementById("<%=txtBillingPolicy.ClientID %>").value.trim();
             clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl;
-            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").value.trim();
+            var IsCollectionddl = document.getElementById("<%=txtCollections.ClientID %>").value.trim();
             clsMeetingAgenda.Collections = IsCollectionddl;        
             clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();
             clsMeetingAgenda.BillingPolicyMainIssueComments = document.getElementById("cphMainContent_txtBillingPolicyMainIssueComments").value.trim();
@@ -2370,7 +2372,7 @@
 
 
             //9. Contract Status
-            var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").value.trim();
+            var IsContractStatusddl = document.getElementById("<%=txtContractStatus.ClientID %>").value.trim();
             clsMeetingAgenda.IsContractStatus = IsContractStatusddl;
             clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim();
             clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
@@ -2401,6 +2403,7 @@
             clsMeetingAgenda.IsUsage = IsUsageddl; 
             var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").value.trim();
             clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl;
+            clsMeetingAgenda.LastLoginDate = document.getElementById("<%=txtLastLoginDate.ClientID %>").value.trim();
             var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").value.trim();
             clsMeetingAgenda.IsOIG_Exclsuionary = IsOIG_Exclsuionaryddl;
             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
@@ -2625,9 +2628,9 @@
 
 
             //Billing Policy
-            var IsBillingPolicyddl = document.getElementById("<%=ddlBillingPolicy.ClientID %>").value.trim();
+            var IsBillingPolicyddl = document.getElementById("<%=txtBillingPolicy.ClientID %>").value.trim();
             clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl;
-            var IsCollectionddl = document.getElementById("<%=ddlCollections.ClientID %>").value.trim();
+            var IsCollectionddl = document.getElementById("<%=txtCollections.ClientID %>").value.trim();
             clsMeetingAgenda.Collections = IsCollectionddl;
             clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();
 
@@ -2705,7 +2708,7 @@
 
 
              //9. Contract Status
-             var IsContractStatusddl = document.getElementById("<%=ddlContractStatus.ClientID %>").value.trim();
+             var IsContractStatusddl = document.getElementById("<%=txtContractStatus.ClientID %>").value.trim();
              clsMeetingAgenda.IsContractStatus = IsContractStatusddl;
              clsMeetingAgenda.RenewalDate = document.getElementById("<%=txtRenewalDate.ClientID %>").value.trim();
              clsMeetingAgenda.CurrentRate = document.getElementById("<%=txtCurrentRate.ClientID %>").value.trim();
@@ -2731,6 +2734,7 @@
              //Client Data Status
             var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").value.trim();
              clsMeetingAgenda.IsUsage = IsUsageddl; 
+            clsMeetingAgenda.LastLoginDate = document.getElementById("<%=txtLastLoginDate.ClientID %>").value.trim();
              var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").value.trim();
              clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl;
              var IsOIG_Exclsuionaryddl = document.getElementById("<%=ddlOIG_Exclsuionary.ClientID %>").value.trim();

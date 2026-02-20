@@ -483,22 +483,22 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.TextBox txtARComments;
 
         /// <summary>
-        /// ddlBillingPolicy control.
+        /// txtBillingPolicy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBillingPolicy;
+        protected global::System.Web.UI.WebControls.TextBox txtBillingPolicy;
 
         /// <summary>
-        /// ddlCollections control.
+        /// txtCollections control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCollections;
+        protected global::System.Web.UI.WebControls.TextBox txtCollections;
 
         /// <summary>
         /// txtBillingPolicyComments control.
@@ -789,13 +789,13 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlWithTheFacility;
 
         /// <summary>
-        /// ddlContractStatus control.
+        /// txtContractStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlContractStatus;
+        protected global::System.Web.UI.WebControls.TextBox txtContractStatus;
 
         /// <summary>
         /// txtRenewalDate control.
@@ -922,6 +922,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlUsage;
+
+        /// <summary>
+        /// txtLastLoginDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLastLoginDate;
 
         /// <summary>
         /// ddlAlertsReceived control.

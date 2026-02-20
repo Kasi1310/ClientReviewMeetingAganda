@@ -273,8 +273,8 @@ namespace ClientMeetingAgenda
                     txtAgingReviewComments.Text= dtMaster.Rows[0]["AgingReviewComments"].ToString().Trim();
                     txtARComments.Text= dtMaster.Rows[0]["ARComments"].ToString().Trim();
 
-                    ddlBillingPolicy.Text = dtMaster.Rows[0]["BillingPolicy"].ToString().Trim();
-                    ddlCollections.Text = dtMaster.Rows[0]["Collections"].ToString().Trim();
+                    txtBillingPolicy.Text = dtMaster.Rows[0]["BillingPolicy"].ToString().Trim();
+                    txtCollections.Text = dtMaster.Rows[0]["Collections"].ToString().Trim();
                     txtBillingPolicyComments.Text = dtMaster.Rows[0]["BillingPolicyComments"].ToString().Trim();
                     txtBillingPolicyMainIssueComments.Text = dtMaster.Rows[0]["BillingPolicyMainIssueComments"].ToString().Trim();
 
@@ -319,7 +319,7 @@ namespace ClientMeetingAgenda
                     ddlToBeBilled.Text= dtMaster.Rows[0]["IsToBeBilled"].ToString().Trim();
                     ddlWithTheFacility.Text= dtMaster.Rows[0]["IsToWithTheFacility"].ToString().Trim();
 
-                    ddlContractStatus.SelectedValue = dtMaster.Rows[0]["EnforceActionTaken"].ToString().Trim();
+                    txtContractStatus.Text = dtMaster.Rows[0]["EnforceActionTaken"].ToString().Trim();
                     ddlContractCurrent.SelectedValue = dtMaster.Rows[0]["IsContractCurrent"].ToString().Trim();
                     txtRenewalDate.Text = dtMaster.Rows[0]["RenewalDate"].ToString().Trim();
                     txtCurrentRate.Text = dtMaster.Rows[0]["CurrentRate"].ToString().Trim();
@@ -341,6 +341,8 @@ namespace ClientMeetingAgenda
 
 
                     ddlUsage.Text = dtMaster.Rows[0]["IsCPUsage"].ToString().Trim();
+                    txtLastLoginDate.Text= dtMaster.Rows[0]["LastLoginDate"].ToString().Trim();
+                    //clsMeetingAgenda.LastLoginDate = document.getElementById("<%=txtLastLoginDate.ClientID %>").value.trim();
                     ddlAlertsReceived.Text = dtMaster.Rows[0]["IsRAAlertsReceived"].ToString().Trim();
                     ddlOIG_Exclsuionary.Text = dtMaster.Rows[0]["IsMGDiscussed"].ToString().Trim();
                     txtReceiveMedicountReport.Text = dtMaster.Rows[0]["IsCPSDiscussed"].ToString().Trim();
@@ -641,8 +643,9 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.ARComments = txtARComments.Text.Trim();
 
             //Billing Policy
-            objclsMeetingAgenda.BillingPolicy = ddlBillingPolicy.SelectedValue.Trim();
-            objclsMeetingAgenda.Collections = ddlCollections.SelectedValue.Trim();
+           // objclsMeetingAgenda.BillingPolicy = ddlBillingPolicy.SelectedValue.Trim();
+            objclsMeetingAgenda.BillingPolicy = txtBillingPolicy.Text.Trim();
+            objclsMeetingAgenda.Collections = txtCollections.Text.Trim();
             objclsMeetingAgenda.BillingPolicyComments = txtBillingPolicyComments.Text.Trim();
             objclsMeetingAgenda.BillingPolicyMainIssueComments = txtBillingPolicyMainIssueComments.Text.Trim();
 
@@ -690,7 +693,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.IsToWithTheFacility = ddlWithTheFacility.SelectedValue.Trim();
 
             //9. Contract Status
-            objclsMeetingAgenda.IsContractStatus = ddlContractStatus.SelectedValue.Trim();
+            objclsMeetingAgenda.IsContractStatus = txtContractStatus.Text.Trim();
             objclsMeetingAgenda.RenewalDate = txtRenewalDate.Text;
             objclsMeetingAgenda.CurrentRate = txtCurrentRate.Text;
             objclsMeetingAgenda.IsContractCurrent = ddlContractCurrent.SelectedValue.Trim();
@@ -711,6 +714,7 @@ namespace ClientMeetingAgenda
 
             //Client Data Status
             objclsMeetingAgenda.IsUsage = ddlUsage.SelectedValue.Trim();
+            objclsMeetingAgenda.LastLoginDate = txtLastLoginDate.Text.Trim();
             objclsMeetingAgenda.IsAlertsReceived = ddlAlertsReceived.SelectedValue.Trim();
             objclsMeetingAgenda.IsOIG_Exclsuionary = ddlOIG_Exclsuionary.SelectedValue.Trim();
             objclsMeetingAgenda.IsDiscussed = txtReceiveMedicountReport.Text.Trim();
@@ -820,14 +824,8 @@ namespace ClientMeetingAgenda
             return 0;
         }
 
-       
-        protected void ddlClientNo_SelectedIndexChanged(object sender, EventArgs e)
+        public void GetClientInfo(string companyId)
         {
-            ddlClientName.SelectedValue = ddlClientNo.SelectedValue;
-
-            string companyId = ddlClientNo.SelectedItem.Text;// ddlClientName.SelectedValue;
-
-            // Customer Portal (ESO) Accounts Data
             List<List<string>> EsoAccountsData = GetClientInfoList(companyId);
             if (EsoAccountsData.Count > 0)
             {
@@ -839,30 +837,25 @@ namespace ClientMeetingAgenda
 
                     if (match != null)
                     {
-                        //string companyName = match[1];
-                        //string aeName = match[2];
-                        //string aeEmail = match[3];
-                        //string aePhone = match[4];
-                        //string renewalDate = match[5];
-                        //string expiryDate = match[6];
-                        //string feeRate = $"{match[7]} %";
-                        //break;
-                        
+
                         string companyName = match[1];
                         txtAcctExeId.Text = Convert.ToInt32(match[2]).ToString();
                         txtAccountExecutiveName.Text = match[3];
                         txtAccExecEmailID.Text = match[4];
-                        txtAccExecPhone.Text = match[5];                        
-                        string renewalDate = match[6];
-                        txtRenewalDate.Text = renewalDate.Replace('-','/');                        
-                        string expiryDate = match[7];
-                        string feeRate = $"{match[8]}";
+                        txtAccExecPhone.Text = match[5];
+                        string lastloginDate = match[6];
+                        txtLastLoginDate.Text = lastloginDate.Replace('-', '/');
+                        string renewalDate = match[7];
+                        txtRenewalDate.Text = renewalDate.Replace('-', '/');
+                        string expiryDate = match[8];
+                        string feeRate = $"{match[9]}";
                         txtCurrentRate.Text = feeRate;
-                        
+                       
+
                         break;
                     }
-                }              
-                
+                }
+
             }
 
             // Customer Portal (ESO)  Rates data
@@ -915,10 +908,10 @@ namespace ClientMeetingAgenda
 
 
             //// Customer Portal (ESO)  Rates data
-           // string startDate = string.Empty; // MM-DD-YYYY
-         //   string endDate = string.Empty; // MM-DD-YYYY
-           // Dictionary<string, string> preClientReviewData = GetClientReviewData(companyId, startDate, endDate);
-          //  Dictionary<string, string> curClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+            // string startDate = string.Empty; // MM-DD-YYYY
+            //   string endDate = string.Empty; // MM-DD-YYYY
+            // Dictionary<string, string> preClientReviewData = GetClientReviewData(companyId, startDate, endDate);
+            //  Dictionary<string, string> curClientReviewData = GetClientReviewData(companyId, startDate, endDate);
 
 
 
@@ -936,6 +929,34 @@ namespace ClientMeetingAgenda
                 if (dataArray != null && dataArray.Count > 0)
                 {
                     var contact = dataArray[0];
+
+                    var billing_Policy = contact["Billing_Policy"];
+                    txtBillingPolicy.Text = billing_Policy.ToString();
+                    var collectionValue = contact["Collections"];
+                    txtCollections.Text = collectionValue.ToString();
+                    //var dateofLastRateChange = contact["Last_Rate_Change"];
+                    //txtLastRateChange.Text = dateofLastRateChange.ToString();
+                    var contractStatus = contact["Contract_Status"];
+                    if(contractStatus.ToString() == "Executed")
+                    {
+                        contractStatus = "Active";
+                    }
+                    else if(contractStatus.ToString() == "Expired")
+                    {
+                        contractStatus = "InActive";
+                    }
+                    else
+                    {
+                        txtContractStatus.Text = contractStatus.ToString();
+                    }
+                    txtContractStatus.Text = contractStatus.ToString();
+
+                    var nextReviewScheduleDate = contact["Next_Review_Date"];
+                    if (nextReviewScheduleDate != null)
+                    {
+                        DateTime dt = Convert.ToDateTime(nextReviewScheduleDate);
+                        txtNRScheduleDate.Text = dt.ToString("MM/dd/yyyy").Replace("-","/");
+                    }
 
                     string ContactUrl = $"https://www.zohoapis.com/crm/v8/Contacts/search?criteria=(Account_Name:equals:{contact["id"]})";
                     string zohoContactData = MakeZohoApiRequest("GET", ContactUrl, accessToken);
@@ -1116,8 +1137,8 @@ namespace ClientMeetingAgenda
                     txtMailingCity.Text = contact["Mailing_City1"]?.ToString().ToUpper() ?? "";       // MailingCity
                     txtMailingState.Text = contact["Mailing_State"]?.ToString().ToUpper() ?? "";      // MailingState
                     txtMailingZip.Text = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";          // MailingZip
-                    result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";                           
-                    
+                    result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";
+
                     string reviewInterval = contact["Review_Interval"]?.ToString()?.ToLower() ?? string.Empty;
 
                     if (reviewInterval == "annual" || reviewInterval == "yearly")
@@ -1126,9 +1147,19 @@ namespace ClientMeetingAgenda
                     }
                     TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
                     rdolstCRI.SelectedValue = textInfo.ToTitleCase(reviewInterval.ToLower());  // Review Interval
-                    
+
                 }
             }
+        }
+       
+        protected void ddlClientNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlClientName.SelectedValue = ddlClientNo.SelectedValue;
+
+            string company_Id = ddlClientNo.SelectedItem.Text;// ddlClientName.SelectedValue;
+
+            // Customer Portal (ESO) Accounts Data
+            GetClientInfo(company_Id);
 
             //return result;
 
@@ -1138,6 +1169,8 @@ namespace ClientMeetingAgenda
         protected void ddlClientName_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlClientNo.SelectedValue = ddlClientName.SelectedValue;
+            string comp_Id = ddlClientNo.SelectedItem.Text;
+            GetClientInfo(comp_Id);
             txtMeetingDate.Focus();
         }
 
@@ -1244,15 +1277,19 @@ namespace ClientMeetingAgenda
             string comp_id=ddlClientNo.SelectedValue.ToString();
             string pre_startDate=txtPreviousStartDate.Text;
             string pre_endDate=txtPreviousEndDate.Text;
-           var previousRecord = GetClientReviewData(comp_id, pre_startDate, pre_endDate);
-            txtPrevTransports.Text = previousRecord["Transports"].ToString();
-            txtPrevCharges.Text= previousRecord["Charges"].ToString();
-            txtPrevRevenue.Text = previousRecord["Revenue"].ToString();
-            txtPrevAdjust.Text = previousRecord["Adjustments"].ToString();
-            txtPrevWriteOff.Text = previousRecord["WriteOffs"].ToString();
-            txtPrevRefund.Text = previousRecord["Refunds"].ToString();
-            txtPrevRPT.Text = previousRecord["RevenuePerTransport"].ToString();
-            txtPrevCollRate.Text = previousRecord["CollectionRate"].ToString();
+           /// string transportValue = txtPrevTransports.Text;
+           // {
+                var previousRecord = GetClientReviewData(comp_id, pre_startDate, pre_endDate);
+                txtPrevTransports.Text = previousRecord["Transports"].ToString();
+                txtPrevCharges.Text = previousRecord["Charges"].ToString();
+                txtPrevRevenue.Text = previousRecord["Revenue"].ToString();
+                txtPrevAdjust.Text = previousRecord["Adjustments"].ToString();
+                txtPrevWriteOff.Text = previousRecord["WriteOffs"].ToString();
+                txtPrevRefund.Text = previousRecord["Refunds"].ToString();
+                txtPrevRPT.Text = previousRecord["RevenuePerTransport"].ToString();
+                txtPrevCollRate.Text = previousRecord["CollectionRate"].ToString();
+           // }
+           
 
            var GetPreviousBillingRateValue = GetMedicountChargeRates(comp_id);
             txtBLS.Text = GetPreviousBillingRateValue[0][1];

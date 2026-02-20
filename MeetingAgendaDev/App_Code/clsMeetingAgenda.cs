@@ -201,6 +201,7 @@ namespace ClientMeetingAgenda.App_Code
         public string IsClosedBusinesses { get; set; }
         public string IsNewBusiness { get; set; }
         public string IsUsage { get; set; }
+        public string LastLoginDate { get; set; }
         public string IsAlertsReceived { get; set; }
         public string IsOIG_Exclsuionary { get; set; }
         public string IsDiscussed { get; set; }
@@ -388,6 +389,7 @@ namespace ClientMeetingAgenda.App_Code
 
 
             objSqlCommand.Parameters.AddWithValue("@IsCPUsage", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsUsage) ? "" : IsUsage;
+            objSqlCommand.Parameters.AddWithValue("@LastLoginDate", SqlDbType.VarChar).Value = string.IsNullOrEmpty(LastLoginDate) ? "" : LastLoginDate;
             objSqlCommand.Parameters.AddWithValue("@IsRAAlertsReceived", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsAlertsReceived) ? "" : IsAlertsReceived;
             objSqlCommand.Parameters.AddWithValue("@IsMGDiscussed", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsOIG_Exclsuionary) ? "" : IsOIG_Exclsuionary;
             objSqlCommand.Parameters.AddWithValue("@IsDiscussed", SqlDbType.VarChar).Value = string.IsNullOrEmpty(IsDiscussed) ? "" : IsDiscussed;
