@@ -244,12 +244,13 @@ namespace ClientMeetingAgenda
             var startInfo = new ProcessStartInfo
             {
                 FileName = wkhtmlPath,
-                Arguments = $"--enable-local-file-access --viewport-size 1280x1024 --zoom 1.0 --page-size A4 --print-media-type \"{inputFile}\" \"{outputPdf}\"",
+                Arguments = $"--enable-local-file-access --viewport-size 1280x1024 --zoom 1.0 --page-size A4 --print-media-type  --margin-top 1mm --margin-bottom 1mm \"{inputFile}\" \"{outputPdf}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
             };
+                
 
             using (var proc = Process.Start(startInfo))
             {
@@ -262,7 +263,7 @@ namespace ClientMeetingAgenda
 
             return System.IO.File.ReadAllBytes(outputPdf);
         }
-        ////////////////////////////////////////////////////////
+       
 
         [WebMethod]
         public static string UpdateMeetingCompleteStatus(int MAID, string UserName, string From)

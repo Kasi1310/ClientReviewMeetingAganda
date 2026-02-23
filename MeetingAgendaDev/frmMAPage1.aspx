@@ -54,7 +54,43 @@
                 border-radius: 4px;
                 box-sizing: border-box; /* Include padding in width/height */
             }
+           @media print {
 
+                @page {
+                    size: A4;
+                    margin: 15mm;
+                }
+
+                body {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                tr, td, th {
+                    page-break-inside: avoid !important;
+                }
+
+                thead {
+                    display: table-header-group;
+                }
+
+                tfoot {
+                    display: table-footer-group;
+                }
+
+                .pdf-section {
+                    page-break-inside: avoid !important;
+                }
+
+                .page-break {
+                    page-break-before: always !important;
+                }
+            }
     </style>
 
     <div>
@@ -104,273 +140,268 @@
             <asp:HiddenField ID="hdnUserid" runat="server" Value="0" />
             <asp:HiddenField ID="hdnAcctExecId" runat="server" Value="0" />
             <asp:HiddenField ID="hdnPDFFilepath" runat="server" Value="" />
-            <div class="col-lg-12 form-group text-lg-center">
-                <h3><b style="color: rgb(0,148,144) !important; font-size:50px !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
-                <h3 style="font-size:30px !important;  color:black;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
-                <h3 style="font-size:30px !important;  color:black;">Fields highlighted in yellow are automatically populated.</h3>
-            </div>
-
-            <div class="col-lg-12 form-group">
-                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                     <thead>
-                         <tr>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT# <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT NAME <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING DATE <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">REPORT DATE </th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                         <tr>
-                             <td colspan="3">
-                                  <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" onchange="showLoader();"  OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
-                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                 </asp:DropDownList>
-                                
-                             </td>
-                             <td colspan="3">
-                                 <asp:DropDownList ID="ddlClientName" runat="server"  AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
-                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                </asp:DropDownList>
-                             </td>
-                             <td colspan="3">
-                                 <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off"></asp:TextBox>
-                             </td>
-                             <td colspan="3">
-                                 <asp:TextBox ID="txtReportDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                             </td>
-                         </tr>
-                     </tbody>
-                 </table>
-            </div>
-            
-            <div class="col-lg-12 form-group">
-                 <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                     <thead>
-                         <tr>
-                            <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">EMAIL <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">PHONE # <span class="text-danger">*</span></th>
-                             <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING TYPE <span class="text-danger">*</span></th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                         <tr hidden>                             
-                              <td colspan="3">
-                                     <asp:TextBox ID="txtAcctExeId" CssClass="form-control"  runat="server" Text="" MaxLength="5"></asp:TextBox>
-                             </td>
-   
-                         </tr>     
-                         <tr>
-                            <td colspan="3">
-                                    <asp:TextBox ID="txtAccountExecutiveName" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                            </td>
-                            <td colspan="3">
-                                 <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                            </td>
-                            <td colspan="3">
-                                 <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
-                            </td>
-                            <td colspan="3">
-                               <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server" AutoPostBack="true" >
-                                   <asp:ListItem Value="0">--Select--</asp:ListItem>
-                                   <asp:ListItem Value="Online">Online</asp:ListItem>
-                                   <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
-                               </asp:DropDownList>
-                            </td>
-                        </tr> 
-                     </tbody>
-                 </table>
-              
-            </div>
-         
-            <div class="col-lg-12">
-                <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                    <thead>
-                        <tr>
-                            <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ATTENDEES </th>
-                        </tr>
-                    </thead>
-                    <tbody class="pdf-exclude">
-                        <tr>
-                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Name <span class="text-danger">*</span></th>
-                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Title <span class="text-danger">*</span></th>
-                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Phone <span class="text-danger">*</span></th>
-                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Email <span class="text-danger">*</span></th>
-                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Action</th>
-                            <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;"></th>                         
-                        </tr>
-                        <tr>
-                             <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                             <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtTitle" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                             <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPhone" CssClass="form-control" runat="server" Text="" MaxLength="15" oninput="FormatUSPhone(this)" autocomplete="off"></asp:TextBox></td>
-                             <td colspan="2" style="padding: inherit !important;"><asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
-                             <td colspan="2" style="padding: inherit !important;"><div class="form-group text-center">
-                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="return AddValidation()" OnClick="btnAdd_Click" CssClass="btn btn-info"  />
-                              
-                            </div></td>
-                             <td colspan="2"  style="padding: inherit !important;"><div class="form-group text-center" >
-                            <span class="text-danger" style="font-size: 12px;">Click Add to save the Attendees entered</span>
-                        </div></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-lg-12 form-group text-lg-center">
+                    <h3><b style="color: rgb(0,148,144) !important; font-size:50px !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
+                    <h3 style="font-size:30px !important;  color:black;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
+                    <h3 style="font-size:30px !important;  color:black;">Fields highlighted in yellow are automatically populated.</h3>
+                </div>
+            <tabel class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">               
                 
-            </div>
-          
-
-            <div class="col-lg-12 form-group">
+                <div class="col-lg-12 form-group">
+                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
+                         <thead>
+                             <tr>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT# <span class="text-danger">*</span></th>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT NAME <span class="text-danger">*</span></th>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING DATE <span class="text-danger">*</span></th>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">REPORT DATE </th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td colspan="3">
+                                      <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" onchange="showLoader();"  OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
+                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                     </asp:DropDownList>
+                                
+                                 </td>
+                                 <td colspan="3">
+                                     <asp:DropDownList ID="ddlClientName" runat="server"  AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                    </asp:DropDownList>
+                                 </td>
+                                 <td colspan="3">
+                                     <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 </td>
+                                 <td colspan="3">
+                                     <asp:TextBox ID="txtReportDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>
+                </div>
+            
+                <div class="col-lg-12 form-group">
+                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
+                         <thead>
+                             <tr>
+                                <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE <span class="text-danger">*</span></th>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">EMAIL <span class="text-danger">*</span></th>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">PHONE # <span class="text-danger">*</span></th>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING TYPE <span class="text-danger">*</span></th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                             <tr hidden>                             
+                                  <td colspan="3">
+                                         <asp:TextBox ID="txtAcctExeId" CssClass="form-control"  runat="server" Text="" MaxLength="5"></asp:TextBox>
+                                 </td>
+   
+                             </tr>     
+                             <tr>
+                                <td colspan="3">
+                                        <asp:TextBox ID="txtAccountExecutiveName" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                </td>
+                                <td colspan="3">
+                                     <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                </td>
+                                <td colspan="3">
+                                     <asp:TextBox ID="txtAccExecPhone" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                </td>
+                                <td colspan="3">
+                                   <asp:DropDownList ID="ddlMeetingType" CssClass="form-control" runat="server" AutoPostBack="true" >
+                                       <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                       <asp:ListItem Value="Online">Online</asp:ListItem>
+                                       <asp:ListItem Value="In Person-CR">In Person-CR</asp:ListItem>
+                                   </asp:DropDownList>
+                                </td>
+                            </tr> 
+                         </tbody>
+                     </table>
               
-                        <asp:GridView ID="gvAttendees" runat="server"
-                       AutoGenerateColumns="false"
-                       CssClass="table table-striped table-bordered"
-                       DataKeyNames="ID"
-                       OnRowEditing="gvAttendees_RowEditing"
-                       OnRowUpdating="gvAttendees_RowUpdating"
-                       OnRowCancelingEdit="gvAttendees_RowCancelingEdit"
-                       OnRowDeleting="gvAttendees_RowDeleting">
-
-                       <Columns>
-                           <asp:BoundField DataField="Name" HeaderText="Name" />
-                           <asp:BoundField DataField="Title" HeaderText="Title" />
-                           <asp:BoundField DataField="Phone" HeaderText="Phone" />
-                           <asp:BoundField DataField="Email" HeaderText="Email" />
-                           <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
-                       </Columns>
-                   </asp:GridView>
-           
-            </div>
-
+                </div>
          
+                <div class="col-lg-12 form-group">
+                    <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
+                        <thead>
+                            <tr>
+                                <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ATTENDEES </th>
+                            </tr>
+                        </thead>
+                        <tbody class="pdf-exclude">
+                            <tr>
+                                <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Name <span class="text-danger">*</span></th>
+                                <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Title <span class="text-danger">*</span></th>
+                                <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Phone <span class="text-danger">*</span></th>
+                                <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Email <span class="text-danger">*</span></th>
+                                <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Action</th>
+                                <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;"></th>                         
+                            </tr>
+                            <tr>
+                                 <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                 <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtTitle" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                 <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPhone" CssClass="form-control" runat="server" Text="" MaxLength="15" oninput="FormatUSPhone(this)" autocomplete="off"></asp:TextBox></td>
+                                 <td colspan="2" style="padding: inherit !important;"><asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                 <td colspan="2" style="padding: inherit !important;"><div class="form-group text-center">
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="return AddValidation()" OnClick="btnAdd_Click" CssClass="btn btn-info"  />
+                              
+                                </div></td>
+                                 <td colspan="2"  style="padding: inherit !important;"><div class="form-group text-center" >
+                                <span class="text-danger" style="font-size: 12px;">Click Add to save the Attendees entered</span>
+                            </div></td>
+                            </tr>
+                        </tbody>
+                    </table>                
+                </div>          
 
-            <!--Client Revenue Numbers-->
-            <div class="col-lg-12 form-group">
-               <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                    <tr>
-                        <th colspan="8" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT REVENUE NUMBERS</th>
-                    </tr>
+                <div class="col-lg-12 form-group">              
+                  <asp:GridView ID="gvAttendees" runat="server"
+                           AutoGenerateColumns="false"
+                           CssClass="table table-striped table-bordered"
+                           DataKeyNames="ID"
+                           OnRowEditing="gvAttendees_RowEditing"
+                           OnRowUpdating="gvAttendees_RowUpdating"
+                           OnRowCancelingEdit="gvAttendees_RowCancelingEdit"
+                           OnRowDeleting="gvAttendees_RowDeleting">
 
-                    <tbody>
+                           <Columns>
+                               <asp:BoundField DataField="Name" HeaderText="Name" />
+                               <asp:BoundField DataField="Title" HeaderText="Title" />
+                               <asp:BoundField DataField="Phone" HeaderText="Phone" />
+                               <asp:BoundField DataField="Email" HeaderText="Email" />
+                               <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
+                           </Columns>
+                       </asp:GridView>           
+                </div>
+
+                <!--Client Revenue Numbers-->
+                <div class="col-lg-12 form-group">
+                   <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                         <tr>
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
-                                <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
-                            </th>
-
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
-                                <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validatePreviousDates()) return false;  showLoader()" OnTextChanged="txtPreviousEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"
-                                    ></asp:TextBox>
-                            </th>
-
-                            <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Report Type</label>
-                                <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
-                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                    <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
-                                    <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
-                                </asp:DropDownList>
-                            </th>
+                            <th colspan="8" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT REVENUE NUMBERS</th>
                         </tr>
 
-                        <tr>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Transports</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Charges</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Revenue</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Adjustments</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Write-Off</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Refund</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">RPT</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Coll Rate%</th>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                    <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
+                                    <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                </th>
 
-                        <tr>
-                            <td><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRefund" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevRPT" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                        </tr>
+                                <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                    <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
+                                    <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validatePreviousDates()) return false;  showLoader()" OnTextChanged="txtPreviousEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"
+                                        ></asp:TextBox>
+                                </th>
 
-                        <tr style="background-color:rgb(0,148,144); color:#fff;">
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                <label for="txtCurrentStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Start Date</label>
-                                <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
-                            </th>
+                                <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                    <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Report Type</label>
+                                    <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
+                                        <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </th>
+                            </tr>
 
-                            <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
-                                <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validateCurrentDates()) return false;  showLoader()" OnTextChanged="txtCurrentEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
-                            </th>
+                            <tr>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Transports</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Charges</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Revenue</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Adjustments</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Write-Off</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Refund</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">RPT</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Coll Rate%</th>
+                            </tr>
 
-                            <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
-                                <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
-                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                    <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
-                                    <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
-                                </asp:DropDownList>
-                            </th>
-                        </tr>
+                            <tr>
+                                <td><asp:TextBox ID="txtPrevTransports" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevCharges" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevRefund" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevRPT" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtPrevCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            </tr>
 
-                        <tr>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Transports</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Charges</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Revenue</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Adjustments</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Write-Off</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Refund</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">RPT</th>
-                            <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Coll Rate%</th>
-                        </tr>
+                            <tr style="background-color:rgb(0,148,144); color:#fff;">
+                                <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                    <label for="txtCurrentStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Start Date</label>
+                                    <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                </th>
 
-                        <tr>
-                            <td><asp:TextBox ID="txtCurrTransports" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrCharges" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRefund" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                            <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
-                        </tr>
+                                <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                    <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
+                                    <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validateCurrentDates()) return false;  showLoader()" OnTextChanged="txtCurrentEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                </th>
 
-                        <tr>
-                            <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT COMMENTS</th>
-                            <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE COMMENTS</th>
-                        </tr>
+                                <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
+                                    <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
+                                    <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
+                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                        <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
+                                        <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Transports</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Charges</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Revenue</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Adjustments</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Write-Off</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Refund</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">RPT</th>
+                                <th class="text-center" style="background-color:#5D6770 !important; color:#fff !important;">Coll Rate%</th>
+                            </tr>
+
+                            <tr>
+                                <td><asp:TextBox ID="txtCurrTransports" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrCharges" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrRevenue" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrAdjust" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrWriteOff" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrRefund" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT COMMENTS</th>
+                                <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE COMMENTS</th>
+                            </tr>
                
-                        <tr>
-                            <td colspan="4">
-                                <asp:TextBox ID="txtClientReviewComments" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
-                            </td>
-                            <td colspan="4">
-                                <asp:TextBox ID="txtAccountExecutiveComments" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            <tr>
+                                <td colspan="4">
+                                    <asp:TextBox ID="txtClientReviewComments" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
+                                </td>
+                                <td colspan="4">
+                                    <asp:TextBox ID="txtAccountExecutiveComments" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>  
+               </tabel>
+            <div class="page-break"></div> 
             
-            
-            <div class="col-lg-12 form-group">
-                <div class="table-responsive">
-                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
-                         
+              <table class="table table-bordered pdf-section " style="width:100%; border-collapse:collapse; text-align:center;">
+                         <thead>
                              <tr>
                                 <th class="text-center" style="width:25%; background-color:rgb(0,148,144) !important; color:#fff !important;">CONTENT TO DISCUSS</th>
                                 <th class="text-center" style="width:50%; background-color:rgb(0,148,144) !important; color:#fff !important;"></th>
                                 <th class="text-center" style="width:25%; background-color:rgb(0,148,144) !important; color:#fff !important;">MAIN ISSUES (If Any)</th>
                             </tr>
+                             </thead>
                          
                          <tbody>
                              <!-- 1. Aging Review-->
                              <tr>
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">    
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; color: #00968F;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; color: #00968F;">
                                                                            
                                             <tr >                                                
                                                 <th style="text-align:center; vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Aging Review (Sent to araging@medicount.com)</th>                                                                                          
@@ -391,7 +422,7 @@
                                  </td>
 
                                  <td>
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                            
                                             <tr>                                                
                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Discussed with AR Team</th>
@@ -423,7 +454,7 @@
                              <tr>
                                 <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">
 
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse;  color: #00968F;">
                                                                            
                                             <tr>                                                
                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Client Billing Policy</th>                                                                                          
@@ -431,14 +462,8 @@
                                         
                                           <tbody>        
                                               <tr>
-                                                  <td >
-                                                       <%--<asp:DropDownList ID="ddlBillingPolicy" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
-                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                         <asp:ListItem Value="R1" Text="R1"></asp:ListItem>
-                                                         <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
-                                                         <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
-                                                         <asp:ListItem Value="R2" Text="R2"></asp:ListItem>
-                                                     </asp:DropDownList> --%>
+                                                  <td>
+                                                       
                                                       <asp:TextBox ID="txtBillingPolicy" TextMode="MultiLine" Rows="2" BackColor="#FFFF99" runat="server" CssClass="form-control"></asp:TextBox>
                                                   </td>
                                                    
@@ -448,7 +473,7 @@
                                 </td>
 
                                 <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">      
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse;  color: #00968F;">
                                                                        
                                         <tr>                                                
                                             <th style="text-align:center; vertical-align:middle;width:50%; background-color:rgb(0,148,144) !important; color:#fff !important;">Collections</th>                                                                                          
@@ -458,11 +483,7 @@
                                       <tbody>        
                                           <tr>
                                               <td>
-                                                  <%-- <asp:DropDownList ID="ddlCollections" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;" >
-                                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                    <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                    <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                                 </asp:DropDownList>--%>
+                                                
                                                   <asp:TextBox ID="txtCollections" TextMode="MultiLine" Rows="2" BackColor="#FFFF99" runat="server" CssClass="form-control"></asp:TextBox>
                                               </td>
                                                <td> <asp:TextBox ID="txtBillingPolicyComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
@@ -480,7 +501,7 @@
                              <tr>
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">                                 
                                     
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse;  color: #00968F;">
                                                                            
                                             <tr>                                                
                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Client Billing Rates Reviewed</th>                                                                                          
@@ -501,7 +522,7 @@
                                 </td>
 
                                  <td style="font-weight:bold; text-align:left; padding-left:10px;">   
-                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                       <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                            
                                             <tr>                                                
                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Date of Last Rate Change</th>
@@ -527,7 +548,7 @@
                              <!--4. Current Billing Rates-->                            
                              <tr>                               
                                 <td style="font-weight:bold; text-align:left; padding-left:10px; color: #00968F;">    
-                                          <table class="table table-bordered" style="width:100%; border-collapse:collapse;  color: #00968F;">
+                                          <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse;  color: #00968F;">
                                                                                
                                                 <tr>                                                
                                                     <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;">Current Billing Rates</th>                                                                                          
@@ -548,7 +569,7 @@
                                      </td>
 
                                 <td>
-                                        <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                        <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                          
                                   
                                             <tr>
@@ -610,7 +631,7 @@
 
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">                                   
 
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F !important;">
+                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F !important;">
                                                                            
                                             <tr>                                                
                                                 <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">RATE REVIEW SHEET OF NEIGHBORING DEPARTMENTS PROVIDED TO CLIENT</th>
@@ -645,7 +666,7 @@
                                
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">                                   
 
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                            
                                             <tr>                                                
                                                 <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Does Client Charge for Facility Transports?</th>
@@ -676,7 +697,7 @@
                              <!--Non-Emergency Tranports-->
                              <tr>
                                   <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;">
-                                       <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                       <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                           
                                            <tr>                                                
                                                <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Non-Emergency Tranports</th>                                                                                            
@@ -699,7 +720,7 @@
                                  <td style="font-weight:bold; text-align:left; padding-left:10px;">
                                     
 
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                           
                                            <tr>                                                
                                                <th style="text-align:center; vertical-align:middle; width:50% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Is Client Aware of Prior Authorization Requirements?</th>
@@ -723,7 +744,7 @@
 
                                  <td  style="font-weight:bold; text-align:left; padding-left:10px;">
                                    
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                           
                                            <tr style="background-color:rgb(0,148,144) !important; color:#fff;">                                                
                                                <th style="text-align:center; vertical-align:middle; width:50% !important;background-color:rgb(0,148,144) !important; color:#fff !important;">Is Prior Authorization Traning Needed?</th>
@@ -748,7 +769,7 @@
                              <!--Contract Facility Billing or Correctional/Jail -->
                              <tr>
                                 <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;">
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                          
                                           <tr>                                                
                                               <th style="text-align:center; vertical-align:middle; width:100% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Does the Client have contracts with Facilities, Jails or Correctional facilities. If Yes, we need a copy attached</th>                                                                                            
@@ -769,7 +790,7 @@
                                  </td>
 
                                 <td colspan="2">
-                                         <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                         <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                              
                                   
                                                 <tr>
@@ -843,11 +864,19 @@
                                  </td>
                              </tr>
                             
+                                </tbody>
+                    </table>
+            
+             <div class="page-break"></div>
+           
+             <table class="table table-bordered pdf-section " style="width:100%; border-collapse:collapse; text-align:center;">
+                <tbody>
+
                              <!-- Contract Status -->
                              <tr>
-                                 <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F;">                                     
+                                 <td style="font-weight:bold; text-align:left; padding-left:10px;color: #00968F; width: 20% !important;">                                     
 
-                                        <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                               <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                           
                                            <tr>                                                
                                                <th style="text-align:center; vertical-align:middle; width:100% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Current Contract Status - Contract Inforce</th>                                                                                            
@@ -856,11 +885,7 @@
                                      <tbody>        
                                          <tr>
                                              <td>
-                                              <%-- <asp:DropDownList ID="ddlContractStatus" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
-                                                <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                <asp:ListItem Value="Active" Text="Active"></asp:ListItem>
-                                                <asp:ListItem Value="InActive" Text="InActive"></asp:ListItem>
-                                            </asp:DropDownList>--%>
+                                             
                                                  <asp:TextBox ID="txtContractStatus" CssClass="form-control form_datetime" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" autocomplete="off"></asp:TextBox>
                                              </td>
                                              </tr>
@@ -869,7 +894,7 @@
                                  </td>
 
                                  <td>
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                            
                                             <tr>
                                                 <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Renewal Date</th>
@@ -899,7 +924,7 @@
 
                                  <td>
                                     
-                                            <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                            <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                               
                                                <tr>                                                
                                                    <th style="text-align:center; vertical-align:middle; width:100% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                                                                            
@@ -914,13 +939,13 @@
                                                  </tr>
                                         </tbody>
                                     </table>
-                                     </td>
+                                  </td>
                              </tr>
                              
                              <!--Personnel Changes -->
                              <tr>
                                  <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;color: #00968F;">                                     
-                                         <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                         <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                               
                                                <tr>                                                
                                                    <th style="text-align:center; vertical-align:middle; width:100% !important;background-color:rgb(0,148,144) !important; color:#fff !important;">Personnel Changes</th>                                                                                            
@@ -943,7 +968,7 @@
 
                                 <td colspan="2"> 
 
-                                    <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                    <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                            
                                             <tr>
                                                 <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Chief</th>
@@ -973,7 +998,7 @@
 
                                  <td  style="font-weight:bold; text-align:left; padding-left:10px;">
    
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                           
                                            <tr>                                                
                                                <th style="text-align:center; vertical-align:middle; width:20% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Closed Businesses</th>
@@ -1017,7 +1042,7 @@
                                   </td>
 
                                  <td colspan="2">
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                             
                                              <tr>
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important; text-align:center; vertical-align:middle;">Client Portal Usage</th>
@@ -1077,7 +1102,7 @@
 
                                  <td colspan="2"> 
 
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                             
                                              <tr>
                                                  <th class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ePCR Vendor</th>
@@ -1124,7 +1149,7 @@
                                  </td>
 
                                  <td colspan="2">
-                                      <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                             
                                              <tr>
                                                  <th style="text-align:center; vertical-align:middle; width: 16% !important; background-color:rgb(0,148,144) !important; color:#fff !important;">Month End Report bank Reconciliations</th>
@@ -1184,7 +1209,7 @@
                                 </td>
 
                                 <td> 
-                                    <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                    <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                            
                                             <tr>
                                                 <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Patient Signature</th>
@@ -1248,7 +1273,7 @@
 
                                 <td>
     
-                                    <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
+                                    <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center; color: #00968F;">
                                                                       
                                        <tr>                                                
                                            <th style="text-align:center; vertical-align:middle; width:100% !important;background-color:rgb(0,148,144) !important; color:#fff !important;">Comments</th>                                                                                            
@@ -1274,7 +1299,7 @@
 
                                  <td colspan="2">
                                      <div class="col-lg-12">
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                          <thead>
                                              <tr>
                                                  <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Signature </th>
@@ -1340,7 +1365,7 @@
                                  </td>
 
                                  <td colspan="2"> 
-                                     <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                             
                                              <tr>
                                                  <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;"><span class="text-danger">*</span> Review Interval</th> 
@@ -1378,7 +1403,7 @@
                                  </td>
                                  
                                  <td colspan="2">
-                                  <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                  <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                    
                                     
                                       <tr>
@@ -1409,7 +1434,7 @@
                                  
                                      </table>
 
-                                  <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                  <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                          
                                               <tr>
                                                 <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Mailing Address</th>
@@ -1432,7 +1457,7 @@
                                          </tbody>
                                      </table> 
                                   <!--Physical Address Info-->
-                                  <table class="table table-bordered" style="width:100%; border-collapse:collapse; text-align:center;">
+                                  <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                          
                                               <tr>
                                                 <th colspan="4" style="text-align:center;vertical-align:middle;background-color:rgb(0,148,144) !important; color:#fff !important;">Physical Address</th>
@@ -1459,10 +1484,8 @@
                              </tr>
                          </tbody>
                      </table>
-
-                </div>
-            </div>
-            
+                  
+              <div class="page-break"></div>
                       
             <div class="col-lg-12">
                 <div class="col-lg-12 form-group text-lg-left" style="background-color: #5D6770 !important;">
@@ -1549,31 +1572,20 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" runat="server">
-    <div id="divButton" class="col-lg-12 text-lg-right pdf-exclude">
-       <%-- <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click"/>--%> <!--OnClientClick="return Validation('false');"-->
-       <%-- <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  />--%>
-      <%--  <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info custom" Text="Save" OnClick="btnSave_Click" OnClientClick="return FormValidation('false');"/>--%>
+    <div id="divButton" class="col-lg-12 text-lg-right pdf-exclude">      
         <input type="button" id="btnPrint" class="btn btn-success custom" title="Print" value="Print"  onclick="return saveDraft('true',true);" />
-         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />
-         <%--<input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />--%>
-       <%-- onclick="return saveDraft('true');
-        <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" OnClick="btnSave_Click" /> "--%>
-       <%-- onclick="return Validation('false');"--%>
-        <%--<asp:Button ID="btnComplete" runat="server" CssClass="btn btn-info custom" Text="Convert PDF" OnClick="btnComplete_Click" OnClientClick="return Validation('true');" />--%>
-        <%--<input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Convert PDF" onclick="generatePDF()" />--%>
-        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Submit" onclick="return Validation('true');" />
-      <%--    onclick="return Validation('true'); onclick="return Validation('true'); ""--%>
-    </div>
+         <input type="button" id="btnSave" class="btn btn-info custom" title="Save" value="Save" onclick="return Validation('false');" />        
+        <input type="button" id="btnConvertPDF" class="btn btn-danger custom" title="Convert PDF" value="Submit" onclick="return Validation('true');" />    </div>
     <div id="divLoading" class="spinner-border text-dark" role="status" style="float: right; display: none;">
         <span class="sr-only">Loading...</span>
     </div>
 
 
     <script type="text/javascript">
-            function OpenMessagePopup() {
-                document.getElementById("btnDummy").click();
-            }
-        </script>
+        function OpenMessagePopup() {
+            document.getElementById("btnDummy").click();
+        }
+    </script>
 
     <script>
         // Get the modal
@@ -1710,7 +1722,7 @@
         function Validation(isPDFGenerated) {
 
 
-            document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";  
+            document.getElementById("<%=hdnIsButtonClick.ClientID %>").value = "true";
 
             var ddlClientNo = document.getElementById("<%=ddlClientNo.ClientID %>");
             var ddlClientName = document.getElementById("<%=ddlClientName.ClientID %>");
@@ -1757,7 +1769,7 @@
                 txtMeetingDate.focus();
                 return false;
             }
-           
+
             if (txtMeetingDate.value == "") {
                 lblErrorMsg.innerHTML = "Select Meeting Date";
                 OpenAlertPopup();
@@ -1791,7 +1803,7 @@
 
 
             if (isPDFGenerated == "true") {
-              
+
                 saveDraft('false', true, 'submit');
             }
             else {
@@ -1851,7 +1863,7 @@
                 txtMeetingDate.focus();
                 return false;
             }
-           
+
             if (txtMeetingDate.value == "") {
                 lblErrorMsg.innerHTML = "Select Meeting Date";
                 OpenAlertPopup();
@@ -1880,9 +1892,9 @@
                 return false;
             }
 
-           
-            document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;            
-            
+
+            document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value = isPDFGenerated;
+
         }
     </script>
     <script type="text/javascript">
@@ -1890,10 +1902,10 @@
             var txtName = document.getElementById("<%=txtName.ClientID %>");
             var txtTitle = document.getElementById("<%=txtTitle.ClientID %>");
             var txtPhone = document.getElementById("<%=txtPhone.ClientID%>");
-           var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
+            var txtEmail = document.getElementById("<%=txtEmail.ClientID %>");
 
-           if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtPhone.value.trim() && txtEmail.value.trim() == "") {
-               return false;
+            if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtPhone.value.trim() && txtEmail.value.trim() == "") {
+                return false;
             }
             if (!ValidatePhone(txtPhone.value.trim())) {
                 lblErrorMsg.innerHTML = "Please enter a valid phone number";
@@ -1908,10 +1920,10 @@
                 return false;
             }
 
-           return true;
+            return true;
 
         }
-       
+
         function FormatUSPhone(input) {
 
             // Remove everything except numbers
@@ -1939,12 +1951,12 @@
         function ValidateEmail(email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
-        }       
-        function ValidatePhone(phone) {           
+        }
+        function ValidatePhone(phone) {
             var re = /^[2-9]\d{2}-\d{3}-\d{4}$/;
             return re.test(phone);
         }
-        
+
     </script>
 
     <script type="text/javascript">
@@ -2011,9 +2023,9 @@
 
 
         function generatePdfButton() {
-            
+
             var $clonedDoc = $(document.documentElement).clone();
-            
+
             $clonedDoc.find('.w-100.p-3').removeClass('w-100 p-3')
             //$clonedDoc.find('body').css('padding', '5px');
             $clonedDoc.find('.meeting-agenda-form');
@@ -2024,11 +2036,11 @@
                 this.style.setProperty('padding-right', '1px', 'important');
                 this.style.setProperty('padding-left', '1px', 'important');
             });
-            
-            $clonedDoc.find('[disabled]').removeAttr('disabled');     
-            
 
-           
+            $clonedDoc.find('[disabled]').removeAttr('disabled');
+
+
+
 
             adjustDynamicFieldHeights($clonedDoc);
 
@@ -2053,7 +2065,7 @@
                 }
             });
 
-     
+
             $clonedDoc.find('head').append(`
               <style>
                 input[type="radio"] {
@@ -2129,7 +2141,7 @@
             console.log(fullHtml);
             return fullHtml;
         }
-        
+
         function getCurrentDate() {
             const today = new Date();
 
@@ -2141,7 +2153,7 @@
         }
 
         function generatepdfBtnClick(buttonType) {
-           
+
             showLoader();
             var fullHtml = generatePdfButton();
             //var clientName = "test";
@@ -2153,7 +2165,7 @@
             } else {
                 clientName = $('#cphMainContent_ddlClientName option[value="' + clientNumber + '"]').text();
             }
-            
+
             // Send HTML to server for PDF generation
             $.ajax({
                 url: 'frmInnerMAPage1.aspx/NewGeneratePDF',
@@ -2191,8 +2203,8 @@
 
         }
 
-        
-        function billingRatesChange(){
+
+        function billingRatesChange() {
             const selectedValue = $('#cphMainContent_ddlCurrentBillingRates').val();
             if (selectedValue === 'Yes') {
                 $('#rateChangesMsg').show();
@@ -2205,16 +2217,16 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-           // billingRatesChange();
+            // billingRatesChange();
             // Configure to save every 2 min  
             //window.setInterval(saveDraft, 120000);//calling saveDraft function for every 2 min  
             window.setInterval(() => saveDraft(false), 120000);
-            
+
             //  BillingRateReviewedEnable();
         });
 
         // ajax method
-        function saveDraft(isPrint, isPDFDownload=false, buttonType='save') {
+        function saveDraft(isPrint, isPDFDownload = false, buttonType = 'save') {
 
             var clsMeetingAgenda = {};
             if (!isPrint && (document.getElementById("<%=ddlClientName.ClientID %>").value.trim() == "0" || document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim() == ""
@@ -2247,7 +2259,7 @@
             clsMeetingAgenda.AccExecPhone = AccExecPhone.value.trim();
             clsMeetingAgenda.MeetingType = document.getElementById("<%=ddlMeetingType.ClientID %>").value.trim();
 
-          
+
 
             // Previous and Current Date
             clsMeetingAgenda.PreviousStartDate = document.getElementById("<%=txtPreviousStartDate.ClientID %>").value.trim();
@@ -2290,7 +2302,7 @@
             var IsBillingPolicyddl = document.getElementById("<%=txtBillingPolicy.ClientID %>").value.trim();
             clsMeetingAgenda.BillingPolicy = IsBillingPolicyddl;
             var IsCollectionddl = document.getElementById("<%=txtCollections.ClientID %>").value.trim();
-            clsMeetingAgenda.Collections = IsCollectionddl;        
+            clsMeetingAgenda.Collections = IsCollectionddl;
             clsMeetingAgenda.BillingPolicyComments = document.getElementById("<%=txtBillingPolicyComments.ClientID %>").value.trim();
             clsMeetingAgenda.BillingPolicyMainIssueComments = document.getElementById("cphMainContent_txtBillingPolicyMainIssueComments").value.trim();
 
@@ -2298,11 +2310,11 @@
 
             //Billing Rates Reviewed
             var IsBillingRateReviewedddl = document.getElementById("<%=ddlBillingRateReviewed.ClientID %>").value.trim();
-            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl;                      
+            clsMeetingAgenda.IsBillingRateReviewed = IsBillingRateReviewedddl;
             clsMeetingAgenda.LastRateChanged = document.getElementById("<%=txtLastRateChange.ClientID %>").value.trim();
             clsMeetingAgenda.BillingRateReviewedComments = document.getElementById("<%=txtBillingRatesReviewedComments.ClientID %>").value.trim();
             clsMeetingAgenda.BRRMainIssueComments = document.getElementById("cphMainContent_txtBillingRatesReviewedMainIssueComments").value.trim();
-            
+
 
 
             //Current Billing Rate
@@ -2321,17 +2333,17 @@
 
             //UCR (Usual & Customary Rates)
             var IsUCRddl = document.getElementById("<%=ddlUCR.ClientID %>").value.trim();
-            clsMeetingAgenda.UCR = IsUCRddl;            
+            clsMeetingAgenda.UCR = IsUCRddl;
             clsMeetingAgenda.UCRComments = document.getElementById("<%=txtUCRComments.ClientID %>").value.trim();
             clsMeetingAgenda.UCRMainIssueComments = document.getElementById("cphMainContent_txtUCRMainIssueComments").value.trim();
-          
+
 
 
             //Control Comments on Billing Rates
-         
+
             var IsFacilityTransportsddl = document.getElementById("<%=ddlFacilityTransports.ClientID %>").value.trim();
-            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl;           
-            clsMeetingAgenda.FacilityTransportsComments =  document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
+            clsMeetingAgenda.IsFacilityTransports = IsFacilityTransportsddl;
+            clsMeetingAgenda.FacilityTransportsComments = document.getElementById("<%=txtFacilityTransportsComments.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
            // clsMeetingAgenda.IsClientProcessesOwnCreditcards =  document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim(); //IsClientProcessesOwnCreditcardsddl.value;// GetRadioListValue(IsClientProcessesOwnCreditcardsddl);
             clsMeetingAgenda.CommentsOnBillingRatesMainIssue = document.getElementById("<%=txtCommentsOnBillingRateMainIssue.ClientID %>").value.trim();
 
@@ -2368,7 +2380,7 @@
             var IsToWithTheFacilityddl = document.getElementById("<%=ddlWithTheFacility.ClientID %>").value.trim();
             clsMeetingAgenda.IsToWithTheFacility = IsToWithTheFacilityddl;
             clsMeetingAgenda.CurrentContractStatusComments = document.getElementById("cphMainContent_txtCurrentContractStatusComments").value.trim();
-        
+
 
 
             //9. Contract Status
@@ -2382,7 +2394,7 @@
 
             //10. Personnel Changes
             var IsPersonnelChangesddl = document.getElementById("<%=ddlPersonnelChanges.ClientID %>").value.trim();
-            clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl;          
+            clsMeetingAgenda.IsPersonnelChanges = IsPersonnelChangesddl;
             clsMeetingAgenda.ChiefName = document.getElementById("<%=txtChief.ClientID %>").value.trim();
             clsMeetingAgenda.FiscalOfficerName = document.getElementById("<%=txtFiscalOfficer.ClientID %>").value.trim();
             clsMeetingAgenda.AuthorizedOfficialName1 = document.getElementById("<%=txtAuthorizedOfficial1.ClientID %>").value.trim();
@@ -2390,17 +2402,17 @@
 
             //Demographic Changes
             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
-            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl; 
+            clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl;
             var IsNewBusinessddl = document.getElementById("<%=ddlNewBusiness.ClientID %>").value.trim();
-            clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl; 
+            clsMeetingAgenda.IsNewBusiness = IsNewBusinessddl;
             clsMeetingAgenda.DCComments = document.getElementById("cphMainContent_txtDemographicChangesComments").value.trim();
             clsMeetingAgenda.DCMainIssueComments = document.getElementById("cphMainContent_txtDemographicChangesMainIssueComments").value.trim();
-            
+
 
 
             //Client Data Status
             var IsUsageddl = document.getElementById("<%=ddlUsage.ClientID %>").value.trim();
-            clsMeetingAgenda.IsUsage = IsUsageddl; 
+            clsMeetingAgenda.IsUsage = IsUsageddl;
             var IsAlertsReceivedddl = document.getElementById("<%=ddlAlertsReceived.ClientID %>").value.trim();
             clsMeetingAgenda.IsAlertsReceived = IsAlertsReceivedddl;
             clsMeetingAgenda.LastLoginDate = document.getElementById("<%=txtLastLoginDate.ClientID %>").value.trim();
@@ -2409,7 +2421,7 @@
             var IsClosedBusinessesddl = document.getElementById("<%=ddlClosedBusinesses.ClientID %>").value.trim();
             clsMeetingAgenda.IsClosedBusinesses = IsClosedBusinessesddl;
             var IsDiscussedddl = document.getElementById("<%=txtReceiveMedicountReport.ClientID %>").value.trim();
-            clsMeetingAgenda.IsDiscussed = IsDiscussedddl; 
+            clsMeetingAgenda.IsDiscussed = IsDiscussedddl;
 
 
             // ePCR 
@@ -2421,13 +2433,13 @@
 
             var IsRunReconciliationDoneddl = document.getElementById("<%=ddlRunReconciliationDone.ClientID %>").value.trim();
             clsMeetingAgenda.IsRunReconciliationDone = IsRunReconciliationDoneddl;
-            
+
 
             //Signature Capture
             var IsPatientSignatureddl = document.getElementById("<%=ddlPatientSignature.ClientID %>").value.trim();
             clsMeetingAgenda.IsPatientSignature = IsPatientSignatureddl;
             var IsPatientSignatureEPCRddl = document.getElementById("<%=ddlPatientSignatureEPCR.ClientID %>").value.trim();
-            clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl; 
+            clsMeetingAgenda.IsPatientSignatureEPCR = IsPatientSignatureEPCRddl;
             var IsReceivingFacilitySignatureddl = document.getElementById("<%=ddlReceivingFacilitySignature.ClientID %>").value.trim();
             clsMeetingAgenda.IsReceivingFacilitySignature = IsReceivingFacilitySignatureddl;
             var IsReceivingFacilitySignatureEPCRddl = document.getElementById("<%=ddlReceivingFacilitySignatureEPCR.ClientID %>").value.trim();
@@ -2435,23 +2447,23 @@
             var IsCrewSignatureddl = document.getElementById("<%=ddlCrewSignature.ClientID %>").value.trim();
             clsMeetingAgenda.IsCrewSignature = IsCrewSignatureddl;
             var IsCrewSignatureEPCRddl = document.getElementById("<%=ddlCrewSignatureEPCR.ClientID %>").value.trim();
-            clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl;        
+            clsMeetingAgenda.IsCrewSignatureEPCR = IsCrewSignatureEPCRddl;
             clsMeetingAgenda.SignatureCaptureComments = document.getElementById("<%=txtSignatureCaptureComments.ClientID %>").value.trim();
 
             //15. Month End Report
             var IsStatementReconciliationddl = document.getElementById("<%=ddlStatementReconciliation.ClientID %>").value.trim();
-            clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl;         
-            clsMeetingAgenda.MonthEndReportByWho = document.getElementById("<%=txtMonthEndReportByWho.ClientID %>").value.trim(); 
+            clsMeetingAgenda.IsStatementReconciliation = IsStatementReconciliationddl;
+            clsMeetingAgenda.MonthEndReportByWho = document.getElementById("<%=txtMonthEndReportByWho.ClientID %>").value.trim();
             clsMeetingAgenda.MonthEndReportHowOften = document.getElementById("<%=txtMonthEndReportHowOften.ClientID %>").value.trim();
             var IsTraningCompletedddl = document.getElementById("<%=ddlTraningCompleted.ClientID %>").value.trim();
-            clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl;  
+            clsMeetingAgenda.IsTraningCompleted = IsTraningCompletedddl;
             var IsTraningPendingddl = document.getElementById("<%=ddlIsTraningPending.ClientID %>").value.trim();
-            clsMeetingAgenda.IsTraningPending = IsTraningPendingddl; 
-           
+            clsMeetingAgenda.IsTraningPending = IsTraningPendingddl;
+
             //Client Review Intervals
            // var IsReviewIntervalCRIddl = document.getElementById("<%=rdolstCRI.ClientID %>")IsReviewIntervalCRIddl           
             var rdolstCRI = document.getElementById("<%=rdolstCRI.ClientID %>").getElementsByTagName("input");
-             if (rdolstCRI[0].checked) {
+            if (rdolstCRI[0].checked) {
                 clsMeetingAgenda.IsReviewIntervalCRI = "Quarterly";
             }
             else if (rdolstCRI[1].checked) {
@@ -2464,8 +2476,8 @@
                 clsMeetingAgenda.IsReviewIntervalCRI = "";
             }
 
-            clsMeetingAgenda.NextReviewScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>").value.trim(); 
-            clsMeetingAgenda.ChangeInZOHO = document.getElementById("<%=txtChangeInZOHO.ClientID %>").value.trim(); 
+            clsMeetingAgenda.NextReviewScheduleDate = document.getElementById("<%=txtNRScheduleDate.ClientID %>").value.trim();
+            clsMeetingAgenda.ChangeInZOHO = document.getElementById("<%=txtChangeInZOHO.ClientID %>").value.trim();
 
             //Address Information
             clsMeetingAgenda.BillingStreet = document.getElementById("<%=txtBillingStreet.ClientID %>").value.trim(); 
@@ -2908,12 +2920,12 @@
                  lblErrorMsg.style.color = "red";
                  OpenMessagePopup();
                  $("#<%= txtCurrentEndDate.ClientID %>").val('');   // Clear textbox
-                 $("#<%= txtCurrentEndDate.ClientID %>").focus(); 
-                 return false;
-             }
+                 $("#<%= txtCurrentEndDate.ClientID %>").focus();
+                return false;
+            }
 
-             return true;
-         }
+            return true;
+        }
     </script>
 
 </asp:Content>
