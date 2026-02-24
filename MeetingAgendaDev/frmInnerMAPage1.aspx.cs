@@ -222,7 +222,7 @@ namespace ClientMeetingAgenda
         {
 
             //HttpContext.Current.Server.MapPath("~/Temp/");
-            string folder = ConfigurationManager.AppSettings["upload.file.path"].ToString();// "E:\\CMS_DATA\\Contracts\\MeetingAgenda\\Test\\";
+            string folder = ConfigurationManager.AppSettings["upload.file.path"].ToString();
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
