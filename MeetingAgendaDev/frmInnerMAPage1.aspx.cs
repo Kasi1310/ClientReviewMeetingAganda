@@ -320,7 +320,7 @@ namespace ClientMeetingAgenda
         {
 
             //HttpContext.Current.Server.MapPath("~/Temp/");
-            string folder = ConfigurationManager.AppSettings["upload.file.path"].ToString();// "E:\\CMS_DATA\\Contracts\\MeetingAgenda\\Test\\";
+            string folder = ConfigurationManager.AppSettings["upload.file.path"].ToString();
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
@@ -342,12 +342,13 @@ namespace ClientMeetingAgenda
             var startInfo = new ProcessStartInfo
             {
                 FileName = wkhtmlPath,
-                Arguments = $"--enable-local-file-access --viewport-size 1280x1024 --zoom 1.0 --page-size A4 --print-media-type \"{inputFile}\" \"{outputPdf}\"",
+                Arguments = $"--enable-local-file-access --viewport-size 1280x1024 --zoom 1.0 --page-size A4 --print-media-type  --margin-top 1mm --margin-bottom 1mm \"{inputFile}\" \"{outputPdf}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
             };
+                
 
             using (var proc = Process.Start(startInfo))
             {
