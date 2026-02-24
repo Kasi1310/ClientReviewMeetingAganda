@@ -104,6 +104,8 @@
             <asp:HiddenField ID="hdnUserid" runat="server" Value="0" />
             <asp:HiddenField ID="hdnAcctExecId" runat="server" Value="0" />
             <asp:HiddenField ID="hdnPDFFilepath" runat="server" Value="" />
+            <asp:HiddenField ID="hdnZohoCrmAccountId" runat="server" Value="0" />
+            <asp:HiddenField ID="hdnZohoCrmTaskId" runat="server" Value="0" />
             <div class="col-lg-12 form-group text-lg-center">
                 <h3><b style="color: rgb(0,148,144) !important; font-size:50px !important;">CLIENT REVIEW MEETING AGENDA</b></h3>
                 <h3 style="font-size:30px !important;  color:black;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>

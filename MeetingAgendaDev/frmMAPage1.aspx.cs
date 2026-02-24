@@ -1148,6 +1148,26 @@ namespace ClientMeetingAgenda
                     TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
                     rdolstCRI.SelectedValue = textInfo.ToTitleCase(reviewInterval.ToLower());  // Review Interval
 
+                    // Tasks
+                    hdnZohoCrmAccountId.Value = contact["id"].ToString();
+                    string TaskUrl = $"https://www.zohoapis.com/crm/v8/Tasks/search?criteria=((What_Id:equals:{contact["id"]})and(Subject:equals:\"follow up\"))&sort_by=Created_Time&sort_order=desc";
+                    string zohoTaskData = MakeZohoApiRequest("GET", TaskUrl, accessToken);
+                    if (string.IsNullOrEmpty(zohoTaskData))
+                    {
+                        Console.WriteLine("The response data is null or empty.");
+                        hdnZohoCrmTaskId.Value = "0";
+                    }
+                    else
+                    {
+                        Console.WriteLine("The response data is not empty.");
+                        var jsonTaskObj = JObject.Parse(zohoTaskData);
+                        var TaskDataArray = jsonTaskObj["data"]?.ToObject<List<JObject>>();
+                        if (TaskDataArray != null && TaskDataArray.Count > 0)
+                        {
+                            var task = TaskDataArray[0];
+                            hdnZohoCrmTaskId.Value = task["id"].ToString();
+                        }
+                    }
                 }
             }
         }
@@ -1488,7 +1508,7 @@ namespace ClientMeetingAgenda
             return results;
         }
 
-        private static string GetAccessTokenFromRefreshToken()
+        public static string GetAccessTokenFromRefreshToken()
         {
             try
             {
@@ -1526,7 +1546,7 @@ namespace ClientMeetingAgenda
             }
         }
 
-        private static string MakeZohoApiRequest(string method, string url, string accessToken, string jsonPayload = null, string filePath = null, string clientName = null, string clientNumber = null, string pdfType = null)
+        public static string MakeZohoApiRequest(string method, string url, string accessToken, string jsonPayload = null, string filePath = null, string clientName = null, string clientNumber = null, string pdfType = null)
         {
             try
             {
