@@ -1483,27 +1483,26 @@
                                  </td>
                              </tr>
                          </tbody>
-                     </table>
-                  
-              <div class="page-break"></div>
-                      
-            <div class="col-lg-12">
-                <div class="col-lg-12 form-group text-lg-left" style="background-color: #5D6770 !important;">
-                    <h4><b style="color:#fff !important">OVERALL MEETING NOTES</b></h4>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <asp:TextBox ID="txtOverAllMeetingNotes" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
-            </div>
-            <div class="col-lg-12 form-group text-lg-left font-weight-bold">
-                <h4><u style="color:rgb(0,148,144) !important;"><b style="color:rgb(0,148,144) !important;">Follow Up Action:</b></u></h4>
-            </div>
-            <div class="col-lg-12">
-                <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
-            </div>
-
+              </table>
+                   
+              <div class="page-break"></div>   
+           
+                   <div class="col-lg-12">
+                        <div class="col-lg-12 form-group text-lg-left" style="background-color: #5D6770 !important;">
+                            <h4><b style="color:#fff !important">OVERALL MEETING NOTES</b></h4>
+                        </div>
+                    </div>
+                   <div class="col-lg-12">
+                        <asp:TextBox ID="txtOverAllMeetingNotes" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
+                    </div>
+                   <div class="col-lg-12 form-group text-lg-left font-weight-bold">
+                        <h4><u style="color:rgb(0,148,144) !important;"><b style="color:rgb(0,148,144) !important;">Follow Up Action:</b></u></h4>
+                    </div>
+                   <div class="col-lg-12">
+                        <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
+                    </div>
             
-         </div>
+          </div>
     </div>
 
 
