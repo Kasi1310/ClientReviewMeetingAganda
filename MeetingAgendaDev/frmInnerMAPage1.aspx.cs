@@ -1,7 +1,11 @@
 ﻿using ClientMeetingAgenda.App_Code;
+using Com.Zoho.Crm.API.Record;
+using HtmlAgilityPack;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,6 +14,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Services;
 using Image = iTextSharp.text.Image;
@@ -172,9 +177,10 @@ namespace ClientMeetingAgenda
 
             if (buttonType == "submit") 
             {
+                AddFollowUpActionToZohoCRM(formHtml);
                 HttpContext.Current.Session["PDFFileName"] = null;
             }
-                
+
             return lstclsOutput;
         }
 
@@ -216,6 +222,98 @@ namespace ClientMeetingAgenda
                         System.IO.File.Delete(pdfPath);
                 }
             }
+        }
+
+        public async static Task<(bool, string)> AddFollowUpActionToZohoCRM(string formHtml)
+        {
+            bool success = false;
+            string ZohoTaskNotesId = "0";
+
+            // Load the HTML document
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(formHtml);
+
+            string ZohoAccountId = GetElementValueById(doc, "cphMainContent_hdnZohoCrmAccountId");
+            string ZohoTaskId = GetElementValueById(doc, "cphMainContent_hdnZohoCrmTaskId");
+            string FollowUpAction = GetElementValueById(doc, "cphMainContent_txtFollowUpAction");
+
+            if (!string.IsNullOrEmpty(FollowUpAction) && !(string.IsNullOrEmpty(ZohoAccountId) || ZohoAccountId == "0"))
+            {
+                frmMAPage1 frmMAPage1 = new frmMAPage1();
+                string accessToken = frmMAPage1.GetAccessTokenFromRefreshToken();
+
+                if (!string.IsNullOrEmpty(accessToken))
+                {
+                    
+
+                    if (string.IsNullOrEmpty(ZohoTaskId) || ZohoTaskId.Trim() == "0") // Create New Task with subject Follow Up Action and add notes
+                    {
+                        Dictionary<string, string> taskFields = new Dictionary<string, string>();
+                        taskFields["Subject"] = "Follow Up Action";
+                        taskFields["$se_module"] = "Accounts";
+                        taskFields["What_Id"] = ZohoAccountId;
+
+                        var taskData = new
+                        {
+                            data = new[]
+                            {
+                                taskFields
+                            }
+                        };
+
+                        string taskDataJson = JsonConvert.SerializeObject(taskData);
+
+                        string taskUrl = $"https://www.zohoapis.com/crm/v2/Tasks";
+                        string newTaskData = frmMAPage1.MakeZohoApiRequest("POST", taskUrl, accessToken, taskDataJson);
+                        
+                        var jsonTaskObj = JObject.Parse(newTaskData);
+                        var TaskDataArray = jsonTaskObj["data"]?.ToObject<List<JObject>>();
+                        if (TaskDataArray != null && TaskDataArray.Count > 0)
+                        {
+                            var task = TaskDataArray[0];
+                            if (string.Equals(task["status"].ToString(), "success", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ZohoTaskId = task["details"]["id"].ToString();
+                            }
+                        }
+                    }
+
+                    if (!(string.IsNullOrEmpty(ZohoTaskId) || ZohoTaskId.Trim() == "0")) // Adding notes to the Task using the Task Id
+                    {
+                        Dictionary<string, string> taskNotesFields = new Dictionary<string, string>();
+                        taskNotesFields["Note_Title"] = "";
+                        taskNotesFields["Note_Content"] = FollowUpAction;
+
+                        var taskNotesData = new
+                        {
+                            data = new[]
+                            {
+                                taskNotesFields
+                            }
+                        };
+
+                        string taskNotesDataJson = JsonConvert.SerializeObject(taskNotesData);
+                        string taskNotesUrl = $"https://www.zohoapis.com/crm/v2/Tasks/{ZohoTaskId}/Notes";
+                        string newTaskNotesData = frmMAPage1.MakeZohoApiRequest("POST", taskNotesUrl, accessToken, taskNotesDataJson);
+
+                        var jsonTaskNotesObj = JObject.Parse(newTaskNotesData);
+                        var TaskNotesDataArray = jsonTaskNotesObj["data"]?.ToObject<List<JObject>>();
+                        if (TaskNotesDataArray != null && TaskNotesDataArray.Count > 0)
+                        {
+                            var taskNotes = TaskNotesDataArray[0];
+                            if (string.Equals(taskNotes["status"].ToString(), "success", StringComparison.OrdinalIgnoreCase))
+                            {
+                                success = true;
+                                ZohoTaskNotesId = taskNotes["details"]["id"].ToString();
+                            }
+                            
+                        }
+                    }
+
+                }
+            }
+
+            return (success, ZohoTaskNotesId);
         }
 
         private static string SaveHtmlToTempFile(string html, string clientName, string clientNumber)
@@ -263,7 +361,24 @@ namespace ClientMeetingAgenda
 
             return System.IO.File.ReadAllBytes(outputPdf);
         }
-       
+
+        public static string GetElementValueById(HtmlDocument doc, string id)
+        {
+            var element = doc.GetElementbyId(id);
+
+            if (element != null)
+            {
+                // Check if the element has a value attribute (e.g., input, textarea)
+                if (element.Name == "input" || element.Name == "textarea" || element.Name == "select")
+                {
+                    return element.GetAttributeValue("value", ""); // Get the value or return an empty string if not found
+                }
+            }
+
+            return null; // Return null if the element is not found or does not have a value
+        }
+
+        ////////////////////////////////////////////////////////
 
         [WebMethod]
         public static string UpdateMeetingCompleteStatus(int MAID, string UserName, string From)
