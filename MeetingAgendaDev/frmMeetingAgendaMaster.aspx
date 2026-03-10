@@ -320,7 +320,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" runat="server">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
 
         $(function () {
@@ -351,8 +351,64 @@
             var formData = new FormData();
             formData.append('MAID', document.getElementById("<%=hdnMeetingAgendaID.ClientID %>").value);
             formData.append('UserName', document.getElementById("<%=hdnUserName.ClientID %>").value);
-
             $.ajax({
+                type: "POST",
+                url: "frmInnerMAPage1.aspx/UpdateMeetingCompleteStatus",
+                data: JSON.stringify({
+                MAID: document.getElementById("<%=hdnMeetingAgendaID.ClientID %>").value,
+                UserName: document.getElementById("<%=hdnUserName.ClientID %>").value,
+                From: "Web"
+            }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+
+                //beforeSend: function () {
+                //    Swal.fire({
+                //        title: 'Processing...',
+                //        allowOutsideClick: false,
+                //        didOpen: () => {
+                //            Swal.showLoading();
+                //        }
+                //    });
+                //},
+
+                success: function (response) {
+
+                    if (response.d == "") {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Meeting status updated successfully!',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location.replace("frmMeetingAgendaMaster.aspx");
+                        });
+
+                    } else {
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning',
+                            text: response.d
+                        });
+
+                    }
+                },
+
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Something went wrong while updating.'
+                    });
+                }
+
+                //,complete: function () {
+                //    Swal.close();
+                //}
+            });
+            <%--$.ajax({
                 type: "POST",
                 url: "frmInnerMAPage1.aspx/UpdateMeetingCompleteStatus",
                 data: JSON.stringify({ MAID: document.getElementById("<%=hdnMeetingAgendaID.ClientID %>").value, UserName: document.getElementById("<%=hdnUserName.ClientID %>").value, From: "Web" }),
@@ -367,7 +423,7 @@
                         OpenMessagePopup();
                     }
                 }
-            });
+            });--%>
         }
         function SubmitMessageOk() {
             alert("1");

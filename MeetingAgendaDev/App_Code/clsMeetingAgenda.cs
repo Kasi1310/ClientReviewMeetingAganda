@@ -620,7 +620,7 @@ namespace ClientMeetingAgenda.App_Code
 
             objSqlCommand.Parameters.AddWithValue("@ID", ID);
             objSqlCommand.Parameters.AddWithValue("@LastUpdatedBy", LastUpdatedBy);
-            objSqlCommand.Parameters.AddWithValue("@IsZohoUpload", IsZohoUpload);
+            //objSqlCommand.Parameters.AddWithValue("@IsZohoUpload", IsZohoUpload);
 
             objclsConnection.ExecuteNonQuery(objSqlCommand);
         }

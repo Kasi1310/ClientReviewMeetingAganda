@@ -91,8 +91,20 @@
                     page-break-before: always !important;
                 }
             }
-    </style>
 
+           .flatpickr {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
+           .datepicker{
+                background-color:#ffffff !important;
+            }
+    </style>
+    
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_green.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+   
     <div>
         <div id="loader" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0;background: rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
             <div class="spinner-border text-light" role="status">
@@ -171,10 +183,10 @@
                                     </asp:DropDownList>
                                  </td>
                                  <td colspan="3">
-                                     <asp:TextBox ID="txtMeetingDate" CssClass="form-control  form_datetime" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                     <asp:TextBox ID="txtMeetingDate" CssClass="form-control  datepicker" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off"></asp:TextBox>
                                  </td>
                                  <td colspan="3">
-                                     <asp:TextBox ID="txtReportDate" CssClass="form-control  form_datetime" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                     <asp:TextBox ID="txtReportDate" CssClass="form-control" runat="server" Text="" MaxLength="50" Enabled="false" autocomplete="off"></asp:TextBox>
                                  </td>
                              </tr>
                          </tbody>
@@ -265,15 +277,15 @@
                            OnRowDeleting="gvAttendees_RowDeleting">
 
                            <Columns>
-                               <asp:BoundField DataField="Name" HeaderText="Name" />
-                               <asp:BoundField DataField="Title" HeaderText="Title" />
-                               <asp:BoundField DataField="Phone" HeaderText="Phone" />
-                               <asp:BoundField DataField="Email" HeaderText="Email" />
+                               <asp:BoundField DataField="Name" HeaderText="Name" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"  />
+                               <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
+                               <asp:BoundField DataField="Phone" HeaderText="Phone" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
+                               <asp:BoundField DataField="Email" HeaderText="Email" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
                                <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
                            </Columns>
                        </asp:GridView>           
                 </div>
-
+               
                 <!--Client Revenue Numbers-->
                 <div class="col-lg-12 form-group">
                    <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
@@ -285,18 +297,17 @@
                             <tr>
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
-                                    <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                  <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="datepicker"></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                    <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>
-                                    <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validatePreviousDates()) return false;  showLoader()" OnTextChanged="txtPreviousEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"
-                                        ></asp:TextBox>
+                                    <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>                                 
+                                    <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="datepicker" AutoPostBack="true" onchange="showLoader();" ></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="ddlPreviousReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Report Type</label>
-                                    <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
+                                    <asp:DropDownList ID="ddlPreviousReportType" runat="server" CssClass="form-control" style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtPreviousEndDate_TextChanged">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                         <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
                                         <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
@@ -328,18 +339,18 @@
 
                             <tr style="background-color:rgb(0,148,144); color:#fff;">
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                    <label for="txtCurrentStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Start Date</label>
-                                    <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                    <label for="txtCurrentStartDate" style="display:inline-block; margin-right:10px; color:#fff !important;">Current Start Date</label>                                   
+                                    <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; color: #0f0f0f; font:inherit;"></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
-                                    <label for="txtCurrentEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Current End Date</label>
-                                    <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control form_datetime" AutoPostBack="true" onchange="if(!validateCurrentDates()) return false;  showLoader()" OnTextChanged="txtCurrentEndDate_TextChanged" style="display:inline-block; width: auto; background-color:#fff !important;"></asp:TextBox>
+                                    <label for="txtCurrentEndDate" style="display:inline-block; margin-right:10px; color:#fff !important;">Current End Date</label>
+                                    <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; font-size:larger; color: #0f0f0f; font:inherit;"  AutoPostBack="true" onchange="showLoader()"  ></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="ddlCurrentReportType" style="display:inline-block; margin-right:20px; color:#fff !important;">Current Report Type</label>
-                                    <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" >
+                                    <asp:DropDownList ID="ddlCurrentReportType" runat="server" CssClass="form-control"   style="display:inline-block; width: auto; background-color:#fff !important;" onchange="showLoader();" AutoPostBack="true" OnTextChanged="txtCurrentEndDate_TextChanged" >
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                         <asp:ListItem Value="Date of Service" Text="Date of Service"></asp:ListItem>
                                         <asp:ListItem Value="Date of Entry" Text="Date of Entry"></asp:ListItem>
@@ -557,7 +568,7 @@
                                               <tbody>        
                                                   <tr>
                                                       <td >
-                                                          <asp:DropDownList ID="ddlCurrentBillingRates" runat="server" AutoPostBack="true" onchange="billingRatesChange()" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                          <asp:DropDownList ID="ddlCurrentBillingRates" runat="server" OnTextChanged="ddlCurrentBillingRates_SelectedIndexChanged" AutoPostBack="true"  CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -606,9 +617,11 @@
                                                  <td style="padding: 7px 2px;"> <asp:TextBox ID="txtMileage" CssClass="form-control" runat="server" Text="" MaxLength="10" BackColor="#FFFF99"
                                                        onblur="isMoneyKey(this,'Mileage');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>                                     
                                              </tr>
-                                            <tr id="rateChangesMsg" style="display: none;">
-                                            <td colspan="8" style="padding: 15px; text-align: center; color: red !important; font-weight: bold;">
-                                                PLEASE NOTE THAT ALL CHANGES TO CHARGE RATES MUST BE SUBMITTED USING THE CHARGE RATE FORM AND UPLOADED EXCLUSIVELY THROUGH THE CUSTOMER PORTAL
+                                            <tr>
+                                            <td colspan="8" style="padding: 15px; text-align: center; color: red !important; font-weight: bold;">                                              
+                                                <div id="rateChangesMsg" runat="server" style="display:none;">
+                                                    PLEASE NOTE THAT ALL CHANGES TO CHARGE RATES MUST BE SUBMITTED USING THE CHARGE RATE FORM AND UPLOADED EXCLUSIVELY THROUGH THE CUSTOMER PORTAL
+                                                </div>
                                             </td>
                                             </tr>
                                         </tbody>
@@ -954,7 +967,7 @@
                                          <tbody>        
                                              <tr>
                                                  <td>
-                                                   <asp:DropDownList ID="ddlPersonnelChanges" runat="server" AutoPostBack="true" CssClass="form-control" style="display:inline-block; width: 100%; font-weight: bold;">
+                                                   <asp:DropDownList ID="ddlPersonnelChanges" runat="server" AutoPostBack="true" CssClass="form-control" OnTextChanged="ddlPersonnelChanges_SelectedIndexChanged" style="display:inline-block; width: 100%; font-weight: bold;">
                                                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                     <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                     <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -980,10 +993,10 @@
 
                                         <tbody>          
                                             <tr>
-                                                <td colspan="2"> <asp:TextBox ID="txtChief" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtFiscalOfficer" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial1" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"  runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
-                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial2" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td> 
+                                                <td colspan="2"> <asp:TextBox ID="txtChief" CssClass="form-control" BackColor="#FFFF99" Enabled="false" ReadOnly="true"   runat="server" Text="" MaxLength="20" ></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtFiscalOfficer" CssClass="form-control" BackColor="#FFFF99" Enabled="false" ReadOnly="true"  runat="server" Text="" MaxLength="20" ></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial1" CssClass="form-control" BackColor="#FFFF99" Enabled="false" ReadOnly="true"   runat="server" Text="" MaxLength="20" ></asp:TextBox></td> 
+                                                <td colspan="2"><asp:TextBox ID="txtAuthorizedOfficial2" CssClass="form-control" BackColor="#FFFF99" Enabled="false" ReadOnly="true"  runat="server" Text="" MaxLength="20" ></asp:TextBox></td> 
                                             </tr>                                      
                                         </tbody>
                                     </table>
@@ -1579,7 +1592,7 @@
         <span class="sr-only">Loading...</span>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="text/javascript">
         function OpenMessagePopup() {
             document.getElementById("btnDummy").click();
@@ -1698,11 +1711,11 @@
 
 
     <script type="text/javascript">
-        $(".form_datetime").datepicker({
-            format: 'mm/dd/yyyy',
-            //endDate: new Date(),
-            autoclose: true
-        });
+        //$(".form_datetime").datepicker({
+        //    format: 'mm/dd/yyyy',
+        //    //endDate: new Date(),
+        //    autoclose: true
+        //});
     </script>
     <script type="text/javascript">
         function RadioValidate(ctrl) {
@@ -1905,6 +1918,16 @@
 
             if (txtName.value.trim() == "" && txtTitle.value.trim() == "" && txtPhone.value.trim() && txtEmail.value.trim() == "") {
                 return false;
+            }
+            var fields = [txtName, txtTitle, txtPhone, txtEmail];
+
+            for (var i = 0; i < fields.length; i++) {
+                if (fields[i].value.trim() == "") {
+                    lblErrorMsg.innerHTML = "Please fill all fields";
+                    OpenAlertPopup();
+                    fields[i].focus();
+                    return false;
+                }
             }
             if (!ValidatePhone(txtPhone.value.trim())) {
                 lblErrorMsg.innerHTML = "Please enter a valid phone number";
@@ -2204,7 +2227,7 @@
 
 
         function billingRatesChange() {
-            const selectedValue = $('#cphMainContent_ddlCurrentBillingRates').val();
+            var selectedValue = $('#<%= ddlCurrentBillingRates.ClientID %>').val();
             if (selectedValue === 'Yes') {
                 $('#rateChangesMsg').show();
             } else {
@@ -2875,56 +2898,90 @@
      
     </script>
     <script type="text/javascript">
-        function validatePreviousDates() {
+    
+        $(document).ready(function () {
+            $(".datepicker").flatpickr({
+                dateFormat: "m/d/Y",  // MM/DD/YYYY
+                maxDate: "today",     // prevent future dates
+                allowInput: true
+            });
 
-            var startDate = document.getElementById('<%= txtPreviousStartDate.ClientID %>').value;
-            var endDate = document.getElementById('<%= txtPreviousEndDate.ClientID %>').value;
-            var lblMessage = document.getElementById("<%=lblMessage.ClientID%>");
-            if (startDate === "" || endDate === "") {
-                alert("Both Start Date and End Date are required.");
-                return false;
+            $(".nextReviewDatepicker").flatpickr({
+                dateFormat: "m/d/Y",  // MM/DD/YYYY
+                allowInput: true
+            });
+            //Meeting Date
+            //txtPreviousStartDate
+            var meetingDate = flatpickr("#<%= txtMeetingDate.ClientID %>", {
+                dateFormat: "m/d/Y",
+                minDate: "today",                
+                allowInput: true
+            });
+
+            // Previous End Date
+            var previousEndPicker = flatpickr("#<%= txtPreviousEndDate.ClientID %>", {
+               dateFormat: "m/d/Y",
+               maxDate: "today",
+               allowInput: true
+           });
+
+           // Previous Start Date
+           flatpickr("#<%= txtPreviousStartDate.ClientID %>", {
+            dateFormat: "m/d/Y",
+            maxDate: "today",
+            allowInput: true,
+
+        onChange: function (selectedDates) {
+
+            if (selectedDates.length > 0) {
+
+                var startDate = selectedDates[0];
+
+                previousEndPicker.set("minDate", startDate);
+
+                var endDate = previousEndPicker.selectedDates[0];
+
+                if (endDate && endDate < startDate) {
+                    previousEndPicker.clear();
+                }
             }
-
-            var start = new Date(startDate);
-            var end = new Date(endDate);
-
-            if (end < start) {
-                lblMessage.innerHTML = "End Date cannot be earlier than Start Date.";
-                lblErrorMsg.style.color = "red";
-                OpenMessagePopup();
-                //alert("");
-                $("#<%= txtPreviousEndDate.ClientID %>").val('');   // Clear textbox
-                $("#<%= txtPreviousEndDate.ClientID %>").focus();   // Focus textbox
-                return false;
-            }
-
-            return true;
         }
+    });
 
-        function validateCurrentDates() {
+   // Current End Date
+    var currentEndPicker = flatpickr("#<%= txtCurrentEndDate.ClientID %>", {
+        dateFormat: "m/d/Y",
+        maxDate: "today",
+        allowInput: true
+    });
 
-            var startDate = document.getElementById('<%= txtCurrentStartDate.ClientID %>').value;
-             var endDate = document.getElementById('<%= txtCurrentEndDate.ClientID %>').value;
-             var lblMessage = document.getElementById("<%=lblMessage.ClientID%>");
-             if (startDate === "" || endDate === "") {
-                 alert("Both Start Date and End Date are required.");
-                 return false;
-             }
+    // Current Start Date
+           flatpickr("#<%= txtCurrentStartDate.ClientID %>", {
+               dateFormat: "m/d/Y",
+               maxDate: "today",
+               allowInput: true,
 
-             var start = new Date(startDate);
-             var end = new Date(endDate);
+               onChange: function (selectedDates) {
 
-             if (end < start) {
-                 lblMessage.innerHTML = "End Date cannot be earlier than Start Date.";
-                 lblErrorMsg.style.color = "red";
-                 OpenMessagePopup();
-                 $("#<%= txtCurrentEndDate.ClientID %>").val('');   // Clear textbox
-                 $("#<%= txtCurrentEndDate.ClientID %>").focus();
-                return false;
-            }
+                   if (selectedDates.length > 0) {
 
-            return true;
-        }
+                       var currentStartDate = selectedDates[0];
+
+                       currentEndPicker.set("minDate", currentStartDate);
+
+                       var currentEndDate = currentEndPicker.selectedDates[0];
+
+                       if (currentEndDate && currentEndDate < currentStartDate) {
+                           currentEndPicker.clear();
+                       }
+                   }
+               }
+           });
+
+       });
+
+       
+
     </script>
 
 </asp:Content>

@@ -199,7 +199,13 @@ namespace ClientMeetingAgenda
             }
             Page.MaintainScrollPositionOnPostBack = true;
         }
-
+        protected void ddlCurrentBillingRates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCurrentBillingRates.SelectedValue == "Yes")
+                rateChangesMsg.Style["display"] = "block";
+            else
+                rateChangesMsg.Style["display"] = "none";
+        }
         private void AssignTextBox()
         {
             if (Session["ssnMAID"] != null)
@@ -230,7 +236,8 @@ namespace ClientMeetingAgenda
                     ddlClientNo.SelectedValue = dtMaster.Rows[0]["ClientNo"].ToString().Trim().ToString().Trim();
                     ddlClientName.SelectedValue = dtMaster.Rows[0]["ClientNo"].ToString().Trim().ToString().Trim();
                     txtMeetingDate.Text = dtMaster.Rows[0]["MeetingDate"].ToString().Trim();
-                    txtReportDate.Text= dtMaster.Rows[0]["ReportDate"].ToString().Trim();
+                    //txtReportDate.Text= dtMaster.Rows[0]["ReportDate"].ToString().Trim();
+                    txtReportDate.Text = Convert.ToDateTime(dtMaster.Rows[0]["ReportDate"]).ToString("MM/dd/yyyy").Replace("-","/");
 
                     txtAcctExeId.Text = dtMaster.Rows[0]["AccExecID"].ToString().Trim();
                     txtAccountExecutiveName.Text = dtMaster.Rows[0]["AccExecName"].ToString().Trim();
@@ -1702,30 +1709,34 @@ namespace ClientMeetingAgenda
         protected void btnAddSignature_Click(object sender, EventArgs e)
         {
 
+            // If all fields are empty, do not add row
+            if (string.IsNullOrWhiteSpace(txtPatient.Text) &&
+                string.IsNullOrWhiteSpace(txtSignature.Text) &&
+                string.IsNullOrWhiteSpace(txtFacility.Text))
+            {
+                return;
+            }
 
             if (Session["dtSignature"] == null)
             {
                 AssignTextBox();
             }
+
             DataTable dt = SignatureTable;
-            
+
             int id = dt.Rows.Count == 0 ? 1 : Convert.ToInt32(dt.Compute("MAX(ID)", "")) + 1;
 
             dt.Rows.Add(
                 id,
-                //Session["ssnMAID"] != null ? int.Parse(Session["ssnMAID"].ToString().Trim()) : 0,
                 txtRun.Text = id.ToString(),
                 txtPatient.Text.Trim(),
                 txtSignature.Text.Trim(),
                 txtFacility.Text.Trim()
-                
             );
 
             SignatureTable = dt;
             SignatureBindGrid();
             SignatureClearFields();
-
-
         }
 
         private void SignatureClearFields()
@@ -1737,7 +1748,30 @@ namespace ClientMeetingAgenda
 
         }
 
-       
+        //ddlPersonnelChanges_SelectedIndexChanged
+        protected void ddlPersonnelChanges_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlPersonnelChanges.SelectedValue == "Yes")
+            {
+                txtChief.ReadOnly = false;
+                txtFiscalOfficer.ReadOnly = false;
+                txtAuthorizedOfficial1.ReadOnly = false;
+                txtAuthorizedOfficial2.ReadOnly = false;
+                txtChief.Enabled = true;
+                txtFiscalOfficer.Enabled = true;
+                txtAuthorizedOfficial1.Enabled = true;
+                txtAuthorizedOfficial2.Enabled = true;
+            }
+            
+            else
+            {
+                txtChief.ReadOnly = true;
+                txtFiscalOfficer.ReadOnly = true;
+                txtAuthorizedOfficial1.ReadOnly = true;
+                txtAuthorizedOfficial2.ReadOnly = true;
+            }
+                
+        }
     }
 }
 
