@@ -1137,7 +1137,7 @@
                                                      <asp:DropDownList ID="ddlEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">                                                         
                                                      </asp:DropDownList>
                                                  </td> 
-                                                 <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control form_datetime" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
+                                                 <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control datepicker" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                  <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off" ></asp:TextBox>
                                                  <td style="vertical-align:middle">
                                                      <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
@@ -1188,7 +1188,7 @@
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                      </asp:DropDownList>
                                                      </td>
-                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control form_datetime" AutoPostBack="true" onchange="showLoader()" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
+                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control datepicker" AutoPostBack="true"  runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
                                                
                                                  <td> <asp:TextBox ID="txtMonthEndReportByWho" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                     
