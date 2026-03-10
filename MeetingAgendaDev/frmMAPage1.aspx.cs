@@ -1304,9 +1304,10 @@ namespace ClientMeetingAgenda
             string comp_id=ddlClientNo.SelectedValue.ToString();
             string pre_startDate=txtPreviousStartDate.Text;
             string pre_endDate=txtPreviousEndDate.Text;
+            string pre_reportType = ddlPreviousReportType.Text;
            /// string transportValue = txtPrevTransports.Text;
            // {
-                var previousRecord = GetClientReviewData(comp_id, pre_startDate, pre_endDate);
+                var previousRecord = GetClientReviewData(comp_id, pre_startDate, pre_endDate, pre_reportType);
                 txtPrevTransports.Text = previousRecord["Transports"].ToString();
                 txtPrevCharges.Text = previousRecord["Charges"].ToString();
                 txtPrevRevenue.Text = previousRecord["Revenue"].ToString();
@@ -1333,7 +1334,8 @@ namespace ClientMeetingAgenda
             string comp_id = ddlClientNo.SelectedValue.ToString();
             string cur_startDate = txtCurrentStartDate.Text;
             string cur_endDate = txtCurrentEndDate.Text;
-            var CurrentRecord = GetClientReviewData(comp_id, cur_startDate, cur_endDate);
+            string cur_reportType = ddlCurrentReportType.Text;
+            var CurrentRecord = GetClientReviewData(comp_id, cur_startDate, cur_endDate, cur_reportType);
             txtCurrTransports.Text = CurrentRecord["Transports"].ToString();
             txtCurrCharges.Text = CurrentRecord["Charges"].ToString();
             txtCurrRevenue.Text = CurrentRecord["Revenue"].ToString();
@@ -1352,58 +1354,67 @@ namespace ClientMeetingAgenda
             txtMileage.Text = GetCurrentBillingRateValue[0][6];
             rdolstNonTransport.Text = GetCurrentBillingRateValue[0][8];
         }
-        public static Dictionary<string, string> GetClientReviewData(string companyID, string startDate, string endDate)
+        public static Dictionary<string, string> GetClientReviewData(string companyID, string startDate, string endDate, string reportType)
         {
             var result = new Dictionary<string, string>();
 
             string startDateFormatted = startDate.Replace("/", "-");
             string endDateFormatted = endDate.Replace("/", "-");
+            string sqlCmdProcedure = "";
 
             string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ToString();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                using (SqlCommand cmd = new SqlCommand("[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetClientReviewFormDetails]", connection))
+                if(reportType == "Date of Service")
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 360;
-                    cmd.Parameters.AddWithValue("@CompanyKey", companyID);
-                    cmd.Parameters.AddWithValue("@Period1BeginDate", startDateFormatted);
-                    cmd.Parameters.AddWithValue("@Period1EndDate", endDateFormatted);
-
-                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    sqlCmdProcedure = "[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetClientReviewFormDetails_DOS]";
+                }
+                else if (reportType == "Date of Entry")
+                {
+                    sqlCmdProcedure = "[MEDI-SQL01].[CustomerPortal].[dbo].[spCMA_GetClientReviewFormDetails_DOE]";
+                }
+                    using (SqlCommand cmd = new SqlCommand(sqlCmdProcedure, connection))
                     {
-                        if (rdr.Read())
-                        {
-                            result["Transports"] = ((long)Convert.ToDouble(rdr["Runs_Prev"])).ToString("N0", new System.Globalization.CultureInfo("en-US"));
-                            result["Charges"] = CleanedVersionOfValues(rdr["Charges_Prev"]);
-                            result["Revenue"] = CleanedVersionOfValues(rdr["Payments_Prev"]);
-                            result["Adjustments"] = CleanedVersionOfValues(rdr["Adjustments_Prev"]);
-                            result["WriteOffs"] = CleanedVersionOfValues(rdr["WriteOffs_Prev"]);
-                            result["Refunds"] = CleanedVersionOfValues(rdr["Refunds_Prev"]);
-                            result["RevenuePerTransport"] = CleanedVersionOfValues(rdr["RPT_Prev"]);
-                            result["CollectionRate"] = CleanedVersionOfValues(rdr["Collection_Rate_Prev"], removeDecimal: false, type: "PERCENTAGE");
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 360;
+                        cmd.Parameters.AddWithValue("@CompanyKey", companyID);
+                        cmd.Parameters.AddWithValue("@Period1BeginDate", startDateFormatted);
+                        cmd.Parameters.AddWithValue("@Period1EndDate", endDateFormatted);
 
-                            result["RunsReviewed"] = rdr["TotalRuns"].ToString();
-                            result["RunsNotMet"] = rdr["RunsNotMet"].ToString();
-                        }
-                        else
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
                         {
-                            result["Transports"] = "0";
-                            result["Charges"] = "$0";
-                            result["Revenue"] = "$0";
-                            result["Adjustments"] = "$0";
-                            result["WriteOffs"] = "$0";
-                            result["Refunds"] = "$0";
-                            result["RevenuePerTransport"] = "$0";
-                            result["CollectionRate"] = "0 %";
+                            if (rdr.Read())
+                            {
+                                result["Transports"] = ((long)Convert.ToDouble(rdr["Runs_Prev"])).ToString("N0", new System.Globalization.CultureInfo("en-US"));
+                                result["Charges"] = CleanedVersionOfValues(rdr["Charges_Prev"]);
+                                result["Revenue"] = CleanedVersionOfValues(rdr["Payments_Prev"]);
+                                result["Adjustments"] = CleanedVersionOfValues(rdr["Adjustments_Prev"]);
+                                result["WriteOffs"] = CleanedVersionOfValues(rdr["WriteOffs_Prev"]);
+                                result["Refunds"] = CleanedVersionOfValues(rdr["Refunds_Prev"]);
+                                result["RevenuePerTransport"] = CleanedVersionOfValues(rdr["RPT_Prev"]);
+                                result["CollectionRate"] = CleanedVersionOfValues(rdr["Collection_Rate_Prev"], removeDecimal: false, type: "PERCENTAGE");
 
-                            result["RunsReviewed"] = "0";
-                            result["RunsNotMet"] = "0";
+                                result["RunsReviewed"] = rdr["TotalRuns"].ToString();
+                                result["RunsNotMet"] = rdr["RunsNotMet"].ToString();
+                            }
+                            else
+                            {
+                                result["Transports"] = "0";
+                                result["Charges"] = "$0";
+                                result["Revenue"] = "$0";
+                                result["Adjustments"] = "$0";
+                                result["WriteOffs"] = "$0";
+                                result["Refunds"] = "$0";
+                                result["RevenuePerTransport"] = "$0";
+                                result["CollectionRate"] = "0 %";
+
+                                result["RunsReviewed"] = "0";
+                                result["RunsNotMet"] = "0";
+                            }
                         }
                     }
-                }
             }
 
             return result;
