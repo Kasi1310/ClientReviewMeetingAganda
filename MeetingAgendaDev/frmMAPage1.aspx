@@ -1318,7 +1318,7 @@
                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                          <thead>
                                              <tr>
-                                                 <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Signature </th>
+                                                 <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">SIGNATURE </th>
                                              </tr>
                                          </thead>
                                          <tbody class="pdf-exclude">
