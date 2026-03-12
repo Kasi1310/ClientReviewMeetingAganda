@@ -414,7 +414,9 @@ namespace ClientMeetingAgenda
                 clsSendMail objclsSendMail = new clsSendMail();
                 string ToMailID = ConfigurationManager.AppSettings["MeetingAgenda.pdf.mail"].ToString();
                 string Attachement = "";
-                Attachement = ConfigurationManager.AppSettings["upload.file.path"].ToString() + ds.Tables[0].Rows[0]["FileName"].ToString().Trim();
+                //e.CommandArgument.ToString();
+                //Attachement = ConfigurationManager.AppSettings["upload.file.path"].ToString() + ds.Tables[0].Rows[0]["FileName"].ToString().Trim();
+                Attachement =  ds.Tables[0].Rows[0]["FileName"].ToString().Trim();
 
                 objclsSendMail.SendMail(ToMailID, "", ""
                     , ds.Tables[0].Rows[0]["ClientNo"].ToString().Trim() + "_" + ds.Tables[0].Rows[0]["ClientName"].ToString().Trim() + "_" + "Client Review Meeting Agenda"

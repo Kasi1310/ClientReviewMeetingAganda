@@ -97,7 +97,8 @@
             }
            .datepicker{
                 background-color:#ffffff !important;
-            }
+            }    
+           
     </style>
     
    
@@ -165,7 +166,7 @@
                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                          <thead>
                              <tr>
-                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT# <span class="text-danger">*</span></th>
+                                 <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT # <span class="text-danger">*</span></th>
                                  <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT NAME <span class="text-danger">*</span></th>
                                  <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">MEETING DATE <span class="text-danger">*</span></th>
                                  <th colspan="3" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">REPORT DATE </th>
@@ -988,8 +989,8 @@
                                             <tr>
                                                 <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Chief</th>
                                                 <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Fiscal Officer</th>
-                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Authorized Official# 1</th> 
-                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Authorized Official# 2</th> 
+                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Authorized Official #1</th> 
+                                                <th colspan="2" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">Authorized Official #2</th> 
                                             </tr>
                                         
 
@@ -1335,7 +1336,7 @@
                                                   <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtSignature" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2" style="padding: inherit !important;"><asp:TextBox  ID="txtFacility" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2" style="padding: inherit !important;"><div class="form-group text-center">
-                                                     <asp:Button ID="Button1" runat="server" Text="Add" OnClick="btnAddSignature_Click"  CssClass="btn btn-info"  />
+                                                     <asp:Button ID="btnAddSignature" runat="server" Text="Add" OnClientClick="return AddRunValidation()" OnClick="btnAddSignature_Click"  CssClass="btn btn-info"  />
                    
                                                  </div></td>
                                                   <td colspan="2"  style="padding: inherit !important;"><div class="form-group text-center" >
@@ -1360,11 +1361,11 @@
                                             OnRowDeleting="gvSignature_RowDeleting">
 
                                             <Columns>
-                                                <asp:BoundField DataField="ID" HeaderText="Run" />
-                                                <asp:BoundField DataField="Patient" HeaderText="Patient" />
-                                                <asp:BoundField DataField="Signature" HeaderText="Crew" />
-                                                <asp:BoundField DataField="Facility" HeaderText="Facility" />
-                                                <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
+                                                <asp:BoundField DataField="ID" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
+                                                <asp:BoundField DataField="Patient" HeaderText="Patient" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
+                                                <asp:BoundField DataField="Signature" HeaderText="Crew" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
+                                                <asp:BoundField DataField="Facility" HeaderText="Facility" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
+                                                <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
                                             </Columns>
                                         </asp:GridView>
 
@@ -1393,7 +1394,7 @@
                                              <tr>
                                                   <td>                                                    
                                                      <div>
-                                                         <asp:RadioButtonList ID="rdolstCRI" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal">
+                                                         <asp:RadioButtonList ID="rdolstCRI" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal" RepeatLayout="Table">
                                                              <asp:ListItem Value="Quarterly">Quarterly<span></span></asp:ListItem>
                                                              <asp:ListItem Value="Semi-Annual">Semi-Annual<span></span></asp:ListItem>
                                                              <asp:ListItem Value="Yearly">Yearly<span></span></asp:ListItem>
@@ -1526,7 +1527,7 @@
         <div class="modal-content !important">
             <div class="col-lg-12 container rounded border-info border-5" style="padding-left: 0px; padding-right: 0px;">
                 <div class="text-lg-left bg-info form-group text-white" style="margin-top: -1px; margin-left: -1px;">
-                    <b>Alert Message</b>
+                    <b>Notification</b>
                 </div>
                 <div class="col-lg-12 form-group">
                     <asp:Label ID="lblMessage" runat="server" Style="color: green; font-weight: bold;"></asp:Label>
@@ -1546,7 +1547,7 @@
         <div class="modal-content !important">
             <div class="col-lg-12 container rounded border-info border-5" style="padding-left: 0px; padding-right: 0px;">
                 <div class="text-lg-left bg-info form-group text-white" style="margin-top: -1px; margin-left: -1px;">
-                    <b>Alert Message</b>
+                    <b>Notification</b>
                 </div>
                 <div class="col-lg-12 form-group">
                     <label id="lblErrorMsg" style="font-weight: bold;"></label>
@@ -1593,7 +1594,7 @@
     <div id="divLoading" class="spinner-border text-dark" role="status" style="float: right; display: none;">
         <span class="sr-only">Loading...</span>
     </div>
-
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="text/javascript">
         function OpenMessagePopup() {
@@ -1764,6 +1765,7 @@
 
             if (ddlClientNo.value == "0") {
                 //alert("Select Client#");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Client#";
                 OpenAlertPopup();
                 ddlClientNo.focus();
@@ -1771,6 +1773,7 @@
             }
             if (ddlClientName.value == "0") {
                 //alert("Select Client Name");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Client Name";
                 OpenAlertPopup();
                 ddlClientName.focus();
@@ -1778,6 +1781,7 @@
             }
             if (txtMeetingDate.value.trim() == "") {
                 //alert("Enter Meeting Date");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Enter Meeting Date";
                 OpenAlertPopup();
                 txtMeetingDate.focus();
@@ -1785,12 +1789,14 @@
             }
 
             if (txtMeetingDate.value == "") {
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Meeting Date";
                 OpenAlertPopup();
                 txtMeetingDate.focus();
                 return false;
             }
             if (ddlMeetingType.value == "0") {
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Meeting Type";
                 OpenAlertPopup();
                 ddlMeetingType.focus();
@@ -1798,6 +1804,7 @@
             }
             if (gvAttendees == null || gvAttendees.rows.length == 1 || (gvAttendees.rows.length == 2 && gvAttendees.rows[1].cells.length == 1)) {
                 //alert("Enter Attendees Invited");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Enter Attendees Invited";
                 OpenAlertPopup();
                 txtName.focus();
@@ -1806,6 +1813,7 @@
 
             if (!RadioValidate(rdolstCRI)) {
                 //alert("Select Client Review Intervals");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Client Review Intervals";
                 OpenAlertPopup();
                 document.getElementById("divIsTraningPending").scrollIntoView();
@@ -1858,6 +1866,7 @@
 
             if (ddlClientNo.value == "0") {
                 //alert("Select Client#");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Client#";
                 OpenAlertPopup();
                 ddlClientNo.focus();
@@ -1865,6 +1874,7 @@
             }
             if (ddlClientName.value == "0") {
                 //alert("Select Client Name");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Client Name";
                 OpenAlertPopup();
                 ddlClientName.focus();
@@ -1872,6 +1882,7 @@
             }
             if (txtMeetingDate.value.trim() == "") {
                 //alert("Enter Meeting Date");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Enter Meeting Date";
                 OpenAlertPopup();
                 txtMeetingDate.focus();
@@ -1879,12 +1890,14 @@
             }
 
             if (txtMeetingDate.value == "") {
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Meeting Date";
                 OpenAlertPopup();
                 txtMeetingDate.focus();
                 return false;
             }
             if (ddlMeetingType.value == "0") {
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Select Meeting Type";
                 OpenAlertPopup();
                 ddlMeetingType.focus();
@@ -1892,6 +1905,7 @@
             }
             if (gvAttendees == null || gvAttendees.rows.length == 1 || (gvAttendees.rows.length == 2 && gvAttendees.rows[1].cells.length == 1)) {
                 //alert("Enter Attendees Invited");
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Enter Attendees Invited";
                 OpenAlertPopup();
                 txtName.focus();
@@ -1925,19 +1939,22 @@
 
             for (var i = 0; i < fields.length; i++) {
                 if (fields[i].value.trim() == "") {
-                    lblErrorMsg.innerHTML = "Please fill all fields";
+                    lblErrorMsg.style.textAlign = "center";
+                    lblErrorMsg.innerHTML = "Please provide all attendee details before proceeding.";
                     OpenAlertPopup();
                     fields[i].focus();
                     return false;
                 }
             }
             if (!ValidatePhone(txtPhone.value.trim())) {
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Please enter a valid phone number";
                 OpenAlertPopup();
                 txtPhone.focus();
                 return false;
             }
             if (!ValidateEmail(txtEmail.value.trim())) {
+                lblErrorMsg.style.textAlign = "center";
                 lblErrorMsg.innerHTML = "Please enter the valid Email";
                 OpenAlertPopup();
                 txtEmail.focus();
@@ -1984,7 +2001,7 @@
     </script>
 
     <script type="text/javascript">
-
+       
         function showLoader() {
             $('#loader').css('display', 'flex');
         }
@@ -2055,12 +2072,16 @@
             $clonedDoc.find('.meeting-agenda-form');
             $clonedDoc.find('.pdf-exclude').remove();
             $clonedDoc.find('script').remove();
+            $clonedDoc.find('a').filter(function () {
+                return $(this).text().trim() === 'Edit' || $(this).text().trim() === 'Delete';
+            }).remove();           
 
+            $clonedDoc.find('#rdolstCRI').css('text-align', 'center');
             $clonedDoc.find('.col-lg-12').each(function () {
                 this.style.setProperty('padding-right', '1px', 'important');
                 this.style.setProperty('padding-left', '1px', 'important');
             });
-
+            
             $clonedDoc.find('[disabled]').removeAttr('disabled');
 
 
@@ -2985,7 +3006,23 @@
        
 
     </script>
+   <script type="text/javascript">
+       function AddRunValidation() {
+           var txtPatient = document.getElementById("<%=txtPatient.ClientID %>");
+           var txtSignature = document.getElementById("<%=txtSignature.ClientID %>");
+           var txtFacility = document.getElementById("<%=txtFacility.ClientID%>");
 
+           if (txtPatient.value.trim() == "" && txtSignature.value.trim() == "" && txtFacility.value.trim() == "") {
+               lblErrorMsg.style.textAlign = "center";
+               lblErrorMsg.innerHTML = "Please provide all run details before proceeding.";
+               OpenAlertPopup();              
+               return false;
+            }          
+            
+            return true;
+
+        }
+   </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphReferal" runat="server">
  

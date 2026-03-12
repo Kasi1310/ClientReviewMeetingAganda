@@ -185,6 +185,8 @@ namespace ClientMeetingAgenda
                 objclsEPCRMaster.LoadEPCRDDL(ddlEPCR);
 
                 objclsMeetingAgenda = new clsMeetingAgenda();
+               // txtReportDate.Text = System.DateTime.Now.ToString("MM/dd/yyyy");
+               
                 //objclsMeetingAgenda.LoadStateDDL(ddlBillingState);
                 //objclsMeetingAgenda.LoadStateDDL(ddlMailingState);
                 //objclsMeetingAgenda.LoadStateDDL(ddlPhysicalLocationState);
@@ -851,9 +853,9 @@ namespace ClientMeetingAgenda
                         txtAccExecEmailID.Text = match[4];
                         txtAccExecPhone.Text = match[5];
                         string lastloginDate = match[6];
-                        txtLastLoginDate.Text = lastloginDate.Replace('-', '/');
+                        txtLastLoginDate.Text = lastloginDate?.Replace('-', '/') ?? "";
                         string renewalDate = match[7];
-                        txtRenewalDate.Text = renewalDate.Replace('-', '/');
+                        txtRenewalDate.Text = renewalDate.Replace('-', '/') ?? "";
                         string expiryDate = match[8];
                         string feeRate = $"{match[9]}";
                         txtCurrentRate.Text = feeRate;
@@ -1178,16 +1180,188 @@ namespace ClientMeetingAgenda
                 }
             }
         }
-       
+       public void ClearFieldsData()
+        {
+            txtMeetingDate.Text = "";
+            txtReportDate.Text = "";
+
+            txtAcctExeId.Text = "";
+            txtAccountExecutiveName.Text = "";
+            txtAccExecEmailID.Text = "";
+            txtAccExecPhone.Text = "";
+            ddlMeetingType.SelectedIndex = 0;
+
+            txtName.Text = "";
+            txtTitle.Text = "";
+            txtPhone.Text = "";
+            txtEmail.Text = "";
+
+            gvAttendees.DataSource = null;
+            gvAttendees.DataBind();
+
+           
+
+            txtPreviousStartDate.Text = "";
+            txtPreviousEndDate.Text = "";
+            ddlPreviousReportType.SelectedIndex = 0;
+
+            txtCurrentStartDate.Text = "";
+            txtCurrentEndDate.Text = "";
+            ddlCurrentReportType.SelectedIndex = 0;
+
+            txtPrevTransports.Text = "";
+            txtPrevCharges.Text = "";
+            txtPrevRevenue.Text = "";
+            txtPrevAdjust.Text = "";
+            txtPrevWriteOff.Text = "";
+            txtPrevRefund.Text = "";
+            txtPrevRPT.Text = "";
+            txtPrevCollRate.Text = "";
+
+            txtCurrTransports.Text = "";
+            txtCurrCharges.Text = "";
+            txtCurrRevenue.Text = "";
+            txtCurrAdjust.Text = "";
+            txtCurrWriteOff.Text = "";
+            txtCurrRefund.Text = "";
+            txtCurrRPT.Text = "";
+            txtCurrCollRate.Text = "";
+
+            txtClientReviewComments.Text = "";
+            txtAccountExecutiveComments.Text = "";
+
+            ddlAgingReview.SelectedIndex = 0;
+            ddlDiscussedwithARTeam.SelectedIndex = 0;
+
+            txtAgingReviewComments.Text = "";
+            txtARComments.Text = "";
+
+            txtCollections.Text = "";
+            txtBillingPolicy.Text = "";
+            txtBillingPolicyComments.Text = "";
+            txtBillingPolicyMainIssueComments.Text = "";
+
+            ddlBillingRateReviewed.SelectedIndex = 0;
+            txtLastRateChange.Text = "";
+            txtBillingRatesReviewedComments.Text = "";
+            txtBillingRatesReviewedMainIssueComments.Text = "";
+
+            ddlCurrentBillingRates.SelectedIndex = 0;      
+            txtBLS.Text = "";                    
+            txtBLSNE.Text = "";                    
+            txtALS.Text = "";                    
+            txtALSNE.Text = "";                      
+            txtALS2.Text = "";                      
+            txtMileage.Text = "";                   
+            txtLastRateChange.Text = "";            
+            rdolstNonTransport.SelectedValue = "0";
+            txtContractStatus.Text = "";
+            txtCBRComments.Text = "";
+
+            ddlUCR.SelectedIndex = 0;
+            txtUCRComments.Text = "";
+            txtUCRMainIssueComments.Text = "";
+
+            ddlFacilityTransports.Text = "";
+            txtFacilityTransportsComments.Text = "";
+            txtCommentsOnBillingRateMainIssue.Text = "";
+
+            ddlNonEmergenctTranports.SelectedIndex = 0;
+            ddlIsClientAwareofPriorAuthorizationRequirements.SelectedIndex = 0;
+            txtClientAwareComments.Text = "";
+            ddlIsTraningNeeded.SelectedIndex = 0;
+
+            ddlContractFacilityBilling.SelectedIndex = 0;
+            ddlSkilledNursingFacilities.SelectedIndex = 0;
+            ddlUpdatedContracts.SelectedIndex = 0;
+            ddlAttached.SelectedIndex = 0;
+            ddlFacilityCurrently.SelectedIndex = 0;
+            ddlToBeBilled.SelectedIndex = 0;
+            ddlWithTheFacility.SelectedIndex = 0;
+
+            txtContractStatus.Text = "";
+            txtRenewalDate.Text = "";
+            txtCurrentRate.Text = "";
+            ddlContractCurrent.SelectedIndex = 0;
+            txtCurrentContractStatusComments.Text = "";
+
+           
+
+            ddlPersonnelChanges.SelectedIndex = 0;
+            txtChief.Text = "";
+            txtFiscalOfficer.Text = "";
+            txtAuthorizedOfficial1.Text = "";
+            txtAuthorizedOfficial2.Text = "";
+
+            ddlClosedBusinesses.SelectedIndex = 0;
+            ddlNewBusiness.SelectedIndex = 0;
+            txtDemographicChangesComments.Text = "";
+            txtDemographicChangesMainIssueComments.Text = "";
+
+            ddlUsage.SelectedIndex = 0;
+            txtLastLoginDate.Text = "";
+            ddlAlertsReceived.SelectedIndex = 0;
+            ddlOIG_Exclsuionary.SelectedIndex = 0;
+            txtReceiveMedicountReport.Text = "";
+
+            ddlEPCR.SelectedIndex = 0;
+            txtLastReconciliationDate.Text = "";
+            txtByWhom.Text = "";
+            ddlRunReconciliationDone.SelectedIndex = 0;
+
+            ddlStatementReconciliation.SelectedIndex = 0;
+            txtDateofMonthEndReconilations.Text = "";
+            txtMonthEndReportByWho.Text = "";
+            txtMonthEndReportHowOften.Text = "";
+            ddlTraningCompleted.SelectedIndex = 0;
+            ddlIsTraningPending.SelectedIndex = 0;
+
+
+            ddlPatientSignature.SelectedIndex = 0;
+            ddlPatientSignatureEPCR.SelectedIndex = 0;
+            ddlReceivingFacilitySignature.SelectedIndex = 0;
+            ddlReceivingFacilitySignatureEPCR.SelectedIndex = 0;
+            ddlCrewSignatureEPCR.SelectedIndex = 0;
+            ddlCrewSignature.SelectedIndex = 0;
+
+            txtSignatureCaptureComments.Text = "";
+
+            txtPatient.Text = "";
+            txtSignature.Text = "";
+            txtFacility.Text = "";
+            gvSignature.DataSource = null;
+            gvSignature.DataBind();
+
+            rdolstCRI.ClearSelection();
+            txtNRScheduleDate.Text = "";
+            txtChangeInZOHO.Text = "";
+
+            // Physical and Billing Address are Same
+            txtBillingStreet.Text = "";
+            txtBillingCity.Text = "";
+            txtBillingState.Text = "";
+            txtBillingZip.Text = "";
+
+            txtMailingStreet.Text = "";
+            txtMailingCity.Text = "";
+            txtMailingState.Text = "";
+            txtMailingZip.Text = "";
+
+            txtPhysicalLocationStreet.Text = "";
+            txtPhysicalLocationCity.Text = "";
+            txtPhysicalLocationState.Text = "";
+            txtPhysicalLocationZip.Text = "";
+        }
         protected void ddlClientNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClearFieldsData();
             ddlClientName.SelectedValue = ddlClientNo.SelectedValue;
 
             string company_Id = ddlClientNo.SelectedItem.Text;// ddlClientName.SelectedValue;
 
             // Customer Portal (ESO) Accounts Data
             GetClientInfo(company_Id);
-
+            txtReportDate.Text = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             //return result;
 
             txtMeetingDate.Focus();
@@ -1745,6 +1919,7 @@ namespace ClientMeetingAgenda
                 string.IsNullOrWhiteSpace(txtSignature.Text) &&
                 string.IsNullOrWhiteSpace(txtFacility.Text))
             {
+                
                 return;
             }
 

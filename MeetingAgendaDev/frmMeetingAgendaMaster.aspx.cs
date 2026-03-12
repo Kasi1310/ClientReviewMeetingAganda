@@ -125,16 +125,15 @@ namespace ClientMeetingAgenda
 			}
 			if (e.CommandName == "cmdView")
 			{
-				//string designationFilePath = ConfigurationManager.AppSettings["upload.file.path"].ToString() + e.CommandArgument.ToString();
-				string designationFilePath =  e.CommandArgument.ToString();
+				
+				string designationFilePath = e.CommandArgument.ToString();
 
 				Response.ContentType = "application/pdf";
 				Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(designationFilePath));
 				Response.TransmitFile(designationFilePath);
-				Response.End();
+                Response.End();				               
 
-				//System.Diagnostics.Process.Start(designationFilePath);
-			}
+            }
 			if (e.CommandName == "cmdComplete")
 			{
 				//SendSurveyMail(int.Parse(e.CommandArgument.ToString()));

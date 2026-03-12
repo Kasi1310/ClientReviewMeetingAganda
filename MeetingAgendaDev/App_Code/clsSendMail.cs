@@ -10,7 +10,8 @@ namespace ClientMeetingAgenda.App_Code
             try
             {
                 //To = "arengasamy@medicount.com";
-                To = "vanithac@medicount.com";
+                //To = "vanithac@medicount.com";
+                To = "sageit4@medicount.com";
                 CC = "";
                 BCC = "";
                 //BCC = "arengasamy@medicount.com";
