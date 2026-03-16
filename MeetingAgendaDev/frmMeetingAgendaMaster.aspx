@@ -50,13 +50,13 @@
         <div class="col-lg-12">
             <div class="col-lg-3 form-group">
                 Client#: 
-                <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" onchange="showLoader()" OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-lg-3 form-group">
                 Client Name:  
-                <asp:DropDownList ID="ddlClientName" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlClientName" runat="server" AutoPostBack="true" CssClass="form-control" onchange="showLoader()" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged">
                     <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                 </asp:DropDownList>
             </div>
@@ -408,26 +408,18 @@
                 //    Swal.close();
                 //}
             });
-            <%--$.ajax({
-                type: "POST",
-                url: "frmInnerMAPage1.aspx/UpdateMeetingCompleteStatus",
-                data: JSON.stringify({ MAID: document.getElementById("<%=hdnMeetingAgendaID.ClientID %>").value, UserName: document.getElementById("<%=hdnUserName.ClientID %>").value, From: "Web" }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    if (response.d == "") {
-                        window.location.replace("frmMeetingAgendaMaster.aspx");
-                    }
-                    else {
-                        document.getElementById("<%=lblPopUpMessage.ClientID%>").innerHTML = response.d;
-                        OpenMessagePopup();
-                    }
-                }
-            });--%>
+            
         }
         function SubmitMessageOk() {
             alert("1");
             window.location.replace("frmMeetingAgendaMaster.aspx");
+        }
+        function showLoader() {
+            $('#loader').css('display', 'flex');
+        }
+
+        function hideLoader() {
+            $('#loader').css('display', 'none');
         }
 
     </script>

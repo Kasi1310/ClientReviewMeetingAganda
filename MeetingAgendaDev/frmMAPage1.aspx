@@ -178,6 +178,7 @@
                                       <asp:DropDownList ID="ddlClientNo" runat="server" AutoPostBack="true" CssClass="form-control" BackColor="#FFFF99" onchange="showLoader();"  OnSelectedIndexChanged="ddlClientNo_SelectedIndexChanged">
                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                      </asp:DropDownList>
+                                    <asp:Label ID="lblZohoErrorMessage" runat="server" Visible="false" ForeColor="Red" Font-Bold="true"></asp:Label>
                                 
                                  </td>
                                  <td colspan="3">
@@ -2373,7 +2374,7 @@
             clsMeetingAgenda.Mileage = document.getElementById("<%=txtMileage.ClientID %>").value.trim();
             var IsNonTransportddl = document.getElementById("<%=rdolstNonTransport.ClientID %>").value.trim();
             clsMeetingAgenda.IsNonTransport = IsNonTransportddl;
-            clsMeetingAgenda.CBRActionTacken = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
+            clsMeetingAgenda.CBRComments = document.getElementById("<%=txtCBRComments.ClientID %>").value.trim();
 
 
             //UCR (Usual & Customary Rates)

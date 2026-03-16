@@ -239,7 +239,19 @@ namespace ClientMeetingAgenda
                     ddlClientName.SelectedValue = dtMaster.Rows[0]["ClientNo"].ToString().Trim().ToString().Trim();
                     txtMeetingDate.Text = dtMaster.Rows[0]["MeetingDate"].ToString().Trim();
                     //txtReportDate.Text= dtMaster.Rows[0]["ReportDate"].ToString().Trim();
-                    txtReportDate.Text = Convert.ToDateTime(dtMaster.Rows[0]["ReportDate"]).ToString("MM/dd/yyyy").Replace("-","/");
+                    
+                   // txtReportDate.Text = Convert.ToDateTime(dtMaster.Rows[0]["ReportDate"]).ToString("MM/dd/yyyy").Replace("-","/");
+
+                    DateTime reportDate;
+
+                    if (DateTime.TryParse(dtMaster.Rows[0]["ReportDate"].ToString(), out reportDate))
+                    {
+                        txtReportDate.Text = reportDate.ToString("MM/dd/yyyy");
+                    }
+                    else
+                    {
+                        txtReportDate.Text = "";
+                    }
 
                     txtAcctExeId.Text = dtMaster.Rows[0]["AccExecID"].ToString().Trim();
                     txtAccountExecutiveName.Text = dtMaster.Rows[0]["AccExecName"].ToString().Trim();
@@ -301,7 +313,7 @@ namespace ClientMeetingAgenda
                     txtALS2.Text = dtMaster.Rows[0]["ALS2"].ToString().Trim();
                     txtMileage.Text = dtMaster.Rows[0]["Mileage"].ToString().Trim();
                     rdolstNonTransport.Text = dtMaster.Rows[0]["IsNonTransport"].ToString().Trim();
-                    txtCBRComments.Text = dtMaster.Rows[0]["CBRActionTaken"].ToString().Trim();
+                    txtCBRComments.Text = dtMaster.Rows[0]["CBRComments"].ToString().Trim();
                     //txtCBRComments.Text = dtMaster.Rows[0]["CBRComments"].ToString().Trim();
                     // txtCBRComments.Text
 
@@ -601,7 +613,7 @@ namespace ClientMeetingAgenda
             objclsMeetingAgenda.ClientID= ddlClientName.SelectedValue.Trim();
             objclsMeetingAgenda.ClientName = ddlClientName.Text.Trim();
             objclsMeetingAgenda.MeetingDate = txtMeetingDate.Text.Trim();
-            objclsMeetingAgenda.ReportDate = txtReportDate.Text.Trim();
+            //objclsMeetingAgenda.ReportDate = txtReportDate.Text.Trim();
 
             // Account Executive Info
             objclsMeetingAgenda.AccExecID = Convert.ToInt32(txtAcctExeId.Text);//.ToString();//.ToString().Trim();
@@ -933,131 +945,86 @@ namespace ClientMeetingAgenda
                 string url = $"https://www.zohoapis.com/crm/v8/Accounts/search?criteria=((Account_Type:equals:customer) and (Account_Number:equals:{companyId}))";
                 string zohoData = MakeZohoApiRequest("GET", url, accessToken);
 
-                var jsonObj = JObject.Parse(zohoData);
-                var dataArray = jsonObj["data"]?.ToObject<List<JObject>>();
-                if (dataArray != null && dataArray.Count > 0)
+                if (!string.IsNullOrWhiteSpace(zohoData))
                 {
-                    var contact = dataArray[0];
+                    var jsonObj = JObject.Parse(zohoData);
+                    var dataArray = jsonObj["data"]?.ToObject<List<JObject>>();
+                    if (dataArray != null && dataArray.Count > 0)
+                    {
+                        var contact = dataArray[0];
 
-                    var billing_Policy = contact["Billing_Policy"];
-                    txtBillingPolicy.Text = billing_Policy.ToString();
-                    var collectionValue = contact["Collections"];
-                    txtCollections.Text = collectionValue.ToString();
-                    //var dateofLastRateChange = contact["Last_Rate_Change"];
-                    //txtLastRateChange.Text = dateofLastRateChange.ToString();
-                    var contractStatus = contact["Contract_Status"];
-                    if(contractStatus.ToString() == "Executed")
-                    {
-                        contractStatus = "Active";
-                    }
-                    else if(contractStatus.ToString() == "Expired")
-                    {
-                        contractStatus = "InActive";
-                    }
-                    else
-                    {
+                        var billing_Policy = contact["Billing_Policy"];
+                        txtBillingPolicy.Text = billing_Policy.ToString();
+                        var collectionValue = contact["Collections"];
+                        txtCollections.Text = collectionValue.ToString();
+                        //var dateofLastRateChange = contact["Last_Rate_Change"];
+                        //txtLastRateChange.Text = dateofLastRateChange.ToString();
+                        var contractStatus = contact["Contract_Status"];
+                        if (contractStatus.ToString() == "Executed")
+                        {
+                            contractStatus = "Active";
+                        }
+                        else if (contractStatus.ToString() == "Expired")
+                        {
+                            contractStatus = "InActive";
+                        }
+                        else
+                        {
+                            txtContractStatus.Text = contractStatus.ToString();
+                        }
                         txtContractStatus.Text = contractStatus.ToString();
-                    }
-                    txtContractStatus.Text = contractStatus.ToString();
 
-                    var nextReviewScheduleDate = contact["Next_Review_Date"];
-                    if (nextReviewScheduleDate != null)
-                    {
-                        DateTime dt = Convert.ToDateTime(nextReviewScheduleDate);
-                        txtNRScheduleDate.Text = dt.ToString("MM/dd/yyyy").Replace("-","/");
-                    }
-
-                    string ContactUrl = $"https://www.zohoapis.com/crm/v8/Contacts/search?criteria=(Account_Name:equals:{contact["id"]})";
-                    string zohoContactData = MakeZohoApiRequest("GET", ContactUrl, accessToken);
-                    var jsonContactObj = JObject.Parse(zohoContactData);
-                    var ContactDataArray = jsonContactObj["data"]?.ToObject<List<JObject>>();
-                    if (ContactDataArray != null && ContactDataArray.Count > 0)
-                    {
-                        int i = 1;
-                        int authOfficialCount = 0;
-                        bool chiefSet = false;
-                        bool fiscalOfficerSet = false;
-                        var authorizedOfficialDict = new Dictionary<string, List<string>>();
-
-                        // Chief selection by priority
-                        foreach (var chiefTitle in ZohoChiefList)
+                        var nextReviewScheduleDate = contact["Next_Review_Date"];
+                        if (nextReviewScheduleDate != null)
                         {
-                            // Find the FIRST contact whose title matches this chiefTitle
-                            var match = ContactDataArray.FirstOrDefault(c =>
-                                chiefTitle.Equals(
-                                    (c["Title"]?.ToString() ?? "").Trim(),
-                                    StringComparison.OrdinalIgnoreCase));
-
-                            if (match != null && !chiefSet)
-                            {
-                                string title = match["Title"]?.ToString().ToUpper() ?? "";
-                                string firstName = match["First_Name"]?.ToString().ToUpper() ?? "";
-                                string lastName = match["Last_Name"]?.ToString().ToUpper() ?? "";
-                                string fullName = (firstName + " " + lastName).Trim().ToUpper();
-                                string email = match["Email"]?.ToString() ?? "";
-                                string phone = match["Phone"]?.ToString() ?? "";
-                                string contactId = match["id"]?.ToString() ?? "";
-                                bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
-
-
-                                txtChief.Text = fullName;
-                                result["currentChiefZohoId"] = contactId;
-                                result["currentChiefTitle"] = title;
-                                result["currentChiefName"] = fullName;
-                                result["currentChiefEmail"] = email;
-                                result["currentChiefPhone"] = phone;
-                                chiefSet = true;
-
-                                if (isAuthorized)
-                                {
-                                    authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
-                                                                                    {
-                                                                                        fullName,
-                                                                                        contactId,
-                                                                                        title,
-                                                                                        fullName,
-                                                                                        email,
-                                                                                        phone
-                                                                                    };
-                                    i++;
-                                }
-                                ContactDataArray.Remove(match);
-                                break; // important: stop at first priority match
-                            }
+                            DateTime dt = Convert.ToDateTime(nextReviewScheduleDate);
+                            txtNRScheduleDate.Text = dt.ToString("MM/dd/yyyy").Replace("-", "/");
                         }
 
-
-                        // Fiscal selection by priority
-                        foreach (var fiscalTitle in ZohoFiscalOfficerList)
+                        string ContactUrl = $"https://www.zohoapis.com/crm/v8/Contacts/search?criteria=(Account_Name:equals:{contact["id"]})";
+                        string zohoContactData = MakeZohoApiRequest("GET", ContactUrl, accessToken);
+                        var jsonContactObj = JObject.Parse(zohoContactData);
+                        var ContactDataArray = jsonContactObj["data"]?.ToObject<List<JObject>>();
+                        if (ContactDataArray != null && ContactDataArray.Count > 0)
                         {
-                            // Find the FIRST contact whose title matches this fiscalTitle
-                            var match = ContactDataArray.FirstOrDefault(c =>
-                                fiscalTitle.Equals(
-                                    (c["Title"]?.ToString() ?? "").Trim(),
-                                    StringComparison.OrdinalIgnoreCase));
+                            int i = 1;
+                            int authOfficialCount = 0;
+                            bool chiefSet = false;
+                            bool fiscalOfficerSet = false;
+                            var authorizedOfficialDict = new Dictionary<string, List<string>>();
 
-                            if (match != null && !fiscalOfficerSet)
+                            // Chief selection by priority
+                            foreach (var chiefTitle in ZohoChiefList)
                             {
-                                string title = match["Title"]?.ToString().ToUpper() ?? "";
-                                string firstName = match["First_Name"]?.ToString() ?? "";
-                                string lastName = match["Last_Name"]?.ToString() ?? "";
-                                string fullName = (firstName + " " + lastName).Trim().ToUpper();
-                                string email = match["Email"]?.ToString() ?? "";
-                                string phone = match["Phone"]?.ToString() ?? "";
-                                string contactId = match["id"]?.ToString() ?? "";
-                                bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
+                                // Find the FIRST contact whose title matches this chiefTitle
+                                var match = ContactDataArray.FirstOrDefault(c =>
+                                    chiefTitle.Equals(
+                                        (c["Title"]?.ToString() ?? "").Trim(),
+                                        StringComparison.OrdinalIgnoreCase));
 
-                                txtFiscalOfficer.Text = fullName;
-                                result["currentFiscalZohoId"] = contactId;
-                                result["currentFiscalTitle"] = title;
-                                result["currentFiscalName"] = fullName;
-                                result["currentFiscalEmail"] = email;
-                                result["currentFiscalPhone"] = phone;
-                                fiscalOfficerSet = true;
-
-                                if (isAuthorized)
+                                if (match != null && !chiefSet)
                                 {
-                                    authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
+                                    string title = match["Title"]?.ToString().ToUpper() ?? "";
+                                    string firstName = match["First_Name"]?.ToString().ToUpper() ?? "";
+                                    string lastName = match["Last_Name"]?.ToString().ToUpper() ?? "";
+                                    string fullName = (firstName + " " + lastName).Trim().ToUpper();
+                                    string email = match["Email"]?.ToString() ?? "";
+                                    string phone = match["Phone"]?.ToString() ?? "";
+                                    string contactId = match["id"]?.ToString() ?? "";
+                                    bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
+
+
+                                    txtChief.Text = fullName;
+                                    result["currentChiefZohoId"] = contactId;
+                                    result["currentChiefTitle"] = title;
+                                    result["currentChiefName"] = fullName;
+                                    result["currentChiefEmail"] = email;
+                                    result["currentChiefPhone"] = phone;
+                                    chiefSet = true;
+
+                                    if (isAuthorized)
+                                    {
+                                        authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
                                                                                     {
                                                                                         fullName,
                                                                                         contactId,
@@ -1066,38 +1033,85 @@ namespace ClientMeetingAgenda
                                                                                         email,
                                                                                         phone
                                                                                     };
-                                    if (authOfficialCount == 0)
-                                    {
                                         i++;
                                     }
+                                    ContactDataArray.Remove(match);
+                                    break; // important: stop at first priority match
                                 }
-                                ContactDataArray.Remove(match);
-                                break; // important: stop at first priority match
                             }
-                        }
 
-                        if (authOfficialCount != 2)
-                        {
-                            var match = ContactDataArray
-                            .Where(c => (c["Medicare_Authorized_Official"]?.ToString() ?? "")
-                                .Equals("true", StringComparison.OrdinalIgnoreCase))
-                            .ToList();
 
-                            foreach (var authContact in match)
+                            // Fiscal selection by priority
+                            foreach (var fiscalTitle in ZohoFiscalOfficerList)
                             {
-                                string title = authContact["Title"]?.ToString()?.ToUpper() ?? "";
-                                string firstName = authContact["First_Name"]?.ToString() ?? "";
-                                string lastName = authContact["Last_Name"]?.ToString() ?? "";
-                                string fullName = (firstName + " " + lastName).Trim().ToUpper();
-                                string email = authContact["Email"]?.ToString() ?? "";
-                                string phone = authContact["Phone"]?.ToString() ?? "";
-                                string contactId = authContact["id"]?.ToString() ?? "";
-                                bool isAuthorized = authContact["Medicare_Authorized_Official"] != null && (bool)authContact["Medicare_Authorized_Official"];
+                                // Find the FIRST contact whose title matches this fiscalTitle
+                                var match = ContactDataArray.FirstOrDefault(c =>
+                                    fiscalTitle.Equals(
+                                        (c["Title"]?.ToString() ?? "").Trim(),
+                                        StringComparison.OrdinalIgnoreCase));
 
-
-                                if (isAuthorized)
+                                if (match != null && !fiscalOfficerSet)
                                 {
-                                    authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
+                                    string title = match["Title"]?.ToString().ToUpper() ?? "";
+                                    string firstName = match["First_Name"]?.ToString() ?? "";
+                                    string lastName = match["Last_Name"]?.ToString() ?? "";
+                                    string fullName = (firstName + " " + lastName).Trim().ToUpper();
+                                    string email = match["Email"]?.ToString() ?? "";
+                                    string phone = match["Phone"]?.ToString() ?? "";
+                                    string contactId = match["id"]?.ToString() ?? "";
+                                    bool isAuthorized = match["Medicare_Authorized_Official"] != null && (bool)match["Medicare_Authorized_Official"];
+
+                                    txtFiscalOfficer.Text = fullName;
+                                    result["currentFiscalZohoId"] = contactId;
+                                    result["currentFiscalTitle"] = title;
+                                    result["currentFiscalName"] = fullName;
+                                    result["currentFiscalEmail"] = email;
+                                    result["currentFiscalPhone"] = phone;
+                                    fiscalOfficerSet = true;
+
+                                    if (isAuthorized)
+                                    {
+                                        authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
+                                                                                    {
+                                                                                        fullName,
+                                                                                        contactId,
+                                                                                        title,
+                                                                                        fullName,
+                                                                                        email,
+                                                                                        phone
+                                                                                    };
+                                        if (authOfficialCount == 0)
+                                        {
+                                            i++;
+                                        }
+                                    }
+                                    ContactDataArray.Remove(match);
+                                    break; // important: stop at first priority match
+                                }
+                            }
+
+                            if (authOfficialCount != 2)
+                            {
+                                var match = ContactDataArray
+                                .Where(c => (c["Medicare_Authorized_Official"]?.ToString() ?? "")
+                                    .Equals("true", StringComparison.OrdinalIgnoreCase))
+                                .ToList();
+
+                                foreach (var authContact in match)
+                                {
+                                    string title = authContact["Title"]?.ToString()?.ToUpper() ?? "";
+                                    string firstName = authContact["First_Name"]?.ToString() ?? "";
+                                    string lastName = authContact["Last_Name"]?.ToString() ?? "";
+                                    string fullName = (firstName + " " + lastName).Trim().ToUpper();
+                                    string email = authContact["Email"]?.ToString() ?? "";
+                                    string phone = authContact["Phone"]?.ToString() ?? "";
+                                    string contactId = authContact["id"]?.ToString() ?? "";
+                                    bool isAuthorized = authContact["Medicare_Authorized_Official"] != null && (bool)authContact["Medicare_Authorized_Official"];
+
+
+                                    if (isAuthorized)
+                                    {
+                                        authorizedOfficialDict[$"Authorized Official {i}"] = new List<string>
                                                                                     {
                                                                                         fullName,
                                                                                         contactId,
@@ -1107,77 +1121,88 @@ namespace ClientMeetingAgenda
                                                                                         phone
                                                                                     };
 
-                                    if (authOfficialCount == 0)
-                                    {
-                                        i++;
+                                        if (authOfficialCount == 0)
+                                        {
+                                            i++;
+                                        }
                                     }
                                 }
                             }
+
+                            // Assign authorized official(s) to result
+                            if (authorizedOfficialDict.Count > 0)
+                            {
+                                txtAuthorizedOfficial1.Text = authorizedOfficialDict["Authorized Official 1"][0];
+                                result["currentAuthorized1ZohoId"] = authorizedOfficialDict["Authorized Official 1"][1];
+                                result["currentAuthorizedTitle_1"] = authorizedOfficialDict["Authorized Official 1"][2];
+                                result["currentAuthorizedName_1"] = authorizedOfficialDict["Authorized Official 1"][3];
+                                result["currentAuthorizedEmail_1"] = authorizedOfficialDict["Authorized Official 1"][4];
+                                result["currentAuthorizedPhone_1"] = authorizedOfficialDict["Authorized Official 1"][5];
+
+                                if (authorizedOfficialDict.Count > 1)
+                                {
+                                    txtAuthorizedOfficial2.Text = authorizedOfficialDict["Authorized Official 2"][0];
+                                    result["currentAuthorized2ZohoId"] = authorizedOfficialDict["Authorized Official 2"][1];
+                                    result["currentAuthorizedTitle_2"] = authorizedOfficialDict["Authorized Official 2"][2];
+                                    result["currentAuthorizedName_2"] = authorizedOfficialDict["Authorized Official 2"][3];
+                                    result["currentAuthorizedEmail_2"] = authorizedOfficialDict["Authorized Official 2"][4];
+                                    result["currentAuthorizedPhone_2"] = authorizedOfficialDict["Authorized Official 2"][5];
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Contact Data");
                         }
 
-                        // Assign authorized official(s) to result
-                        if (authorizedOfficialDict.Count > 0)
-                        {
-                            txtAuthorizedOfficial1.Text = authorizedOfficialDict["Authorized Official 1"][0];
-                            result["currentAuthorized1ZohoId"] = authorizedOfficialDict["Authorized Official 1"][1];
-                            result["currentAuthorizedTitle_1"] = authorizedOfficialDict["Authorized Official 1"][2];
-                            result["currentAuthorizedName_1"] = authorizedOfficialDict["Authorized Official 1"][3];
-                            result["currentAuthorizedEmail_1"] = authorizedOfficialDict["Authorized Official 1"][4];
-                            result["currentAuthorizedPhone_1"] = authorizedOfficialDict["Authorized Official 1"][5];
 
-                            if (authorizedOfficialDict.Count > 1)
+                        txtMailingStreet.Text = contact["Mailing_Street"]?.ToString().ToUpper() ?? "";    // MailingStreet
+                        txtMailingCity.Text = contact["Mailing_City1"]?.ToString().ToUpper() ?? "";       // MailingCity
+                        txtMailingState.Text = contact["Mailing_State"]?.ToString().ToUpper() ?? "";      // MailingState
+                        txtMailingZip.Text = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";          // MailingZip
+                        result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";
+
+                        string reviewInterval = contact["Review_Interval"]?.ToString()?.ToLower() ?? string.Empty;
+
+                        if (reviewInterval == "annual" || reviewInterval == "yearly")
+                        {
+                            reviewInterval = "yearly";
+                        }
+                        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                        rdolstCRI.SelectedValue = textInfo.ToTitleCase(reviewInterval.ToLower());  // Review Interval
+
+                        // Tasks
+                        hdnZohoCrmAccountId.Value = contact["id"].ToString();
+                        string TaskUrl = $"https://www.zohoapis.com/crm/v8/Tasks/search?criteria=((What_Id:equals:{contact["id"]})and(Subject:equals:\"follow up\"))&sort_by=Created_Time&sort_order=desc";
+                        string zohoTaskData = MakeZohoApiRequest("GET", TaskUrl, accessToken);
+                        if (string.IsNullOrEmpty(zohoTaskData))
+                        {
+                            Console.WriteLine("The response data is null or empty.");
+                            hdnZohoCrmTaskId.Value = "0";
+                        }
+                        else
+                        {
+                            Console.WriteLine("The response data is not empty.");
+                            var jsonTaskObj = JObject.Parse(zohoTaskData);
+                            var TaskDataArray = jsonTaskObj["data"]?.ToObject<List<JObject>>();
+                            if (TaskDataArray != null && TaskDataArray.Count > 0)
                             {
-                                txtAuthorizedOfficial2.Text = authorizedOfficialDict["Authorized Official 2"][0];
-                                result["currentAuthorized2ZohoId"] = authorizedOfficialDict["Authorized Official 2"][1];
-                                result["currentAuthorizedTitle_2"] = authorizedOfficialDict["Authorized Official 2"][2];
-                                result["currentAuthorizedName_2"] = authorizedOfficialDict["Authorized Official 2"][3];
-                                result["currentAuthorizedEmail_2"] = authorizedOfficialDict["Authorized Official 2"][4];
-                                result["currentAuthorizedPhone_2"] = authorizedOfficialDict["Authorized Official 2"][5];
+                                var task = TaskDataArray[0];
+                                hdnZohoCrmTaskId.Value = task["id"].ToString();
                             }
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("No Contact Data");
-                    }
-
-
-                    txtMailingStreet.Text = contact["Mailing_Street"]?.ToString().ToUpper() ?? "";    // MailingStreet
-                    txtMailingCity.Text = contact["Mailing_City1"]?.ToString().ToUpper() ?? "";       // MailingCity
-                    txtMailingState.Text = contact["Mailing_State"]?.ToString().ToUpper() ?? "";      // MailingState
-                    txtMailingZip.Text = contact["Mailing_Zip"]?.ToString().ToUpper() ?? "";          // MailingZip
-                    result["zohoAccountId"] = contact["id"]?.ToString().ToUpper() ?? "";
-
-                    string reviewInterval = contact["Review_Interval"]?.ToString()?.ToLower() ?? string.Empty;
-
-                    if (reviewInterval == "annual" || reviewInterval == "yearly")
-                    {
-                        reviewInterval = "yearly";
-                    }
-                    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-                    rdolstCRI.SelectedValue = textInfo.ToTitleCase(reviewInterval.ToLower());  // Review Interval
-
-                    // Tasks
-                    hdnZohoCrmAccountId.Value = contact["id"].ToString();
-                    string TaskUrl = $"https://www.zohoapis.com/crm/v8/Tasks/search?criteria=((What_Id:equals:{contact["id"]})and(Subject:equals:\"follow up\"))&sort_by=Created_Time&sort_order=desc";
-                    string zohoTaskData = MakeZohoApiRequest("GET", TaskUrl, accessToken);
-                    if (string.IsNullOrEmpty(zohoTaskData))
-                    {
-                        Console.WriteLine("The response data is null or empty.");
-                        hdnZohoCrmTaskId.Value = "0";
-                    }
-                    else
-                    {
-                        Console.WriteLine("The response data is not empty.");
-                        var jsonTaskObj = JObject.Parse(zohoTaskData);
-                        var TaskDataArray = jsonTaskObj["data"]?.ToObject<List<JObject>>();
-                        if (TaskDataArray != null && TaskDataArray.Count > 0)
-                        {
-                            var task = TaskDataArray[0];
-                            hdnZohoCrmTaskId.Value = task["id"].ToString();
-                        }
-                    }
+                    lblZohoErrorMessage.Visible = false;
                 }
+                else
+                {
+                    //throw new Exception("Zoho API returned empty response.");
+                    lblZohoErrorMessage.Text = "No data returned from Zoho.";
+                    lblZohoErrorMessage.Visible = true;
+                    return;
+
+                }
+                
             }
         }
        public void ClearFieldsData()
@@ -1361,7 +1386,7 @@ namespace ClientMeetingAgenda
 
             // Customer Portal (ESO) Accounts Data
             GetClientInfo(company_Id);
-            txtReportDate.Text = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            //txtReportDate.Text = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             //return result;
 
             txtMeetingDate.Focus();
@@ -1373,6 +1398,7 @@ namespace ClientMeetingAgenda
             string comp_Id = ddlClientNo.SelectedItem.Text;
             GetClientInfo(comp_Id);
             txtMeetingDate.Focus();
+            lblZohoErrorMessage.Visible = false;
         }
 
 
