@@ -160,9 +160,7 @@
                     <h3 style="font-size:30px !important;  color:black;"><span style="color:red !important; text-align:center;">*</span>Mandatory fields fill in</h3>
                     <h3 style="font-size:30px !important;  color:black;">Fields highlighted in yellow are automatically populated.</h3>
                 </div>
-            <tabel class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">               
-                
-                <div class="col-lg-12 form-group">
+                            
                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                          <thead>
                              <tr>
@@ -195,9 +193,7 @@
                              </tr>
                          </tbody>
                      </table>
-                </div>
-            
-                <div class="col-lg-12 form-group">
+                
                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                          <thead>
                              <tr>
@@ -234,11 +230,9 @@
                             </tr> 
                          </tbody>
                      </table>
-              
-                </div>
-         
-                <div class="col-lg-12 form-group">
-                    <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
+                
+               
+                    <table class="table table-bordered pdf-section pdf-remove-margin-bottom" style="width:100%; border-collapse:collapse; text-align:center;">
                         <thead>
                             <tr>
                                 <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ATTENDEES </th>
@@ -268,9 +262,7 @@
                             </tr>
                         </tbody>
                     </table>                
-                </div>          
-
-                <div class="col-lg-12 form-group">              
+                                      
                   <asp:GridView ID="gvAttendees" runat="server"
                            AutoGenerateColumns="false"
                            CssClass="table table-striped table-bordered"
@@ -288,16 +280,13 @@
                                <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
                            </Columns>
                        </asp:GridView>           
-                </div>
-               
+                               
                 <!--Client Revenue Numbers-->
-                <div class="col-lg-12 form-group">
-                   <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
+                   <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;margin-bottom:0px">
                         <tr>
                             <th colspan="8" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT REVENUE NUMBERS</th>
                         </tr>
 
-                        <tbody>
                             <tr>
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
@@ -383,34 +372,32 @@
                                 <td><asp:TextBox ID="txtCurrRPT" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
                                 <td><asp:TextBox ID="txtCurrCollRate" runat="server" CssClass="form-control" BackColor="#FFFF99" ReadOnly="true"></asp:TextBox></td>
                             </tr>
+                       </table>
 
+                       <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                             <tr>
-                                <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT COMMENTS</th>
-                                <th colspan="4" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE COMMENTS</th>
+                                <th class="text-center" style="width:50%;background-color:rgb(0,148,144) !important; color:#fff !important;">CLIENT COMMENTS</th>
+                                <th class="text-center" style="width:50%;background-color:rgb(0,148,144) !important; color:#fff !important;">ACCOUNT EXECUTIVE COMMENTS</th>
                             </tr>
                
                             <tr>
-                                <td colspan="4">
+                                <td style="width:50%;">
                                     <asp:TextBox ID="txtClientReviewComments" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
                                 </td>
-                                <td colspan="4">
+                                <td style="width:50%;">
                                     <asp:TextBox ID="txtAccountExecutiveComments" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
                                 </td>
                             </tr>
-                        </tbody>
                     </table>
-                </div>  
-               </tabel>
-            <div class="page-break"></div> 
-            
+                
               <table class="table table-bordered pdf-section " style="width:100%; border-collapse:collapse; text-align:center;">
-                         <thead>
+                         <tbody>
                              <tr>
                                 <th class="text-center" style="width:25%; background-color:rgb(0,148,144) !important; color:#fff !important;">CONTENT TO DISCUSS</th>
                                 <th class="text-center" style="width:50%; background-color:rgb(0,148,144) !important; color:#fff !important;"></th>
                                 <th class="text-center" style="width:25%; background-color:rgb(0,148,144) !important; color:#fff !important;">MAIN ISSUES (If Any)</th>
                             </tr>
-                             </thead>
+                         </tbody>
                          
                          <tbody>
                              <!-- 1. Aging Review-->
@@ -487,7 +474,7 @@
                                     </table>
                                 </td>
 
-                                <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: middle;">      
+                                <td style="font-weight:bold; text-align:left; padding-left:10px; vertical-align: top;">      
                                       <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse;  color: #00968F;">
                                                                        
                                         <tr>                                                
@@ -635,8 +622,8 @@
 
                                 <!-- Right side large textbox -->
                                 <td  style="height:100px;width:100%;">
-                                    <asp:TextBox ID="txtCBRComments" runat="server"
-                                        TextMode="MultiLine" CssClass="cbraction" autocomplete="off"></asp:TextBox>
+                                    <asp:TextBox ID="txtCBRComments" Rows="8" runat="server"
+                                        TextMode="MultiLine" CssClass="form-control" autocomplete="off"></asp:TextBox>
                                 </td>
                             </tr>
 
@@ -706,7 +693,7 @@
                                 </td>    
                                                           
                                 <td>
-                                    <asp:TextBox ID="txtCommentsOnBillingRateMainIssue" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                    <asp:TextBox ID="txtCommentsOnBillingRateMainIssue" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right;">
                                         </asp:TextBox>
                                 </td>
                             </tr>
@@ -950,7 +937,7 @@
                                          <tbody>        
                                              <tr>
                                                  <td>
-                                                   <asp:TextBox ID="txtCurrentContractStatusComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                                   <asp:TextBox ID="txtCurrentContractStatusComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control" style="float: right;">
                                                     </asp:TextBox> 
                                                  </td>
                                                  </tr>
@@ -1047,7 +1034,7 @@
                                 </td>
 
                                  <td>
-                                    <asp:TextBox ID="txtDemographicChangesMainIssueComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                    <asp:TextBox ID="txtDemographicChangesMainIssueComments" TextMode="MultiLine" Rows="8" runat="server" CssClass="form-control" style="float: right;">
                                         </asp:TextBox>
                                 </td>
                              </tr>
@@ -1299,7 +1286,7 @@
                                  <tbody>        
                                      <tr>
                                          <td>
-                                           <asp:TextBox ID="txtSignatureCaptureComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                           <asp:TextBox ID="txtSignatureCaptureComments" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control" style="float: right;">
                                             </asp:TextBox> 
                                          </td>
                                          </tr>
@@ -1385,15 +1372,15 @@
                                      <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
                                                                             
                                              <tr>
-                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;"><span class="text-danger">*</span> Review Interval</th> 
-                                                 <th style="background-color:rgb(0,148,144) !important; color:#fff !important;">Next Review Schedule Date:</th> 
-                                                 <th style="background-color:rgb(0,148,144) !important; color:#fff !important;">Change in ZOHO</th> 
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;width:35%"><span class="text-danger">*</span> Review Interval</th> 
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;width:20%">Next Review Schedule Date</th> 
+                                                 <th style="text-align:center; vertical-align:middle; background-color:rgb(0,148,144) !important; color:#fff !important;width:45%">Change in ZOHO</th> 
                                              </tr>
                                          
 
                                          <tbody>          
                                              <tr>
-                                                  <td>                                                    
+                                                  <td style="width:35%">                                                    
                                                      <div>
                                                          <asp:RadioButtonList ID="rdolstCRI" CssClass="custom-checkbox" runat="server" RepeatDirection="Horizontal" RepeatLayout="Table">
                                                              <asp:ListItem Value="Quarterly">Quarterly<span></span></asp:ListItem>
@@ -1402,9 +1389,9 @@
                                                          </asp:RadioButtonList>
                                                      </div>
                                                  </td>
-                                                 <td><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" ReadOnly="true" runat="server" onchange="showLoader()" AutoPostBack="true" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
-                                                <td>
-                                                    <asp:TextBox ID="txtChangeInZOHO" TextMode="MultiLine" Rows="3" runat="server" CssClass="form-control" style="float: right; font-weight: bold;">
+                                                 <td style="width:20%"><asp:TextBox ID="txtNRScheduleDate" CssClass="form-control  form_datetime" ReadOnly="true" runat="server" onchange="showLoader()" AutoPostBack="true" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td> 
+                                                <td style="width:45%">
+                                                    <asp:TextBox ID="txtChangeInZOHO" TextMode="MultiLine" Rows="4" runat="server" CssClass="form-control" style="float: right;">
                                                      </asp:TextBox>
                                                 </td>
                                              </tr>                                      
@@ -2012,57 +1999,36 @@
         }
 
         function adjustDynamicFieldHeights($clonedDoc) {
-            const defaultLineHeight = 30;
-
             $clonedDoc.find('textarea').each(function () {
                 const $el = $(this);
                 const value = $el.val();
 
-                if (!value || value.trim() === '') return; // Skip empty
+                if (!value) return;
 
-                $el.attr('value', value);
-                if ($el.is('textarea')) $el.text(value); // For wkhtmltopdf to pick it up
+                const $div = $('<div></div>');
 
-                // Get actual width, fallback if hidden
-                let width = $el.outerWidth();
-                if (!width || width < 50) width = 300; // Fallback width
-
-                const lineHeight = parseFloat($el.css('line-height')) || defaultLineHeight;
-
-                // Create a hidden element to measure height
-                const $measure = $('<div>').css({
-                    position: 'absolute',
-                    visibility: 'hidden',
-                    width: width + 'px',
-                    minHeight: '60px',
+                // Copy styles
+                $div.css({
+                    whiteSpace: 'pre-wrap',
+                    wordBreak: 'break-word',
                     fontSize: $el.css('font-size'),
                     fontFamily: $el.css('font-family'),
-                    lineHeight: lineHeight + 'px',
-                    whiteSpace: 'pre-wrap',
-                    wordWrap: 'break-word',
-                    overflowWrap: 'break-word',
+                    lineHeight: $el.css('line-height'),
                     padding: $el.css('padding'),
-                    boxSizing: 'border-box',
-                }).text(value).appendTo('body');
-
-                const requiredHeight = Math.min($measure[0].scrollHeight, 1000); // Optional max height
-                $measure.remove();
-
-                $el.css({
-                    height: requiredHeight + 'px',
-                    overflow: 'hidden',
-                    whiteSpace: 'pre-wrap',
-                    wordWrap: 'break-word',
-                    resize: 'none'
+                    fontWeight: 'normal',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    color: '#555'
+                    
                 });
 
-                if ($el.is('textarea')) {
-                    const rows = Math.ceil(requiredHeight / lineHeight);
-                    $el.attr('rows', rows);
-                }
+                $div.text(value);
+
+                // Replace textarea with div
+                $el.replaceWith($div);
             });
         }
-
+     
 
         function generatePdfButton() {
 
@@ -2082,11 +2048,13 @@
                 this.style.setProperty('padding-right', '1px', 'important');
                 this.style.setProperty('padding-left', '1px', 'important');
             });
+
+            $clonedDoc.find('.pdf-remove-margin-bottom').each(function () {
+                this.style.setProperty('margin-bottom', '0px', 'important');
+            });
             
             $clonedDoc.find('[disabled]').removeAttr('disabled');
-
-
-
+            $clonedDoc.find('.flatpickr-calendar').remove();
 
             adjustDynamicFieldHeights($clonedDoc);
 
