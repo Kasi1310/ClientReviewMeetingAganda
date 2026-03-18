@@ -238,21 +238,10 @@ namespace ClientMeetingAgenda
                     ddlClientNo.SelectedValue = dtMaster.Rows[0]["ClientNo"].ToString().Trim().ToString().Trim();
                     ddlClientName.SelectedValue = dtMaster.Rows[0]["ClientNo"].ToString().Trim().ToString().Trim();
                     txtMeetingDate.Text = dtMaster.Rows[0]["MeetingDate"].ToString().Trim();
-                    //txtReportDate.Text= dtMaster.Rows[0]["ReportDate"].ToString().Trim();
+                   // txtReportDate.Text=dtMaster.Rows[0]["ReportDate"].ToString().Trim();
+                    txtReportDate.Text = dtMaster.Rows.Count > 0  ? Convert.ToString(dtMaster.Rows[0]["ReportDate"]).Trim() : "";
+
                     
-                   // txtReportDate.Text = Convert.ToDateTime(dtMaster.Rows[0]["ReportDate"]).ToString("MM/dd/yyyy").Replace("-","/");
-
-                    DateTime reportDate;
-
-                    if (DateTime.TryParse(dtMaster.Rows[0]["ReportDate"].ToString(), out reportDate))
-                    {
-                        txtReportDate.Text = reportDate.ToString("MM/dd/yyyy");
-                    }
-                    else
-                    {
-                        txtReportDate.Text = "";
-                    }
-
                     txtAcctExeId.Text = dtMaster.Rows[0]["AccExecID"].ToString().Trim();
                     txtAccountExecutiveName.Text = dtMaster.Rows[0]["AccExecName"].ToString().Trim();
                     txtAccExecEmailID.Text = dtMaster.Rows[0]["AccExecEmailID"].ToString().Trim();
@@ -1385,9 +1374,7 @@ namespace ClientMeetingAgenda
             string company_Id = ddlClientNo.SelectedItem.Text;// ddlClientName.SelectedValue;
 
             // Customer Portal (ESO) Accounts Data
-            GetClientInfo(company_Id);
-            //txtReportDate.Text = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //return result;
+            GetClientInfo(company_Id);            
 
             txtMeetingDate.Focus();
         }
@@ -1941,7 +1928,8 @@ namespace ClientMeetingAgenda
         {
 
             // If all fields are empty, do not add row
-            if (string.IsNullOrWhiteSpace(txtPatient.Text) &&
+            if (string.IsNullOrWhiteSpace(txtRun.Text) && 
+                string.IsNullOrWhiteSpace(txtPatient.Text) &&
                 string.IsNullOrWhiteSpace(txtSignature.Text) &&
                 string.IsNullOrWhiteSpace(txtFacility.Text))
             {
@@ -1956,11 +1944,11 @@ namespace ClientMeetingAgenda
 
             DataTable dt = SignatureTable;
 
-            int id = dt.Rows.Count == 0 ? 1 : Convert.ToInt32(dt.Compute("MAX(ID)", "")) + 1;
+             int id = dt.Rows.Count == 0 ? 1 : Convert.ToInt32(dt.Compute("MAX(ID)", "")) + 1;
 
             dt.Rows.Add(
                 id,
-                txtRun.Text = id.ToString(),
+                txtRun.Text.Trim(), //= id.ToString(),
                 txtPatient.Text.Trim(),
                 txtSignature.Text.Trim(),
                 txtFacility.Text.Trim()
@@ -1980,7 +1968,6 @@ namespace ClientMeetingAgenda
 
         }
 
-        //ddlPersonnelChanges_SelectedIndexChanged
         protected void ddlPersonnelChanges_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlPersonnelChanges.SelectedValue == "Yes")
@@ -2003,6 +1990,74 @@ namespace ClientMeetingAgenda
                 txtAuthorizedOfficial2.ReadOnly = true;
             }
                 
+        }
+        //
+        protected void ddlAttached_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlAttached.SelectedValue == "Yes")
+            {
+                ddlFacilityCurrently.Enabled = false;
+                
+            }
+
+            else
+            {
+                ddlFacilityCurrently.Enabled =  true;
+            }
+
+        }
+        protected void ddlStatementReconciliation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlStatementReconciliation.SelectedValue == "No")
+            {
+                txtDateofMonthEndReconilations.Enabled = false;
+                txtMonthEndReportByWho.Enabled = false;
+                txtMonthEndReportHowOften.Enabled = false;
+            }
+            else
+            {
+                txtDateofMonthEndReconilations.Enabled = true;
+                txtMonthEndReportByWho.Enabled = true;
+                txtMonthEndReportHowOften.Enabled = true;
+            }
+
+        }
+       
+        protected void ddlPatientSignature_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlPatientSignature.SelectedValue == "No")
+            {
+                ddlPatientSignatureEPCR.Enabled = false;
+            }
+            else
+            {
+                ddlPatientSignatureEPCR.Enabled = true;
+            }
+
+        }
+        protected void ddlReceivingFacilitySignature_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlReceivingFacilitySignature.SelectedValue == "No")
+            {
+                ddlReceivingFacilitySignatureEPCR.Enabled = false;
+            }
+            else
+            {
+                ddlReceivingFacilitySignatureEPCR.Enabled = true;
+            }
+
+        }
+        protected void ddlCrewSignature_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCrewSignature.SelectedValue == "No")
+            {
+                ddlCrewSignatureEPCR.Enabled = false;
+            }
+            else
+            {
+                ddlCrewSignatureEPCR.Enabled = true;
+            }
+
         }
     }
 }

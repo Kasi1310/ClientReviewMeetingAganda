@@ -188,7 +188,7 @@
                                      <asp:TextBox ID="txtMeetingDate" CssClass="form-control  datepicker" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off"></asp:TextBox>
                                  </td>
                                  <td colspan="3">
-                                     <asp:TextBox ID="txtReportDate" CssClass="form-control" runat="server" Text="" MaxLength="50" Enabled="false" autocomplete="off"></asp:TextBox>
+                                     <asp:TextBox ID="txtReportDate" CssClass="form-control" runat="server" Text="" MaxLength="50" Enabled="false" AutoPostBack="true"></asp:TextBox>
                                  </td>
                              </tr>
                          </tbody>
@@ -277,7 +277,7 @@
                                <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
                                <asp:BoundField DataField="Phone" HeaderText="Phone" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
                                <asp:BoundField DataField="Email" HeaderText="Email" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
-                               <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
+                               <asp:CommandField HeaderText="Action" ShowEditButton="true" ShowDeleteButton="true" />
                            </Columns>
                        </asp:GridView>           
                                
@@ -290,12 +290,12 @@
                             <tr>
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
-                                  <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="datepicker"></asp:TextBox>
+                                  <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="datepicker" autocomplete="off"></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>                                 
-                                    <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="datepicker" AutoPostBack="true" onchange="showLoader();" ></asp:TextBox>
+                                    <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="datepicker" AutoPostBack="true" onchange="showLoader();" autocomplete="off" ></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
@@ -333,12 +333,12 @@
                             <tr style="background-color:rgb(0,148,144); color:#fff;">
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtCurrentStartDate" style="display:inline-block; margin-right:10px; color:#fff !important;">Current Start Date</label>                                   
-                                    <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; color: #0f0f0f; font:inherit;"></asp:TextBox>
+                                    <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; color: #0f0f0f; font:inherit;" autocomplete="off"></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtCurrentEndDate" style="display:inline-block; margin-right:10px; color:#fff !important;">Current End Date</label>
-                                    <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; font-size:larger; color: #0f0f0f; font:inherit;"  AutoPostBack="true" onchange="showLoader()"  ></asp:TextBox>
+                                    <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; font-size:larger; color: #0f0f0f; font:inherit;"  AutoPostBack="true" onchange="showLoader()" autocomplete="off" ></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
@@ -828,7 +828,7 @@
                                                     </asp:DropDownList>
                                                     </td>
                                                     <td style="padding: inherit !important;width: 10%; vertical-align:middle;" >  
-                                                           <asp:DropDownList ID="ddlAttached" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
+                                                           <asp:DropDownList ID="ddlAttached" runat="server" AutoPostBack="true" OnTextChanged="ddlAttached_SelectedIndexChanged" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1171,7 +1171,7 @@
                      
                                                  <td style="vertical-align:middle;"> 
 
-                                                          <asp:DropDownList ID="ddlStatementReconciliation" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
+                                                          <asp:DropDownList ID="ddlStatementReconciliation" runat="server" OnTextChanged="ddlStatementReconciliation_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1187,16 +1187,16 @@
                                                      <div id="divIsTraningCompleted">                                                   
                                                          <asp:DropDownList ID="ddlTraningCompleted" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                         <asp:ListItem Value="Completed" Text="Completed"></asp:ListItem>
-                                                         <asp:ListItem Value="Pending" Text="Pending"></asp:ListItem>                                                         
+                                                          <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>                                                       
                                                      </asp:DropDownList>
                                                  </div> 
                                                  <td style="vertical-align:middle;">                                              
                                                      <div id="divIsTraningPending">                                          
                                                          <asp:DropDownList ID="ddlIsTraningPending" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                          <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                             <asp:ListItem Value="Completed" Text="Completed"></asp:ListItem>
+                                                            <asp:ListItem Value="Pending" Text="Pending"></asp:ListItem> 
                                                      </asp:DropDownList>
                                                      </div> 
                                                  </td>
@@ -1226,7 +1226,7 @@
                                         <tbody>          
                                             <tr>
                                                  <td colspan="2" style="vertical-align:middle">                                                              
-                                                     <asp:DropDownList ID="ddlPatientSignature" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
+                                                     <asp:DropDownList ID="ddlPatientSignature" runat="server" AutoPostBack="true" OnTextChanged="ddlPatientSignature_SelectedIndexChanged" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                         <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                         <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1241,7 +1241,7 @@
                                                   </td>
                                                  <td colspan="2" style="vertical-align:middle">
                                                      
-                                                         <asp:DropDownList ID="ddlReceivingFacilitySignature" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlReceivingFacilitySignature" runat="server" AutoPostBack="true" OnTextChanged="ddlReceivingFacilitySignature_SelectedIndexChanged" CssClass="form-control" style="font-weight:bold;">
                                                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                             <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
                                                             <asp:ListItem Value="No" Text="No"></asp:ListItem>
@@ -1256,18 +1256,19 @@
                                                  </td>
                                                
                                                     <td colspan="2" style="vertical-align:middle">
-                                                         <asp:DropDownList ID="ddlCrewSignatureEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
+                                                         <asp:DropDownList ID="ddlCrewSignature" runat="server" AutoPostBack="true" CssClass="form-control" OnTextChanged="ddlCrewSignature_SelectedIndexChanged" style="font-weight:bold;">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
+                                                            <asp:ListItem Value="No" Text="No"></asp:ListItem>
+                                                             </asp:DropDownList>
+                                                    </td>
+                                                     <td colspan="2" style="vertical-align:middle">                                                          
+                                                        
+                                                              <asp:DropDownList ID="ddlCrewSignatureEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
                                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                                          <asp:ListItem Value="EPCR" Text="EPCR"></asp:ListItem>
                                                          <asp:ListItem Value="Hard Copy" Text="Hard Copy"></asp:ListItem>
                                                     </asp:DropDownList>
-                                                    </td>
-                                                     <td colspan="2" style="vertical-align:middle">                                                          
-                                                         <asp:DropDownList ID="ddlCrewSignature" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
-                                                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                        <asp:ListItem Value="Yes" Text="Yes"></asp:ListItem>
-                                                        <asp:ListItem Value="No" Text="No"></asp:ListItem>
-                                                         </asp:DropDownList>
                                                     </td>                                               
 
                                             </tr>                                      
@@ -1319,7 +1320,7 @@
                                                  <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;"></th>                         
                                              </tr>
                                              <tr>
-                                                  <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtRun" ReadOnly="true" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
+                                                  <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtRun" TextMode="Number"  CssClass="form-control" runat="server" Text="" MaxLength="6" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPatient" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtSignature" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2" style="padding: inherit !important;"><asp:TextBox  ID="txtFacility" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
@@ -1349,11 +1350,12 @@
                                             OnRowDeleting="gvSignature_RowDeleting">
 
                                             <Columns>
-                                                <asp:BoundField DataField="ID" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
+                                                <asp:BoundField Visible="false" DataField="ID" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
+                                                <asp:BoundField DataField="MeetingAgendaID" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
                                                 <asp:BoundField DataField="Patient" HeaderText="Patient" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
                                                 <asp:BoundField DataField="Signature" HeaderText="Crew" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
                                                 <asp:BoundField DataField="Facility" HeaderText="Facility" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
-                                                <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
+                                                <asp:CommandField HeaderText="Action" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
                                             </Columns>
                                         </asp:GridView>
 
@@ -2039,9 +2041,17 @@
             $clonedDoc.find('.meeting-agenda-form');
             $clonedDoc.find('.pdf-exclude').remove();
             $clonedDoc.find('script').remove();
-            $clonedDoc.find('a').filter(function () {
-                return $(this).text().trim() === 'Edit' || $(this).text().trim() === 'Delete';
-            }).remove();           
+            //$clonedDoc.find('a').filter(function () {
+            //    return $(this).text().trim() === 'Edit' || $(this).text().trim() === 'Delete';
+            //}).remove();
+
+            $clonedDoc.find("#cphMainContent_gvAttendees tr").each(function () {
+                $(this).find("th:last-child, td:last-child").remove();
+            });
+
+            $clonedDoc.find("#cphMainContent_gvSignature tr").each(function () {
+                $(this).find("th:last-child, td:last-child").remove();
+            });
 
             $clonedDoc.find('#rdolstCRI').css('text-align', 'center');
             $clonedDoc.find('.col-lg-12').each(function () {
@@ -2265,6 +2275,7 @@
             clsMeetingAgenda.ClientNo = ddlClientNo.value == 0 ? "" : ddlClientNo.options[ddlClientNo.selectedIndex].text;
             clsMeetingAgenda.ClientName = ddlClientName.value == 0 ? "" : ddlClientName.options[ddlClientName.selectedIndex].text;
             clsMeetingAgenda.MeetingDate = document.getElementById("<%=txtMeetingDate.ClientID %>").value.trim();
+            clsMeetingAgenda.ReportDate = document.getElementById("<%=txtReportDate.ClientID %>").value.trim();
 
             //Account Executive Info
             clsMeetingAgenda.AccExecID = parseInt(document.getElementById("<%=txtAcctExeId.ClientID %>").value.trim()); //.value.trim();
@@ -2977,11 +2988,12 @@
     </script>
    <script type="text/javascript">
        function AddRunValidation() {
+           var txtRun = document.getElementById("<%=txtRun.ClientID %>");
            var txtPatient = document.getElementById("<%=txtPatient.ClientID %>");
            var txtSignature = document.getElementById("<%=txtSignature.ClientID %>");
            var txtFacility = document.getElementById("<%=txtFacility.ClientID%>");
 
-           if (txtPatient.value.trim() == "" && txtSignature.value.trim() == "" && txtFacility.value.trim() == "") {
+           if (txtRun.value.trim() == "" && txtPatient.value.trim() == "" && txtSignature.value.trim() == "" && txtFacility.value.trim() == "") {
                lblErrorMsg.style.textAlign = "center";
                lblErrorMsg.innerHTML = "Please provide all run details before proceeding.";
                OpenAlertPopup();              

@@ -1131,15 +1131,6 @@ namespace ClientMeetingAgenda
         protected global::System.Web.UI.WebControls.DropDownList ddlReceivingFacilitySignatureEPCR;
 
         /// <summary>
-        /// ddlCrewSignatureEPCR control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCrewSignatureEPCR;
-
-        /// <summary>
         /// ddlCrewSignature control.
         /// </summary>
         /// <remarks>
@@ -1147,6 +1138,15 @@ namespace ClientMeetingAgenda
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCrewSignature;
+
+        /// <summary>
+        /// ddlCrewSignatureEPCR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCrewSignatureEPCR;
 
         /// <summary>
         /// txtSignatureCaptureComments control.
