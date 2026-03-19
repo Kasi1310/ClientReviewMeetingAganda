@@ -1304,7 +1304,7 @@
 
                                  <td colspan="2">
                                      <div class="col-lg-12">
-                                     <table class="table table-bordered pdf-section" style="width:100%; border-collapse:collapse; text-align:center;">
+                                     <table class="table table-bordered pdf-section pdf-remove-margin-bottom" style="width:100%; border-collapse:collapse; text-align:center;">
                                          <thead>
                                              <tr>
                                                  <th colspan="12" class="text-center" style="background-color:rgb(0,148,144) !important; color:#fff !important;">SIGNATURE </th>
@@ -2016,7 +2016,7 @@
                     fontSize: $el.css('font-size'),
                     fontFamily: $el.css('font-family'),
                     lineHeight: $el.css('line-height'),
-                    padding: $el.css('padding'),
+                    padding: '5px',
                     fontWeight: 'normal',
                     border: '1px solid #ccc',
                     borderRadius: '4px',
@@ -2025,8 +2025,44 @@
                 });
 
                 $div.text(value);
+                $el.replaceWith($div);
+            });
 
-                // Replace textarea with div
+            $clonedDoc.find('input, select').each(function () {
+                const $el = $(this);
+
+                // Skip hidden inputs and datet picker
+                if ($el.attr('type') === 'hidden' || $el.attr('type') === 'radio' || $el.hasClass('datepicker')) return;
+
+                if ($el.attr('id') === 'cphMainContent_ddlPreviousReportType' || $el.attr('id') === 'cphMainContent_ddlCurrentReportType') return;
+
+                let value;
+
+                if ($el.is('select')) {
+                    value = $el.find('option:selected').text(); // get selected option
+                } else {
+                    value = $el.val();
+                }
+
+                const $div = $('<div></div>');
+
+                // Copy styles
+                $div.css({
+                    whiteSpace: 'pre-wrap',
+                    fontSize: $el.css('font-size'),
+                    fontFamily: $el.css('font-family'),
+                    lineHeight: $el.css('line-height'),
+                    paddingTop: '6px',
+                    paddingBottom: '6px',
+                    fontWeight: 'normal',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    color: '#555',
+                    minHeight: '36px',
+                    wordBreak: !$el.hasClass('form_datetime') ? 'break-word' : ''
+                });
+
+                $div.text(value);
                 $el.replaceWith($div);
             });
         }
@@ -2173,7 +2209,10 @@
             const day = String(today.getDate()).padStart(2, '0');
             const year = today.getFullYear();
 
-            return `${month}-${day}-${year}`;
+            const formattedDate1 = `${month}-${day}-${year}`; // "03-19-2026"
+            const formattedDate2 = `${month}/${day}/${year}`; // "03/19/2026"
+
+            return [formattedDate1, formattedDate2];
         }
 
         function generatepdfBtnClick(buttonType) {
@@ -2212,7 +2251,7 @@
 
                     var a = document.createElement('a');
                     a.href = url;
-                    a.download = `${clientNumber}_${clientName}_MeetingAgenda_${getCurrentDate()}.pdf`;
+                    a.download = `${clientNumber}_${clientName}_MeetingAgenda_${getCurrentDate()[0]}.pdf`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -2529,6 +2568,14 @@
             clsMeetingAgenda.isPDFGenerated = document.getElementById("<%=hdnIsPDFGenerated.ClientID %>").value.trim();
             clsMeetingAgenda.isPrint = isPrint;
 
+            if (buttonType == 'submit')
+            {
+                const $input = $("#cphMainContent_txtReportDate");
+                $input.prop("disabled", false);
+                $input.val(getCurrentDate()[1]);
+                $input.prop("disabled", true);
+            }
+
             var fullHtml = generatePdfButton();
             var clientNumber = $("#cphMainContent_ddlClientNo").val();
             var clientName = "";
@@ -2595,6 +2642,7 @@
                 }
             });
         }
+
         function generatePDF() {
 
             var clsMeetingAgenda = {};         
