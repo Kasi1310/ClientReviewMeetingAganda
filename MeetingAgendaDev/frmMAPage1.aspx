@@ -2,9 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMainContent" runat="server">
     <style>
-        /* body {
-            font-family: Arial, Helvetica, sans-serif;
-        }*/
+        body {
+            font-family: Calibri !important;
+            font-size:16px !important;
+        }
 
         /* The Modal (background) */
         .modal {
