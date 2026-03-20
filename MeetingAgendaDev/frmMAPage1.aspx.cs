@@ -204,7 +204,10 @@ namespace ClientMeetingAgenda
         protected void ddlCurrentBillingRates_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlCurrentBillingRates.SelectedValue == "Yes")
+            {
                 rateChangesMsg.Style["display"] = "block";
+                rateChangesMsg.Style["color"] = "red !important";
+            }
             else
                 rateChangesMsg.Style["display"] = "none";
         }

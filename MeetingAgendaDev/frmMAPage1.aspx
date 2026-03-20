@@ -185,7 +185,7 @@
                                     </asp:DropDownList>
                                  </td>
                                  <td colspan="3">
-                                     <asp:TextBox ID="txtMeetingDate" CssClass="form-control  datepicker" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                     <asp:TextBox ID="txtMeetingDate" CssClass="form-control  datepicker" runat="server" Text="" AutoPostBack="true" onchange="showLoader()" MaxLength="50" autocomplete="off" style="text-align:center"></asp:TextBox>
                                  </td>
                                  <td colspan="3">
                                      <asp:TextBox ID="txtReportDate" CssClass="form-control" runat="server" Text="" MaxLength="50" Enabled="false" AutoPostBack="true"></asp:TextBox>
@@ -290,12 +290,12 @@
                             <tr>
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtPreviousStartDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous Start Date</label>
-                                  <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="datepicker" autocomplete="off"></asp:TextBox>
+                                  <asp:TextBox ID="txtPreviousStartDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; text-align:center" autocomplete="off"></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtPreviousEndDate" style="display:inline-block; margin-right:20px; color:#fff !important;">Previous End Date</label>                                 
-                                    <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="datepicker" AutoPostBack="true" onchange="showLoader();" autocomplete="off" ></asp:TextBox>
+                                    <asp:TextBox ID="txtPreviousEndDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; text-align:center" AutoPostBack="true" onchange="showLoader();" autocomplete="off"></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
@@ -333,12 +333,12 @@
                             <tr style="background-color:rgb(0,148,144); color:#fff;">
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtCurrentStartDate" style="display:inline-block; margin-right:10px; color:#fff !important;">Current Start Date</label>                                   
-                                    <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; color: #0f0f0f; font:inherit;" autocomplete="off"></asp:TextBox>
+                                    <asp:TextBox ID="txtCurrentStartDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; text-align:center" autocomplete="off"></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="3" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
                                     <label for="txtCurrentEndDate" style="display:inline-block; margin-right:10px; color:#fff !important;">Current End Date</label>
-                                    <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; font-size:larger; color: #0f0f0f; font:inherit;"  AutoPostBack="true" onchange="showLoader()" autocomplete="off" ></asp:TextBox>
+                                    <asp:TextBox ID="txtCurrentEndDate" runat="server" CssClass="form-control datepicker" style="width: 32%;display: inline-table; text-align:center"  AutoPostBack="true" onchange="showLoader()" autocomplete="off" ></asp:TextBox>
                                 </th>
 
                                 <th class="text-center" colspan="2" style="text-align:left; padding-left:10px; vertical-align: middle; background-color:rgb(0,148,144) !important;">
@@ -609,7 +609,7 @@
                                                        onblur="isMoneyKey(this,'Mileage');" readonly="true" style="padding-left:0px;padding-right:0px;text-align:center;"></asp:TextBox></td>                                     
                                              </tr>
                                             <tr>
-                                            <td colspan="8" style="padding: 15px; text-align: center; color: red !important; font-weight: bold;">                                              
+                                            <td colspan="8" style="padding: 15px; text-align: center; font-weight: bold;">                                              
                                                 <div id="rateChangesMsg" runat="server" style="display:none;">
                                                     PLEASE NOTE THAT ALL CHANGES TO CHARGE RATES MUST BE SUBMITTED USING THE CHARGE RATE FORM AND UPLOADED EXCLUSIVELY THROUGH THE CUSTOMER PORTAL
                                                 </div>
@@ -1126,7 +1126,7 @@
                                                      <asp:DropDownList ID="ddlEPCR" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">                                                         
                                                      </asp:DropDownList>
                                                  </td> 
-                                                 <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control datepicker" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
+                                                 <td><asp:TextBox ID="txtLastReconciliationDate" CssClass="form-control datepicker" AutoPostBack="true" runat="server" Text="" MaxLength="10" autocomplete="off" style="text-align:center"></asp:TextBox> </td> 
                                                  <td><asp:TextBox ID="txtByWhom" CssClass="form-control" runat="server" Text="" autocomplete="off" ></asp:TextBox>
                                                  <td style="vertical-align:middle">
                                                      <asp:DropDownList ID="ddlRunReconciliationDone" runat="server" AutoPostBack="true" CssClass="form-control" style="font-weight:bold;">
@@ -1177,7 +1177,7 @@
                                                          <asp:ListItem Value="No" Text="No"></asp:ListItem>
                                                      </asp:DropDownList>
                                                      </td>
-                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control datepicker" AutoPostBack="true"  runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox> </td> 
+                                                  <td><asp:TextBox ID="txtDateofMonthEndReconilations" CssClass="form-control datepicker" AutoPostBack="true"  runat="server" Text="" MaxLength="10" autocomplete="off" style="text-align:center"></asp:TextBox> </td> 
                                                
                                                  <td> <asp:TextBox ID="txtMonthEndReportByWho" CssClass="form-control " runat="server" Text="" autocomplete="off"></asp:TextBox></td> 
                     
@@ -1493,13 +1493,14 @@
                    
               <div class="page-break"></div>   
                               
-              <div class="col-lg-12 form-group text-lg-left" style="background-color: #5D6770 !important;">
-                <h4><b style="color:#fff !important">OVERALL MEETING NOTES</b></h4>
-              </div>              
+              <h4 class="form-group" style="background-color: #5D6770 !important; padding: 10px 15px;">
+                 <b style="color: #fff !important;">OVERALL MEETING NOTES</b>
+
+              </h4>          
               <asp:TextBox ID="txtOverAllMeetingNotes" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>               
               <h4><u style="color:rgb(0,148,144) !important;"><b style="color:rgb(0,148,144) !important;">Follow Up Action:</b></u></h4>
               <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
-                                
+                       
           </div>
     </div>
 
@@ -2005,6 +2006,7 @@
                 $div.css({
                     whiteSpace: 'pre-wrap',
                     wordBreak: 'break-word',
+                    textAlign: 'center',
                     fontSize: $el.css('font-size'),
                     fontFamily: $el.css('font-family'),
                     lineHeight: $el.css('line-height'),
@@ -2041,17 +2043,17 @@
                 // Copy styles
                 $div.css({
                     whiteSpace: 'pre-wrap',
+                    textAlign: 'center',
                     fontSize: $el.css('font-size'),
                     fontFamily: $el.css('font-family'),
                     lineHeight: $el.css('line-height'),
-                    paddingTop: '6px',
-                    paddingBottom: '6px',
+                    padding: '8px 5px 0px 5px',
                     fontWeight: 'normal',
                     border: '1px solid #ccc',
                     borderRadius: '4px',
                     color: '#555',
                     minHeight: '36px',
-                    wordBreak: !$el.hasClass('form_datetime') ? 'break-word' : ''
+                    wordBreak: ($el.hasClass('form_datetime') || $el.is('select')) ? 'normal' : 'break-word',
                 });
 
                 $div.text(value);
@@ -3053,13 +3055,13 @@
                     <!-- LEFT COLUMN -->
                     <td class="col-lg-4 col-md-12" style="width: 30%; padding: 0; border: none;">
                         <!-- Header -->
-                        <div class="text-center font-weight-bold p-2" style="background-color:rgb(0,148,144) !important; color: #fff !important; margin-top: 5px;;">
+                        <div class="text-center font-weight-bold p-2" style="background-color:rgb(0,148,144) !important; color: #fff !important; margin-top: 5px;">
                             Did you ask for a referral
                         </div>
                         
                         <!-- Dropdown -->
-                        <div class="p-3" style="margin-bottom: 0; padding-bottom: 0;">
-                            <asp:DropDownList ID="ddlIsReferal" runat="server" CssClass="form-control font-weight-bold" style="border: none; margin-bottom: 0;">
+                        <div class="p-3" style="margin-bottom: 0; padding-bottom: 0;border: 1px solid #ddd">
+                            <asp:DropDownList ID="ddlIsReferal" runat="server" CssClass="form-control font-weight-bold" style="border: none; margin-bottom: 0;" AutoPostBack="true">
                                 <asp:ListItem Value="0">--Select--</asp:ListItem>
                                 <asp:ListItem Value="Yes">Yes</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
