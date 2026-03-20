@@ -1492,22 +1492,14 @@
               </table>
                    
               <div class="page-break"></div>   
-           
-                   <div class="col-lg-12">
-                        <div class="col-lg-12 form-group text-lg-left" style="background-color: #5D6770 !important;">
-                            <h4><b style="color:#fff !important">OVERALL MEETING NOTES</b></h4>
-                        </div>
-                    </div>
-                   <div class="col-lg-12">
-                        <asp:TextBox ID="txtOverAllMeetingNotes" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
-                    </div>
-                   <div class="col-lg-12 form-group text-lg-left font-weight-bold">
-                        <h4><u style="color:rgb(0,148,144) !important;"><b style="color:rgb(0,148,144) !important;">Follow Up Action:</b></u></h4>
-                    </div>
-                   <div class="col-lg-12">
-                        <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
-                    </div>
-            
+                              
+              <div class="col-lg-12 form-group text-lg-left" style="background-color: #5D6770 !important;">
+                <h4><b style="color:#fff !important">OVERALL MEETING NOTES</b></h4>
+              </div>              
+              <asp:TextBox ID="txtOverAllMeetingNotes" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>               
+              <h4><u style="color:rgb(0,148,144) !important;"><b style="color:rgb(0,148,144) !important;">Follow Up Action:</b></u></h4>
+              <asp:TextBox ID="txtFollowUpAction" CssClass="form-control" runat="server" Text="" autocomplete="off" TextMode="MultiLine" Rows="10" Style="resize: none;"></asp:TextBox>
+                                
           </div>
     </div>
 
@@ -3054,72 +3046,67 @@
    </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphReferal" runat="server">
- 
-    <div class="container-fluid">
-<div class="row">
- 
-            <!-- LEFT COLUMN -->
-<div class="col-lg-4 col-md-12 form-group">
-<div class="border h-100">
- 
-                    <!-- Header -->
-<div class="text-center font-weight-bold p-2" style="background-color:rgb(0,148,144) !important; color: #fff !important">
-                        Did you ask for a referral
-</div>
- 
-                    <!-- Dropdown -->
-<div class="p-3">
-<asp:DropDownList ID="ddlIsReferal" runat="server"
-                            CssClass="form-control font-weight-bold">
-<asp:ListItem Value="0">--Select--</asp:ListItem>
-<asp:ListItem Value="Yes">Yes</asp:ListItem>
-<asp:ListItem Value="No">No</asp:ListItem>
-</asp:DropDownList>
-</div>
- 
-                </div>
-</div>
- 
-            <!-- RIGHT COLUMN -->
-<div class="col-lg-8 col-md-12 form-group">
-<table class="table table-borderless" >           
-<tbody>
-<tr>
-<td style="border:none; font-size:medium; font-family:Calibri;">
-                                ✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.
-</td>
-</tr>
-<tr>
-<td style="border:none; font-size:medium; font-family:Calibri;">
-                                ✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.
-</td>
-</tr>
-<tr>
-<td style="border:none; font-size:medium; font-family:Calibri;">
-                                ✔ Accessible & Responsive Team – Easy to reach and always available.
-</td>
-</tr>
-<tr>
-<td style="border:none; font-size:medium; font-family:Calibri;">
-                                ✔ User-Friendly Customer Portal – Real-time access to actionable information.
-</td>
-</tr>
-<tr>
-<td style="border:none; font-size:medium; font-family:Calibri;">
-                                 ✔ Regular Reporting – Includes semi-annual and annual performance reports.
-</td>
-</tr>
-<tr>
-<td style="border:none; font-size:medium; font-family:Calibri;">
-                                 ✔ Ongoing Client Reviews – Stay informed and aligned on your agency’s performance.
-</td>
-</tr>
-</tbody>
-</table>
+    <div class="container-fluid" style="padding: 0;">
+        <table class="table table-borderless" style="border: none; margin-left:10px; margin-bottom: 0;">
+            <tbody>
+                <tr>
+                    <!-- LEFT COLUMN -->
+                    <td class="col-lg-4 col-md-12" style="width: 30%; padding: 0; border: none;">
+                        <!-- Header -->
+                        <div class="text-center font-weight-bold p-2" style="background-color:rgb(0,148,144) !important; color: #fff !important; margin-top: 5px;;">
+                            Did you ask for a referral
+                        </div>
+                        
+                        <!-- Dropdown -->
+                        <div class="p-3" style="margin-bottom: 0; padding-bottom: 0;">
+                            <asp:DropDownList ID="ddlIsReferal" runat="server" CssClass="form-control font-weight-bold" style="border: none; margin-bottom: 0;">
+                                <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                <asp:ListItem Value="Yes">Yes</asp:ListItem>
+                                <asp:ListItem Value="No">No</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </td>
+                    
+                    <!-- RIGHT COLUMN -->
+                    <td class="col-lg-8 col-md-12" style="width: 70%; padding: 0; border: none;">
+                        <table class="table table-borderless" style="border: none; margin-left:30px; margin-bottom: 0;">
+                            <tbody>
+                                <tr>
+                                    <td style="border:none; font-size:medium; font-family:Calibri;">
+                                        ✔ Dedicated Account Executives – Meet with you face-to-face for personalized support.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none; font-size:medium; font-family:Calibri;">
+                                        ✔ Clear, Easy-to-Understand Reports – No confusing data or jargon.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none; font-size:medium; font-family:Calibri;">
+                                        ✔ Accessible & Responsive Team – Easy to reach and always available.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none; font-size:medium; font-family:Calibri;">
+                                        ✔ User-Friendly Customer Portal – Real-time access to actionable information.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none; font-size:medium; font-family:Calibri;">
+                                        ✔ Regular Reporting – Includes semi-annual and annual performance reports.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:none; font-size:medium; font-family:Calibri;">
+                                        ✔ Ongoing Client Reviews – Stay informed and aligned on your agency’s performance.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-</div>
- 
-        </div>
-</div>
- 
 </asp:Content>
