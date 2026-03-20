@@ -3061,7 +3061,7 @@
                         </div>
                         
                         <!-- Dropdown -->
-                        <div class="p-3" style="margin-bottom: 0; padding-bottom: 0;border: 1px solid #ddd">
+                        <div class="p-3" style="margin-bottom: 0; padding-bottom: 0; border-top: 1px solid #ddd; border-right: 2px solid #ddd; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd">
                             <asp:DropDownList ID="ddlIsReferal" runat="server" CssClass="form-control font-weight-bold" style="border: none; margin-bottom: 0;" AutoPostBack="true">
                                 <asp:ListItem Value="0">--Select--</asp:ListItem>
                                 <asp:ListItem Value="Yes">Yes</asp:ListItem>
