@@ -176,7 +176,6 @@ namespace ClientMeetingAgenda
             if (!IsPostBack)
             {
                 objclsUsers = new clsUsers();
-               //objclsUsers.LoadAccExecDDL(txtAccountExecutive);
 
                 objclsClientMaster = new clsClientMaster();
                 objclsClientMaster.LoadClientDDL(ddlClientNo, ddlClientName);
@@ -185,11 +184,7 @@ namespace ClientMeetingAgenda
                 objclsEPCRMaster.LoadEPCRDDL(ddlEPCR);
 
                 objclsMeetingAgenda = new clsMeetingAgenda();
-               // txtReportDate.Text = System.DateTime.Now.ToString("MM/dd/yyyy");
-               
-                //objclsMeetingAgenda.LoadStateDDL(ddlBillingState);
-                //objclsMeetingAgenda.LoadStateDDL(ddlMailingState);
-                //objclsMeetingAgenda.LoadStateDDL(ddlPhysicalLocationState);
+              
 
                 AssignTextBox();
 
@@ -431,6 +426,7 @@ namespace ClientMeetingAgenda
                 dtSignature.Columns.Add("Patient", typeof(System.String));
                 dtSignature.Columns.Add("Signature", typeof(System.String));
                 dtSignature.Columns.Add("Facility", typeof(System.String));   
+                dtSignature.Columns.Add("Run", typeof(System.String));   
                 Session["dtSignature"] = dtSignature;
             }
         }
@@ -864,8 +860,16 @@ namespace ClientMeetingAgenda
                         string feeRate = $"{match[9]}";
                         txtCurrentRate.Text = feeRate;
                        
+                        if(txtAccountExecutiveName.Text== "No longer Client")
+                        {
+                            DisabledFields();
+                        }
+                        else
+                        {
+                            EnabledFields();
+                        }
 
-                        break;
+                            break;
                     }
                 }
 
@@ -1197,6 +1201,367 @@ namespace ClientMeetingAgenda
                 
             }
         }
+        public void DisabledFields()
+        {
+            txtMeetingDate.Enabled = false;
+            txtReportDate.Enabled = false;
+
+            txtAcctExeId.Enabled = false;
+            txtAccountExecutiveName.Enabled = false;
+            txtAccExecEmailID.Enabled = false;
+            txtAccExecPhone.Enabled = false;
+            ddlMeetingType.Enabled = false;
+
+            txtName.Enabled = false;
+            txtTitle.Enabled = false;
+            txtPhone.Enabled = false;
+            txtEmail.Enabled = false;
+
+            gvAttendees.Enabled = false;
+
+
+
+
+            txtPreviousStartDate.Enabled = false;
+            txtPreviousEndDate.Enabled = false;
+            ddlPreviousReportType.Enabled = false;
+
+            txtCurrentStartDate.Enabled = false;
+            txtCurrentEndDate.Enabled = false;
+            ddlCurrentReportType.Enabled = false;
+
+            txtPrevTransports.Enabled = false;
+            txtPrevCharges.Enabled = false;
+            txtPrevRevenue.Enabled = false;
+            txtPrevAdjust.Enabled = false;
+            txtPrevWriteOff.Enabled = false;
+            txtPrevRefund.Enabled = false;
+            txtPrevRPT.Enabled = false;
+            txtPrevCollRate.Enabled = false;
+
+            txtCurrTransports.Enabled = false;
+            txtCurrCharges.Enabled = false;
+            txtCurrRevenue.Enabled = false;
+            txtCurrAdjust.Enabled = false;
+            txtCurrWriteOff.Enabled = false;
+            txtCurrRefund.Enabled = false;
+            txtCurrRPT.Enabled = false;
+            txtCurrCollRate.Enabled = false;
+
+            txtClientReviewComments.Enabled = false;
+            txtAccountExecutiveComments.Enabled = false;
+
+            ddlAgingReview.Enabled = false;
+            ddlDiscussedwithARTeam.Enabled = false;
+
+            txtAgingReviewComments.Enabled = false;
+            txtARComments.Enabled = false;
+
+            txtCollections.Enabled = false;
+            txtBillingPolicy.Enabled = false;
+            txtBillingPolicyComments.Enabled = false;
+            txtBillingPolicyMainIssueComments.Enabled = false;
+
+            ddlBillingRateReviewed.Enabled = false;
+            txtLastRateChange.Enabled = false;
+            txtBillingRatesReviewedComments.Enabled = false;
+            txtBillingRatesReviewedMainIssueComments.Enabled = false;
+
+            ddlCurrentBillingRates.Enabled = false;
+            txtBLS.Enabled = false;
+            txtBLSNE.Enabled = false;
+            txtALS.Enabled = false;
+            txtALSNE.Enabled = false;
+            txtALS2.Enabled = false;
+            txtMileage.Enabled = false;
+            txtLastRateChange.Enabled = false;
+            rdolstNonTransport.SelectedValue = "0";
+            txtContractStatus.Enabled = false;
+            txtCBRComments.Enabled = false;
+
+            ddlUCR.Enabled = false;
+            txtUCRComments.Enabled = false;
+            txtUCRMainIssueComments.Enabled = false;
+
+            ddlFacilityTransports.Enabled = false;
+            txtFacilityTransportsComments.Enabled = false;
+            txtCommentsOnBillingRateMainIssue.Enabled = false;
+
+            ddlNonEmergenctTranports.Enabled = false;
+            ddlIsClientAwareofPriorAuthorizationRequirements.Enabled = false;
+            txtClientAwareComments.Enabled = false;
+            ddlIsTraningNeeded.Enabled = false;
+
+            ddlContractFacilityBilling.Enabled = false;
+            ddlSkilledNursingFacilities.Enabled = false;
+            ddlUpdatedContracts.Enabled = false;
+            ddlAttached.Enabled = false;
+            ddlFacilityCurrently.Enabled = false;
+            ddlToBeBilled.Enabled = false;
+            ddlWithTheFacility.Enabled = false;
+
+            txtContractStatus.Enabled = false;
+            txtRenewalDate.Enabled = false;
+            txtCurrentRate.Enabled = false;
+            ddlContractCurrent.Enabled = false;
+            txtCurrentContractStatusComments.Enabled = false;
+
+
+
+            ddlPersonnelChanges.Enabled = false;
+            txtChief.Enabled = false;
+            txtFiscalOfficer.Enabled = false;
+            txtAuthorizedOfficial1.Enabled = false;
+            txtAuthorizedOfficial2.Enabled = false;
+
+            ddlClosedBusinesses.Enabled = false;
+            ddlNewBusiness.Enabled = false;
+            txtDemographicChangesComments.Enabled = false;
+            txtDemographicChangesMainIssueComments.Enabled = false;
+
+            ddlUsage.Enabled = false;
+            txtLastLoginDate.Enabled = false;
+            ddlAlertsReceived.Enabled = false;
+            ddlOIG_Exclsuionary.Enabled = false;
+            txtReceiveMedicountReport.Enabled = false;
+
+            ddlEPCR.Enabled = false;
+            txtLastReconciliationDate.Enabled = false;
+            txtByWhom.Enabled = false;
+            ddlRunReconciliationDone.Enabled = false;
+
+            ddlStatementReconciliation.Enabled = false;
+            txtDateofMonthEndReconilations.Enabled = false;
+            txtMonthEndReportByWho.Enabled = false;
+            txtMonthEndReportHowOften.Enabled = false;
+            ddlTraningCompleted.Enabled = false;
+            ddlIsTraningPending.Enabled = false;
+
+
+            ddlPatientSignature.Enabled = false;
+            ddlPatientSignatureEPCR.Enabled = false;
+            ddlReceivingFacilitySignature.Enabled = false;
+            ddlReceivingFacilitySignatureEPCR.Enabled = false;
+            ddlCrewSignatureEPCR.Enabled = false;
+            ddlCrewSignature.Enabled = false;
+
+            txtSignatureCaptureComments.Enabled = false;
+
+            txtRun.Enabled = false;
+            txtPatient.Enabled = false;
+            txtSignature.Enabled = false;
+            txtFacility.Enabled = false;
+            gvSignature.DataSource = null;
+            gvSignature.DataBind();
+
+            rdolstCRI.ClearSelection();
+            txtNRScheduleDate.Enabled = false;
+            txtChangeInZOHO.Enabled = false;
+
+            // Physical and Billing Address are Same
+            txtBillingStreet.Enabled = false;
+            txtBillingCity.Enabled = false;
+            txtBillingState.Enabled = false;
+            txtBillingZip.Enabled = false;
+
+            txtMailingStreet.Enabled = false;
+            txtMailingCity.Enabled = false;
+            txtMailingState.Enabled = false;
+            txtMailingZip.Enabled = false;
+
+            txtPhysicalLocationStreet.Enabled = false;
+            txtPhysicalLocationCity.Enabled = false;
+            txtPhysicalLocationState.Enabled = false;
+            txtPhysicalLocationZip.Enabled = false;
+
+            txtOverAllMeetingNotes.Enabled = false;
+            txtFollowUpAction.Enabled = false;
+            btnAddSignature.Enabled = false;
+            btnAdd.Enabled = false;
+
+            
+        }
+        public void EnabledFields()
+        {
+            txtMeetingDate.Enabled = true;
+            txtReportDate.Enabled = true;
+
+            txtAcctExeId.Enabled = true;
+            txtAccountExecutiveName.Enabled = true;
+            txtAccExecEmailID.Enabled = true;
+            txtAccExecPhone.Enabled = true;
+            ddlMeetingType.Enabled = true;
+
+            txtName.Enabled = true;
+            txtTitle.Enabled = true;
+            txtPhone.Enabled = true;
+            txtEmail.Enabled = true;
+
+            gvAttendees.Enabled = true;
+
+
+
+
+            txtPreviousStartDate.Enabled = true;
+            txtPreviousEndDate.Enabled = true;
+            ddlPreviousReportType.Enabled = true;
+
+            txtCurrentStartDate.Enabled = true;
+            txtCurrentEndDate.Enabled = true;
+            ddlCurrentReportType.Enabled = true;
+
+            txtPrevTransports.Enabled = true;
+            txtPrevCharges.Enabled = true;
+            txtPrevRevenue.Enabled = true;
+            txtPrevAdjust.Enabled = true;
+            txtPrevWriteOff.Enabled = true;
+            txtPrevRefund.Enabled = true;
+            txtPrevRPT.Enabled = true;
+            txtPrevCollRate.Enabled = true;
+
+            txtCurrTransports.Enabled = true;
+            txtCurrCharges.Enabled = true;
+            txtCurrRevenue.Enabled = true;
+            txtCurrAdjust.Enabled = true;
+            txtCurrWriteOff.Enabled = true;
+            txtCurrRefund.Enabled = true;
+            txtCurrRPT.Enabled = true;
+            txtCurrCollRate.Enabled = true;
+
+            txtClientReviewComments.Enabled = true;
+            txtAccountExecutiveComments.Enabled = true;
+
+            ddlAgingReview.Enabled = true;
+            ddlDiscussedwithARTeam.Enabled = true;
+
+            txtAgingReviewComments.Enabled = true;
+            txtARComments.Enabled = true;
+
+            txtCollections.Enabled = true;
+            txtBillingPolicy.Enabled = true;
+            txtBillingPolicyComments.Enabled = true;
+            txtBillingPolicyMainIssueComments.Enabled = true;
+
+            ddlBillingRateReviewed.Enabled = true;
+            txtLastRateChange.Enabled = true;
+            txtBillingRatesReviewedComments.Enabled = true;
+            txtBillingRatesReviewedMainIssueComments.Enabled = true;
+
+            ddlCurrentBillingRates.Enabled = true;
+            txtBLS.Enabled = true;
+            txtBLSNE.Enabled = true;
+            txtALS.Enabled = true;
+            txtALSNE.Enabled = true;
+            txtALS2.Enabled = true;
+            txtMileage.Enabled = true;
+            txtLastRateChange.Enabled = true;
+            rdolstNonTransport.SelectedValue = "0";
+            txtContractStatus.Enabled = true;
+            txtCBRComments.Enabled = true;
+
+            ddlUCR.Enabled = true;
+            txtUCRComments.Enabled = true;
+            txtUCRMainIssueComments.Enabled = true;
+
+            ddlFacilityTransports.Enabled = true;
+            txtFacilityTransportsComments.Enabled = true;
+            txtCommentsOnBillingRateMainIssue.Enabled = true;
+
+            ddlNonEmergenctTranports.Enabled = true;
+            ddlIsClientAwareofPriorAuthorizationRequirements.Enabled = true;
+            txtClientAwareComments.Enabled = true;
+            ddlIsTraningNeeded.Enabled = true;
+
+            ddlContractFacilityBilling.Enabled = true;
+            ddlSkilledNursingFacilities.Enabled = true;
+            ddlUpdatedContracts.Enabled = true;
+            ddlAttached.Enabled = true;
+            ddlFacilityCurrently.Enabled = true;
+            ddlToBeBilled.Enabled = true;
+            ddlWithTheFacility.Enabled = true;
+
+            txtContractStatus.Enabled = true;
+            txtRenewalDate.Enabled = true;
+            txtCurrentRate.Enabled = true;
+            ddlContractCurrent.Enabled = true;
+            txtCurrentContractStatusComments.Enabled = true;
+
+
+
+            ddlPersonnelChanges.Enabled = true;
+            txtChief.Enabled = true;
+            txtFiscalOfficer.Enabled = true;
+            txtAuthorizedOfficial1.Enabled = true;
+            txtAuthorizedOfficial2.Enabled = true;
+
+            ddlClosedBusinesses.Enabled = true;
+            ddlNewBusiness.Enabled = true;
+            txtDemographicChangesComments.Enabled = true;
+            txtDemographicChangesMainIssueComments.Enabled = true;
+
+            ddlUsage.Enabled = true;
+            txtLastLoginDate.Enabled = true;
+            ddlAlertsReceived.Enabled = true;
+            ddlOIG_Exclsuionary.Enabled = true;
+            txtReceiveMedicountReport.Enabled = true;
+
+            ddlEPCR.Enabled = true;
+            txtLastReconciliationDate.Enabled = true;
+            txtByWhom.Enabled = true;
+            ddlRunReconciliationDone.Enabled = true;
+
+            ddlStatementReconciliation.Enabled = true;
+            txtDateofMonthEndReconilations.Enabled = true;
+            txtMonthEndReportByWho.Enabled = true;
+            txtMonthEndReportHowOften.Enabled = true;
+            ddlTraningCompleted.Enabled = true;
+            ddlIsTraningPending.Enabled = true;
+
+
+            ddlPatientSignature.Enabled = true;
+            ddlPatientSignatureEPCR.Enabled = true;
+            ddlReceivingFacilitySignature.Enabled = true;
+            ddlReceivingFacilitySignatureEPCR.Enabled = true;
+            ddlCrewSignatureEPCR.Enabled = true;
+            ddlCrewSignature.Enabled = true;
+
+            txtSignatureCaptureComments.Enabled = true;
+
+            txtRun.Enabled = true;
+            txtPatient.Enabled = true;
+            txtSignature.Enabled = true;
+            txtFacility.Enabled = true;
+            gvSignature.DataSource = null;
+            gvSignature.DataBind();
+
+            rdolstCRI.ClearSelection();
+            txtNRScheduleDate.Enabled = true;
+            txtChangeInZOHO.Enabled = true;
+
+            // Physical and Billing Address are Same
+            txtBillingStreet.Enabled = true;
+            txtBillingCity.Enabled = true;
+            txtBillingState.Enabled = true;
+            txtBillingZip.Enabled = true;
+
+            txtMailingStreet.Enabled = true;
+            txtMailingCity.Enabled = true;
+            txtMailingState.Enabled = true;
+            txtMailingZip.Enabled = true;
+
+            txtPhysicalLocationStreet.Enabled = true;
+            txtPhysicalLocationCity.Enabled = true;
+            txtPhysicalLocationState.Enabled = true;
+            txtPhysicalLocationZip.Enabled = true;
+
+            txtOverAllMeetingNotes.Enabled = true;
+            txtFollowUpAction.Enabled = true;
+
+            btnAddSignature.Enabled = true;
+            btnAdd.Enabled = true;
+
+
+        }
        public void ClearFieldsData()
         {
             txtMeetingDate.Text = "";
@@ -1279,7 +1644,7 @@ namespace ClientMeetingAgenda
             txtUCRComments.Text = "";
             txtUCRMainIssueComments.Text = "";
 
-            ddlFacilityTransports.Text = "";
+            ddlFacilityTransports.SelectedIndex = 0;
             txtFacilityTransportsComments.Text = "";
             txtCommentsOnBillingRateMainIssue.Text = "";
 
@@ -1518,6 +1883,17 @@ namespace ClientMeetingAgenda
             txtMileage.Text = GetPreviousBillingRateValue[0][6];
             rdolstNonTransport.Text = GetPreviousBillingRateValue[0][8];        
 
+        }
+        public void txtAccountExecutiveName_TextChanged(object sender, EventArgs e)
+        {
+            if(txtAccountExecutiveName.Text== "No longer Client")
+            {
+                DisabledFields();
+            }
+            else
+            {
+
+            }
         }
         protected void txtCurrentEndDate_TextChanged(object sender, EventArgs e)
         {
@@ -1863,10 +2239,11 @@ namespace ClientMeetingAgenda
 
             DataRow row = dt.Select("ID=" + rowId)[0];
 
-            row["Patient"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
-            row["Signature"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
-            row["Facility"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
-            //row["Email"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
+            row["Run"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
+            row["Patient"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
+            row["Signature"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
+            row["Facility"] = ((TextBox)gvSignature.Rows[e.RowIndex].Cells[4].Controls[0]).Text;
+            
 
             gvSignature.EditIndex = -1;
             SignatureBindGrid();
@@ -1900,12 +2277,13 @@ namespace ClientMeetingAgenda
                 dtSignature = (DataTable)Session["dtSignature"];
 
                 string id = e.CommandArgument.ToString();
-                DataRow[] rows = dtSignature.Select("ID = '" + id + "'");
+                //DataRow[] rows = dtSignature.Select("ID = '" + id + "'");
+                DataRow[] rows = dtSignature.Select("ID = " + id);
 
                 if (rows.Length > 0)
                 {
                     // Set values into Textboxes
-                    txtRun.Text = rows[0]["ID"].ToString();
+                    txtRun.Text = rows[0]["Run"].ToString();
                     txtPatient.Text = rows[0]["Patient"].ToString();
                     txtSignature.Text = rows[0]["Signature"].ToString();
                     txtFacility.Text = rows[0]["Facility"].ToString();
@@ -1924,8 +2302,7 @@ namespace ClientMeetingAgenda
         {
             gvSignature.DataSource = SignatureTable;
             gvSignature.DataBind(); 
-            //vAttendees.DataSource = AttendeesTable;
-            //gvAttendees.
+           
         }
         protected void btnAddSignature_Click(object sender, EventArgs e)
         {
@@ -1947,16 +2324,19 @@ namespace ClientMeetingAgenda
 
             DataTable dt = SignatureTable;
 
-             int id = dt.Rows.Count == 0 ? 1 : Convert.ToInt32(dt.Compute("MAX(ID)", "")) + 1;
+            int id = dt.Rows.Count == 0 ? 1 : Convert.ToInt32(dt.Compute("MAX(ID)", "")) + 1;
 
-            dt.Rows.Add(
-                id,
-                txtRun.Text.Trim(), //= id.ToString(),
-                txtPatient.Text.Trim(),
-                txtSignature.Text.Trim(),
-                txtFacility.Text.Trim()
-            );
+            DataRow dr = dt.NewRow();
 
+            dr["ID"] = id;
+
+            
+            dr["Run"] = txtRun.Text.Trim();
+            dr["Patient"] = txtPatient.Text.Trim();
+            dr["Signature"] = txtSignature.Text.Trim();
+            dr["Facility"] = txtFacility.Text.Trim();
+
+            dt.Rows.Add(dr);
             SignatureTable = dt;
             SignatureBindGrid();
             SignatureClearFields();

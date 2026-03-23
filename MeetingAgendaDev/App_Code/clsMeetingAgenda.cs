@@ -100,6 +100,7 @@ namespace ClientMeetingAgenda.App_Code
         public string Patient { get; set; }
         public string Signature { get; set; }
         public string Facility { get; set; }
+        public string Run { get; set; }
 
         public bool IsPrint { get; set; }
 
@@ -523,6 +524,7 @@ namespace ClientMeetingAgenda.App_Code
             objSqlCommand.Parameters.AddWithValue("@Patient", Patient);
             objSqlCommand.Parameters.AddWithValue("@Signature", Signature);
             objSqlCommand.Parameters.AddWithValue("@Facility", Facility);
+            objSqlCommand.Parameters.AddWithValue("@Run", Run);
 
             DataSet ds = new DataSet();
             ds = objclsConnection.ExecuteDataSet(objSqlCommand);
@@ -741,6 +743,7 @@ namespace ClientMeetingAgenda.App_Code
         public string Patient { get; set; }
         public string Signature { get; set; }
         public string Facility { get; set; }
+        public string Run { get; set; }
     }
 
     public class clsOutput

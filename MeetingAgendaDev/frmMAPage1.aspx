@@ -213,7 +213,7 @@
                              </tr>     
                              <tr>
                                 <td colspan="3">
-                                        <asp:TextBox ID="txtAccountExecutiveName" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
+                                        <asp:TextBox ID="txtAccountExecutiveName" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" OnTextChanged="txtAccountExecutiveName_TextChanged" autocomplete="off"></asp:TextBox>
                                 </td>
                                 <td colspan="3">
                                      <asp:TextBox ID="txtAccExecEmailID" CssClass="form-control" BackColor="#FFFF99"  runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox>
@@ -1321,7 +1321,7 @@
                                                  <th colspan="2" class="text-center" style="background-color:#5D6770 !important; color:#fff !important;"></th>                         
                                              </tr>
                                              <tr>
-                                                  <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtRun" TextMode="Number"  CssClass="form-control" runat="server" Text="" MaxLength="6" autocomplete="off"></asp:TextBox></td>
+                                                  <td colspan="2" style="padding: inherit !important;"> <asp:TextBox ID="txtRun"  CssClass="form-control" runat="server" Text="" MaxLength="10" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtPatient" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2"  style="padding: inherit !important;"><asp:TextBox ID="txtSignature" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
                                                   <td colspan="2" style="padding: inherit !important;"><asp:TextBox  ID="txtFacility" CssClass="form-control" runat="server" Text="" MaxLength="50" autocomplete="off"></asp:TextBox></td>
@@ -1337,7 +1337,7 @@
                                      </table>
      
                                  </div>
-          
+             
 
                                  <div class="col-lg-12 form-group">
    
@@ -1350,9 +1350,9 @@
                                             OnRowCancelingEdit="gvSignature_RowCancelingEdit"
                                             OnRowDeleting="gvSignature_RowDeleting">
 
-                                            <Columns>
-                                                <asp:BoundField Visible="false" DataField="ID" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
-                                                <asp:BoundField DataField="MeetingAgendaID" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
+                                            <Columns>                                               
+                                                <asp:BoundField DataField="ID" Visible="false" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
+                                                <asp:BoundField DataField="Run" HeaderText="Run" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left" />
                                                 <asp:BoundField DataField="Patient" HeaderText="Patient" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
                                                 <asp:BoundField DataField="Signature" HeaderText="Crew" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>
                                                 <asp:BoundField DataField="Facility" HeaderText="Facility" ItemStyle-CssClass="text-left" HeaderStyle-CssClass="text-left"/>

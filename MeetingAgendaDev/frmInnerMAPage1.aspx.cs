@@ -45,19 +45,9 @@ namespace ClientMeetingAgenda
                 IsPDFGenerated = true;
             }
             objclsMeetingAgenda.IsPDFGenerated = IsPDFGenerated;
-            //clsMeetingAgenda.IsPDFGenerated
-
-            //if (!string.IsNullOrEmpty(pdf_FileName))
-            //{
-            //    clsMeetingAgenda.IsPDFGenerated = true;
-            //}
-            //else
-            //{
-            //    clsMeetingAgenda.IsPDFGenerated = false;
-            //}
+            
             if (clsMeetingAgenda.IsPrint)
             {
-                //string PDFPath = NewGeneratePDF(formHtml, clientName, clientNumber, buttonType); //GeneratePDF(clsMeetingAgenda);
 
                 clsOutput objclsOutput = new clsOutput();
                 objclsOutput.MeetingAgendaID = 0;
@@ -138,10 +128,7 @@ namespace ClientMeetingAgenda
                     }
 
                     HttpContext.Current.Session["dtAttendeesInvited"] = dtAttendeesInvited;
-                    HttpContext.Current.Session["dtSignature"] = dtSignature;
-
-                    //if (objclsMeetingAgenda.lstclsSignature != null)
-                    //{
+                    HttpContext.Current.Session["dtSignature"] = dtSignature;                    
 
                         int output = 0;
                         for (int i = 0; i < dtSignature.Rows.Count; i++)
@@ -152,6 +139,7 @@ namespace ClientMeetingAgenda
                             objclsMeetingAgenda.Patient = dtSignature.Rows[i]["Patient"].ToString().Trim();
                             objclsMeetingAgenda.Signature = dtSignature.Rows[i]["Signature"].ToString().Trim();
                             objclsMeetingAgenda.Facility = dtSignature.Rows[i]["Facility"].ToString().Trim();
+                            objclsMeetingAgenda.Run = dtSignature.Rows[i]["Run"].ToString().Trim();
                             output = objclsMeetingAgenda.InsertSignature();
 
                             clsOutput objclsOutput = new clsOutput();
@@ -159,20 +147,9 @@ namespace ClientMeetingAgenda
                             objclsOutput.SignatureID = output;
 
                             lstclsOutput.Add(objclsOutput);
-                        }
-                    //}
+                        }                    
                 }
-
-                //if (objclsMeetingAgenda.IsPDFGenerated)
-                //{
-                //    HttpContext.Current.Session["FileDownload"] = pdf_FileName; //GeneratePDF(objclsMeetingAgenda);
-
-                //    objclsMeetingAgenda = new clsMeetingAgenda();
-                //    objclsMeetingAgenda.ID = int.Parse(dsMeetingAgenda.Tables[0].Rows[0]["ID"].ToString());
-                //    objclsMeetingAgenda.FileName = HttpContext.Current.Session["FileDownload"].ToString();
-                //    objclsMeetingAgenda.LastUpdatedBy = HttpContext.Current.Session["UserName"].ToString();
-                //    objclsMeetingAgenda.UpdatePDFStatus("");
-                //}
+                
             }
 
             if (buttonType == "submit") 
